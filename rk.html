@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>R k correlation coefficient</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+<p>
+<div style="display:none">
+  \[
+    \newcommand{\cov}{\mathop{\rm cov}\nolimits}
+    \newcommand{\R}{\mathbb{R}}
+  \]
+</div>
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+.tg .tg-t4zm{font-size:16px;border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-gmla{font-size:16px;border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-7jts{font-size:18px;border-color:inherit;text-align:center;vertical-align:top}
+</style>
+
+
+Throughout this post we well have a confusion matrix that looks like this where the row index give the true label and the column index gives the predicted label.
+
+<center>
+<table class="tg">
+  <tr>
+    <th class="tg-0pky"></th>
+    <th class="tg-gmla" colspan="2">Prediction</th>
+  </tr>
+  <tr>
+    <td class="tg-t4zm" rowspan="2">Gold</td>
+    <td class="tg-7jts">TP</td>
+    <td class="tg-7jts">FN<br></td>
+  </tr>
+  <tr>
+    <td class="tg-7jts">FP</td>
+    <td class="tg-7jts">TN<br></td>
+  </tr>
+</table>
+</center>
+
+\(R_k\) is the multiclass extension of the discretizated pearsons rank correlation and is defined as 
+
+  \[
+     R_k = \frac{\cov(X, Y)}{\sqrt{\cov(X, X)}\sqrt{\cov(Y, Y)}}
+  \]
+
+\(X\) and \(Y\) are one hot vectors \(\in \R^{S, N}\). Each row in the matrix represents a example in the dataset and each column represents a class in the problem. The row for example \(s\) has a 1 in column \(k\) if the label for that example is \(k\) and is zero otherwise.
+
+  \[
+     \cov(X, Y) = \sum_k^N w_k \cov(X_k, Y_k)
+  \]
+
+\(w_k\) is a weight on some class \(k\), we use a uniform prior on all classes so \(w_k = \frac{1}{N}\). Because it is a constant across the summation we can pull it out (it is a multiplication which distributes over addition).
+<br/>
+<br/>
+Using the definition of covariance we get that 
+
+  \[
+     \cov(X, Y) = w_k \sum_s^S \sum_k^N (X_{sk} - \bar{X}_k)(Y_{sk} - \bar{Y}_k)
+  \]
+  \[
+     \bar{X}_k = \frac{1}{S}\sum_s^S X_{sk} = \frac{1}{S}\sum_l^N C_{lk}
+  \]
+  \[
+     \bar{Y}_k = \frac{1}{S}\sum_s^S Y_{sk} = \frac{1}{S}\sum_l^N C_{kl}
+  \]
+
+Foil the covariance calculation
+
+  \[
+     \cov(X, Y) = w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - X_{sk}\bar{Y}_k - Y_{sk}\bar{X}_k + \bar{X}_k \bar{Y}_k
+  \]
+
+thinking of the \(- x\) in the above as \(+ -1 * x\) we can see how we are allowed to rearrange the order of the summations that allow use to put the sum in front of each term so we can reason about it individually
+
+  \[
+     \cov(X, Y) = w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_s^S \sum_k^N X_{sk}\bar{Y}_k - \sum_s^S \sum_k^N Y_{sk}\bar{X}_k + \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k
+  \]
+
+Lets start with \(\sum\nolimits_s^S \sum_k^N \bar{X}_k \bar{Y}_k\).
+
+First we can see the \(s\) variable is not used, this means that the value calculated in the summation over \(k\) is repeated \(s\) times. This is the definition of multiplication (repeated addition)
+
+  \[
+     \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k = S\sum_k^N \bar{X}_k \bar{Y}_k
+  \]
+
+  \[
+     \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k = S\sum_k^N \frac{1}{S}\sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl}
+  \]
+
+  \[
+     \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k = \frac{S}{S^2}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl}
+  \]
+
+  \[
+     \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k = \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl}
+  \]
+
+
+
+From a math perspective there isn't a lot to do with the first term, we'll come back to this when we convert it to code. \(\sum_s^S \sum_k^N X_{sk}Y_{sk}\)
+
+<br/>
+<br/>
+
+Now lets take a look at \(\sum_s^S \sum_k^N X_{sk}\bar{Y}_k\). Similar to above we can pull \(\bar{Y}_k\) out of the summation over \(s\) because \(\bar{Y}_k\) doesn't depend on \(s\)
+
+  \[
+    \sum_s^S \sum_k^N X_{sk} \bar{Y}_k = \sum_k^N \bar{Y}_k \sum_s^S X_{sk}
+  \]
+
+\(\sum_s^S X_{sk}\) is the number of examples in \(X\) that belong to class \(k\). Can be read from the confusion matrix.
+
+  \[
+	\sum_s^S X_{sk} = \sum_k^N C_{lk}
+  \]
+
+Substituting both this definition and the confusion matrix based definition of \(\bar{Y}_k\) we get:
+
+  \[
+    \sum_s^S \sum_k^N X_{sk} \bar{Y}_k = \sum_k^N  \sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl}
+  \]
+
+We can also pull the multiplication by \(\frac{1}{S}\) out of the summation (multiplication distributes over addition once again)
+
+  \[
+    \sum_s^S \sum_k^N X_{sk} \bar{Y}_k = \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl}
+  \]
+
+\(\sum_s^S \sum_k^N Y_{sk}\bar{X}_k\) can be expanded similarly
+
+  \[
+    \sum_s^S \sum_k^N Y_{sk}\bar{X}_k = \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}
+  \]
+
+Substituting these expansions into our foiled expression we get
+
+  \[
+     \cov(X, Y) = w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} + \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl}
+  \]
+
+Here we can see that the <code>outer</code> and <code>last</code> sections cancel out.
+
+  \[
+     \cov(X, Y) = w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}
+  \]
+
+Expanding \(w_k\) as can rewrite as 
+
+  \[
+     \cov(X, Y) = \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{k}
+  \]
+
+We can multiply by \(\frac{S}{S}\) because it the same as multiplying by \(1\).
+
+  \[
+     \cov(X, Y) = \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{k} * \frac{S}{S}
+  \]
+
+The \(S\) in the numerator distributes over the subtraction. It cancels with the \(S\) in the denominator of the second term.
+
+
+  \[
+     \cov(X, Y) = \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S}
+  \]
+
+When we calculate \(\cov(X, X)\) we have can apply the same math, this time however we don't have \(\bar{Y}_k\) so all the confusion matrix definitions are \(C_{lk}\)
+
+  \[
+     \cov(X, X) = \frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{k * S}
+  \]
+
+Similarly \(\cov(Y, Y)\) only has confusion matrix definitions that look like \(C_{kl}\)
+
+  \[
+     \cov(Y, Y) = \frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{k * S}
+  \]
+
+Lets plug this back into the \(R_k\) definition.
+
+  \[
+     R_k = \frac{
+		\frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S}
+	}{
+		\sqrt{\frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{k * S}}\sqrt{\frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{k * S}}
+	}
+  \]
+
+Using some rules of square roots \(\sqrt{a}\sqrt{b} = \sqrt{ab}\) and \(\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}\) we can re-write \(R_k\) as
+
+  \[
+     R_k = \frac{
+		\frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S}
+	}{
+		\frac{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}{\sqrt{(k*S)^2}}
+	}
+  \]
+
+Because \(\sqrt{a^2} = a\) can drop the square root on the bottom.
+
+  \[
+     R_k = \frac{
+		\frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S}
+	}{
+		\frac{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}{k*S}
+	}
+  \]
+
+Division is multiplication by the reciprocal so we can rewrite like so
+
+  \[
+     R_k =
+		\frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S} *
+		\frac{k * S}{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}
+  \]
+
+The \(k * S\)'s cancel leaving us with a final simplified \(R_k\) of
+
+  \[
+     R_k =
+		\frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}
+		{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}
+  \]
+
+This still looks fairly complicated and we have this annoying disconnected where the majority of elements are calculated from the confusion matrix \(C\) but we have some things \(\sum_s^S X_{sk}Y_{sk}\), \(\sum_s^S X_{sk}X_{sk}\) \(\sum_s^S Y_{sk}Y_{sk}\) are calculated based on the one hot representation, this representation is a waste of memory and building it is a waste of time. We would like to be able to calculate this based on the confusion matrix too.
+
+<br/>
+<br/>
+
+Lets start translating these into numpy code. Lets start with the simple ones.
+
+<ul>
+	<li> \(S\) is the number of examples in the dataset. This is an easy translation numpy, <code>np.sum(C)</code> </li>
+    <li> \(\sum_l^N C_{kl}\) produces a vector which has the sum of each column. <code>np.sum(C, axis=0)</code> </li>
+    <li> \(\sum_l^N C_{lk}\) produces a vector which has the sum of each row. <code>np.sum(C, axis=1)</code> </li>
+ 	<li> \(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) takes the sum of the product between each element in the vectors. This is the definition of the dot product.</li>
+    <ul>
+		<li>\(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}\) from \(\cov(X, Y)\) translates to <code>np.dot(np.sum(C, axis=1), np.sum(C, axis=0))</code></li>
+		<li>\(\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}\) from \(\cov(X, X)\) translates to <code>np.dot(np.sum(C, axis=0), np.sum(C, axis=0))</code></li>
+		<li>\(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) from \(\cov(Y, Y)\) translates to <code>np.dot(np.sum(C, axis=1), np.sum(C, axis=1))</code></li>
+	</ul>
+</ul>
+
+<br/>
+<br/>
+
+
+
+Transforming \(\sum_s^S \sum_k^N X_{sk}Y_{sk}\) is a little trickier and depends on understanding what these matrices represent. \(X\) and \(Y\) are one hot matrices \(\in \R^{s,k}\) where \(X_{sk}\) is \(1\) if example \(s\) was classified as class \(k\). Because these are one hot most of the values in the product are a zero, the value is only one when \(sk\) is one for both matrices. When the elements in this expression are \(X\) and \(Y\) there is only a value when the classification for that example matches. This can be read from the confusion matrix, the counts on the diagonal are the number of examples for each class where the gold label matches the predicted label. This sum can be expressed as \(\sum_k^N C_{kk}\) and as <code>np.sum(np.diagonal(C))</code> or <code>np.trace(C)</code> in code.
+
+<br/>
+<br/>
+
+When the inputs match (both are \(X\) or both are \(Y\)) the elements at a given \(sk\) will always match. Because these are one hots the value of the multiplication is always one and there is only a single class that has a one in it. This means this sum will always just be the number of examples. This can be pull from the confusion matrix with <code>np.sum(C)</code>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+A second way to look at \(\sum_s^S \sum_k^N X_{sk}\bar{Y}_k\) is as follows. First remember the definition of \(\bar{X}_k\)
+
+  \[
+     \bar{X}_k = \frac{1}{S}\sum_s^S X_{sk}
+  \]
+  \[
+     S\bar{X}_k = \sum_s^S X_{sk}
+  \]
+
+This means we can substitute this in and pull the \(S\) out of the sum
+
+  \[
+     S\sum_k^N \bar{X}_k \bar{Y}_k
+  \]
+
+Using this substitution for both the <code>outer</code> and <code>inner</code> sections as well as our fist transformation of the <code>last</code> section we can see how the terms cancel.
+
+  \[
+     \cov(X, Y) = w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - S \sum_k^N \bar{X}_k\bar{Y}_k - S \sum_k^N \bar{Y}_k\bar{X}_k + S \sum_k^N \bar{X}_k \bar{Y}_k
+  \]
+
+  \[
+     \cov(X, Y) = w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - S \sum_k^N \bar{Y}_k\bar{X}_k
+  \]
+
+We can then use the transformations discussed above to define each term by the confusion matrix.
+
+</p>
+</body>
+</html>
