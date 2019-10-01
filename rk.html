@@ -49,6 +49,8 @@ Throughout this post we well have a confusion matrix that looks like this where 
 </table>
 </center>
 
+<h2>Simplifying the \(R_k\) calculation</h2>
+
 \(R_k\) is the multiclass extension of the discretizated pearsons rank correlation and is defined as 
 
   \[
@@ -64,14 +66,21 @@ Throughout this post we well have a confusion matrix that looks like this where 
 \(w_k\) is a weight on some class \(k\), we use a uniform prior on all classes so \(w_k = \frac{1}{N}\). Because it is a constant across the summation we can pull it out (it is a multiplication which distributes over addition).
 <br/>
 <br/>
-Using the definition of covariance we get that 
+
+Using the definition of covariance we get that
 
   \[
      \cov(X, Y) = w_k \sum_s^S \sum_k^N (X_{sk} - \bar{X}_k)(Y_{sk} - \bar{Y}_k)
   \]
+
+  \(\bar{X}_k\) is the mean of the \(k^{th}\) column of of \(X\). Because \(X\) is a one hot where a column \(k\) for a row \(s\) is one if that examples was labeled with \(k\) we can read this value from the confusion matrix. It is the sum of all elements in column \(k\) of the confusion matrix because that is the class in \(X\) regardless of the class in \(\bar{Y}\). The denominator in the mean is the total number of samples because the mean is actually over all \(S\) rows in \(X\) even if we read the values from the confusion matrix.
+
   \[
      \bar{X}_k = \frac{1}{S}\sum_s^S X_{sk} = \frac{1}{S}\sum_l^N C_{lk}
   \]
+
+We can do the same transformation into a confusion matrix based calculation of \(Y\) except that the sum is along a row because we care about the value in \(Y\) regardless of the value in \(X\).
+
   \[
      \bar{Y}_k = \frac{1}{S}\sum_s^S Y_{sk} = \frac{1}{S}\sum_l^N C_{kl}
   \]
@@ -96,13 +105,19 @@ First we can see the \(s\) variable is not used, this means that the value calcu
      \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k = S\sum_k^N \bar{X}_k \bar{Y}_k
   \]
 
+Then we can substitute in out definitions of \(\bar{X}_k\) and \(\bar{Y}_k\) for earlier.
+
   \[
      \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k = S\sum_k^N \frac{1}{S}\sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl}
   \]
 
+We can pull the divisions by \(S\) out because division is multiplication by the reciprocal and multiplication distributes over the addition.
+
   \[
      \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k = \frac{S}{S^2}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl}
   \]
+
+The \(S\) in the numerator cancels with one of the \(S\)s in the denominator.
 
   \[
      \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k = \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl}
@@ -236,8 +251,8 @@ The \(k * S\)'s cancel leaving us with a final simplified \(R_k\) of
 
 This still looks fairly complicated and we have this annoying disconnected where the majority of elements are calculated from the confusion matrix \(C\) but we have some things \(\sum_s^S X_{sk}Y_{sk}\), \(\sum_s^S X_{sk}X_{sk}\) \(\sum_s^S Y_{sk}Y_{sk}\) are calculated based on the one hot representation, this representation is a waste of memory and building it is a waste of time. We would like to be able to calculate this based on the confusion matrix too.
 
-<br/>
-<br/>
+
+<h2>Converting to numpy</h2>
 
 Lets start translating these into numpy code. Lets start with the simple ones.
 
@@ -300,6 +315,39 @@ Using this substitution for both the <code>outer</code> and <code>inner</code> s
   \]
 
 We can then use the transformations discussed above to define each term by the confusion matrix.
+
+
+<h2>Reduction to Matthews Correlation Coefficient for k=2</h2>
+
+The Wikipedia page for MCC gives multiple ways to calculate it by reading from the confusion matrix and also the original equations that Matthews gave in his paper. This presentation skips however the original formula Matthews presented for the correlation between prediction \(P_n\) (what we would call \(X_s\)) and observation \(S_n\) (what we call \(Y_s\)). This is the formula converted to use the same variables we do.
+
+\[
+    MCC = \frac{\sum_s^S (Y_s - \bar{Y}) (X_s - \bar{X})}{\sqrt{\sum_s^S (X_s - \bar{X})^2 \sum_s^S (Y_s - \bar{Y})^2}}
+\]
+
+\(\sum_s^S (X_s - \bar{X})^2\) expands to \(\sum_s^S (X_s - \bar{X})(X_s - \bar{X})\) so we can rewrite this as
+
+\[
+    MCC = \frac{\sum_s^S (Y_s - \bar{Y}) (X_s - \bar{X})}{\sqrt{\sum_s^S (X_s - \bar{X})(X_s - \bar{X})\sum_s^S (Y_s - \bar{Y})(Y_s - \bar{Y}) }}
+\]
+
+The we can see that this is the covariance calculations we calculated earlier!
+
+\[
+    MCC = \frac{\cov(Y, X)}{\sqrt{\cov(X, X)\cov(Y, Y)}}
+\]
+
+
+\(\cov\) is symmetric so \(\cov(Y, X) = \cov(X, Y)\) meaning we can write this as
+
+\[
+    MCC = \frac{\cov(X, Y)}{\sqrt{\cov(X, X)\cov(Y, Y)}}
+\]
+
+
+Now we see that this is the same things calculated for \(R_k\)! The only different is that \(R_k\) is calculated for multiple classes in this case \(k=2\) while the original MCC calculation is based on classes of \(0\) and \(1\) and is there for calculated with a single vector \(X \in \R^S\) opposed to \(R_k\) which has \(X \in \R^S\)
+
+Prove these are the same!
 
 </p>
 </body>
