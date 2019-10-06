@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Decay Functions</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+<h2>Exponential Decay</h2>
+<p>
+
+  \[
+    \begin{aligned}
+    \textrm{decay rate} &= r \\
+    \textrm{decay step} &= s \\
+    \textrm{initial learning rate} &= \eta \\
+    \textrm{current step} &= x \\
+    \textrm{learning rate} &= y \\
+
+    y &= \eta * r ^ {\frac{x}{s}} \\
+    \frac{y}{\eta} &= r^{\frac{x}{s}} \\
+    \log \frac{y}{\eta} &= \log r^{\frac{x}{s}} \\
+    \log \frac{y}{\eta} &= \frac{x}{s} \log r \\
+    \frac{\log \frac{y}{\eta}}{\log{r}} &= \frac{x}{s} \\
+    \frac{\log \frac{y}{\eta}}{\log{r}} * s &= x \\
+
+    \end{aligned}
+  \]
+</p>
+
+<h2>Inverse Time Decay</h2>
+<p>
+  \[
+    \begin{aligned}
+    \textrm{decay rate} &= r \\
+    \textrm{decay step} &= s \\
+    \textrm{initial learning rate} &= \eta \\
+    \textrm{current step} &= x \\
+    \textrm{learning rate} &= y \\
+
+    y &= \frac{\eta}{1.0 + r * \frac{x}{s}} \\
+    \frac{\eta}{y} &= 1.0 + r * \frac{x}{s} \\
+    \frac{\eta}{y} - 1.0 &= r * \frac{x}{s} \\
+    \frac{\frac{lr}{y} - 1.0}{r} &= \frac{x}{s} \\
+    \frac{\frac{lr}{y} - 1.0}{r} * s &= x \\
+
+    \end{aligned}
+  \]
+</p>
+
+</body>
+</html>

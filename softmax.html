@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Numberically Stable Softmax</title>
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async
+          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+  </script>
+</head>
+<body>
+<p>
+<div style="display:none">
+  \[
+     \newcommand{\softmax}{\mathop{\rm softmax}\nolimits}
+  \]
+</div>
+
+  \[
+     \begin{align}
+     \softmax(x) &= \frac{e^{x_i}}{\sum_j e^{x_j}} \\
+     \softmax(x) &= \softmax(x - \alpha) \\
+     \alpha &= \max_i x_i
+     \end{align}
+  \]
+
+  \[
+     \begin{align}
+     \softmax(x_i) &= \frac{e^{x_i}}{\sum_j e^{x_j}} \\
+     &= \frac{e^{-\alpha}}{e^{-\alpha}} * \frac{e^{x_i}}{\sum_j e^{x_j}} \\
+     &= \frac{e^{-\alpha}e^{x_i}}{e^{-\alpha}\sum_j e^{x_j}} \\
+     &= \frac{e^{-\alpha}e^{x_i}}{\sum_j e^{-\alpha} e^{x_j}} \\
+     &= \frac{e^{-\alpha + x_i}}{\sum_j e^{-\alpha + x_j}} \\
+     &= \frac{e^{x_i -\alpha}}{\sum_j e^{x_j -\alpha}} \\
+     \end{align}
+  \]
+
+  \[
+     \softmax(x-\alpha) = \frac{e^{x_i - \alpha}}{\sum_j e^{x_j - \alpha}}
+  \]
+
+</p>
+</body>
+</html>
