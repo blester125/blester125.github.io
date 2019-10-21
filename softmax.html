@@ -8,6 +8,8 @@
   <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
+
+
 </head>
 <body>
 <p>
@@ -41,5 +43,76 @@
   \]
 
 </p>
+
+  \[
+    x \class{operator}{+} y
+  \]
+
+  \[
+    \begin{align}
+    \cssId{show-line-1}x + y &= z \\
+    \cssId{show-line-2}z &= 0
+    \end{align}
+  \]
+
 </body>
+
+<!--
+
+    Current Idea is to use \cssId to label the first element in a line with a line number.
+    In javascript we will find this element and search parents to find the first
+    mjx-mtr to find the row it is in and set the onHover that selects the matching
+    list element to highlight in the explanation list
+
+    Use querySelectorAll to find all ids, use some naming scheme to associate for
+    example math-line-1 -> explain-line-1
+
+    Need to find a scrolling list to hold the explain that javascript lets us
+    highlight and autoscroll to some list element
+-->
+
+<script type="text/javascript">
+    function addHover(id) {
+        var ele = document.getElementById(id)
+        while (ele.nodeName != 'MJX-MTR') {
+            ele = ele.parentNode;
+            if (ele === null) {
+                return;
+            }
+        }
+        var explainId = findExplain(id)
+        ele.onmouseover = function() {
+            focusExplain(explainId);
+        };
+    }
+
+    function findExplain(id) {
+        return id.replace(/show-line/gi, 'explain-line');
+    }
+
+    function focusExplain(id) {
+        alert(id);
+    }
+
+    window.onload = function() {
+        var show_eles = document.querySelectorAll('[id^=show-line-]')
+        for (var i = 0; i < show_eles.length; i++){
+            console.log(show_eles[i].id)
+            addHover(show_eles[i].id)
+        }
+    };
+</script>
+
+<style>
+    .operator {
+        color: red
+    }
+    #line-1 {
+        color: blue
+    }
+    #line-2 {
+        color: green
+    }
+</style>
+
 </html>
