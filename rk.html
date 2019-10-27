@@ -68,9 +68,9 @@ This post will start with a quick introduction to the \(R_k\) metric and then ho
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
 .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
 .tg .tg-t4zm{font-size:16px;border-color:inherit;text-align:center;vertical-align:middle}
-.tg .tg-gmla{font-size:16px;border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-7jts{font-size:18px;border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-cji8{font-size:18px;border-color:inherit;text-align:center;vertical-align:middle}
+.tg .tg-nrix{text-align:center;vertical-align:middle}
 </style>
 
 
@@ -79,20 +79,27 @@ Throughout this post we well have a confusion matrix that looks like this where 
 <center>
 <table class="tg">
   <tr>
-    <th class="tg-0pky"></th>
-    <th class="tg-gmla" colspan="2">Prediction</th>
+    <th class="tg-9wq8" colspan="2" rowspan="2"></th>
+    <th class="tg-t4zm" colspan="2">Prediction</th>
+  </tr>
+  <tr>
+    <td class="tg-nrix">1</td>
+    <td class="tg-nrix">0</td>
   </tr>
   <tr>
     <td class="tg-t4zm" rowspan="2">Gold</td>
-    <td class="tg-7jts">TP</td>
-    <td class="tg-7jts">FN<br></td>
+    <td class="tg-nrix">1</td>
+    <td class="tg-cji8">TP</td>
+    <td class="tg-cji8">FN<br></td>
   </tr>
   <tr>
-    <td class="tg-7jts">FP</td>
-    <td class="tg-7jts">TN<br></td>
+    <td class="tg-nrix">0<br></td>
+    <td class="tg-cji8">FP</td>
+    <td class="tg-cji8">TN<br></td>
   </tr>
 </table>
 </center>
+
 
 <h2>Simplifying the \(R_k\) calculation</h2>
 
