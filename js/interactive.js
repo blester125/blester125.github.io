@@ -1,4 +1,5 @@
 const MATH_JAX_ROW = 'MJX-MTR';
+const MATH_JAX_QED_ROW = 'MJX-MLABELEDTR'
 const classHighlight = 'highlight';
 const showClass = 'show_class'
 
@@ -16,7 +17,8 @@ const Highlighter = {
 
 function addFunctionOnHoverToMathJax(to_add_id, func) {
     var ele = document.getElementById(to_add_id);
-    while (ele.nodeName != MATH_JAX_ROW) {
+    // When we add a `\qed` to a like it becomes a labeled row so we need to grab those too
+    while (!(ele.nodeName === MATH_JAX_ROW || ele.nodeName === MATH_JAX_QED_ROW)) {
         ele = ele.parentNode;
         if (ele == null) {
             return;
