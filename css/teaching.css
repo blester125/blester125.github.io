@@ -1,0 +1,19 @@
+
+.left {
+    float: left;
+    width: 50%;
+}
+
+.right {
+    float: right;
+    width: 50%;
+}
+
+#explain li {
+    list-style-type: none;
+}
+
+.highlight {
+    background-color: cyan;
+    font-weight: bold;
+}
