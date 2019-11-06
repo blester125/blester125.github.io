@@ -1,5 +1,6 @@
 const MATH_JAX_ROW = 'MJX-MTR';
 const classHighlight = 'highlight';
+const showClass = 'show_class'
 
 
 const Highlighter = {
