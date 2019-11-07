@@ -8,27 +8,58 @@
   <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
+
+  <!--- Custom Code --->
+  <script src="../js/interactive.js"></script>
+  <script type='text/javascript'>
+    window.onload = addHoverToLines.bind(null, 'show-line-')
+  </script>
+  <link rel="stylesheet" type="text/css" href="../css/teaching.css">
+
 </head>
 <body>
-<div style="display:none">
+<div class="content">
+  <div class="math-def">
     \[
-        \newcommand{\gm}{\mathop{\rm gm}\nolimits}
+      \newcommand{\gm}{\mathop{\rm geometric mean}\nolimits}
+      \newcommand{\qed}{\tag*{$\Box$}}
     \]
-</div>
-<p>
+  </div>
+  <div class="math">
+    \[
+      \begin{align}
+      \cssId{show-line-1} \gm(x) &= \sqrt[n]{\prod_i^n x_i} \\
+      \cssId{show-line-2} \gm(x) &= e^{\frac{1}{n} \sum_i^n \log x_i} \\
+      \end{align}
+    \]
 
-  \[
-     \begin{align}
-     \gm &= \sqrt[n]{\prod_i^n x_i} \\
-     \gm &= (\prod_i^n x_i)^{n^{-1}} \\
-     e^{\log \gm} &= e^{\log ((\prod_i^n x_i)^{n^{-1}})} \\
-     \gm &= e^{\log ((\prod_i^n x_i)^{n^{-1}})} \\
-     \gm &= e^{n^{-1} \log (\prod_i^n x_i)} \\
-     \gm &= e^{n^{-1} \sum_i^n \log x_i} \\
-     \gm &= e^{\frac{1}{n} \sum_i^n \log x_i} \\
-     \gm &= e^{\text{mean of } \log x} \\
-     \end{align}
-  \]
-</p>
+    \[
+      \begin{align}
+      \cssId{show-line-3} \gm(x) &= \sqrt[n]{\prod_i^n x_i} \\
+      \cssId{show-line-4} \gm(x) &= (\prod_i^n x_i)^{\frac{1}{n}} \\
+      \cssId{show-line-5} \log \gm(x) &= \log ((\prod_i^n x_i)^{\frac{1}{n}}) \\
+      \cssId{show-line-6} e^{\log \gm(x)} &= e^{\log ((\prod_i^n x_i)^{\frac{1}{n}})} \\
+      \cssId{show-line-7} \gm(x) &= e^{\log ((\prod_i^n x_i)^{\frac{1}{n}})} \\
+      \cssId{show-line-8} \gm(x) &= e^{\frac{1}{n} \log (\prod_i^n x_i)} \\
+      \cssId{show-line-9} \gm(x) &= e^{\frac{1}{n} \sum_i^n \log x_i} \\
+      \cssId{show-line-10} \gm(x) &= e^{\frac{1}{n} \sum_i^n \log x_i} \qed \\
+      \end{align}
+    \]
+  </div>
+  <div class="explaination">
+    <ul class="explain">
+        <li id="explain-line-1"> This is the definition of geometric mean, the \(\text{n}^\text{th}\) root of the product of \(n\) numbers </li>
+      <li id="explain-line-2"> This is the more numerically stable way to calculate it. \(e\) raised to the mean of the \(\log\) of \(n\) numbers </li>
+      <li id="explain-line-3"> This is our definition again </li>
+      <li id="explain-line-4"> The \(\text{n}^\text{th}\) root is the same as raising it to the \( \frac{1}{n} \) power </li>
+      <li id="explain-line-5"> We can take the log of each side while maintaining equality </li>
+      <li id="explain-line-6"> We can exponentiate each side while keeping them equal </li>
+      <li id="explain-line-7"> We cancel \( e^{\log} \) on the left side</li>
+      <li id="explain-line-8"> By the rule of \( \log \) when the argument is raised to a power we can pull that power out and multiply by it </li>
+      <li id="explain-line-9"> The log for a product is equal to the sum of the logs </li>
+      <li id="explain-line-10"> This is the equality we are trying to prove. That the geometric mean can be computed as the mean of the logs of the numbers </li>
+    </ul>
+  </div>
+</div>
 </body>
 </html>

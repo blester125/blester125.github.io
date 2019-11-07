@@ -1,9 +1,9 @@
-.left {
+.math {
     float: left;
     width: 50%;
 }
 
-.right {
+.explaination {
     float: right;
     width: 50%;
 }
