@@ -1,11 +1,28 @@
+body {
+    height: 100%;
+}
+
 .math {
     float: left;
     width: 50%;
 }
 
+.code {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.section {
+    overflow-x: auto;
+}
+
 .explaination {
     float: right;
     width: 50%;
+}
+
+.content {
+    clear: both;
 }
 
 .math-def {
