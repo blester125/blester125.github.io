@@ -32,8 +32,9 @@ function findExplain(id) {
 }
 
 function focusExplain(id) {
-    var ele = document.getElementById(id)
-    Highlighter.highlight(ele)
+    var ele = document.getElementById(id);
+    Highlighter.highlight(ele);
+    ele.scrollIntoView({block: 'center'});
 }
 
 function addHoverToLines(pattern) {
