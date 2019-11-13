@@ -1,45 +1,60 @@
 body {
-    height: 100%;
+  height: 100%;
 }
 
 .math {
-    float: left;
-    width: 50%;
+  float: left;
+  width: 50%;
 }
 
 .code {
-    width: 50%;
-    margin: 0 auto;
+  width: 50%;
+  margin: 0 auto;
 }
 
 .section {
-    overflow-x: auto;
+  border: 2px dashed rgba(114, 186, 94, 0.35);
+  background: rgba(114, 186, 94, 0.05);
+  height: 100%;
+}
+
+.section .subsection {
+  overflow-x: auto;
 }
 
 .explaination {
-    float: right;
-    width: 50%;
+  float: right;
+  width: 50%;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  scroll-behavior: smooth;
 }
 
 .content {
-    clear: both;
+  clear: both;
 }
 
 .math-def {
-    display: none;
+  display: none;
 }
 
 ul.explain {
-    overflow: hidden;
-    overflow-y: scroll;
+  overflow: hidden;
 }
 
 ul.explain li {
-    list-style-type: none;
-    margin: 10px 0;
+  list-style-type: none;
+  margin: 10px 0;
 }
 
 .highlight {
-    background-color: cyan;
-    font-weight: bold;
+  background-color: cyan;
+  font-weight: bold;
+}
+
+.clear{
+  clear:both;
 }
