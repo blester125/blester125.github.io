@@ -18,7 +18,7 @@ body {
   height: 100%;
 }
 
-.section .subsection {
+.math-overflow {
   overflow-x: auto;
 }
 
@@ -43,11 +43,13 @@ body {
 
 ul.explain {
   overflow: hidden;
+  text-align: left;
 }
 
 ul.explain li {
   list-style-type: none;
   margin: 10px 0;
+  padding: 1px 0px;
 }
 
 .highlight {
