@@ -3,7 +3,6 @@ const MATH_JAX_QED_ROW = 'MJX-MLABELEDTR'
 const classHighlight = 'highlight';
 const showClass = 'show_class'
 
-
 const Highlighter = {
     _element: null,
     highlight: function(id) {
@@ -31,10 +30,10 @@ function findExplain(id) {
     return id.replace(/show-line/gi, 'explain-line');
 }
 
-function focusExplain(id) {
+function focusExplain(hover, id) {
     var ele = document.getElementById(id);
     Highlighter.highlight(ele);
-    ele.scrollIntoView({block: 'center'});
+    $("#" + id).scrollintoview({duration: 0.1, direction: "y"});
 }
 
 function addHoverToLines(pattern) {
@@ -43,7 +42,7 @@ function addHoverToLines(pattern) {
         var id = show_eles[i].id
         var other = findExplain(id)
         console.log("Hover over " + id + " to act on " + other);
-        func = focusExplain.bind(null, other)
+        func = focusExplain.bind(null, id, other)
         addFunctionOnHoverToMathJax(id, func);
     }
 }
