@@ -438,10 +438,65 @@ def mcc(X, Y):
     </div>
 
     <div class="section" id="one-hot">
+      <p>
+        We can see above that this calculation for \(\mcc\) is almost that exact same as for \(R_k\)! The only differences is that \(\mcc\) is calculated with the covariance between vectors of \(0)\s and \(1\)s of length \(S\) while \(R_k\) uses the \(\cov_k\) function to calculate covariance between two one-hot matrices \(\in \R^{S \text{x} 2}\).
+      </p>
+
+      <p>
+        This next step is a little odd and I don't have a great way to demonstrate this mathematically but we should be able to see that these results will be the same.
+      </p>
+
+      <div class="math">
+        <div class="math-overflow">
+          \[
+            \begin{align}
+              \cssId{show-line-46} x &= \begin{bmatrix}
+                1 \\
+                0 \\
+                1 \\
+                1 \\
+                \vdots \\
+                0
+                \end{bmatrix} \\
+              \cssId{show-line-47} x' &= \begin{bmatrix}
+                0 & 1 \\
+                1 & 0 \\
+                0 & 1 \\
+                0 & 1 \\
+                \vdots & \vdots \\
+                1 & 0 \\
+                \end{bmatrix}
+              \cssId{show-line-48} 
+            \end{align}
+          \]
+        </div>
+      </div>
+
+      <div class="explaination">
+        <ul class="explain">
+          <li id="show-line-46">Imagine \(x\) is some vector of ones and zeros that represent some labels for examples in a dataset.</li>
+          <li id="show-line-47">\(x'\) is a one hot representation of \(x\)</li>
+        </ul>
+      </div>
 
     </div>
 
     <div class="section" id="multiclass-avg">
+      <div class="math">
+        <div class="math-overflow">
+          \[
+            \begin{align}
+              \mcc &= \alpha \\
+              R_1 &= \alpha \\
+              R_0 &= \alpha \\
+              w_k &= \frac{1}{2} \\
+              R_k &= w_k * \alpha + w_k * \alpha \\
+              R_k &= w_k (\alpha + \alpha) \\
+              R_k &= w_k * 2\alpha \\
+              R_k &= \frac{2 * \alpha}{2} \\
+              R_k &= \alpha \\
+            \end{align}
+         \]
 
     </div>
 
@@ -450,46 +505,8 @@ def mcc(X, Y):
 </div>
 
 
-Now we see that this is the same things calculated for \(R_k\)! The only different is that \(R_k\) is calculated for multiple classes in this case \(k=2\) while the original MCC calculation is based on classes of \(0\) and \(1\) and is there for calculated with a single vector \(X \in \R^S\) opposed to \(R_k\) which has \(X \in \R^S\)
-
-This part is a little odd and I don't have a great way to demonstrate this mathematically but we can see these are the same. Fist imagine that we have some vector of labels with two classes \(X \in \R^s\)
-
-  \[
-    \begin{bmatrix}
-        1 \\
-        0 \\
-        1 \\
-        1 \\
-        \vdots \\
-        0
-    \end{bmatrix}
-  \]
-
-Now we convert it into a one hot representation where the value in column \(k\) is \(1\) if the example is labeled \(k\) and \(0\) otherwise. \(X' \in \R^{s, k}\)
-
-  \[
-    \begin{bmatrix}
-        0 & 1 \\
-        1 & 0 \\
-        0 & 1 \\
-        0 & 1 \\
-        \vdots & \vdots \\
-        1 & 0
-    \end{bmatrix}
-  \]
 
  What we see is that the column \(1\) is the exact same as out original vector and column zero is the same but flipped. Now image we have two vectors \(X\) and \(Y\) and we calculate \(\alpha = \mcc(X, Y)\). Now we know that the calculation for \(R_k\) is same as for \(MCC\) applied to each row followed by a linear combination weighted by some weight for each class \(w_k\) where we have defined \(w_k = \frac{1}{N}\). Now looking at the one hot representation we see that for the \(k=1\) column the inputs are the same. This means that \(R_1 = \alpha\). For the \(k = 0\) column we have the same numbers but flipped. Because everything is just one's and zeros things like our sums and means are the same meaning that \(R_0 = \alpha\) also. Now we multiply by \(w_k\) and sum.
-
- \[
-    \begin{align}
-    w_k &= \frac{1}{2} \\
-    R_k &= w_k * \alpha + w_k * \alpha \\
-    &= w_k (\alpha + \alpha) \\
-    &= w_k * 2\alpha \\
-    &= \frac{2 * \alpha}{2} \\
-    R_k &= \alpha \\
-    \end{align}
- \]
 
 Here we can see that calculation \(R_k\) reduces to the calculation for \(MCC\) when \(k = 2\).
 
