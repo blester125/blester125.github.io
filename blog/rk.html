@@ -16,12 +16,12 @@
   </script>
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="../js/jquery.scrollintoview.min.js"></script>
+  <script type="text/javascript" src="../js/jquery.scrollintoview.js"></script>
 
   <!-- Custom Code -->
   <script src="../js/interactive.js"></script>
   <script type='text/javascript'>
-    window.onload = addHoverToLines.bind(null, 'show-line-')
+    window.onload = addHoverToLines.bind(null, 'show-line-', 10)
   </script>
   <link rel="stylesheet" type="text/css" href="../css/teaching.css">
 
@@ -54,7 +54,7 @@
   </div>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -176,11 +176,11 @@ def mcc(X, Y):
           </center>
           \[
             \begin{align}
-              \cssId{show-line-1} R_k &= \frac{\cov_k(X, Y)}{\sqrt{\cov_k(X, X)}\sqrt{\cov_k(Y, Y)}} \\
-              \cssId{show-line-2} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\
-              \cssId{show-line-3} w_k &= \frac{1}{N} \\
-              \cssId{show-line-4} \cov(X, Y) &= \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_k) \\
-              \bar{X}_\cssId{show-line-5}k &= \frac{1}{S}\sum_s^S X_{sk} = \frac{1}{S}\sum_l^N C_{lk} \\
+              \cssId{show-line-1} R_k &= \frac{\cov_k(X, Y)}{\sqrt{\cov_k(X, X)}\sqrt{\cov_k(Y, Y)}} \\[10pt]
+              \cssId{show-line-2} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\[10pt]
+              \cssId{show-line-3} w_k &= \frac{1}{N} \\[10pt]
+              \cssId{show-line-4} \cov(X, Y) &= \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_k) \\[10pt]
+              \bar{X}_\cssId{show-line-5}k &= \frac{1}{S}\sum_s^S X_{sk} = \frac{1}{S}\sum_l^N C_{lk} \\[10pt]
               \bar{Y}_\cssId{show-line-6}k &= \frac{1}{S}\sum_s^S Y_{sk} = \frac{1}{S}\sum_l^N C_{kl} \\
             \end{align}
           \]
@@ -192,10 +192,10 @@ def mcc(X, Y):
           </center>
           \[
             \begin{align}
-              \cssId{show-line-7} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\
-              \cssId{show-line-8} \cov_k(X, Y) &= \sum_k^N w_k \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_s) \\
-              \cssId{show-line-9} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N (X_{sk} - \bar{X}_k)(Y_{sk} - \bar{Y}_k) \\
-              \cssId{show-line-10} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - X_{sk}\bar{Y}_k - Y_{sk}\bar{X}_k + \bar{X}_k \bar{Y}_k \\
+              \cssId{show-line-7} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\[10pt]
+              \cssId{show-line-8} \cov_k(X, Y) &= \sum_k^N w_k \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_s) \\[10pt]
+              \cssId{show-line-9} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N (X_{sk} - \bar{X}_k)(Y_{sk} - \bar{Y}_k) \\[10pt]
+              \cssId{show-line-10} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - X_{sk}\bar{Y}_k - Y_{sk}\bar{X}_k + \bar{X}_k \bar{Y}_k \\[10pt]
               \cssId{show-line-11} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_s^S \sum_k^N X_{sk}\bar{Y}_k - \sum_s^S \sum_k^N Y_{sk}\bar{X}_k + \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k
             \end{align}
           \]
@@ -207,9 +207,9 @@ def mcc(X, Y):
           </center>
           \[
             \begin{align}
-              \cssId{show-line-12} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= S\sum_k^N \bar{X}_k \bar{Y}_k \\
-              \cssId{show-line-13} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= S\sum_k^N \frac{1}{S}\sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl} \\
-              \cssId{show-line-14} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= \frac{S}{S^2}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\
+              \cssId{show-line-12} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= S\sum_k^N \bar{X}_k \bar{Y}_k \\[10pt]
+              \cssId{show-line-13} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= S\sum_k^N \frac{1}{S}\sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl} \\[10pt]
+              \cssId{show-line-14} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= \frac{S}{S^2}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
               \cssId{show-line-15} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\
             \end{align}
           \]
@@ -221,10 +221,10 @@ def mcc(X, Y):
           </center>
           \[
             \begin{align}
-              \cssId{show-line-16} \sum_s^S \sum_k^N X_{sk}\bar{Y}_k &= \sum_k^N \bar{Y}_k \sum_s^S X_{sk} \\
-              \cssId{show-line-17} \sum_s^S X_{sk} &= \sum_l^N C_{lk} \\
-              \cssId{show-line-18} \sum_s^S \sum_k^N X_{sk} \bar{Y}_k &= \sum_k^N  \sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl} \\
-              \cssId{show-line-19} \sum_s^S \sum_k^N X_{sk} \bar{Y}_k &= \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\
+              \cssId{show-line-16} \sum_s^S \sum_k^N X_{sk}\bar{Y}_k &= \sum_k^N \bar{Y}_k \sum_s^S X_{sk} \\[10pt]
+              \cssId{show-line-17} \sum_s^S X_{sk} &= \sum_l^N C_{lk} \\[10pt]
+              \cssId{show-line-18} \sum_s^S \sum_k^N X_{sk} \bar{Y}_k &= \sum_k^N  \sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl} \\[10pt]
+              \cssId{show-line-19} \sum_s^S \sum_k^N X_{sk} \bar{Y}_k &= \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
               \cssId{show-line-20} \sum_s^S \sum_k^N Y_{sk}\bar{X}_k &= \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} \\
             \end{align}
           \]
@@ -240,14 +240,14 @@ def mcc(X, Y):
           </center>
           \[
             \begin{align}
-              \cssId{show-line-21} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} + \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\
-              \cssId{show-line-22} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} \\
-              \cssId{show-line-23} \cov_k(X, Y) &= \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{k} \\
-              \cssId{show-line-24} \cov_k(X, Y) &= \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{k} * \frac{S}{S} \\
-              \cssId{show-line-25} \cov_k(X, Y) &= \frac{S * (\sum_s^S \sum_k^N X_{sk}Y_{sk}) -  \frac{S * (\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk})}{S}}{k * S} \\
-              \cssId{show-line-26} \cov_k(X, Y) &= \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S} \\
-              \cssId{show-line-27} \cov_k(X, X) &= \frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{k * S} \\
-              \cssId{show-line-28} \cov_k(Y, Y) &= \frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{k * S} \\
+              \cssId{show-line-21} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} + \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
+              \cssId{show-line-22} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} \\[10pt]
+              \cssId{show-line-23} \cov_k(X, Y) &= \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{k} \\[10pt]
+              \cssId{show-line-24} \cov_k(X, Y) &= \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{k} * \frac{S}{S} \\[10pt]
+              \cssId{show-line-25} \cov_k(X, Y) &= \frac{S * (\sum_s^S \sum_k^N X_{sk}Y_{sk}) -  \frac{S * (\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk})}{S}}{k * S} \\[10pt]
+              \cssId{show-line-26} \cov_k(X, Y) &= \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S} \\[10pt]
+              \cssId{show-line-27} \cov_k(X, X) &= \frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{k * S} \\[10pt]
+              \cssId{show-line-28} \cov_k(Y, Y) &= \frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{k * S} \\[10pt]
             \end{align}
           \]
         </div>
@@ -262,29 +262,29 @@ def mcc(X, Y):
 	            \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S}
               }{
                 \sqrt{\frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{k * S}}\sqrt{\frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{k * S}}
-              } \\
+              } \\[10pt]
 
               \cssId{show-line-30} R_k &= \frac{
 		        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S}
               }{
                 \sqrt{\frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{(k*S)^2}}
-              } \\
+              } \\[10pt]
 
               \cssId{show-line-31} R_k &= \frac{
 		        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S}
               }{
 		        \frac{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}{\sqrt{(k*S)^2}}
-	          } \\
+	          } \\[10pt]
 
               \cssId{show-line-32} R_k &= \frac{
 		        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S}
 	          }{
 		        \frac{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}{k*S}
-	          } \\
+	          } \\[10pt]
 
               \cssId{show-line-33} R_k &=
 		        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{k * S} *
-		        \frac{k * S}{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}} \\
+		        \frac{k * S}{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}} \\[10pt]
 
               \cssId{show-line-34} R_k &=
                 \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}
@@ -453,18 +453,18 @@ def mcc(X, Y):
 
       <div class="explaination">
         <ul class="explain">
-          <li id="explain-line-42"> This is the correlation based definition of  (\mcc \) from his <a href="">original paper</a> with variables renamed to fit our scheme. The Predicted labels \(P_n\) for Matthew is now \(X_n\) and the observations (previously \(S_n\)) are now \(Y_n\)</li>
+          <li id="explain-line-42"> This is the correlation based definition of  \(\mcc \) from his <a href="https://www.sciencedirect.com/science/article/abs/pii/0005279575901099?via%3Dihub">original paper</a> with variables renamed to fit our scheme. The Predicted labels \(P_n\) for Matthew is now \(X_n\) and the observations (previously \(S_n\)) are now \(Y_n\)</li>
           <li id="explain-line-43"> \(\sum_s^S (X_s - \bar{X})^2\) expands to \(\sum_s^S (X_s - \bar{X})(X_s - \bar{X})\), The \(Y\) term can be similarly expanded</li>
           <li id="explain-line-44"> These are the covariance definitions from earlier </li>
           <li id="explain-line-45"> \(\cov\) is symmetric so \(\cov(Y, X) = \cov(X, Y)\). We can see this because all interactions between the variables in \(\sum_s^S (Y_s - \bar{Y})(X_s - \bar{X})\) are multiplications and multiplication is commutative so we can swap the order </li>
         </ul>
       </div>
-      <div class="clear"></div>
+    <div class="clear"></div>
     </div>
 
     <div class="section" id="one-hot">
       <p>
-        We can see above that this calculation for \(\mcc\) is almost that exact same as for \(R_k\)! The only differences is that \(\mcc\) is calculated with the covariance between vectors of \(0)\s and \(1\)s of length \(S\) while \(R_k\) uses the \(\cov_k\) function to calculate covariance between two one-hot matrices \(\in \R^{S \text{x} 2}\).
+        We can see above that this calculation for \(\mcc\) is almost that exact same as for \(R_k\)! The only differences is that \(\mcc\) is calculated with the covariance between vectors of \(0\)s and \(1\)s of length \(S\) while \(R_k\) uses the \(\cov_k\) function to calculate covariance between two one-hot matrices \(\in \R^{S \text{x} 2}\).
       </p>
 
       <p>
@@ -491,7 +491,6 @@ def mcc(X, Y):
                 \vdots & \vdots \\
                 1 & 0 \\
                 \end{bmatrix}
-              \cssId{show-line-48} 
             \end{align}
           \]
         </div>
@@ -499,10 +498,11 @@ def mcc(X, Y):
 
       <div class="explaination">
         <ul class="explain">
-          <li id="show-line-46">Imagine \(x\) is some vector of ones and zeros that represent some labels for examples in a dataset.</li>
-          <li id="show-line-47">\(x'\) is a one hot representation of \(x\)</li>
+          <li id="explain-line-46">Imagine \(x\) is some vector of ones and zeros that represent some labels for examples in a dataset.</li>
+          <li id="explain-line-47">\(x'\) is a one hot representation of \(x\)</li>
         </ul>
       </div>
+      <div class="clear"></div>
 
     </div>
 

@@ -30,19 +30,20 @@ function findExplain(id) {
     return id.replace(/show-line/gi, 'explain-line');
 }
 
-function focusExplain(hover, id) {
+function focusExplain(hover, id, pad=10) {
+    console.log(pad)
     var ele = document.getElementById(id);
     Highlighter.highlight(ele);
-    $("#" + id).scrollintoview({duration: 0.1, direction: "y"});
+    $("#" + id).scrollintoview({duration: 0.1, direction: "y", viewPadding: {y: pad}});
 }
 
-function addHoverToLines(pattern) {
+function addHoverToLines(pattern, pad=10) {
     var show_eles = document.querySelectorAll('[id^=' + pattern + ']');
     for (var i = 0; i < show_eles.length; i++) {
         var id = show_eles[i].id
         var other = findExplain(id)
         console.log("Hover over " + id + " to act on " + other);
-        func = focusExplain.bind(null, id, other)
+        func = focusExplain.bind(null, id, other, pad)
         addFunctionOnHoverToMathJax(id, func);
     }
 }
