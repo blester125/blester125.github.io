@@ -178,7 +178,7 @@ def mcc(X, Y):
             \begin{align}
               \cssId{show-line-1} R_k &= \frac{\cov_k(X, Y)}{\sqrt{\cov_k(X, X)}\sqrt{\cov_k(Y, Y)}} \\[10pt]
               \cssId{show-line-2} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\[10pt]
-              \cssId{show-line-3} w_k &= \frac{1}{N} \\[10pt]
+              \cssId{show-line-3} w_k &= \frac{1}{k} \\[10pt]
               \cssId{show-line-4} \cov(X, Y) &= \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_k) \\[10pt]
               \bar{X}_\cssId{show-line-5}k &= \frac{1}{S}\sum_s^S X_{sk} = \frac{1}{S}\sum_l^N C_{lk} \\[10pt]
               \bar{Y}_\cssId{show-line-6}k &= \frac{1}{S}\sum_s^S Y_{sk} = \frac{1}{S}\sum_l^N C_{kl} \\
@@ -305,7 +305,7 @@ def mcc(X, Y):
           <li id="explain-line-6"> We can do the same transformation into a confusion matrix based calculation of \(Y\) except that the sum is along a row because we care about the value in \(Y\) regardless of the value in \(X\). </li>
           <li id="explain-line-7"> Again this is our definition of covariance between two matrices. </li>
           <li id="explain-line-8"> Here we substitute in the definition of covariance between vectors. </li>
-          <li id="explain-line-9"> \(w_k\) is a constant across each value in the summation. It is a multiplication which distributes over addition so we can pull it out if the summation</li>
+          <li id="explain-line-9"> \(w_k\) is a constant across each value in the summation. It is a multiplication which distributes over addition so we can pull it out if the summation. Note this only works because we defined \(w_k = \frac{1}{k}\) if \(w_k\) was different for each class \(k\) we would not be able to pull it out of the summation over \(k\).</li>
           <li id="explain-line-10"> We foil the covariance calculation. </li>
           <li id="explain-line-11"> By thinking of all the subtraction in this equation as adding the negative term all each term is combined with addition. Addition is commutative so we can rearrange the summations to apply them to each term individually.
           <li id="explain-line-12"> We can see that the variable \(s\) is not used inside summation, this means that the value calculated in the summation over \(k\) is repeated and summed \(s\) times. This is the definition of multiplication by \(S\). </li>
@@ -511,22 +511,36 @@ def mcc(X, Y):
         <div class="math-overflow">
           \[
             \begin{align}
-              \mcc &= \alpha \\
-              R_1 &= \alpha \\
-              R_0 &= \alpha \\
-              w_k &= \frac{1}{2} \\
-              R_k &= w_k * \alpha + w_k * \alpha \\
-              R_k &= w_k (\alpha + \alpha) \\
-              R_k &= w_k * 2\alpha \\
-              R_k &= \frac{2 * \alpha}{2} \\
-              R_k &= \alpha \\
+              \cssId{show-line-48}\mcc &= \alpha \\
+              \cssId{show-line-49}R_1 &= \alpha \\
+              \cssId{show-line-50}R_0 &= \alpha \\
+              \cssId{show-line-51}w_k &= \frac{1}{2} \\
+              \cssId{show-line-52}R_k &= w_k * \alpha + w_k * \alpha \\
+              \cssId{show-line-53}R_k &= w_k (\alpha + \alpha) \\
+              \cssId{show-line-54}R_k &= w_k * 2\alpha \\
+              \cssId{show-line-55}R_k &= \frac{2 * \alpha}{2} \\
+              \cssId{show-line-56}R_k &= \alpha \\
             \end{align}
          \]
-
+        </div>
+      </div>
+      <div class="explaination">
+        <ul class="explain">
+          <li id="explain-line-48">a</li>
+          <li id="explain-line-49">a</li>
+          <li id="explain-line-50">a</li>
+          <li id="explain-line-51">a</li>
+          <li id="explain-line-52">a</li>
+          <li id="explain-line-53">a</li>
+          <li id="explain-line-54">a</li>
+          <li id="explain-line-55">a</li>
+          <li id="explain-line-56">a</li>
+        </ul>
+      </div>
+      <div class="clear"></div>
     </div>
 
   </div>
-
 </div>
 
 
