@@ -1,0 +1,29 @@
+h3.project-title {
+  text-transform: none !important;
+}
+
+h6.project-type {
+  text-transform: none !important;
+  text-align: right;
+}
+
+p.proejct-content {
+  color:#777;
+}
+
+p.project-date {
+  color:#777;
+  text-align: right;
+}
+
+@media (min-width: 768px) {
+  .row.equal {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+a.project-link {
+  color:inherit;
+  text-decoration: none;
+}

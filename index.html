@@ -15,9 +15,13 @@
     <!-- Custom CSS -->
     <link href="css/agency.css" rel="stylesheet">
     <link rel="stylesheet" href="css/academicons.min.css"/>
+    <link href="css/latex.css" rel="stylesheet">
+    <link href="css/presentation.css" rel="stylesheet">
+    <link href="css/paper.css" rel="stylesheet">
+    <link href="css/project.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
@@ -55,20 +59,23 @@
             <li>
               <a class="page-scroll" href="resume/BrianLesterCV.pdf">Resume</a>
             </li>
-            <li>
-              <a href="blog/index.html">Blog</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="#portfolio">Projects</a>
-            </li>
+            <!-- <li> -->
+            <!--   <a href="blog/index.html">Blog</a> -->
+            <!-- </li> -->
             <li>
               <a class="page-scroll" href="#experience">Experience</a>
             </li>
             <li>
-              <a class="page-scroll" href="#publications">Publications</a>
+              <a class="page-scroll" href="#skills">Skills</a>
             </li>
             <li>
-              <a class="page-scroll" href="#skills">Skills</a>
+              <a class="page-scroll" href="#projects">Projects</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#presentations">Presentations</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#publications">Publications</a>
             </li>
             <li>
               <a class="page-scroll" href="#education">Education</a>
@@ -92,10 +99,10 @@
             <!-- This should match the bottom buttons -->
             <ul class="list-inline social-buttons">
                 <li>
-                  <a href="https://twitter.com/BrianLester125"><i class="fa fa-twitter"></i></a>
+                  <a href="https://twitter.com/BrianLester125"><i class="fab fa-twitter"></i></a>
                 <li>
                 <li>
-                  <a href="https://www.linkedin.com/in/blester125"><i class="fa fa-linkedin"></i></a>
+                  <a href="https://www.linkedin.com/in/blester125"><i class="fab fa-linkedin"></i></a>
                 </li>
                 <li>
                   <a href="https://scholar.google.com/citations?user=OWSQqZMAAAAJ&hl=en">
@@ -103,170 +110,16 @@
                   </a>
                 <li>
                 <li>
-                  <a href="https://www.facebook.com/brian.lester.1460"><i class="fa fa-facebook"></i></a>
+                  <a href="https://www.facebook.com/brian.lester.1460"><i class="fab fa-facebook"></i></a>
                 </li>
                 <li>
-                  <a href="https://github.com/blester125"><i class="fa fa-github"></i></a>
+                  <a href="https://github.com/blester125"><i class="fab fa-github"></i></a>
                 </li>
             </ul>
           </div>
         </div>
       </div>
     </header>
-
-
-    <!-- Projects Section -->
-    <section id="portfolio" class="bg-light-gray">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Projects</h2>
-            <h3 class="section-subheading text-muted">See more of my work on <a href="https://www.github.com/blester125">GitHub</a>.</h3>
-          </div>
-        </div>
-        <div class="row">
-
-          <div class="col-md-6 col-sm-6 portfolio-item">
-            <a href="#portfolioModalDrive" class="portfolio-link" data-toggle="modal">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img src="img/portfolio/Drive1.png" class="img-responsive" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Steering with deep learning.</h4>
-              <p class="text-muted">Deep convolutional neural network for steering an autonomus agent.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-sm-6 portfolio-item">
-            <a href="#portfolioModalDigit" class="portfolio-link" data-toggle="modal">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img src="img/portfolio/Digits.png" class="img-responsive" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Multi-Digit Sequence Detection in Natural Scenes.</h4>
-              <p class="text-muted">Deep convolutional neural network for classifying multi-digit sequences.</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-sm-6 portfolio-item">
-            <a href="#portfolioModalFacial" class="portfolio-link" data-toggle="modal">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img src="img/portfolio/ThreeExample.png" class="img-responsive" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Facial Recognition</h4>
-              <p class="text-muted">Real-time facial detection and classification in a video.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-sm-6 portfolio-item">
-            <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img src="img/portfolio/TCP2.png" class="img-responsive" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>TCP Protocol Implementation</h4>
-              <p class="text-muted">Implementation of TCP in C++.</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-6 col-sm-6 portfolio-item">
-            <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img src="img/portfolio/crypto.png" class="img-responsive" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Distributed, Group-Based, Secure File Sharing System</h4>
-              <p class="text-muted">A cryptographically secure file sharing system written in Java.</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-sm-6 portfolio-item">
-            <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-              <div class="portfolio-hover">
-                <div class="portfolio-hover-content">
-                  <i class="fa fa-plus fa-3x"></i>
-                </div>
-              </div>
-              <img src="img/portfolio/HPC.jpg" class="img-responsive" alt="">
-            </a>
-            <div class="portfolio-caption">
-              <h4>Particle Simulation</h4>
-              <p class="text-muted">Particle Interaction Simulations using MPI.</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-6 portfolio-item">
-          <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-            <div class="portfolio-hover">
-              <div class="portfolio-hover-content">
-                <i class="fa fa-plus fa-3x"></i>
-              </div>
-            </div>
-            <img src="img/portfolio/compiler.png" class="img-responsive" alt="">
-          </a>
-          <div class="portfolio-caption">
-            <h4>Compiler</h4>
-            <p class="text-muted">Compiler written in C<!--targeted at MIPS assembly-->.</p>
-          </div>
-        </div>
-        <!-- <div class="col-md-6 col-sm-6 portfolio-item">
-          <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-          <div class="portfolio-hover">
-          <div class="portfolio-hover-content">
-          <i class="fa fa-plus fa-3x"></i>
-          </div>
-          </div>
-          <img src="img/portfolio/leaguemakers.png" class="img-responsive" alt="">
-          </a>
-          <div class="portfolio-caption">
-          <h4>League Makers</h4>
-          <p class="text-muted">Allows for users to rank participants in a league.</p>
-          </div>
-          </div> -->
-
-          <!--
-            <div class="col-md-6 col-sm-6 portfolio-item">
-            <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-            <div class="portfolio-hover">
-            <div class="portfolio-hover-content">
-            <i class="fa fa-plus fa-3x"></i>
-            </div>
-            </div>
-            <img src="img/portfolio/escape.png" class="img-responsive" alt="">
-            </a>
-            <div class="portfolio-caption">
-            <h4>Registration Software</h4>
-            <p class="text-muted">Registration Software written in Python to help run tournaments.</p>
-            </div>
-            </div>
-          -->
-
-
-      </div>
-    </section>
 
     <!-- Experience Section -->
     <section id="experience">
@@ -291,14 +144,15 @@
                       <h4 class="subheading">April 2018 &#8211; Present</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted">
-                      NLP
+                    <p class="text-muted" style="text-align: left;">
+                      Machine Learning Engineer &#8212; Specializing in using Deep Learning for NLP. Building production systems leveraging a wide variety of models, from ConvNets for classification and intent detection, bLSTM-CRFs for general purpose NER and client-specific slot filling, and both RNN and Transformer based seq2seq models for automatic response generation.</br>
+                      Also responsible for improving and maintaining model development, model training, and model deployment infrastructure.
                     </p>
                   </div>
                 </div>
               </li>
               <!-- Begin Trove -->
-              <li>
+              <li class="timeline-inverted">
                 <div class="timeline-image">
                   <img class="img-circle img-responsive" src="img/experience/trove.png">
                 </div>
@@ -309,7 +163,7 @@
                   </div>
                   <div class="timeline-body">
                     <p class="text-muted">
-                    ML Research Engineer - Using machine learning, natural language processsing, computer vision, and cutting edge deep neural networks to power new applications.
+                    Lead Machine Learning Research Engineer &#8212; Using machine learning, natural language processsing, computer vision, and cutting edge deep neural networks to power new applications. Provided technical leadership to the data science team.
                     </p>
                   </div>
                 </div>
@@ -326,11 +180,11 @@
                     <h4 class="subheading">May 2015 &#8211; August 2015</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted">
-                    Software Engineering Intern - Specialized in Voice Recognition and User Information Systems.
+                    <p class="text-muted" style="text-align: left;">
+                    Software Engineering Intern &#8212; Specialized in Voice Recognition and User Information Systems. </br>
                     Created Dragon Drive Link, an off-board real-time driver information and entertainment application similar to
-                    Android Auto.
-                    Created a system to optimize Voice Recognition used in Production Mazda cars.
+                    Android Auto. </br>
+                    Created a system to optimize Voice Recognition used in Production Mazda cars. We patented with system <a href="https://patents.google.com/patent/US9984688B2/en">(US 9984688B2)</a>
                     </p>
                   </div>
                 </div>
@@ -352,357 +206,593 @@
           </div>
         </div>
         <div class="row text-center">
-          <div class="col-md-4">
+          <div class="col-md-3">
             <span class="fa-stack fa-4x">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fa fa-puzzle-piece fa-stack-1x fa-inverse"></i>
+              <i class="fas fa-brain fa-inverse fa-stack-1x"></i>
             </span>
-            <h4 class="service-heading">Machine Learning</h4>
-            <p class="text-muted">Experience in a variety of Machine Learning and Deep Learning techniques and tools including Tensorflow, DyNet, PyTorch, Scikit-learn, NumPy, OpenCV, and CUDA.</p>
+            <h4 class="service-heading">Deep and Machine Learning</h4>
+            <p class="text-muted">Extensive experience in using Pytorch, TensorFlow, and Scikit-learn for NLP applications.</p>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-server fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Cloud and Infrastructure</h4>
+            <p class="text-muted">Deep Understanding of being and deploying applications with Kubernetes, Docker, Flux, Apache Nifi, and GitLab CI/CD</p>
+          </div>
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-flask fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Data Science</h4>
+            <p class="text-muted">
+                Experience with Data Science toolkits such as NumPy, Pandas, Faiss, Gensim, SpaCy, NLTK, SciPy, and Matplotlib
+            </p>
+          </div>
+          <div class="col-md-3">
             <span class="fa-stack fa-4x">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-code fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Programming Languages</h4>
-            <p class="text-muted">In-depth understanding of Java, Python, and C. Experience with MatLab, C++, javascript, HTML, and Haskell.</p>
-          </div>
-          <div class="col-md-4">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">System Security</h4>
-            <p class="text-muted">
-            Knowledge of cryptographic tools like symmetric and public key cryptography, hashing, and ephemeral key exchange and the ability to leverage them into secure protocols that provide mutual authentication, perfect forward security, and plausible deniability.
-            </p>
+            <p class="text-muted">In-depth understanding of Python, Cython, Java, and C. Experience with Javascript, C++, HTML, and <span class="latex">L<sup>a</sup>T<sub>e</sub>X</span></p>.</p>
           </div>
         </div>
       </div>
     </section>
 
-      <div class="portfolio-modal modal fade" id="portfolioModalDrive" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl">
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2>Steering with deep learning.</h2>
-                  <p class="item-intro text-muted">Deep convolutional neural network for steering an autonomus agent.</p>
-                  <img class="img-responsive img-centered" src="img/portfolio/Drive2.gif" alt="">
-                  <p>
-                  Using a deep convolutional network steering angles are predicted from a front facing camera. The network is 20 layers deep and uses various network architecture modifications to decrease training
-                  times. These include residual connections and batch normalization.
-                  </p>
-                  <p>
-                  View this projects source code on
-                  <a href="https://github.com/blester125/Self_Driving_Network">Github.</a>
-                  </p>
-                  <ul class="list-inline">
-                    <li>Date: Fall 2016</li>
-                  </ul>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-modal modal fade" id="portfolioModalDigit" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl">
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2>Multi-digit sequence recognition in real world scenes.</h2>
-                  <p class="item-intro text-muted">Deep convolutional neural network for the detection and classification of multi-digit sequences.</p>
-                  <img class="img-responsive img-centered" src="img/portfolio/example_output.png" alt="">
-                  <p>
-                  Using a deep convolutional network, written in Tensorflow, multi-digit sequences (up to five digits) are classified. This is done using an end-to-end network that recognize the digits in one step rather than creating separate parts that localize the digits, segment them, and then classify each digit individually. This network was trained using the Stanford Street View House Numbers Dataset and achieves 93.89 percent accuracy on the test dataset. Read the full write up <a href="Report.pdf">here</a>
-                  </p>
-                  <p>
-                  View this projects source code on
-                  <a href="https://github.com/blester125/multi_digit_recognition">Github.</a>
-                  </p>
-                  <ul class="list-inline">
-                    <li>Date: Summer 2016</li>
-                    <li>Class: Udacity Machine Learning Engineer Nanodegree</li>
-                  </ul>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="portfolio-modal modal fade" id="portfolioModalFacial" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl">
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2>Facial Detection and Classification</h2>
-                  <p class="item-intro text-muted">Facial recognition with machine learning.</p>
-                  <img class="img-responsive img-centered" src="img/portfolio/dlib.png" alt="">
-                  <p>
-                  Facial detection and recognition in video streams. Facial detection is done with dlib's CUDA accelerated histogram of ordered gradients frontal face detector to find faces and then dlib again to estimate facial landmarks. These landmarks are then transformed using an affine transformation in openCV to center the face in the image. Embeddings are then generated using a deep neural network written in torch from the OpenFace project at Carnegie Mellon University. These embeddings are can then be classified by various machine learning techniques. This project used a support vector machine from Scikit-learn to classify the faces in the image.
-                  </p>
-                  <p>
-                  View this projects source code on
-                  <a href="https://github.com/blester125/facial_recognition">Github.</a>
-                  </p>
-                  <ul class="list-inline">
-                    <li>Date: Summer 2016</li>
-                  </ul>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Modal 1 -->
-      <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl">
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2>TCP Protocol Implementation</h2>
-                  <p class="item-intro text-muted">Fully functional implementation of TCP in C++ using Minet.</p>
-                  <img class="img-responsive img-centered" src="img/portfolio/TCPascii.png" alt="">
-                  <p>
-                  Implementation of the Transmission Control Protocol (RFC 793) completed for Data Communications and Computer Networking. This implementation is fully functional TCP implementation required to ensure both packet delivery as well as in-order delivery of packets. This implementation also supports multiple in flight packets with using the "Go Back N" strategy. This requires the Minet framework to function.
-                  </p>
-                  <p>
-                  View this projects source code on
-                  <a href="https://github.com/blester125/CS_1652_Project_2">Github.</a>
-                  </p>
-                  <ul class="list-inline">
-                    <li>Date: Fall 2015</li>
-                    <li>Class: Data Communications and Computer Networks</li>
-                  </ul>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Modal 2 -->
-      <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl">
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2>Secure group-based file system</h2>
-                  <p class="item-intro text-muted">Cryptographically secure distributed group-based file sharing system.</p>
-                  <img class="img-responsive img-centered" src="img/portfolio/crypto2.png" alt="">
-                  <p>
-                  Distributed group-based file sharing system written in Java. This includes a multi-threaded group server that handles user authentication and distributes token to users. Multi-threaded file servers use the tokens to distribute files only to approved users. A GUI for clients to access files was also created. This Systems is secure as well. Cryptographic tools like symmetric and public key cryptography, Diffie Hellman key exchange and digital signatures are leverage to create secure authentication protocols that provide perfect forward security, repel man in the middle attacks, and provide plausible deniability. This system uses two-factor authentication via a Time based One Time Password (TOTP) scheme as outlined in RFC 6238.
-                  </p>
-                  <p>
-                  View the source code on
-                  <a href="https://github.com/blester125/CS_1653_Cryptography">Github.</a>
-                  </p>
-                  <ul class="list-inline">
-                    <li>Date: Spring 2016</li>
-                    <li>Class: Applied Cryptography and Network Security</li>
-                  </ul>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Modal 3 -->
-      <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl">
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2>Compiler</h2>
-                  <p class="item-intro text-muted">Compiler written in C using Lex and Yacc.</p>
-                  <img class="img-responsive img-centered" src="img/portfolio/compiler2.png">
-                  <p>
-                  A compiler written in C to compile an Object-Oriented language called MINI-Java. Lexical analysis is done using code generated by Lex based on specified regular expressions. Syntax analysis is done using a Context Free Grammar and Yacc. This syntactic analysis produces an Abstract Syntax Tree that is then parsed in the Semantic analysis phase. <!-- The code generation phase will produce assembly code targeted at the MIPS architecture. -->
-                  </p>
-                  <p>
-                  View the source code on
-                  <a href="https://github.com/blester125/CS_1622_Compilers">Github.</a>
-                  </p>
-                  <ul class="list-inline">
-                    <li>Date: Spring 2016</li>
-                    <li>Class: Compiler Design</li>
-                  </ul>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Modal 4 -->
-      <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl">
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2>League Makers</h2>
-                  <p class="item-intro text-muted">A league creation, ranking, and curating platform.</p>
-                  <img class="img-responsive img-centered" src="img/portfolio/leaguemakersbracket.png" alt="">
-                  <p>
-                  A web app that allows a user to create a league, select matches that are to be played and then rank the participants using the Elo ranking system based on the results. Once league rankings have been established tournaments can be run using the rankings to seed the players.
-                  </p>
-                  <p>
-                  View the source code on
-                  <a href="https://github.com/blester125/LeagueMakers">Github</a>
-                  or see the live version <a href="https://leaguemakers.appspot.com">here.</a>
-                  </p>
-                  <ul class="list-inline">
-                    <li>Date: Spring 2015</li>
-                    <li>Class: Programming Languages for Web Applications</li>
-                  </ul>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Modal 5 -->
-      <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-          <div class="close-modal" data-dismiss="modal">
-            <div class="lr">
-              <div class="rl">
-              </div>
-            </div>
-          </div>
-          <div class="container">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <div class="modal-body">
-                  <!-- Project Details Go Here -->
-                  <h2>Particle Simulation</h2>
-                  <p class="item-intro text-muted">Distributed particle simulation in C++ with interprocess communication via MPI.</p>
-                  <img class="img-responsive img-centered" src="img/portfolio/ring.png" alt="">
-                  <p>
-                  Particle interaction simulation written in C++. This simulation was written for parallel computation using the Message Passing Interface (MPI) and run on the Stampede super computer at Texas Advanced Computing Center. The simulation was carried out using the Ring Algorithm. Analysis of the program showed linear speed up as the number of processors was increased.
-                  </p>
-                  <p>
-                  View the source code on
-                  <a href="https://github.com/blester125/CS_1645/tree/master/Particle%20Simulation">Github.</a>
-                  </p>
-                  <ul class="list-inline">
-                    <li>Date: Spring 2015</li>
-                    <li>Class: High Performance Computing</li>
-                  </ul>
-                  <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Portfolio Modal 6 -->
-      <!--div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-        <div class="close-modal" data-dismiss="modal">
-        <div class="lr">
-        <div class="rl">
-        </div>
-        </div>
-        </div>
-        <div class="container">
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
         <div class="row">
-        <div class="col-lg-8 col-lg-offset-2">
-        <div class="modal-body">
-        <!-- Project Details Go Here >
-          <h2>Registration Software</h2>
-          <p class="item-intro text-muted">Registration software for running weekly tournaments.</p>
-          <img class="img-responsive img-centered" src="img/portfolio/roundicons-free.png" alt="">
-          <p>
-          Use this area to describe your project. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est blanditiis dolorem culpa incidunt minus dignissimos deserunt repellat aperiam quasi sunt officia expedita beatae cupiditate, maiores repudiandae, nostrum, reiciendis facere nemo!
-          </p>
-          <p>
-          <strong>
-          <a href="https://github.com/blester125/MoaL_Vending">View this projects Source Code on Github.</a>
-          </strong>
-          </p>
-          <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Project</button>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div>
-          </div-->
+            <div class="col-lg-12 text-center">
+              <h2 class="section-heading">Projects</h2>
+              <h3 class="section-subheading text-muted">See more of my work on <a href="https://www.github.com/blester125">GitHub</a>.</h3>
+            </div>
+        </div>
+        <!-- <a href="", class="project-link"> -->
+        <!-- <div class="row"> -->
+        <!--     <div class="col-lg-11"> -->
+        <!--         <div class="row"> -->
+        <!--             <div class="col-lg-9"> -->
+        <!--                 <h3 class="project-title"> -->
+        <!--                     Project Title -->
+        <!--                 </h3> -->
+        <!--             </div> -->
+        <!--             <div class="col-lg-2"> -->
+        <!--                 <h6 class="project-type"> -->
+        <!--                     Project Type -->
+        <!--                 </h6> -->
+        <!--             </div> -->
+        <!--         </div> -->
+        <!--         <div class="row"> -->
+        <!--             <div class="col-lg-9"></div> -->
+        <!--             <div class="col-lg-2"> -->
+        <!--                 <p class="project-date">Project Date</p> -->
+        <!--             </div> -->
+        <!--         </div> -->
+        <!--         <p class="project-content"> -->
+        <!--           Project Content -->
+        <!--         </p> -->
+        <!--     </div> -->
+        <!--     <div class="col-lg-1"> -->
+        <!--         Picture -->
+        <!--     </div> -->
+        <!-- </div> -->
+        <!-- </a> -->
 
+        <a href="https://github.com/blester125/text-rank" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Text Rank
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            Personal Project/Open Source Library
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date"></p>
+                    </div>
+                </div>
+                <p class="project-content">
+                    An implementation of Text Rank in Python that reproduces the results from the original paper. I currently use it as a vehicle for personalresearch: investigating if deep learning based sentence similarities will yield better summaries. Results forthcoming.
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/string-distance" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            String Distance
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            Open Source Project
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date"></p>
+                    </div>
+                </div>
+                <p class="project-content">
+                    A collection of various minimum edit distance algorithms as well as token based methods like Jaccard overlap. The algorithms areimplemented in Cython and scale well. The library is able to compute minimum edit distances between entire Wikipedia pages in under asecond.
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/quick_knn" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Quick KNN
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            Open Source Library
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date"></p>
+                    </div>
+                </div>
+                <p class="project-content">
+                    Implementations of Locality Sensitive Hashing. Supports using MinHash to approximate Jaccard similarity and Random Hyperplanes fora cosine based LSH. This library enables users to find similar items in very large corpora quickly.
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Dependency Parsing
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            Personal Project
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date"></p>
+                    </div>
+                </div>
+                <p class="project-content">
+                    Dependency parsing via Deep Learning models written in PyTorch. Supports training parsers via dynamic oracles using either the Arc Eager or the Arc Hybrid transition scheme or a Graph based parser using Biaffine Attention. Currently working on creating a shared interface between the two parser types with plans to release it as an open source library
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+
+        <a href="https://github.com/blester125/Decomposable_Attention" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Decomposable Attention
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            Personal Project
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date"></p>
+                    </div>
+                </div>
+                <p class="project-content">
+                A reimplementation of the paper <a href="https://arxiv.org/abs/1606.01933">“A Decomposable Attention Model for Natural Language Inference”</a> in DyNet. I was able to reproduce the paper results via extensive hyper parameter tuning
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/Self_Driving_Network" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Steering Angles
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            Personal Project
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date">Fall 2016</p>
+                    </div>
+                </div>
+                <p class="project-content">Project Content</p>
+                  Using a deep convolutional network steering angles are predicted from a front facing camera. The network is 20 layers deep and uses various network architecture modifications to decrease training times. These include residual connections and batch normalization.
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/multi_digit_recognition" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Multi-Digit Recognition
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            Personal Project
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date">Summer 2016</p>
+                    </div>
+                </div>
+                <p class="project-content">
+                  Using a deep convolutional network, written in Tensorflow, multi-digit sequences (up to five digits) are classified. This is done using an end-to-end network that recognize the digits in one step rather than creating separate parts that localize the digits, segment them, and then classify each digit individually. This network was trained using the Stanford Street View House Numbers Dataset and achieves 93.89 percent accuracy on the test dataset. Read the full write up <a href="Report.pdf">here</a>
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/TCP-with-Minet" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            RFC 793 Transmission Control Protocol
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            University of Pittsburgh
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date">Fall 2015</p>
+                    </div>
+                </div>
+                <p class="project-content">
+                    Implementation of the Transmission Control Protocol (RFC 793) completed for Data Communications and Computer Networking. This implementation is fully functional TCP implementation required to ensure both packet delivery as well as in-order delivery of packets. This implementation also supports multiple in flight packets with using the "Go Back N" strategy. This requires the Minet framework to function.
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/CS_1645" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Particle Simulation
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            University of Pittsburgh
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date">Spring 2015</p>
+                    </div>
+                </div>
+                <p class="project-content">
+                    Particle interaction simulation written in C++. This simulation was written for parallel computation using the Message Passing Interface (MPI) and run on the Stampede super computer at Texas Advanced Computing Center. The simulation was carried out using the Ring Algorithm. Analysis of the program showed linear speed up as the number of processors was increased.
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/Secure-File-Sharing" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Secure File Sharing System
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            University of Pittsburgh
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date">Spring: 2016</p>
+                    </div>
+                </div>
+                <p class="project-content">
+                    Distributed group-based file sharing system written in Java. This includes a multi-threaded group server that handles user authentication and distributes token to users. Multi-threaded file servers use the tokens to distribute files only to approved users. A GUI for clients to access files was also created. This Systems is secure as well. Cryptographic tools like symmetric and public key cryptography, Diffie Hellman key exchange and digital signatures are leverage to create secure authentication protocols that provide perfect forward security, repel man in the middle attacks, and provide plausible deniability. This system uses two-factor authentication via a Time based One Time Password (TOTP) scheme as outlined in RFC 6238.
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/facial_recognition" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Face Detection and Classification
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            Personal Project
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date">Summer 2016</p>
+                    </div>
+                </div>
+                <p class="project-content">
+                  Facial detection and recognition in video streams. Facial detection is done with dlib's CUDA accelerated histogram of ordered gradients frontal face detector to find faces and then dlib again to estimate facial landmarks. These landmarks are then transformed using an affine transformation in openCV to center the face in the image. Embeddings are then generated using a deep neural network written in torch from the OpenFace project at Carnegie Mellon University. These embeddings are can then be classified by various machine learning techniques. This project used a support vector machine from Scikit-learn to classify the faces in the image.
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+
+        <a href="https://github.com/blester125/CS_1622_Compilers" class="project-link">
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="row">
+                    <div class="col-lg-9">
+                        <h3 class="project-title">
+                            Compiler
+                        </h3>
+                    </div>
+                    <div class="col-lg-2">
+                        <h6 class="project-type">
+                            University of Pittsburgh
+                        </h6>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9"></div>
+                    <div class="col-lg-2">
+                        <p class="project-date">Spring 2016</p>
+                    </div>
+                </div>
+                <p class="project-content">
+                    A compiler written in C to compile an Object-Oriented language called MINI-Java. Lexical analysis is done using code generated by Lex based on specified regular expressions. Syntax analysis is done using a Context Free Grammar and Yacc. This syntactic analysis produces an Abstract Syntax Tree that is then parsed in the Semantic analysis phase. <!-- The code generation phase will produce assembly code targeted at the MIPS architecture. -->
+                </p>
+            </div>
+            <div class="col-lg-1">
+            </div>
+        </div>
+        </a>
+    </section>
+
+    <!-- Presentations section -->
+    <section id="presentations" class="bg-light-gray">
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Presentations</h2>
+        </div>
+        <!-- <div class="row"> -->
+        <!--     <div class="col-lg-2"> -->
+        <!--         Picture -->
+        <!--     </div> -->
+        <!--     <div class="col-lg-10"> -->
+        <!--         <h3 class="talk-title">Talk Title</h3> -->
+        <!--         <h4 class="talk-location">Talk Location</h4> -->
+        <!--         <p class="text-muted">Talk Date</p> -->
+        <!--         <p class="text-muted"> -->
+        <!--             Talk content -->
+        <!--         <p> -->
+        <!--     </div> -->
+        <!-- </div> -->
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-10">
+                <h3 class="talk-title">NeurIPS Spotlight Talk on Mead-Baseline</h3>
+                <h4 class="talk-location">NeurIPS OSS Workshop</h4>
+                <p class="text-muted">December 2018</p>
+                <p class="text-muted">
+                    A spotlight talk, at the Open Source Software workshop at NeurIPS 2018, highlighting the advantages of using our open-source, model-building toolkit, Mead-Baseline, which provides high-level model abstractions, correct evaluation metrics, and fast runtimes. Mead-Baseline is the foundation of all Deep Learning work, in both research and production, at Interactions.
+                <p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-10">
+                <h3 class="talk-title">Padding in Neural Networks for Natural Language Processing</h3>
+                <h4 class="talk-location">A2D-NLP</h4>
+                <p class="text-muted">February 2020, Upcoming</p>
+                <p class="text-muted">
+                     A deep dive into the implementation of many NLP building blocks focusing on the subtleties of the padding and masking needed to correctly process batches. It specifically addressed the masking needed for obvious operations like token level losses, mean pooling, and attention; complex operations such as the CRF forward algorithm and Viterbi decoding; and subtle operations that you might not expect to need masking such as max pooling following a 1D convolution.
+                <p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-10">
+                <h3 class="talk-title">Optimization via NumPy and Cython</h3>
+                <h4 class="talk-location">Michigan Python Meetup</h4>
+                <p class="text-muted">January 2020</p>
+                <p class="text-muted">
+                    Framed around the problem of calculating the pairwise Manhattan distance between a collection of points, this talk walks through a series of optimizations that introduce core NumPy concepts like Broadcasting and Vectorization before using a bespoke Cython implementation to scale up to 10s of thousands of points in just seconds compared to the multi hour runtime of a pure Python solution.
+                <p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-2">
+            </div>
+            <div class="col-lg-10">
+                <h3 class="talk-title">Input Representations of Deep Neural Networks</h3>
+                <h4 class="talk-location">PyData Ann Arbor</h4>
+                <p class="text-muted">October 2017</p>
+                <p class="text-muted">
+                    A talk on creating robust models via learned character compositional input representations based on bLSTMs to support an open vocabulary for Deep Neural Networks.
+                <p>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications section -->
+    <section id="publications">
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Publications</h2>
+            </div>
+        </div>
+        <!-- <a href="" class="paper-link"> -->
+        <!-- <div class="row"> -->
+        <!--     <div class="col-lg-2"></div> -->
+        <!--     <div class="col-lg-10"> -->
+        <!--         <h3 class="paper-title">Paper Title</h3> -->
+        <!--         <h4 class="paper-authors">Paper Authors</h4> -->
+        <!--         <p class="paper-venue">Venue</p> -->
+        <!--     </div> -->
+        <!-- </div> -->
+        <!-- </a> -->
+        <a href="https://arxiv.org/pdf/2001.01167.pdf" class="paper-link">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <h3 class="paper-title">Computationally Efficient NER Taggers with Combined Embeddings and Constrained Decoding</h3>
+                <h4 class="paper-authors">B. Lester, D. Pressel, A. Hemmeter, S. Ray Choudhury</h4>
+                <p class="paper-venue">arXiv preprint arXiv:2001.01167, 2020</p>
+            </div>
+        </div>
+        </a>
+
+        <a href="https://arxiv.org/pdf/1903.07507.pdf" class="paper-link">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <h3 class="paper-title">An Effective Label Noise Model for DNN Text Classification</h3>
+                <h4 class="paper-authors">I. Jindal, D. Pressel, B. Lester, M. Nokleby</h4>
+                <p class="paper-venue">Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, Volume1 (Long and Short Papers), 2019, Minneapolis, Minnesota</p>
+            </div>
+        </div>
+        <a>
+
+        <a href="https://openreview.net/pdf?id=rkxp6taEhQ" class="paper-link">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <h3 class="paper-title">Baseline: Strong, Extensible, Reproducible, Deep Learning Baselines for NLP</h3>
+                <h4 class="paper-authors">D. Pressel, B. Lester, S. Ray Choudhury, M. Barta, Y. Zhao, A. Hemmeter</h4>
+                <p class="paper-venue">Neural Information Processing Systems Open Source Software Workshop, 2018, Montreal, Quebec</p>
+            </div>
+        </div>
+        </a>
+
+        <a href="https://patentimages.storage.googleapis.com/2c/b0/bd/d319d8645faa83/US9984688.pdf" class="paper-link">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <h3 class="paper-title">Dynamically Adjusting a Voice Recognition System</h3>
+                <h4 class="paper-authors">B. Lester, S. M. Panainte</h4>
+                <p class="paper-venue">US Patent 9,984,688, 2018</p>
+            </div>
+        </div>
+        </a>
+
+        <a href="https://www.aclweb.org/anthology/W18-2506.pdf" class="paper-link">
+        <div class="row">
+            <div class="col-lg-2"></div>
+            <div class="col-lg-10">
+                <h3 class="paper-title">Baseline: A Library for Rapid Modeling, Experimentation and Development of Deep Learning Algorithms targeting NLP</h3>
+                <h4 class="paper-authors">D. Pressel, S. Ray Choudhury, B. Lester, Y. Zhao, M. Barta</h4>
+                <p class="paper-venue">Proceedings of Workshop for NLP Open Source Software (NLP-OSS), 2018, Melbourne, Australia</p>
+            </div>
+        </div>
+      </div>
+      </a>
+    </section>
 
     <!-- Education Section -->
-    <section id="education">
+    <section id="education" class="bg-light-gray">
       <div class="container">
         <div class="row col-lg-12 text-center">
             <h2 class="section-heading">Education</h2>
@@ -715,7 +805,7 @@
               <i class="fa fa-university fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Degrees</h4>
-            <p class="text-muted">
+            <p class="text-muted" style="text-align: left;">
             Double Major at the University of Pittsburgh.<br>
             Bachelor of Science in Computer Science with honors.<br>
             Bachelor of Science in Neuroscience.
@@ -724,10 +814,10 @@
           <div class="col-md-4">
             <span class="fa-stack fa-4x">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fa fa-pencil fa-stack-1x fa-inverse"></i>
+              <i class="fas fa-pencil-alt fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Significant Courses</h4>
-            <p class="text-muted">
+            <p class="text-muted" style="text-align: left;">
             Data Communications and Computer Networks<br>
             High Performance Computing<br>
             Algorithm Design<br>
@@ -743,8 +833,8 @@
               <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Continuous Learning</h4>
-            <p class="text-muted">
-            Watch lectures and completed assignments for many online courses including, Coursea Machine Learning, Udacity Machine Learning Nanodegree, and Stanford CS 224n Deep Learning for Natural Language Processing.
+            <p class="text-muted" style="text-align: left;">
+            Audit lectures and completed assignments for many online courses including, Coursea Machine Learning, Udacity Machine Learning Nanodegree, and Stanford CS 224n Deep Learning for Natural Language Processing.
             </p>
           </div>
         </div>
@@ -761,10 +851,10 @@
           <!-- This should match the top one -->
           <ul class="list-inline social-buttons">
             <li>
-              <a href="https://twitter.com/BrianLester125"><i class="fa fa-twitter"></i></a>
+              <a href="https://twitter.com/BrianLester125"><i class="fab fa-twitter"></i></a>
             <li>
             <li>
-              <a href="https://www.linkedin.com/in/blester125"><i class="fa fa-linkedin"></i></a>
+              <a href="https://www.linkedin.com/in/blester125"><i class="fab fa-linkedin"></i></a>
             </li>
             <li>
               <a href="https://scholar.google.com/citations?user=OWSQqZMAAAAJ&hl=en">
@@ -772,10 +862,10 @@
               </a>
             <li>
             <li>
-              <a href="https://www.facebook.com/brian.lester.1460"><i class="fa fa-facebook"></i></a>
+              <a href="https://www.facebook.com/brian.lester.1460"><i class="fab fa-facebook"></i></a>
             </li>
             <li>
-              <a href="https://github.com/blester125"><i class="fa fa-github"></i></a>
+              <a href="https://github.com/blester125"><i class="fab fa-github"></i></a>
             </li>
           </ul>
         </div>
