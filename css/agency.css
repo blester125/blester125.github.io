@@ -64,6 +64,10 @@ h6 {
 	background-color:#f7f7f7
 }
 
+.bg-dark-gray {
+    background-color:#e0e0e0;
+}
+
 .bg-darkest-gray {
 	background-color:#222
 }
@@ -731,7 +735,8 @@ footer span.copyright {
 	line-height:40px;
 	font-family:Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
 	text-transform:uppercase;
-	text-transform:none
+	text-transform:none;
+    color: #222;
 }
 
 footer ul.quicklinks {

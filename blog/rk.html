@@ -3,27 +3,59 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <meta name="description" content="How the R k calculation works.">
+  <meta name="author" content="Brian Lester">
 
   <title>R k correlation coefficient</title>
+
+  <!-- Bootstrap Core CSS -->
+  <link href="../css/bootstrap.css" rel="stylesheet">
+
+  <!-- Third Party CSS -->
+  <link href="../css/agency.css" rel="stylesheet">
+  <link href="../css/academicons.min.css" rel="stylesheet"/>
+
+  <!-- Custom Fonts -->
+  <link href="/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- MathJax -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script id="MathJax-script" async
           src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
   </script>
+
+  <!-- Code formatting -->
   <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script type="text/javascript" src="../js/jquery.scrollintoview.js"></script>
+
+  <!-- jQuery -->
+  <script src="../js/jquery.js"></script>
+  <!-- Bootstrap Core JavaScript -->
+  <script src="../js/bootstrap.min.js"></script>
+  <!-- Custom Theme JavaScript -->
+  <script src="../js/agency.js"></script>
 
   <!-- Custom Code -->
+  <script type="text/javascript" src="../js/jquery.scrollintoview.js"></script>
   <script src="../js/interactive.js"></script>
   <script type='text/javascript'>
     window.onload = addHoverToLines.bind(null, 'show-line-', 10, 0.01)
   </script>
-  <link rel="stylesheet" type="text/css" href="../css/teaching.css">
+
+  <!-- Custom CSS -->
+  <link href="../css/teaching.css" rel="stylesheet" type="text/css">
+  <link href="../css/nav.css" rel="stylesheet">
 
   <!-- CSS for numbering the line in the code snippet -->
   <style>
@@ -52,28 +84,61 @@
       \newcommand{\qed}{\tag*{$\Box$}}
     \]
   </div>
-<body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Navbar</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <link rel="icon" href="../img/favicon.ico" type="image/x-icon"/>
+  <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon"/>
+</head>
+<body class="bg-light-gray">
 
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link disabled" href="#">Disabled</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-shrink">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <i class="fas fa-bars fa-1x"></i>
+          </button>
+          <a class="navbar-brand page-scroll" href="../#page-top">Brian Lester</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="hidden">
+              <a href="../#page-top"></a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../resume/BrianLesterCV.pdf">Resume</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#blog">Blog</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#experience">Experience</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#skills">Skills</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#projects">Projects</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#presentations">Presentations</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#publications">Publications</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#education">Education</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+
 
 <div class="content">
 
@@ -553,6 +618,44 @@ def mcc(X, Y):
     Hopefully this explanation helps you to understand why the rather opaque code found in many open source libraries actually does calculate the \(R_k\) metric and why some people call it \(R_k\) and some call it \(\mcc\).
 </p>
 
-</p>
+  <footer class="bg-dark-gray">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+          <span class="copyright">Brian Lester, 2020</span>
+        </div>
+        <div class="col-md-4">
+          <!-- This should match the top one -->
+          <ul class="list-inline social-buttons">
+            <li>
+              <a href="https://twitter.com/BrianLester125"><i class="fab fa-twitter"></i></a>
+            <li>
+            <li>
+              <a href="https://www.linkedin.com/in/blester125"><i class="fab fa-linkedin"></i></a>
+            </li>
+            <li>
+              <a href="https://scholar.google.com/citations?user=OWSQqZMAAAAJ&hl=en">
+                <i class="ai ai-google-scholar"></i>
+              </a>
+            <li>
+            <li>
+              <a href="https://www.facebook.com/brian.lester.1460"><i class="fab fa-facebook"></i></a>
+            </li>
+            <li>
+              <a href="https://github.com/blester125"><i class="fab fa-github"></i></a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <ul class="list-inline quicklinks">
+            <li>
+              Design based on "<a href="http://startbootstrap.com/template-overviews/agency/">Agency</a>" template.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
+
 </html>
