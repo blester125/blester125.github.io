@@ -1,0 +1,20 @@
+h3.paper-title {
+    text-transform: none !important;
+	color: rgb(51, 51, 51);
+}
+
+h4.paper-authors {
+    text-transform: none !important;
+    padding-left: 5%;
+	color: rgb(51, 51, 51);
+}
+
+p.paper-venue {
+ 	color:#777;
+    padding-left: 5%;
+}
+
+a.paper-link {
+  color:inherit;
+  text-decoration: none;
+}
