@@ -71,7 +71,7 @@
     .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
     .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
     .tg .tg-t4zm{font-size:16px;border-color:inherit;text-align:center;vertical-align:middle}
-    .tg .tg-9wq8{border-color:inherit;text-align:center;vertical-align:middle}
+    .tg .tg-9wq8{border-top:#f7f7f7;border-left:#f7f7f7;text-align:center;vertical-align:middle}
     .tg .tg-cji8{font-size:18px;border-color:inherit;text-align:center;vertical-align:middle}
     .tg .tg-nrix{text-align:center;vertical-align:middle}
   </style>
@@ -142,6 +142,7 @@
 
 <div class="content">
 
+  <div class="section" id="title">
   <center>
     <h1>
       Multiclass Matthew's Correlation Coefficient
@@ -150,6 +151,7 @@
      or: How I learned to stop worrying and love the \(R_k\)
     </h2>
   </center>
+  </div>
 
   <div class="row">
   <div class="section col-lg-8 col-lg-offset-2" id="introduction">
@@ -194,9 +196,6 @@ def mcc(X, Y):
 
   <div class="row">
   <div class="section col-lg-8 col-lg-offset-2" id="confusion-matrix">
-    <p>
-      Throughout this post we will use a confusion matrix that looks like the following.
-    </p>
 
     <center>
       <table class="tg">
@@ -223,6 +222,7 @@ def mcc(X, Y):
     </center>
 
     <p>
+      Throughout this post we will use a confusion matrix that looks like the above.
       For a given example in the dataset we will add one to the matrix where the row index is the class of the true label and the column index is based on the predicted label. When the predictions match the gold label the numbers will appear on the diagonal while example where the model is wrong appear off it.
     </p>
 
@@ -467,15 +467,20 @@ def mcc(X, Y):
   </div>
   </div>
 
+  <div class="row">
   <div class="section" id="alt-simplify">
+    <div class="row">
     <center>
       <h2>An Alternate Look at simplifying \(\cov\)</h2>
     </center>
-
+    <div class="col-lg-8 col-lg-offset-2">
     <p>
       We simplified \(\sum_s^S \sum_k^N X_{sk}\bar{Y}_k\) by converting it into operations on the confusion matrix which let us cancel out terms in the foiled \(R_k\) calculation. There is another way to manipulate terms to get them to cancel.
     </p>
+    </div>
+    </div>
 
+    <div class="row">
     <div class="math">
       <div class="math-overflow">
         \[
@@ -504,10 +509,16 @@ def mcc(X, Y):
       </ul>
     </div>
     <div class="clear"></div>
+    </div>
+  </div>
   </div>
 
+  <div class="row">
   <div class="section" id="mcc">
     <div class="section" id="mcc-to-cov">
+
+      <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
       <center>
         <h2>Reduction to Matthews Correlation Coefficient for \(k=2\)</h2>
       </center>
@@ -515,7 +526,10 @@ def mcc(X, Y):
       <p>
         The Wikipedia page for MCC gives multiple ways to calculate it by reading from the confusion matrix and also the original equations that Matthews uses for calculation in his paper. This presentation skips however the original formula Matthews presented where the true label distribution and the predicted label distributions are cast as Random Variables and the correlation between the two is measured. This formulation allows us see that this is equivalent to the \(R_k\) metric.
       </p>
+      </div>
+      </div>
 
+      <div class="row">
       <div class="math">
         <div class="math-overflow">
           \[
@@ -539,8 +553,11 @@ def mcc(X, Y):
       </div>
     <div class="clear"></div>
     </div>
+    </div>
 
     <div class="section" id="one-hot">
+      <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
       <p>
         We can see above that this calculation for \(\mcc\) is almost that exact same as for \(R_k\)! The only differences is that \(\mcc\) is calculated with the covariance between vectors of \(0\)s and \(1\)s of length \(S\) while \(R_k\) uses the \(\cov_k\) function to calculate covariance between two one-hot matrices \(\in \R^{S \text{x} 2}\).
       </p>
@@ -548,7 +565,10 @@ def mcc(X, Y):
       <p>
         This next step is a little odd and I don't have a great way to demonstrate this mathematically but we should be able to see that these results will be the same.
       </p>
+          </div>
+      </div>
 
+      <div class="row">
       <div class="math">
         <div class="math-overflow">
           \[
@@ -581,6 +601,7 @@ def mcc(X, Y):
         </ul>
       </div>
       <div class="clear"></div>
+      </div>
 
     </div>
 
@@ -619,11 +640,16 @@ def mcc(X, Y):
     </div>
 
   </div>
+  </div>
 </div>
 
+<div class="row">
+<div class="col-lg-8 col-lg-offset-2">
 <p>
     Hopefully this explanation helps you to understand why the rather opaque code found in many open source libraries actually does calculate the \(R_k\) metric and why some people call it \(R_k\) and some call it \(\mcc\).
 </p>
+</div>
+</div>
 
 </div>
 
