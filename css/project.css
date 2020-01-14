@@ -5,9 +5,10 @@ h3.project-title {
 h6.project-type {
   text-transform: none !important;
   text-align: right;
+  padding-top: 10%;
 }
 
-p.proejct-content {
+p.project-content {
   color:#777;
 }
 
@@ -26,4 +27,10 @@ p.project-date {
 a.project-link {
   color:inherit;
   text-decoration: none;
+}
+
+.project-image {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
