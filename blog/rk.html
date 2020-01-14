@@ -151,7 +151,8 @@
     </h2>
   </center>
 
-  <div class="section" id="introduction">
+  <div class="row">
+  <div class="section col-lg-8 col-lg-offset-2" id="introduction">
     <p>
       Have you ever taken a glace at the code in an open source ML library like <a href=''>baseline</a> or <a href=https://scikit-learn.org/stable/modules/generated/sklearn.metrics.matthews_corrcoef.html>scikit learn</a> for the Matthews Correlation Coefficient (also called \(R_k\)) and seen something dense and confusing like the following?
     </p>
@@ -189,8 +190,10 @@ def mcc(X, Y):
       This looks nothing like the code you found and if anything looking at Wikipedia has probably made things more confusing rather than clearer. This post will start with a quick introduction to the \(R_k\) metric and then hopefully help you understand how the above code works and how why it produces the correct result.
     </p>
   </div>
+  </div>
 
-  <div class="section" id="confusion-matric">
+  <div class="row">
+  <div class="section col-lg-8 col-lg-offset-2" id="confusion-matrix">
     <p>
       Throughout this post we will use a confusion matrix that looks like the following.
     </p>
@@ -227,7 +230,9 @@ def mcc(X, Y):
       This confusion matrix can be extended to the multiclass setting by adding a row and column for each new class.
     <p>
   </div>
+  </div>
 
+  <div class="row">
   <div class="section" id="rk">
     <center>
       <h2> The \(R_k\) Metric</h2>
@@ -323,7 +328,7 @@ def mcc(X, Y):
           </center>
           \[
             \begin{align}
-              \cssId{show-line-29} R_k &= \frac{
+              \cssId{show-line-29} R R_k &= \frac{
 	            \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
               }{
                 \sqrt{\frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{N * S}}\sqrt{\frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{N * S}}
@@ -401,10 +406,9 @@ def mcc(X, Y):
       <div class="clear"></div>
     </div>
 
-    <div class="section" id="rk-conclustion">
+    <div class="row">
+    <div class="section col-lg-8 col-lg-offset-2" id="rk-conclustion">
       <p>
-        So now we have finally have a simplified \( R_k \) calculation.
-
         \[
           R_k =
             \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}
@@ -415,8 +419,10 @@ def mcc(X, Y):
       </p>
     </div>
   </div>
+  </div>
 
-  <div class="section" id="convert-numpy">
+  <div class="row">
+  <div class="section col-lg-8 col-lg-offset-2" id="convert-numpy">
     <center>
       <h2>Converting to numpy</h2>
     <center>
@@ -458,6 +464,7 @@ def mcc(X, Y):
     <p>
       We now have code snippets that we can used to calculate all the terms in our simplified \(R_k\), the actually code uses some local variables to avoid repeating calculations but it should be possible to see the equivalence of the code at the beginning, the code we outlined here, and the math.
     </p>
+  </div>
   </div>
 
   <div class="section" id="alt-simplify">
@@ -617,6 +624,8 @@ def mcc(X, Y):
 <p>
     Hopefully this explanation helps you to understand why the rather opaque code found in many open source libraries actually does calculate the \(R_k\) metric and why some people call it \(R_k\) and some call it \(\mcc\).
 </p>
+
+</div>
 
   <footer class="bg-dark-gray">
     <div class="container">
