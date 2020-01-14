@@ -2,28 +2,41 @@ const Cite = require('citation-js')
 
 function make_class(tag, cls_name) {
     var cls = document.createElement(tag);
-    cls.classList.add(cls_name)
+    if (Array.isArray(cls_name)) {
+        for (var i = 0; i < cls_name.length; i++) {
+            cls.classList.add(cls_name[i]);
+        }
+    } else {
+        cls.classList.add(cls_name);
+    }
     return cls
 }
 
-function entry_to_html(citation, bib) {
-    var wrapper = document.createElement("div")
-
-    var link = make_class("a", "paper-link")
-    link.href = citation.URL;
-    wrapper.appendChild(link)
+function make_centered_row(pad, root) {
 
     var row = make_class("div", "row");
-    link.appendChild(row);
+    root.appendChild(row);
 
-    var leftPad = make_class("div", "col-lg-1");
+    var leftPad = make_class("div", "col-lg-" + pad);
     row.appendChild(leftPad);
 
-    var content = make_class("div", "col-lg-10");
+    var content = make_class("div", "col-lg-" + (12 - pad - pad));
     row.appendChild(content);
 
-    var rightPad = make_class("div", "col-lg-1");
+    var rightPad = make_class("div", "col-lg-" + pad);
     row.appendChild(rightPad);
+
+    return content
+}
+
+function entry_to_html(citation, bibtex) {
+    var wrapper = document.createElement("div");
+
+    var link = make_class("a", "paper-link");
+    link.href = citation.URL;
+    wrapper.appendChild(link);
+
+    var content = make_centered_row(1, link);
 
     var title = make_class("h3", "paper-title");
     title.innerHTML = citation.title;
@@ -37,19 +50,54 @@ function entry_to_html(citation, bib) {
     description.innerHTML = venueString(citation);
     content.appendChild(description)
 
-    // var copy = make_class("button", "button");
-    // var cite = new Cite()
-    // var bibtex = cite.set(citation).format('bibtex')
-    // copy.onclick = copyStringToClipboard.bind(null, bibtex);
-    // copy.innerHTML = "Copy BibTex"
+    var links = make_centered_row(1, wrapper);
 
-    // wrapper.appendChild(copy)
+    var pdf = make_class("a", ["btn", "btn-primary", "paper-button-first"]);
+    pdf.href = citation.URL;
+    pdf.innerText = "PDF"
+    pdf.style['margin-left'] = "5%";
+    links.appendChild(pdf)
+
+    var bib_btn = make_class("a", ["btn", "btn-primary", "paper-button"]);
+    bib_btn.innerHTML = "BibTex";
+
+    // Create a model we can write the bibtex in
+    var modal = make_class("div", "modal");
+    modal.style.display = "none";
+    wrapper.appendChild(modal);
+
+    var modal_content = make_class("div", "modal-content");
+    modal.appendChild(modal_content);
+
+    var text_area = make_class("pre", "bibtex");
+    text_area.innerText = bibtex;
+    text_area.setAttribute('readonly', '')
+    modal_content.appendChild(text_area);
+
+    bib_btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    window.onclick = function(event) {
+        if (event.target.className == "modal") {
+            event.target.style.display = "none";
+        }
+    }
+    links.appendChild(bib_btn)
+
+    var copy = make_class("a", ["btn", "btn-primary", "paper-button"]);
+    var clipboard_icon = make_class("i", ["far", "fa-copy"]);
+    copy.onclick = copyStringToClipboard.bind(null, bibtex);
+    copy.title = "Copy BibTex to Clipboard"
+    copy.appendChild(clipboard_icon)
+    links.appendChild(copy)
 
     return wrapper
 }
 
 
 function copyStringToClipboard(str) {
+    // look into replacing with clipboard.js
     var el = document.createElement('input');
     el.value = str;
     el.setAttribute('readonly', '');
@@ -88,6 +136,32 @@ function extract_first_author_family(citations) {
 }
 
 
+function readFile(fileName, func) {
+    $.ajax({
+        url: fileName,
+        success: func
+    });
+}
+
+function readFiles(fileNames) {
+    var content = [];
+    var requests = [];
+    for (var i = 0; i < fileNames.length; i++) {
+        requests.push($.ajax({
+            url: fileNames[i],
+            async: false,
+            success: function(data) {
+                content.push(data);
+            }
+        }));
+    }
+    $.when.apply($, requests).done(function() {
+        return;
+    })
+    return content;
+}
+
+
 function venueString(citation) {
     var venue_string = '';
     venue_string += citation['container-title'];
@@ -102,21 +176,44 @@ function venueString(citation) {
     return venue_string
 }
 
-
-function generate_references(citations, target) {
+// convert to reading a list of bib files that are parsed individually and the raw bib text is show to user
+function generate_references(target, citations) {
+    var files = citations.split(/\r?\n/);
+    files = files.filter(file => file != '');
+    for (var i = 0; i < files.length; i++) {
+        files[i] = "references/" + files[i];
+    }
+    var content = readFiles(files)
+    var bibs = [];
+    for (var i = 0; i < content.length; i++) {
+        var bib = new Cite(content[i])
+        bibs.push(bib.data[0])
+    }
     var target = document.getElementById(target)
-    bib = new Cite(citations);
-    citations = bib.data;
-    citations = sort_citations(citations);
-    for (var i = 0; i < citations.length; i++) {
-        var l = entry_to_html(citations[i], bib)
+    sorted = sort_citations(bibs, content);
+    bibs = sorted[0];
+    content = sorted[1];
+    for (var i = 0; i < bibs.length; i++) {
+        var l = entry_to_html(bibs[i], content[i])
         target.appendChild(l);
     }
 }
 
 
-function sort_citations(citations) {
-    citations.sort((a, b) => (extract_first_author_family(a) > extract_first_author_family(b) ? 1 : -1))
-    citations.sort((a, b) => (extract_year(a) < extract_year(b) ? 1 : -1))
-    return citations
+function sort_citations(citations, content) {
+    for (var i = 0; i < citations.length; i++) {
+        citations[i] = [citations[i], i]
+    }
+    citations.sort((a, b) => (extract_first_author_family(a[0]) > extract_first_author_family(b[0]) ? 1 : -1))
+    citations.sort((a, b) => (extract_year(a[0]) < extract_year(b[0]) ? 1 : -1))
+    var indices = [];
+    for (var i = 0; i < citations.length; i++) {
+        indices.push(citations[i][1]);
+        citations[i] = citations[i][0];
+    }
+    sorted_content = new Array(indices.length);
+    for (var i = 0; i < indices.length; i++) {
+        sorted_content[i] = content[indices[i]];
+    }
+    return [citations, sorted_content]
 }
