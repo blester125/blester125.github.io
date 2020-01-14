@@ -16,11 +16,14 @@ function entry_to_html(citation, bib) {
     var row = make_class("div", "row");
     link.appendChild(row);
 
-    var col2 = make_class("div", "col-lg-2");
-    row.appendChild(col2);
+    var leftPad = make_class("div", "col-lg-1");
+    row.appendChild(leftPad);
 
     var content = make_class("div", "col-lg-10");
     row.appendChild(content);
+
+    var rightPad = make_class("div", "col-lg-1");
+    row.appendChild(rightPad);
 
     var title = make_class("h3", "paper-title");
     title.innerHTML = citation.title;
