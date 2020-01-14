@@ -1,7 +1,13 @@
 h3.talk-title {
-    text-transform: none !important;
+  text-transform: none !important;
 }
 
 h4.talk-location {
-    text-transform: none !important;
+  text-transform: none !important;
+}
+
+.talk-image {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
