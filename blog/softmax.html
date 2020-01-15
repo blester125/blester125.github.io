@@ -1,70 +1,354 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Numberically Stable Softmax</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-156541294-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-156541294-1");
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
 
-  <!--- Custom Code --->
-  <script src="../js/interactive.js"></script>
-  <script type='text/javascript'>
-    window.onload = addHoverToLines.bind(null, 'show-line-')
-  </script>
-  <link rel="stylesheet" type="text/css" href="../css/teaching.css">
+    <meta
+      name="og:description"
+      content="A quick look on why we can subtract the max element when we calculate a numerically stable softmax."
+    />
+    <meta name="og:title" content="Numerically Stable Softmax" />
+    <meta name="og:url" content="https://blester125.com/blog/softmax.html" />
+    <meta
+      name="og:image"
+      content="https://blester125.com/img/blog/softmax.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
 
-</head>
-<body>
-<div class="content">
-  <div class="math-def">
-    \[
-      \newcommand{\softmax}{\mathop{\rm softmax}\nolimits}
-      \newcommand{\qed}{\tag*{$\Box$}}
-    \]
-  </div>
+    <meta name="author" content="Brian Lester" />
+    <title>Numberically Stable Softmax</title>
 
-  <div class="math">
-    \[
-      \begin{align}
-        \cssId{show-line-1}\softmax(x) &= \frac{e^{x_i}}{\sum_j e^{x_j}} \\
-        \cssId{show-line-2}\softmax(x) &= \softmax(x - \alpha) \\
-        \cssId{show-line-3}\alpha &= \max_i x_i
-      \end{align}
-    \]
+    <!-- Bootstrap Core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet" />
 
-    \[
-      \begin{align}
-        \cssId{show-line-4}\softmax(x-\alpha) &= \frac{e^{x_i - \alpha}}{\sum_j e^{x_j - \alpha}} \\
-        \cssId{show-line-5}\softmax(x_i) &= \frac{e^{x_i}}{\sum_j e^{x_j}} \\
-        &= \cssId{show-line-6}{ \frac{e^{-\alpha}}{e^{-\alpha}} * \frac{e^{x_i}}{\sum_j e^{x_j}} }\\
-        &= \cssId{show-line-7}{ \frac{e^{-\alpha}e^{x_i}}{e^{-\alpha}\sum_j e^{x_j}} }\\
-        &= \cssId{show-line-8}{ \frac{e^{-\alpha}e^{x_i}}{\sum_j e^{-\alpha} e^{x_j}} }\\
-        &= \cssId{show-line-9}{ \frac{e^{-\alpha + x_i}}{\sum_j e^{-\alpha + x_j}} }\\
-        &= \cssId{show-line-10}{ \frac{e^{x_i -\alpha}}{\sum_j e^{x_j -\alpha}} }\\
-        \cssId{show-line-11} \softmax(x) &= \softmax(x - \alpha) \qed
-      \end{align}
-    \]
-  </div>
+    <!-- Third Party CSS -->
+    <link href="../css/agency.css" rel="stylesheet" />
+    <link href="../css/academicons.min.css" rel="stylesheet" />
 
-  <div class="explaination">
-    <ul class="explain">
-      <li id="explain-line-1"> This is the definition of softmax, it takes a vector x and exponentiates each element. It then normalizes each element with the sum of all elements </li>
-      <li id="explain-line-2"> This is the equality we are trying to prove </li>
-      <li id="explain-line-3"> This is the definition of \( \alpha \) we are using but this could be any arbitrary number </li>
-      <li id="explain-line-4"> This is the same definition of softmax but we include the subtraction of alpha. This is the value we want to transform the softmax equation into.
-      <li id="explain-line-5"> Again this is our definition </li>
-      <li id="explain-line-6"> Because anything divided by itself is 1 and any number multiplied by 1 is itself (multiplicity identity) we can introduce this e to the negative alpha without changing anything. </li>
-      <li id="explain-line-7"> A fraction multiplied by a fraction is the numerators multiplied together and the denominators multiplied together.</li>
-      <li id="explain-line-8"> Multiplication distributes over the addition in the summation so we can push the \( e^{-\alpha} \) into the summation </li>
-      <li id="explain-line-9"> The rules of exponents says when multiplying elements that have the same base we sum the powers. </li>
-      <li id="explain-line-10"> Addition is commutative so we can move the \( -\alpha \) after the \( x_i \) </li>
-      <li id="explain-line-11"> We showed that both \(\softmax(x)\) and \(\softmax(x - \alpha)\) are equal to the same things so by the transitive property they are equal to each other. </li>
-    </ul>
-  </div>
-</div>
+    <!-- Custom Fonts -->
+    <link href="/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-</body>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+
+    <!-- Code formatting -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+    ></script>
+
+    <!-- jQuery -->
+    <script src="../js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../js/bootstrap.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/agency.js"></script>
+
+    <!-- Custom Code -->
+    <script
+      type="text/javascript"
+      src="../js/jquery.scrollintoview.js"
+    ></script>
+    <script src="../js/interactive.js"></script>
+    <script type="text/javascript">
+      window.onload = addHoverToLines.bind(null, "show-line-", 10, 0.01);
+    </script>
+
+    <!-- Custom CSS -->
+    <link href="../css/teaching.css" rel="stylesheet" type="text/css" />
+    <link href="../css/nav.css" rel="stylesheet" />
+
+    <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
+
+    <!-- prettier-ignore -->
+    <div class="math-def">
+      \[
+        \newcommand{\softmax}{\mathop{\rm softmax}\nolimits}
+        \newcommand{\qed}{\tag*{$\Box$}}
+      \]
+    </div>
+  </head>
+  <body class="bg-light-gray">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-shrink">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+          <button
+            type="button"
+            class="navbar-toggle"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <i class="fas fa-bars fa-1x"></i>
+          </button>
+          <a class="navbar-brand page-scroll" href="../#page-top"
+            >Brian Lester</a
+          >
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="hidden">
+              <a href="../#page-top"></a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../resume/BrianLesterCV.pdf"
+                >Resume</a
+              >
+            </li>
+            <li>
+              <a class="page-scroll" href="../#blog">Blog</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#experience">Experience</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#skills">Skills</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#projects">Projects</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#presentations">Presentations</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#publications">Publications</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="../#education">Education</a>
+            </li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+
+    <div class="container">
+      <div class="content">
+        <div class="section" id="title">
+          <center>
+            <h1>
+              Building a Numerically Stable Softmax
+            </h1>
+          </center>
+        </div>
+        <div class="row">
+          <div class="section col-lg-8 col-lg-offset-2" id="introduction">
+            <p>
+              You may have noticed that when calculating softmax a lot of neural
+              network tool kits first subtract the maximum element from every
+              other element before calculating the softmax (by exponentiation of
+              each element and normalizing by the sum of exponentiated
+              elements). Questions about why this is done are always meet with a
+              quick answer of "for numerical stability" and brushed off. Doing
+              this makes sense, softmax has a \(e^x\) term in it. If one of your
+              elements in really big your result will be even bigger (and the
+              sum would be bigger still) which could cause an overflow.
+              Subtracting the maximum from all elements means that the largest
+              element will be \(0\) so your exponentiation and sum will never
+              overflow. The problem is that no one ever explains why we can
+              subtract the max and still get the same result. Lets look at how
+              that works.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <!-- prettier-ignore -->
+          <div class="math">
+          \[
+            \begin{align}
+              \cssId{show-line-1}\softmax(x) &= \frac{e^{x_i}}{\sum_j e^{x_j}} \\
+              \cssId{show-line-2}\softmax(x) &= \softmax(x - \alpha) \\
+              \cssId{show-line-3}\alpha &= \max_i x_i
+            \end{align}
+          \]
+
+          \[
+            \begin{align}
+              \cssId{show-line-4}\softmax(x-\alpha) &= \frac{e^{x_i - \alpha}}{\sum_j e^{x_j - \alpha}} \\
+              \cssId{show-line-5}\softmax(x_i) &= \frac{e^{x_i}}{\sum_j e^{x_j}} \\
+              &= \cssId{show-line-6}{ \frac{e^{-\alpha}}{e^{-\alpha}} * \frac{e^{x_i}}{\sum_j e^{x_j}} }\\
+              &= \cssId{show-line-7}{ \frac{e^{-\alpha}e^{x_i}}{e^{-\alpha}\sum_j e^{x_j}} }\\
+              &= \cssId{show-line-8}{ \frac{e^{-\alpha}e^{x_i}}{\sum_j e^{-\alpha} e^{x_j}} }\\
+              &= \cssId{show-line-9}{ \frac{e^{-\alpha + x_i}}{\sum_j e^{-\alpha + x_j}} }\\
+              &= \cssId{show-line-10}{ \frac{e^{x_i -\alpha}}{\sum_j e^{x_j -\alpha}} }\\
+              \cssId{show-line-11} \softmax(x) &= \softmax(x - \alpha) \qed
+            \end{align}
+          \]
+        </div>
+
+          <div class="explaination">
+            <ul class="explain">
+              <li id="explain-line-1">
+                This is the definition of softmax, it takes a vector x and
+                exponentiates each element. It then normalizes each element by
+                the sum of all exponentiated elements.
+              </li>
+              <li id="explain-line-2">
+                This is the equality we are trying to prove.
+              </li>
+              <li id="explain-line-3">
+                This is out definition of \( \alpha \). We are using because it
+                is what people do for numerical stability but this could be any
+                arbitrary number.
+              </li>
+              <li id="explain-line-4">
+                This is the same as definition of softmax but we include the
+                subtraction of alpha from each element. This is the value we
+                want to transform the softmax equation into.
+              </li>
+              <li id="explain-line-5">Again this is our definition</li>
+              <li id="explain-line-6">
+                Because anything divided by itself is \(1\) (because this is the
+                same as multiplying by the multiplicative inverse) and any
+                number multiplied by \(1\) is itself (due to multiplicity
+                identity) we can introduce this \(\frac{e^{-\alpha}}{e^{-\alpha}}\) without changing
+                anything.
+              </li>
+              <li id="explain-line-7">
+                A fraction multiplied by a fraction is the numerators multiplied
+                together and the denominators multiplied together.
+              </li>
+              <li id="explain-line-8">
+                Multiplication distributes over the addition in the summation so
+                we can push the \( e^{-\alpha} \) into the summation
+              </li>
+              <li id="explain-line-9">
+                The rules of exponents says when multiplying elements that have
+                the same base we sum the expoents.
+              </li>
+              <li id="explain-line-10">
+                Addition is commutative so we can move the \( -\alpha \) after
+                the \( x_i \)
+              </li>
+              <li id="explain-line-11">
+                We showed that both \(\softmax(x)\) and \(\softmax(x - \alpha)\)
+                are equal to the same things so by the transitive property they
+                are equal to each other.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="section col-lg-8 col-lg-offset-2" id="conclusion">
+            <p>
+              We've shown that we can subtract the max without effecting our
+              result (in fact we can subtract any number we choose). This means
+              we can keep subtracting the maximum for numerical stability
+              without worrying about getting different results.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="bg-dark-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Brian Lester, 2020</span>
+          </div>
+          <div class="col-md-4">
+            <!-- This should match the top one -->
+            <ul class="list-inline social-buttons">
+              <li>
+                <a href="https://twitter.com/blester125"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+              </li>
+
+              <li></li>
+              <li>
+                <a href="https://www.linkedin.com/in/blester125"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://scholar.google.com/citations?user=OWSQqZMAAAAJ&hl=en"
+                >
+                  <i class="ai ai-google-scholar"></i>
+                </a>
+              </li>
+
+              <li></li>
+              <li>
+                <a href="https://pypi.org/user/BLester125/">
+                  <i class="fab fa-python"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/blester125"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+              <li>
+                Design based on "<a
+                  href="http://startbootstrap.com/template-overviews/agency/"
+                  >Agency</a
+                >" template.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
 </html>
