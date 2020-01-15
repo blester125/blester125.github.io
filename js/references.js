@@ -200,15 +200,20 @@ function generate_references(target, citations) {
     var content = readFiles(files, create_references.bind(null, target))
 }
 
+function compare_citations(a, b) {
+    var a_year = extract_year(a);
+    var b_year = extract_year(b);
+    if (a_year == b_year) {
+        return extract_first_author_family(a) > extract_first_author_family(b) ? 1 : -1;
+    }
+    return a_year < b_year ? 1 : -1;
+}
 
 function sort_citations(citations, content) {
     for (var i = 0; i < citations.length; i++) {
         citations[i] = [citations[i], i]
     }
-    console.log(citations)
-    citations.sort((a, b) => (extract_first_author_family(a[0]) > extract_first_author_family(b[0]) || extract_year(a[0]) < extract_year(b[0]) ? 1 : -1))
-    console.log(citations)
-    // citations.sort((a, b) => (extract_year(a[0]) < extract_year(b[0]) ? 1 : -1))
+    citations.sort((a, b) => compare_citations(a[0], b[0]));
     var indices = [];
     for (var i = 0; i < citations.length; i++) {
         indices.push(citations[i][1]);
