@@ -29,7 +29,7 @@ function make_centered_row(pad, root) {
     return content
 }
 
-function entry_to_html(citation, bibtex) {
+function reference_to_html(citation, bibtex) {
     var wrapper = document.createElement("div");
 
     var link = make_class("a", "paper-link");
@@ -143,22 +143,20 @@ function readFile(fileName, func) {
     });
 }
 
-function readFiles(fileNames) {
+function readFiles(fileNames, func) {
     var content = [];
     var requests = [];
     for (var i = 0; i < fileNames.length; i++) {
         requests.push($.ajax({
             url: fileNames[i],
-            async: false,
             success: function(data) {
                 content.push(data);
             }
         }));
     }
     $.when.apply($, requests).done(function() {
-        return;
+        func(content)
     })
-    return content;
 }
 
 
@@ -176,27 +174,30 @@ function venueString(citation) {
     return venue_string
 }
 
-// convert to reading a list of bib files that are parsed individually and the raw bib text is show to user
+function create_references(target, content) {
+    var bibs = [];
+    for (var i = 0; i < content.length; i++) {
+        var bib = new Cite(content[i])
+        bibs.push(bib.data[0])
+    }
+    sorted = sort_citations(bibs, content);
+    bibs = sorted[0];
+    content = sorted[1];
+    for (var i = 0; i < bibs.length; i++) {
+        var l = reference_to_html(bibs[i], content[i])
+        target.appendChild(l);
+    }
+}
+
+
 function generate_references(target, citations) {
     var files = citations.split(/\r?\n/);
     files = files.filter(file => file != '');
     for (var i = 0; i < files.length; i++) {
         files[i] = "references/" + files[i];
     }
-    var content = readFiles(files)
-    var bibs = [];
-    for (var i = 0; i < content.length; i++) {
-        var bib = new Cite(content[i])
-        bibs.push(bib.data[0])
-    }
     var target = document.getElementById(target)
-    sorted = sort_citations(bibs, content);
-    bibs = sorted[0];
-    content = sorted[1];
-    for (var i = 0; i < bibs.length; i++) {
-        var l = entry_to_html(bibs[i], content[i])
-        target.appendChild(l);
-    }
+    var content = readFiles(files, create_references.bind(null, target))
 }
 
 
