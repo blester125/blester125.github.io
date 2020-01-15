@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="initial-scale=1.0 width=device-width">
   <meta name="description" content="How the R k calculation works.">
   <meta name="author" content="Brian Lester">
 
@@ -90,7 +90,6 @@
   <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon"/>
 </head>
 <body class="bg-light-gray">
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-shrink">
       <div class="container">
@@ -433,12 +432,12 @@ def mcc(X, Y):
       Let's start translating these into numpy code. We'll start with the simple ones.
     </p>
 
-    <ul class="explain">
+    <ul class="explain-free">
       <li> \(S\) is the number of examples in the dataset. Because each example adds one to the confusion matrix \(S\) is just the sum of all the values in the confusion matrix. This is an easy translation numpy, <code>np.sum(C)</code> </li>
       <li> \(\sum_l^N C_{kl}\) is the sum each element in the \(k^{th}\) row. Calculating this sum for each row and stacking them together produces a vector which has the sum of each row respectively. Numpy is vectorized so we can convert these sums and the creation of the vecotor to numpy with a single call, <code>np.sum(C, axis=0)</code> </li>
       <li> \(\sum_l^N C_{lk}\) is the same as \(\sum_l^N C_{kl}\) except the sum is over the columns not that rows. This is similarly converted to numpy, <code>np.sum(C, axis=1)</code> </li>
       <li> \(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) This term generates the sum of products between the sum of a some column \(k\) and the sum of some row \(k\). When we have pre-computed the row and column sums and stored them in two vectors this operation is the dot product (the sum of the products of each element of two vectors, or \(\sum_i x_i y_i\).)
-        <ul class="explain">
+        <ul class="explain-free">
 	      <li>\(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}\) from \(\cov(X, Y)\) translates to <code>np.dot(np.sum(C, axis=0), np.sum(C, axis=1))</code></li>
           <li>\(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) from \(\cov(Y, Y)\) translates to <code>np.dot(np.sum(C, axis=0), np.sum(C, axis=0))</code></li>
           <li>\(\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}\) from \(\cov(X, X)\) translates to <code>np.dot(np.sum(C, axis=1), np.sum(C, axis=1))</code></li>
@@ -469,18 +468,17 @@ def mcc(X, Y):
     </p>
   </div>
   </div>
+  </div>
 
   <div class="row">
-  <div class="section" id="alt-simplify">
+  <div class="section col-lg-8 col-lg-offset-2" id="alt-simplify">
     <div class="row">
     <center>
       <h2>An Alternate Look at simplifying \(\cov\)</h2>
     </center>
-    <div class="col-lg-8 col-lg-offset-2">
     <p>
       We simplified \(\sum_s^S \sum_k^N X_{sk}\bar{Y}_k\) by converting it into operations on the confusion matrix which let us cancel out terms in the foiled \(R_k\) calculation. There is another way to manipulate terms to get them to cancel.
     </p>
-    </div>
     </div>
 
     <div class="row">
