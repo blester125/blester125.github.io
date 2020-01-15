@@ -85,29 +85,15 @@ function reference_to_html(citation, bibtex) {
     }
     links.appendChild(bib_btn)
 
-    var copy = make_class("a", ["btn", "btn-primary", "paper-button"]);
+    var copy = make_class("button", ["btn", "btn-primary", "paper-button"]);
+    copy.setAttribute("data-clipboard-text", bibtex)
     var clipboard_icon = make_class("i", ["far", "fa-copy"]);
-    copy.onclick = copyStringToClipboard.bind(null, bibtex);
     copy.title = "Copy BibTex to Clipboard"
     copy.appendChild(clipboard_icon)
     links.appendChild(copy)
 
     return wrapper
 }
-
-
-function copyStringToClipboard(str) {
-    // look into replacing with clipboard.js
-    var el = document.createElement('input');
-    el.value = str;
-    el.setAttribute('readonly', '');
-    el.style = {position: 'absolute', left: '-9999px'};
-    document.body.appendChild(el);
-    el.select();
-    document.execCommand('copy');
-    document.body.removeChild(el);
-}
-
 
 function authorString(author) {
     var author_string = "";
@@ -121,7 +107,6 @@ function authorString(author) {
     return author_string
 }
 
-
 function extract_year(citation) {
     date_parts = citation.issued["date-parts"][0];
     if (date_parts.length >= 1) {
@@ -130,11 +115,9 @@ function extract_year(citation) {
     return 0;
 }
 
-
 function extract_first_author_family(citations) {
     return citations.author[0].family
 }
-
 
 function readFile(fileName, func) {
     $.ajax({
@@ -158,7 +141,6 @@ function readFiles(fileNames, func) {
         func(content)
     })
 }
-
 
 function venueString(citation) {
     var venue_string = '';
@@ -187,8 +169,8 @@ function create_references(target, content) {
         var l = reference_to_html(bibs[i], content[i])
         target.appendChild(l);
     }
+    clipboard = new ClipboardJS('.paper-button');
 }
-
 
 function generate_references(target, citations) {
     var files = citations.split(/\r?\n/);
