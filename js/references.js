@@ -205,8 +205,10 @@ function sort_citations(citations, content) {
     for (var i = 0; i < citations.length; i++) {
         citations[i] = [citations[i], i]
     }
-    citations.sort((a, b) => (extract_first_author_family(a[0]) > extract_first_author_family(b[0]) ? 1 : -1))
-    citations.sort((a, b) => (extract_year(a[0]) < extract_year(b[0]) ? 1 : -1))
+    console.log(citations)
+    citations.sort((a, b) => (extract_first_author_family(a[0]) > extract_first_author_family(b[0]) || extract_year(a[0]) < extract_year(b[0]) ? 1 : -1))
+    console.log(citations)
+    // citations.sort((a, b) => (extract_year(a[0]) < extract_year(b[0]) ? 1 : -1))
     var indices = [];
     for (var i = 0; i < citations.length; i++) {
         indices.push(citations[i][1]);
