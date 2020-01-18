@@ -161,7 +161,7 @@
   <div class="row">
   <div class="section col-lg-8 col-lg-offset-2" id="introduction">
     <p>
-      Have you ever taken a glace at the code in an open source ML library like <a href=''>baseline</a> or <a href=https://scikit-learn.org/stable/modules/generated/sklearn.metrics.matthews_corrcoef.html>scikit learn</a> for the Matthews Correlation Coefficient (also called \(R_k\)) and seen something dense and confusing like the following?
+      Have you ever taken a glance at the code in an open source ML library like <a href=''>baseline</a> or <a href=https://scikit-learn.org/stable/modules/generated/sklearn.metrics.matthews_corrcoef.html>scikit learn</a> for the Matthews Correlation Coefficient (also called \(R_k\)) and seen something dense and confusing like the following?
     </p>
 
     <div class="code">
@@ -184,7 +184,7 @@ def mcc(X, Y):
 
     <div class="math-overflow">
     <p>
-      You ask yourself what is going on? Luckily in the comments there is a link to <a href=https://en.wikipedia.org/wiki/Matthews_correlation_coefficient>wikipeida</a> and you think "oh good, this will clear things up". But then you see a formula that looks like the following for the multiclass calculation:
+      You ask yourself "What is going on?" Luckily in the comments there is a link to <a href=https://en.wikipedia.org/wiki/Matthews_correlation_coefficient>wikipeida</a> and you think "oh good, this will clear things up". But then you see a formula that looks like the following for the multiclass calculation:
 
       \[
         \mcc = \frac{
@@ -195,7 +195,7 @@ def mcc(X, Y):
         }
       \]
 
-      This looks nothing like the code you found and if anything looking at Wikipedia has probably made things more confusing rather than clearer. This post will start with a quick introduction to the \(R_k\) metric and then hopefully help you understand how the above code works and how why it produces the correct result.
+      This looks nothing like the code you found and if anything looking at Wikipedia has probably made things more confusing. This post will start with a quick introduction to the \(R_k\) metric and then hopefully help you understand how the above code works and how why it produces the correct result.
     </p>
     </div>
   </div>
