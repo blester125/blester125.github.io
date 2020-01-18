@@ -2,3 +2,7 @@ a.tag {
   color:#777;
   text-decoration: none;
 }
+
+h3.blog-title {
+  text-transform: none !important;
+}
