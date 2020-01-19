@@ -23,7 +23,8 @@ $(document).ready(function() {
     })
 
     // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a').click(function() {
+    $('.navbar-collapse ul li a, .navbar-brand').click(function() {
+        console.log("BUTTS")
         $('.navbar-toggle:visible').click();
     });
 });
