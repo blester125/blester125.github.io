@@ -34,3 +34,14 @@ a.project-link {
   align-items: center;
   flex-wrap: wrap;
 }
+
+ul.project-list li {
+  list-style-type: none;
+}
+
+p.pypi-description {
+  color:#777;
+  margin-left: 2%;
+  margin-bottom: 1px;
+  line-height: 1.1;
+}
