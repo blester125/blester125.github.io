@@ -192,16 +192,16 @@
               each element before calculating the softmax (defined as
               exponentiation of each element followed by normalization via the
               sum of exponentiated elements). Questions about why this is done
-              are always meet with a canned response of "for numerical
-              stability" and brushed off. Doing this subtraction does make
-              sense, softmax has a \(e^x\) term in it. If one of your elements
-              in really big the result will be even bigger (and the sum bigger
-              still) which could cause an overflow. Subtracting the maximum from
-              all elements means that the largest element will be \(0\) so your
-              exponentiation and the subsequent sum will never overflow. The
-              problem is that no one ever explains why we can subtract the max
-              and still get the same values out of the softmax. Lets look at how
-              that works.
+              are met with canned responses about numerical stability and
+              brushed off. Concerns about numerical stability are valid, after
+              all softmax does have an \(e^x\) term in it. If one of your
+              elements is really big the result will be even bigger (and the sum
+              bigger still) which could cause an overflow. Subtracting the
+              maximum from all elements means that the largest element will be
+              \(0\) so your exponentiation and the subsequent sum will never
+              overflow. The problem is that no one ever explains why we can
+              subtract the max and still get the same values out of the softmax.
+              Let's look at how that works.
             </p>
           </div>
         </div>
@@ -237,7 +237,7 @@
           <div class="explaination">
             <ul class="explain">
               <li id="explain-line-1">
-                This is the definition of softmax, it takes a vector x and
+                This is the definition of softmax; it takes a vector x and
                 exponentiates each element. It then normalizes each element by
                 the sum of all exponentiated elements.
               </li>
@@ -247,23 +247,23 @@
               <li id="explain-line-3">
                 This is our definition of \( \alpha \). We are using the max of
                 all elements in \(x\) because that is what people do for
-                numerical stability but this could be any arbitrary number.
+                numerical stability, but this could be any arbitrary number.
               </li>
               <li id="explain-line-4">
-                This is the same as definition of softmax but we include the
-                subtraction of alpha from each element. This is the value we
-                want to transform the softmax equation into.
+                This is the same as the definition of softmax, but we include
+                the subtraction of \(\alpha\) from each element. This is the
+                value we want to transform the softmax equation into.
               </li>
               <li id="explain-line-5">
-                Again this is our definition of the softmax.
+                Again, this is our definition of the softmax.
               </li>
               <li id="explain-line-6">
                 Anything divided by itself is \(1\) (because this is the same as
                 multiplying by the multiplicative inverse which yields the
                 multiplicative identity) and any number multiplied by \(1\) is
-                itself (because \(1\) is the multiplicity identity). This means
-                we can introduce this \(\frac{e^{-\alpha}}{e^{-\alpha}}\) via
-                multiplication without changing any values.
+                itself (because \(1\) is the multiplicative identity). This
+                means we can introduce this \(\frac{e^{-\alpha}}{e^{-\alpha}}\)
+                via multiplication without changing any values.
               </li>
               <li id="explain-line-7">
                 The product of two fractions is the product of their numerators
@@ -295,7 +295,7 @@
             <p>
               We've shown that we can subtract the max without effecting our
               result (in fact we can subtract any number we choose). This means
-              we can keep subtracting the maximum for numerical stability
+              we can keep on subtracting the maximum for numerical stability
               without worrying about getting different results.
             </p>
           </div>
