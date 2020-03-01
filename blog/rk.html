@@ -203,9 +203,9 @@
             <span class="sr-only">Toggle navigation</span>
             <i class="fas fa-bars fa-1x"></i>
           </button>
-          <a class="navbar-brand page-scroll" href="../#page-top"
-            >Brian Lester</a
-          >
+          <a class="navbar-brand page-scroll" href="../#page-top">
+            Brian Lester
+          </a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -215,9 +215,9 @@
               <a href="../#page-top"></a>
             </li>
             <li>
-              <a class="page-scroll" href="../static/resume/BrianLesterCV.pdf"
-                >Resume</a
-              >
+              <a class="page-scroll" href="../static/resume/BrianLesterCV.pdf">
+                Resume
+              </a>
             </li>
             <li>
               <a class="page-scroll" href="../#blog">Blog</a>
@@ -267,13 +267,15 @@
               library like
               <a
                 href="https://github.com/dpressel/mead-baseline/blob/3f66864fd28eea1d227c69de1158a8301056faa0/python/eight_mile/confusion.py#L171"
-                >Mead-Baseline</a
               >
+                Mead-Baseline
+              </a>
               or
               <a
                 href="https://github.com/scikit-learn/scikit-learn/blob/b194674c4/sklearn/metrics/_classification.py#L821"
-                >scikit-learn</a
               >
+                scikit-learn
+              </a>
               for the Matthews Correlation Coefficient (also called \(R_k\)) and
               seen something dense and confusing like the following?
             </p>
@@ -302,8 +304,9 @@ def mcc(X, Y):
               is a link to
               <a
                 href="https://en.wikipedia.org/wiki/Matthews_correlation_coefficient"
-                >Wikipeida</a
               >
+                Wikipeida
+              </a>
               and you think "oh good, this will clear things up". But then you
               see a formula that looks like the following for the multiclass
               calculation:
@@ -346,12 +349,21 @@ def mcc(X, Y):
                   <td class="tg-t4zm" rowspan="2">Gold</td>
                   <td class="tg-nrix">1</td>
                   <td class="tg-cji8">TP</td>
-                  <td class="tg-cji8">FN<br /></td>
+                  <td class="tg-cji8">
+                    FN
+                    <br />
+                  </td>
                 </tr>
                 <tr>
-                  <td class="tg-nrix">0<br /></td>
+                  <td class="tg-nrix">
+                    0
+                    <br />
+                  </td>
                   <td class="tg-cji8">FP</td>
-                  <td class="tg-cji8">TN<br /></td>
+                  <td class="tg-cji8">
+                    TN
+                    <br />
+                  </td>
                 </tr>
               </table>
             </center>
@@ -512,7 +524,8 @@ def mcc(X, Y):
                   <li id="explain-line-1">
                     \(R_k\) is the multiclass extension of the discretized
                     pearsons rank correlation and is this is the definition of
-                    it. <br />
+                    it.
+                    <br />
                     \(X\) and \(Y\) are one hot vectors \(\in \R^{S, N}\). Each
                     row in the matrix represents a example in the dataset and
                     each column represents a class in the problem. The row for
@@ -624,8 +637,11 @@ def mcc(X, Y):
                     calculation of \( \cov_k \)
                   </li>
                   <li id="explain-line-22">
-                    Here we can see that the <code>outer</code> and
-                    <code>last</code> sections cancel out.
+                    Here we can see that the
+                    <code>outer</code>
+                    and
+                    <code>last</code>
+                    sections cancel out.
                   </li>
                   <li id="explain-line-23">
                     We substitute our definition of \(w_k\)
@@ -730,7 +746,8 @@ def mcc(X, Y):
                   \(S\) is the number of examples in the dataset. Because each
                   example adds one to the confusion matrix \(S\) is just the sum
                   of all the values in the confusion matrix. This is an easy
-                  translation numpy, <code>np.sum(C)</code>
+                  translation numpy,
+                  <code>np.sum(C)</code>
                 </li>
                 <li>
                   \(\sum_l^N C_{kl}\) is the sum each element in the \(k^{th}\)
@@ -743,7 +760,8 @@ def mcc(X, Y):
                 <li>
                   \(\sum_l^N C_{lk}\) is the same as \(\sum_l^N C_{kl}\) except
                   the sum is over the columns not that rows. This is similarly
-                  converted to numpy, <code>np.sum(C, axis=1)</code>
+                  converted to numpy,
+                  <code>np.sum(C, axis=1)</code>
                 </li>
                 <li>
                   \(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) This term
@@ -793,8 +811,11 @@ def mcc(X, Y):
                 from the confusion matrix. The counts on the diagonal are the
                 number of examples for each class where the predicted label
                 matches the gold labels. This sum can be expressed as \(\sum_k^N
-                C_{kk}\) and as <code>np.sum(np.diagonal(C))</code> or
-                <code>np.trace(C)</code> in code.
+                C_{kk}\) and as
+                <code>np.sum(np.diagonal(C))</code>
+                or
+                <code>np.trace(C)</code>
+                in code.
               </p>
 
               <p>
@@ -806,7 +827,8 @@ def mcc(X, Y):
                 with a \(1\) in it). This means this summation over \(k\) will
                 always be one and because of the sum over \(s\) the result will
                 always be number of examples. This can be pulled from the
-                confusion matrix with <code>np.sum(C)</code>
+                confusion matrix with
+                <code>np.sum(C)</code>
               </p>
 
               <p>
@@ -871,10 +893,13 @@ def mcc(X, Y):
                       Y_{sk}\).
                     </li>
                     <li id="explain-line-40">
-                      Substitute these terms for <code>outer</code> and
-                      <code>inner</code> terms as well was our first
-                      transformation of the <code>last</code> term into the
-                      \(cov_k\) definition
+                      Substitute these terms for
+                      <code>outer</code>
+                      and
+                      <code>inner</code>
+                      terms as well was our first transformation of the
+                      <code>last</code>
+                      term into the \(cov_k\) definition
                     </li>
                     <li id="explain-line-41">Cancel terms</li>
                   </ul>
@@ -932,8 +957,9 @@ def mcc(X, Y):
                         from his
                         <a
                           href="https://www.sciencedirect.com/science/article/abs/pii/0005279575901099?via%3Dihub"
-                          >original paper</a
                         >
+                          original paper
+                        </a>
                         with variables renamed to fit our scheme. The Predicted
                         labels \(P_n\) for Matthew is now \(X_n\) and the
                         observations (previously \(S_n\)) are now \(Y_n\)
@@ -1115,14 +1141,14 @@ def mcc(X, Y):
             <!-- This should match the top one -->
             <ul class="list-inline social-buttons">
               <li>
-                <a href="https://twitter.com/blester125"
-                  ><i class="fab fa-twitter"></i
-                ></a>
+                <a href="https://twitter.com/blester125">
+                  <i class="fab fa-twitter"></i>
+                </a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/in/blester125"
-                  ><i class="fab fa-linkedin"></i
-                ></a>
+                <a href="https://www.linkedin.com/in/blester125">
+                  <i class="fab fa-linkedin"></i>
+                </a>
               </li>
               <li>
                 <a
@@ -1132,24 +1158,25 @@ def mcc(X, Y):
                 </a>
               </li>
               <li>
-                <a href="https://pypi.org/user/BLester125/"
-                  ><i class="fab fa-python"></i
-                ></a>
+                <a href="https://pypi.org/user/BLester125/">
+                  <i class="fab fa-python"></i>
+                </a>
               </li>
               <li>
-                <a href="https://github.com/blester125"
-                  ><i class="fab fa-github"></i
-                ></a>
+                <a href="https://github.com/blester125">
+                  <i class="fab fa-github"></i>
+                </a>
               </li>
             </ul>
           </div>
           <div class="col-md-4">
             <ul class="list-inline quicklinks">
               <li>
-                Design based on "<a
-                  href="http://startbootstrap.com/template-overviews/agency/"
-                  >Agency</a
-                >" template.
+                Design based on "
+                <a href="http://startbootstrap.com/template-overviews/agency/">
+                  Agency
+                </a>
+                " template.
               </li>
             </ul>
           </div>
