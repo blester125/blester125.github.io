@@ -23,22 +23,22 @@
     <title>Brian Lester</title>
 
     <!-- Bootstrap Core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.css" />
+    <link rel="stylesheet" href="static/css/bootstrap.css" />
 
     <!-- Third Party CSS -->
-    <link rel="stylesheet" href="css/agency.css" />
-    <link rel="stylesheet" href="css/academicons.min.css" />
+    <link rel="stylesheet" href="static/css/agency.css" />
+    <link rel="stylesheet" href="static/css/academicons.min.css" />
 
     <!-- Custom CSS -->
-    <link href="css/latex.css" rel="stylesheet" />
-    <link href="css/presentation.css" rel="stylesheet" />
-    <link href="css/paper.css" rel="stylesheet" />
-    <link href="css/project.css" rel="stylesheet" />
-    <link href="css/nav.css" rel="stylesheet" />
-    <link href="css/blog.css" rel="stylesheet" />
+    <link href="static/css/latex.css" rel="stylesheet" />
+    <link href="static/css/presentation.css" rel="stylesheet" />
+    <link href="static/css/paper.css" rel="stylesheet" />
+    <link href="static/css/project.css" rel="stylesheet" />
+    <link href="static/css/nav.css" rel="stylesheet" />
+    <link href="static/css/blog.css" rel="stylesheet" />
 
     <!-- Custom Fonts -->
-    <link href="/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link href="static/css/all.min.css" rel="stylesheet" type="text/css" />
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
       rel="stylesheet"
@@ -68,27 +68,32 @@
     <![endif]-->
 
     <!-- favicon the logo in the tab -->
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="static/img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="static/img/favicon.ico"
+      type="image/x-icon"
+    />
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="static/js/jquery.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
-    <script src="js/agency.js"></script>
+    <script src="static/js/jquery.easing.min.js"></script>
+    <script src="static/js/agency.js"></script>
     <!-- Generate the publications section from by bib file -->
-    <script
-      src="https://cdn.rawgit.com/larsgw/citation.js/archive/citation.js/citation-0.4.0-9.js"
-      type="text/javascript"
-    ></script>
-    <script src="js/clipboard.min.js" type="text/javascript"></script>
-    <script src="js/references.js"></script>
+    <script src="static/js/citation-0.4.0-9.js" type="text/javascript"></script>
+    <script src="static/js/clipboard.min.js" type="text/javascript"></script>
+    <script src="static/js/references.js"></script>
     <script>
       readFile(
-        "references/index.txt",
-        generate_references.bind(null, "publications-container")
+        "static/references/index.txt",
+        generate_references.bind(
+          null,
+          "publications-container",
+          "static/references/"
+        )
       );
     </script>
   </head>
@@ -118,7 +123,9 @@
               <a href="#page-top"></a>
             </li>
             <li>
-              <a class="page-scroll" href="resume/BrianLesterCV.pdf">Resume</a>
+              <a class="page-scroll" href="static/resume/BrianLesterCV.pdf"
+                >Resume</a
+              >
             </li>
             <li>
               <a class="page-scroll" href="#blog">Blog</a>
@@ -154,7 +161,7 @@
         <div class="intro-text">
           <div class="team-member">
             <img
-              src="img/team/BrianLester.jpg"
+              src="static/img/team/BrianLester.jpg"
               class="img-responsive img-circle"
               alt=""
             />
@@ -326,7 +333,7 @@
                 <div class="timeline-image">
                   <img
                     class="img-circle img-responsive"
-                    src="img/experience/interactions.png"
+                    src="static/img/experience/interactions.png"
                   />
                 </div>
                 <div class="timeline-panel">
@@ -355,7 +362,7 @@
                 <div class="timeline-image">
                   <img
                     class="img-circle img-responsive"
-                    src="img/experience/trove.png"
+                    src="static/img/experience/trove.png"
                   />
                 </div>
                 <div class="timeline-panel">
@@ -380,7 +387,7 @@
                 <div class="timeline-image">
                   <img
                     class="img-circle img-responsive"
-                    src="img/experience/Visteon.png"
+                    src="static/img/experience/Visteon.png"
                   />
                 </div>
                 <div class="timeline-panel">
@@ -547,7 +554,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/text-rank.png"
+                src="static/img/project/text-rank.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -588,7 +595,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/string-dist.png"
+                src="static/img/project/string-dist.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -627,7 +634,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/random-hyperplanes.png"
+                src="static/img/project/random-hyperplanes.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -665,7 +672,7 @@
           </div>
           <div class="col-lg-2 project-image hidden-sm hidden-md">
             <img
-              src="img/project/dep-parse.webp"
+              src="static/img/project/dep-parse.webp"
               class="img-thumbnail center-block"
             />
           </div>
@@ -781,7 +788,7 @@
           </div>
           <div class="col-lg-2 project-image hidden-sm hidden-md">
             <img
-              src="img/project/pypi.png"
+              src="static/img/project/pypi.png"
               class="img-thumbnail center-block"
             />
           </div>
@@ -823,7 +830,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/attention.png"
+                src="static/img/project/attention.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -864,7 +871,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/drive.gif"
+                src="static/img/project/drive.gif"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -903,12 +910,16 @@
                 digits, segment them, and then classify each digit individually.
                 This network was trained using the Stanford Street View House
                 Numbers Dataset and achieves 93.89 percent accuracy on the test
-                dataset. Read the full write up <a href="Report.pdf">here</a>
+                dataset. Read the full write up
+                <a
+                  href="https://github.com/blester125/multi_digit_recognition/blob/master/Report.pdf"
+                  >here</a
+                >
               </p>
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/digits.png"
+                src="static/img/project/digits.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -951,7 +962,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/tcp-ascii.png"
+                src="static/img/project/tcp-ascii.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -990,7 +1001,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/hpc.jpg"
+                src="static/img/project/hpc.jpg"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -1038,7 +1049,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/crypto.png"
+                src="static/img/project/crypto.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -1085,7 +1096,7 @@
             </div>
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/face.png"
+                src="static/img/project/face.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -1128,7 +1139,7 @@
             </div>
             <div class="col-sm-2 project-image hidden-sm hidden-md">
               <img
-                src="img/project/compiler.png"
+                src="static/img/project/compiler.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -1163,7 +1174,7 @@
         <div class="row equal">
           <div class="col-sm-2 talk-image hidden-sm hidden-md">
             <img
-              src="img/presentations/neurips.png"
+              src="static/img/presentations/neurips.png"
               class="img-thumbnail center-block"
             />
           </div>
@@ -1185,7 +1196,7 @@
         <div class="row equal">
           <div class="col-sm-2 talk-image hidden-sm hidden-md">
             <img
-              src="img/presentations/calibration.png"
+              src="static/img/presentations/calibration.png"
               class="img-thumbnail center-block"
             />
           </div>
@@ -1224,7 +1235,7 @@
         <div class="row equal">
           <div class="col-sm-2 talk-image hidden-sm hidden-md">
             <img
-              src="img/presentations/masking.png"
+              src="static/img/presentations/masking.png"
               class="img-thumbnail center-block"
             />
           </div>
@@ -1263,7 +1274,7 @@
         <div class="row equal">
           <div class="col-sm-2 talk-image hidden-sm hidden-md">
             <img
-              src="img/presentations/numpy-cython.png"
+              src="static/img/presentations/numpy-cython.png"
               class="img-thumbnail center-block"
             />
           </div>
@@ -1293,7 +1304,7 @@
         <div class="row equal">
           <div class="col-sm-2 talk-image hidden-sm hidden-md">
             <img
-              src="img/presentations/char-input.png"
+              src="static/img/presentations/char-input.png"
               class="img-thumbnail center-block"
             />
           </div>

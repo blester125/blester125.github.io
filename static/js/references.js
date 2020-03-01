@@ -172,11 +172,11 @@ function create_references(target, content) {
     clipboard = new ClipboardJS('.paper-button');
 }
 
-function generate_references(target, citations) {
+function generate_references(target, prefix, citations) {
     var files = citations.split(/\r?\n/);
     files = files.filter(file => file != '');
     for (var i = 0; i < files.length; i++) {
-        files[i] = "references/" + files[i];
+        files[i] = prefix + files[i];
     }
     var target = document.getElementById(target)
     var content = readFiles(files, create_references.bind(null, target))
