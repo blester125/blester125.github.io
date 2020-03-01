@@ -36,6 +36,7 @@
     <link href="static/css/project.css" rel="stylesheet" />
     <link href="static/css/nav.css" rel="stylesheet" />
     <link href="static/css/blog.css" rel="stylesheet" />
+    <link href="static/css/experience.css" rel="stylesheet" />
 
     <!-- Custom Fonts -->
     <link href="static/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -339,21 +340,64 @@
                 <div class="timeline-panel">
                   <div class="timeline-heading">
                     <h4>Interactions</h4>
-                    <h4 class="subheading">April 2018 &#8211; Present</h4>
+                    <h4 class="subheading">April 2018&#8211;Present</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted" style="text-align: left;">
-                      Machine Learning Engineer &#8212; Specializing in using
-                      Deep Learning for NLP. Building production systems
-                      leveraging a wide variety of models, from ConvNets for
-                      classification and intent detection, bLSTM-CRFs for
-                      general purpose NER and client-specific slot filling, and
-                      both RNN and Transformer based seq2seq models for
-                      automatic response generation.
-                      <br />
-                      Also responsible for improving and maintaining model
-                      development, model training, and model deployment
-                      infrastructure.
+                    <p class="text-muted job-left">
+                      <strong>Machine Learning Engineer</strong>
+                      &#8212;Specializing in using Deep Learning for Natural
+                      Language Processing (NLP). Research into new effective
+                      training methods and model architectures, building client
+                      models for production, and creating infrastructure that
+                      enables distributed, cloud-native, training and
+                      horizontally scalalbe model serving.
+                    </p>
+                    <p class="text-muted job-left">
+                      I maintain Mead-Baseline&#8212;our open-source
+                      deep-learning toolkit. It is the go to path for all deep
+                      learning work (research and production) within the
+                      company. I have created performant implementations of
+                      various complex neural network architectures including a
+                      Conditional Random Field and Beam Search.
+                    </p>
+                    <p class="text-muted job-left">
+                      Designed the label space and annotation guidelines for the
+                      Natural Language Understanding module of a customer
+                      self-service dialogue system in the technical support
+                      domain. My design focused on general intents, complex
+                      entities, and relations to cover diverse and complex
+                      conversational domain.
+                    </p>
+                    <p class="text-muted job-left">
+                      Created our cloud-native, deep-learning model training
+                      platform. Out platform is a Directed Acyclic Graph (DAG)
+                      engine powered by kubernetes that can execute any pipeline
+                      of tasks that can be run inside of docker containers. Our
+                      platform automatically parallelizes non dependent nodes in
+                      the DAG (allowing for Hyper Parameter Optimization (HPO))
+                      and can distribute a single step over multiple GPUs. Using
+                      Kubernetes allows for effective sharing of cluster
+                      resources among disjoint users. The platform enables
+                      building mutli-step pipelines that can take a model from
+                      raw training data to a model that is ready for production.
+                    </p>
+                    <p class="text-muted job-left">
+                      Created and Maintain our deep-learning model serving
+                      infrastructure. The server, backed by TensorFlow Serving,
+                      enables rich Natural Language Understanding (NLU) via
+                      cascading calls to a series of deep learning models. Both
+                      the server itself and the TensorFlow Serving backend are
+                      deployed via Kubernetes. This server is currently powering
+                      NLU for several production dialogue systems.
+                    </p>
+                    <p class="text-muted job-left">
+                      Created a wide range of Machine Learning models powering
+                      client-facing production models. The architectures and
+                      tasks range from ConvNets for classification (used in
+                      intent detection), bLSTM-CRF taggers for general purpose
+                      tagging (NER, POS, Chunking) and client-specific slot
+                      filling, to Transformer-based seq2seq models used to
+                      automatically suggest agent responses.
                     </p>
                   </div>
                 </div>
@@ -369,15 +413,46 @@
                 <div class="timeline-panel">
                   <div class="timeline-heading">
                     <h4>Trove</h4>
-                    <h4 class="subheading">March 2017 &#8211; April 2018</h4>
+                    <h4 class="subheading">March 2017&#8211;April 2018</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted">
-                      Lead Machine Learning Research Engineer &#8212; Using
-                      machine learning, natural language processsing, computer
-                      vision, and cutting edge deep neural networks to power new
-                      applications. Provided technical leadership to the data
-                      science team.
+                    <p class="text-muted job-right">
+                      <strong>Lead Machine Learning Research Engineer</strong>
+                      &#8212;Used machine learning, natural language processing,
+                      computer vision, and cutting edge deep neural networks to
+                      power improve heuristic based existing features and create
+                      new features. Designed and Implemented our model serving
+                      infrastructure that processed 200 emails a day. Provided
+                      technical leadership to the data science team.
+                    </p>
+                    <p class="text-muted job-right">
+                      Trove would detect and surface sentences in emails that
+                      warranted a response to help track emails that were
+                      important to reply too. This was originally done via a
+                      tangled mess of regular expressions. Using unsupervised
+                      methods and iterative refinement I bootstrapped a dataset
+                      of these sentences. Using a ConvNet I was able to create a
+                      system better than the regex. The ConvNet was also able to
+                      account for semantic meaning and we refined the product so
+                      that it highlights requests that can be handled via email
+                      not just any ask. The results of this model became a
+                      staple feature in the annotated email social graph that
+                      trove created.
+                    </p>
+                    <p class="text-muted job-right">
+                      Used a neural ranking model to preform coreference
+                      resolution by linking anaphors to their antecedents. By
+                      replacing pronominal mentions in the question snippets
+                      extracted from emails we were able to provide context to
+                      the users.
+                    </p>
+                    <p class="text-muted job-right">
+                      Used lexical features from the email as well as
+                      connectivity information in the email social graph to
+                      identify bot accounts. We used a broad definition of bots
+                      to include things like newsletters and automated email
+                      from things like github. We used these classification
+                      labels to help filter search results.
                     </p>
                   </div>
                 </div>
@@ -394,19 +469,25 @@
                 <div class="timeline-panel">
                   <div class="timeline-heading">
                     <h4>Visteon Corporation</h4>
-                    <h4 class="subheading">May 2015 &#8211; August 2015</h4>
+                    <h4 class="subheading">May 2015&#8211;August 2015</h4>
                   </div>
                   <div class="timeline-body">
-                    <p class="text-muted" style="text-align: left;">
-                      Software Engineering Intern &#8212; Specialized in Voice
-                      Recognition and User Information Systems.
-                      <br />
-                      Created Dragon Drive Link, an off-board real-time driver
-                      information and entertainment application similar to
-                      Android Auto.
-                      <br />
-                      Created a system to optimize Voice Recognition used in
-                      Production Mazda cars. We patented with system
+                    <p class="text-muted job-left">
+                      <strong>Software Engineering Intern</strong>
+                      &#8212;Specialized in Voice Recognition and User
+                      Information Systems.
+                    </p>
+                    <p class="text-muted job-left">
+                      Prototyped and Vetted Dragon Drive Link, an on-board
+                      real-time driver information and entertainment application
+                      similar to Android Auto.
+                    </p>
+                    <p class="text-muted job-left">
+                      Research, designed, and implemented a system to optimize
+                      Voice Recognition used in Production Mazda cars. It
+                      dynamically decides if it should display a menu of
+                      disambiguation options based on the users past
+                      interactions with the system. We patented with system
                       <a
                         href="https://patents.google.com/patent/US9984688B2/en"
                       >
@@ -454,7 +535,8 @@
             <h4 class="service-heading">Cloud and Infrastructure</h4>
             <p class="text-muted">
               Deep Understanding of building and deploying applications with
-              Kubernetes, Docker, Flux, Apache Nifi, and GitLab CI/CD
+              Kubernetes, Docker, Flux, Prometheus, Apache Nifi, MongoDB, GitLab
+              CI/CD, and GitHub actions
             </p>
           </div>
           <div class="col-md-3">
