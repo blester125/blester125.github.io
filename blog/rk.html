@@ -1,101 +1,185 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156541294-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'UA-156541294-1');
-  </script>
-  <meta charset="utf-8">
-  <meta name="viewport" content="initial-scale=1.0 width=device-width">
-  <meta name="og:description" content="An explanation of how opaque vectorized code found in open-source libraries to calculate the Rk metric can be dervied from the math the defines it.">
-  <meta name="og:title" content="How Multiclass Matthew's Correlation Coefficient works.">
-  <meta name="og:url" content="https://blester125.com/blog/rk.html">
-  <meta name="og:image" content="https://blester125.com/img/blog/rk.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-156541294-1"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-156541294-1");
+    </script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0 width=device-width" />
+    <meta
+      name="og:description"
+      content="An explanation of how opaque vectorized code found in open-source libraries to calculate the Rk metric can be dervied from the math the defines it."
+    />
+    <meta
+      name="og:title"
+      content="How Multiclass Matthew's Correlation Coefficient works."
+    />
+    <meta name="og:url" content="https://blester125.com/blog/rk.html" />
+    <meta name="og:image" content="https://blester125.com/img/blog/rk.png" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-  <meta name="author" content="Brian Lester">
+    <meta name="author" content="Brian Lester" />
 
-  <title>R k correlation coefficient</title>
+    <title>R k correlation coefficient</title>
 
-  <!-- Bootstrap Core CSS -->
-  <link href="../static/css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" />
 
-  <!-- Third Party CSS -->
-  <link href="../static/css/agency.css" rel="stylesheet">
-  <link href="../static/css/academicons.min.css" rel="stylesheet"/>
+    <!-- Third Party CSS -->
+    <link href="../static/css/agency.css" rel="stylesheet" />
+    <link href="../static/css/academicons.min.css" rel="stylesheet" />
 
-  <!-- Custom Fonts -->
-  <link href="../static/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-  <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+    <!-- Custom Fonts -->
+    <link href="../static/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-  <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-  <![endif]-->
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
-  <!-- MathJax -->
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
 
-  <!-- Code formatting -->
-  <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!-- Code formatting -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"
+    ></script>
 
-  <!-- jQuery -->
-  <script src="../static/js/jquery.js"></script>
-  <!-- Bootstrap Core JavaScript -->
-  <script src="../static/js/bootstrap.min.js"></script>
-  <!-- Custom Theme JavaScript -->
-  <script src="../static/js/jquery.easing.min.js"></script>
-  <script src="../static/js/agency.js"></script>
-  <script src="../static/js/jquery.scrollintoview.js" type="text/javascript"></script>
+    <!-- jQuery -->
+    <script src="../static/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../static/js/bootstrap.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="../static/js/jquery.easing.min.js"></script>
+    <script src="../static/js/agency.js"></script>
+    <script
+      src="../static/js/jquery.scrollintoview.js"
+      type="text/javascript"
+    ></script>
 
-  <!-- Custom Code -->
-  <script src="../static/js/interactive.js"></script>
-  <script type='text/javascript'>
-    window.onload = addHoverToLines.bind(null, 'show-line-', 10, 0.01)
-  </script>
+    <!-- Custom Code -->
+    <script src="../static/js/interactive.js"></script>
+    <script type="text/javascript">
+      window.onload = addHoverToLines.bind(null, "show-line-", 10, 0.01);
+    </script>
 
-  <!-- Custom CSS -->
-  <link href="../static/css/teaching.css" rel="stylesheet" type="text/css">
-  <link href="../static/css/nav.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="../static/css/teaching.css" rel="stylesheet" type="text/css" />
+    <link href="../static/css/nav.css" rel="stylesheet" />
 
-  <!-- CSS for numbering the line in the code snippet -->
-  <style>
-    li.L0, li.L1, li.L2, li.L3,
-    li.L5, li.L6, li.L7, li.L8 {
-      list-style-type: decimal !important;
-    }
-  </style>
+    <!-- CSS for numbering the line in the code snippet -->
+    <style>
+      li.L0,
+      li.L1,
+      li.L2,
+      li.L3,
+      li.L5,
+      li.L6,
+      li.L7,
+      li.L8 {
+        list-style-type: decimal !important;
+      }
+    </style>
 
-  <!-- CSS for the confusion matrix table -->
-  <style type="text/css">
-    .tg  {border-collapse:collapse;border-spacing:0;}
-    .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-    .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-    .tg .tg-t4zm{font-size:16px;border-color:inherit;text-align:center;vertical-align:middle}
-    .tg .tg-9wq8{border-top:#f7f7f7;border-left:#f7f7f7;text-align:center;vertical-align:middle}
-    .tg .tg-cji8{font-size:18px;border-color:inherit;text-align:center;vertical-align:middle}
-    .tg .tg-nrix{text-align:center;vertical-align:middle}
-  </style>
+    <!-- CSS for the confusion matrix table -->
+    <style type="text/css">
+      .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+      }
+      .tg td {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: black;
+      }
+      .tg th {
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        font-weight: normal;
+        padding: 10px 5px;
+        border-style: solid;
+        border-width: 1px;
+        overflow: hidden;
+        word-break: normal;
+        border-color: black;
+      }
+      .tg .tg-t4zm {
+        font-size: 16px;
+        border-color: inherit;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .tg .tg-9wq8 {
+        border-top: #f7f7f7;
+        border-left: #f7f7f7;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .tg .tg-cji8 {
+        font-size: 18px;
+        border-color: inherit;
+        text-align: center;
+        vertical-align: middle;
+      }
+      .tg .tg-nrix {
+        text-align: center;
+        vertical-align: middle;
+      }
+    </style>
 
+    <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="../static/img/favicon.ico"
+      type="image/x-icon"
+    />
 
-  <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon"/>
-  <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon"/>
-
-  <!-- prettier-ignore -->
-  <div class="math-def">
+    <!-- prettier-ignore -->
+    <div class="math-def">
     \[
       \newcommand{\cov}{\mathop{\rm cov}\nolimits}
       \newcommand{\mcc}{\mathop{\rm MCC}\nolimits}
@@ -103,19 +187,25 @@
       \newcommand{\qed}{\tag*{$\Box$}}
     \]
   </div>
-
-</head>
-<body class="bg-light-gray">
+  </head>
+  <body class="bg-light-gray">
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-shrink">
       <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+          >
             <span class="sr-only">Toggle navigation</span>
             <i class="fas fa-bars fa-1x"></i>
           </button>
-          <a class="navbar-brand page-scroll" href="../#page-top">Brian Lester</a>
+          <a class="navbar-brand page-scroll" href="../#page-top"
+            >Brian Lester</a
+          >
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -125,7 +215,9 @@
               <a href="../#page-top"></a>
             </li>
             <li>
-              <a class="page-scroll" href="../static/resume/BrianLesterCV.pdf">Resume</a>
+              <a class="page-scroll" href="../static/resume/BrianLesterCV.pdf"
+                >Resume</a
+              >
             </li>
             <li>
               <a class="page-scroll" href="../#blog">Blog</a>
@@ -156,28 +248,39 @@
     </nav>
 
     <div class="container">
-<div class="content">
+      <div class="content">
+        <div class="section" id="title">
+          <center>
+            <h1>
+              Multiclass Matthew's Correlation Coefficient
+            </h1>
+            <h2>
+              or: How I learned to stop worrying and love the \(R_k\)
+            </h2>
+          </center>
+        </div>
 
-  <div class="section" id="title">
-  <center>
-    <h1>
-      Multiclass Matthew's Correlation Coefficient
-    </h1>
-    <h2>
-     or: How I learned to stop worrying and love the \(R_k\)
-    </h2>
-  </center>
-  </div>
+        <div class="row">
+          <div class="section col-lg-8 col-lg-offset-2" id="introduction">
+            <p>
+              Have you ever taken a glance at the code in an open source ML
+              library like
+              <a
+                href="https://github.com/dpressel/mead-baseline/blob/3f66864fd28eea1d227c69de1158a8301056faa0/python/eight_mile/confusion.py#L171"
+                >Mead-Baseline</a
+              >
+              or
+              <a
+                href="https://github.com/scikit-learn/scikit-learn/blob/b194674c4/sklearn/metrics/_classification.py#L821"
+                >scikit-learn</a
+              >
+              for the Matthews Correlation Coefficient (also called \(R_k\)) and
+              seen something dense and confusing like the following?
+            </p>
 
-  <div class="row">
-  <div class="section col-lg-8 col-lg-offset-2" id="introduction">
-    <p>
-    Have you ever taken a glance at the code in an open source ML library like <a href="https://github.com/dpressel/mead-baseline/blob/3f66864fd28eea1d227c69de1158a8301056faa0/python/eight_mile/confusion.py#L171">Mead-Baseline</a> or <a href="https://github.com/scikit-learn/scikit-learn/blob/b194674c4/sklearn/metrics/_classification.py#L821">scikit-learn</a> for the Matthews Correlation Coefficient (also called \(R_k\)) and seen something dense and confusing like the following?
-    </p>
-
-    <!-- prettier-ignore -->
-    <div class="code">
-      <pre class="prettyprint linenums">
+            <!-- prettier-ignore -->
+            <div class="code">
+              <pre class="prettyprint linenums">
 def mcc(X, Y):
     cm = ConfusionMatrix(X, Y)
     samples = np.sum(cm)
@@ -191,532 +294,867 @@ def mcc(X, Y):
     denom = np.sqrt(cov_x_x * cov_y_y)
     denom = denom if denom != 0.0 else 1.0
     return cov_x_y / denom
-      </pre>
-    </div>
+              </pre>
+            </div>
 
-    <p>
-      You ask yourself "What is going on?" Luckily in the comments there is a link to <a href=https://en.wikipedia.org/wiki/Matthews_correlation_coefficient>wikipeida</a> and you think "oh good, this will clear things up". But then you see a formula that looks like the following for the multiclass calculation:
-    </p>
+            <p>
+              You ask yourself "What is going on?" Luckily in the comments there
+              is a link to
+              <a
+                href="https://en.wikipedia.org/wiki/Matthews_correlation_coefficient"
+                >Wikipeida</a
+              >
+              and you think "oh good, this will clear things up". But then you
+              see a formula that looks like the following for the multiclass
+              calculation:
+            </p>
 
-    <!-- prettier-ignore -->
-    <div class="math-overflow">
-      \[
-        \mcc = \frac{
-          \sum_k \sum_l \sum_m C_{kk}C_{lm} - C_{kl}C_{mk}
-        }{
-          \sqrt{\sum_k (\sum_l C_{kl})(\sum_{k'|k' \neq k} \sum_{l'} C_{k'l'})}
-          \sqrt{\sum_k (\sum_l C_{lk})(\sum_{k'|k' \neq k} \sum_{l'} C_{l'k'})}
-        }
-      \]
-    </div>
-    <p>
-      This looks nothing like the code you found and if anything looking at Wikipedia has probably made things more confusing. This post will start with a quick introduction to the \(R_k\) metric and then hopefully help you understand how the above code works and how why it produces the correct result.
-    </p>
-  </div>
-  </div>
-
-  <div class="row">
-  <div class="section col-lg-8 col-lg-offset-2" id="confusion-matrix">
-
-    <center>
-      <table class="tg">
-        <tr>
-          <th class="tg-9wq8" colspan="2" rowspan="2"></th>
-          <th class="tg-t4zm" colspan="2">Prediction</th>
-        </tr>
-        <tr>
-          <td class="tg-nrix">1</td>
-          <td class="tg-nrix">0</td>
-        </tr>
-        <tr>
-          <td class="tg-t4zm" rowspan="2">Gold</td>
-          <td class="tg-nrix">1</td>
-          <td class="tg-cji8">TP</td>
-          <td class="tg-cji8">FN<br></td>
-        </tr>
-        <tr>
-          <td class="tg-nrix">0<br></td>
-          <td class="tg-cji8">FP</td>
-          <td class="tg-cji8">TN<br></td>
-        </tr>
-      </table>
-    </center>
-
-    <p>
-      Throughout this post we will use a confusion matrix that looks like the above.
-      For a given example in the dataset we will add one to the matrix where the row index is the class of the true label and the column index is based on the predicted label. When the predictions match the gold label the numbers will appear on the diagonal while example where the model is wrong appear off it.
-    </p>
-
-    <p>
-      This confusion matrix can be extended to the multiclass setting by adding a row and column for each new class.
-    <p>
-  </div>
-  </div>
-
-  <div class="row">
-  <div class="section" id="rk">
-    <center>
-      <h2> The \(R_k\) Metric</h2>
-    </center>
-
-    <div class='section' id='rk-simplification'>
-      <!-- prettier-ignore -->
-      <div class="math">
-        <div class="math-overflow">
-          <center>
-            <h3>Definitions of terms</h3>
-          </center>
-          \[
-            \begin{align}
-              \cssId{show-line-1} R_k &= \frac{\cov_k(X, Y)}{\sqrt{\cov_k(X, X)}\sqrt{\cov_k(Y, Y)}} \\[10pt]
-              \cssId{show-line-2} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\[10pt]
-              \cssId{show-line-3} w_k &= \frac{1}{N} \\[10pt]
-              \cssId{show-line-4} \cov(X, Y) &= \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_k) \\[10pt]
-              \bar{X}_\cssId{show-line-5}k &= \frac{1}{S}\sum_s^S X_{sk} = \frac{1}{S}\sum_l^N C_{lk} \\[10pt]
-              \bar{Y}_\cssId{show-line-6}k &= \frac{1}{S}\sum_s^S Y_{sk} = \frac{1}{S}\sum_l^N C_{kl} \\
-            \end{align}
-          \]
-        </div>
-
-        <div class="math-overflow">
-          <center>
-            <h3> Simplifying the \(R_k\) calculation </h3>
-          </center>
-          \[
-            \begin{align}
-              \cssId{show-line-7} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\[10pt]
-              \cssId{show-line-8} \cov_k(X, Y) &= \sum_k^N w_k \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_s) \\[10pt]
-              \cssId{show-line-9} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N (X_{sk} - \bar{X}_k)(Y_{sk} - \bar{Y}_k) \\[10pt]
-              \cssId{show-line-10} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - X_{sk}\bar{Y}_k - Y_{sk}\bar{X}_k + \bar{X}_k \bar{Y}_k \\[10pt]
-              \cssId{show-line-11} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_s^S \sum_k^N X_{sk}\bar{Y}_k - \sum_s^S \sum_k^N Y_{sk}\bar{X}_k + \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k
-            \end{align}
-          \]
-        </div>
-
-        <div class="math-overflow">
-          <center>
-            <h3> Simplifying \(\sum\nolimits_s^S \sum_k^N \bar{X}_k\bar{Y}_k\) </h3>
-          </center>
-          \[
-            \begin{align}
-              \cssId{show-line-12} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= S\sum_k^N \bar{X}_k \bar{Y}_k \\[10pt]
-              \cssId{show-line-13} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= S\sum_k^N \frac{1}{S}\sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl} \\[10pt]
-              \cssId{show-line-14} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= \frac{S}{S^2}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
-              \cssId{show-line-15} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\
-            \end{align}
-          \]
-        </div>
-
-        <div class="math-overflow">
-          <center>
-            <h3> Simplifying \(\sum_s^S \sum_k^N X_{sk}\bar{Y}_k \) and \(\sum_s^S \sum_k^N Y_{sk} \bar{X}_k\) </h3>
-          </center>
-          \[
-            \begin{align}
-              \cssId{show-line-16} \sum_s^S \sum_k^N X_{sk}\bar{Y}_k &= \sum_k^N \bar{Y}_k \sum_s^S X_{sk} \\[10pt]
-              \cssId{show-line-17} \sum_s^S X_{sk} &= \sum_l^N C_{lk} \\[10pt]
-              \cssId{show-line-18} \sum_s^S \sum_k^N X_{sk} \bar{Y}_k &= \sum_k^N  \sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl} \\[10pt]
-              \cssId{show-line-19} \sum_s^S \sum_k^N X_{sk} \bar{Y}_k &= \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
-              \cssId{show-line-20} \sum_s^S \sum_k^N Y_{sk}\bar{X}_k &= \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} \\
-            \end{align}
-          \]
-        </div>
-
-        <p>
-          From a math perspective there isn't a lot to do with the first term, we'll come back to this when we convert it to code. \(\sum_s^S \sum_k^N X_{sk}Y_{sk}\).
-        </p>
-
-        <div class="math-overflow">
-          <center>
-            <h3> Simplification of \(\cov_k\)</h3>
-          </center>
-          \[
-            \begin{align}
-              \cssId{show-line-21} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} + \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
-              \cssId{show-line-22} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} \\[10pt]
-              \cssId{show-line-23} \cov_k(X, Y) &= \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{N} \\[10pt]
-              \cssId{show-line-24} \cov_k(X, Y) &= \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{N} * \frac{S}{S} \\[10pt]
-              \cssId{show-line-25} \cov_k(X, Y) &= \frac{S * (\sum_s^S \sum_k^N X_{sk}Y_{sk}) -  \frac{S * (\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk})}{S}}{N * S} \\[10pt]
-              \cssId{show-line-26} \cov_k(X, Y) &= \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S} \\[10pt]
-              \cssId{show-line-27} \cov_k(X, X) &= \frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{N * S} \\[10pt]
-              \cssId{show-line-28} \cov_k(Y, Y) &= \frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{N * S} \\[10pt]
-            \end{align}
-          \]
-        </div>
-
-        <div class="math-overflow">
-          <center>
-            <h3> Simplification of \(R_k\) </h3>
-          </center>
-          \[
-            \begin{align}
-              \cssId{show-line-29} R R_k &= \frac{
-	            \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
-              }{
-                \sqrt{\frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{N * S}}\sqrt{\frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{N * S}}
-              } \\[10pt]
-
-              \cssId{show-line-30} R_k &= \frac{
-		        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
-              }{
-                \sqrt{\frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{(N*S)^2}}
-              } \\[10pt]
-
-              \cssId{show-line-31} R_k &= \frac{
-		        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
-              }{
-		        \frac{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}{\sqrt{(N*S)^2}}
-	          } \\[10pt]
-
-              \cssId{show-line-32} R_k &= \frac{
-		        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
-	          }{
-		        \frac{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}{N*S}
-	          } \\[10pt]
-
-              \cssId{show-line-33} R_k &=
-		        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S} *
-		        \frac{N * S}{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}} \\[10pt]
-
-              \cssId{show-line-34} R_k &=
-                \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}
-		        {\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}
-            \end{align}
-          \]
-        </div>
-      </div>
-
-      <div class="explaination">
-        <ul class="explain">
-          <li id="explain-line-1"> \(R_k\) is the multiclass extension of the discretized pearsons rank correlation and is this is the definition of it. </br>
-            \(X\) and \(Y\) are one hot vectors \(\in \R^{S, N}\). Each row in the matrix represents a example in the dataset and each column represents a class in the problem. The row for example \(s\) has a 1 in column \(k\) if the label for that example is \(k\) and is zero otherwise. \(X\) represents the labels created from the models while \(Y\) is the gold labels.</li>
-          <li id="explain-line-2"> We define the covariance between two matrices to be a linear combination of the covariance between the columns of the matrices. </li>
-          <li id="explain-line-3"> \( w_k \) is the weight on some class \(k\) in our linear combination. We decide to use a uniform prior on the importance of each class. </li>
-          <li id="explain-line-4"> This is the definition of covariance. </li>
-          <li id="explain-line-5"> \(\bar{X}_k\) is the mean of the \(k^{th}\) column of of \(X\). Because \(X\) is a one hot where a column \(k\) for a row \(s\) is one if that examples was labeled with \(k\). We can read this value from the confusion matrix. It is the sum of all elements in column \(k\) of the confusion matrix because that is the class in \(X\) regardless of the class in \(\bar{Y}\). The denominator in the mean is the total number of samples because the mean is actually over all \(S\) rows in \(X\) even if we read the values from the confusion matrix. </li>
-          <li id="explain-line-6"> We can do the same transformation into a confusion matrix based calculation of \(Y\) except that the sum is along a row because we care about the value in \(Y\) regardless of the value in \(X\). </li>
-          <li id="explain-line-7"> Again this is our definition of covariance between two matrices. </li>
-          <li id="explain-line-8"> Here we substitute in the definition of covariance between vectors. </li>
-          <li id="explain-line-9"> \(w_k\) is a constant across each value in the summation. It is a multiplication which distributes over addition so we can pull it out of the summation. Note this only works because we defined \(w_k = \frac{1}{N}\) if \(w_k\) was different for each class \(k\) we would not be able to factor it out of the summation over \(k\).</li>
-          <li id="explain-line-10"> We foil the covariance calculation. </li>
-          <li id="explain-line-11"> By thinking of all the subtraction in this equation as adding the negative term all each term is combined with addition. Addition is commutative so we can rearrange the summations to apply them to each term individually.
-          <li id="explain-line-12"> We can see that the variable \(s\) is not used inside summation, this means that the value calculated in the summation over \(k\) is repeated and summed \(s\) times. This is the definition of multiplication by \(S\). </li>
-          <li id="explain-line-13"> We substitute in our definitions of \(\bar{X}_k\) and \(\bar{Y}_k\) in terms of the confusion matrix </li>
-          <li id="explain-line-14"> Division is multiplication by the reciprocal and multiplication distributes of the addition of the summation so we can pull the division by \(S\) out.
-          <li id="explain-line-15"> The \(S\) in the numerator cancels with one of the \(S\)s in the denominator. </li>
-          <li id="explain-line-16"> Similar to above we can factor \(\bar{Y}_k\) out of the summation over \(s\) because \(\bar{Y}_k\) doesn't depend on \(s\) </li>
-          <li id="explain-line-17"> \(\sum_s^S X_{sk}\) is the number of examples in \(X\) that belong to class \(k\). This can be read from the confusion matrix as described before. </li>
-          <li id="explain-line-18"> We substitute the confusion matrix definition for \(\sum_s^S X_{sk}\) was well as for \(\bar{Y}_k\)</li>
-          <li id="explain-line-19"> As established before we can factor the multiplication by \(\frac{1}{S}\) out of the summation because multiplication distributes over addition,</li>
-          <li id="explain-line-20"> \(\sum_s^S \sum_k^N Y_{sk}\bar{X}_k\) can be expanded similarly </li>
-          <li id="explain-line-21"> We substitute our simplified expressions into the foiled calculation of \( \cov_k \) </li>
-          <li id="explain-line-22"> Here we can see that the <code>outer</code> and <code>last</code> sections cancel out. </li>
-          <li id="explain-line-23"> We substitute our definition of \(w_k\) </li>
-          <li id="explain-line-24"> Any number divided by itself is \(1\) because this is the same as \(x * \frac{1}{x}\) and \(\frac{1}{x}\) is the multiplicative inverse (or reciprocal) of \(x\) and the result of a number times it multiplicative inverse is \(1\). We can multiply one side of this equation by \(1\) because \(1\) is the multiplicative identity and any multiplication by \(1\) results in the same number. </li>
-          <li id="explain-line-25"> The \(S\) in the numerator distributes over the subtraction. (You actually need to recast the subtraction is as addition of the negation in order to do it). </li>
-          <li id="explain-line-26"> The \(S\) in the denominator of the second term of the numerator cancels. </li>
-          <li id="explain-line-27"> \(\cov_k(X, X)\) can similarly be simplified but we don't have \(\bar{Y}_k\) so all the calculation based on the confusion matrix operate on columns like in \(C_{lk}\). </li>
-          <li id="explain-line-28"> In the same vain \(\cov(Y, Y)\) only has confusion matrix operations of \(C_{kl}\)
-          <li id="explain-line-29"> Lets plug this back into the \(R_k\) definition. </li>
-          <li id="explain-line-30"> By the rule of square roots \(\sqrt{a}\sqrt{b}\) = \sqrt{ab}\) we can combine the two terms in the denominator. </li>
-          <li id="explain-line-31"> By the rule of square roots \(\sqrt{\frac{a}{b}} = \frac{\sqrt{a}}{\sqrt{b}}\) we can split the denominator into two separate terms of a fraction. </li>
-          <li id="explain-line-32"> \(\sqrt{a^2} = a\) so the square and square root in the denominator cancel. </li>
-          <li id="explain-line-33"> Division is multiplication by the reciprocal so we can rewrite the equation. </li>
-          <li id="explain-line-34"> The \(N * S\)'s cancel leaving us with a final simplified \(R_k\). </li>
-        </ul>
-      </div>
-      <div class="clear"></div>
-    </div>
-
-    <div class="row">
-    <div class="section col-lg-8 col-lg-offset-2 math-overflow" id="rk-conclustion">
-      <p>
-        \[
-          R_k =
-            \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}
-            {\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}
-        \]
-
-        This still looks fairly complicated and we have this annoying disconnected where the majority of elements are calculated from the confusion matrix \(C\) but we have some things \(\sum_s^S X_{sk}Y_{sk}\), \(\sum_s^S X_{sk}X_{sk}\) \(\sum_s^S Y_{sk}Y_{sk}\) that are calculated based on the one hot representations of the predicted and gold labels. Calculating these terms using the one hot representation would be a waste of memory and the creation of the one-hots would be a waste of time. We want to calculate these terms based on the confusion matrix too. In the next section we will begin converting the terms in \(R_k\) into code and we will see how properties of these non-confusion matrix based terms will let use convert them into simple operations that act on the confusion matrix.
-      </p>
-    </div>
-  </div>
-  </div>
-
-  <div class="row">
-  <div class="section col-lg-8 col-lg-offset-2" id="convert-numpy">
-    <center>
-      <h2>Converting to numpy</h2>
-    <center>
-    <p>
-      Let's start translating these into numpy code. We'll start with the simple ones.
-    </p>
-
-    <ul class="explain-free">
-      <li> \(S\) is the number of examples in the dataset. Because each example adds one to the confusion matrix \(S\) is just the sum of all the values in the confusion matrix. This is an easy translation numpy, <code>np.sum(C)</code> </li>
-      <li> \(\sum_l^N C_{kl}\) is the sum each element in the \(k^{th}\) row. Calculating this sum for each row and stacking them together produces a vector which has the sum of each row respectively. Numpy is vectorized so we can convert these sums and the creation of the vecotor to numpy with a single call, <code>np.sum(C, axis=0)</code> </li>
-      <li> \(\sum_l^N C_{lk}\) is the same as \(\sum_l^N C_{kl}\) except the sum is over the columns not that rows. This is similarly converted to numpy, <code>np.sum(C, axis=1)</code> </li>
-      <li> \(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) This term generates the sum of products between the sum of a some column \(k\) and the sum of some row \(k\). When we have pre-computed the row and column sums and stored them in two vectors this operation is the dot product (the sum of the products of each element of two vectors, or \(\sum_i x_i y_i\).)
-        <ul class="explain-free">
-	      <li>\(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}\) from \(\cov(X, Y)\) translates to <code>np.dot(np.sum(C, axis=0), np.sum(C, axis=1))</code></li>
-          <li>\(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) from \(\cov(Y, Y)\) translates to <code>np.dot(np.sum(C, axis=0), np.sum(C, axis=0))</code></li>
-          <li>\(\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}\) from \(\cov(X, X)\) translates to <code>np.dot(np.sum(C, axis=1), np.sum(C, axis=1))</code></li>
-	    </ul>
-      </li>
-    </ul>
-
-    <p>
-      Transforming \(\sum_s^S \sum_k^N X_{sk}Y_{sk}\) is a little trickier and depends on understanding what these matrices represent.
-      \(X\) and \(Y\) are one hot matrices \(\in \R^{s,k}\) where \(X_{sk}\) is \(1\) if example \(s\) was classified as class \(k\).
-      As one hot matrices for a given example \(s\) only a single element in the row will be \(1\).
-      This means that when example \(s\) is classified correctly the \(1\) will be in the same location in \(X\) and \(Y\).
-      This means that the sum over \(k\) will be one. All the other products are \(0 * 0 = 0\).
-      On the other hand when the example is classified differently between the predicted and the gold label then each product will be \(0 * 0 = 0\) for classes that are not either label, \(1 * 0 = 0\) for the predicted class and \(0 * 1 = 0\) for gold class.
-      This means that the result of the summation over \(k\) is \(0\).
-      This can be applied to each example independently.
-      In summary the value will be \(1\) for correct examples and \(0\) for incorrect examples. The number of correct examples can be read from the confusion matrix.
-      The counts on the diagonal are the number of examples for each class where the predicted label matches the gold labels.
-      This sum can be expressed as \(\sum_k^N C_{kk}\) and as <code>np.sum(np.diagonal(C))</code> or <code>np.trace(C)</code> in code.
-    </p>
-
-    <p>
-      When the inputs match (both are \(X\) or both are \(Y\)) the elements at a given \(sk\) will always match. Because these are one hots the value of the multiplication is always one at the match and the rest of the multiplications result in zero (because these are one hots where there is only a single class with a \(1\) in it). This means this summation over \(k\) will always be one and because of the sum over \(s\) the result will always be number of examples. This can be pulled from the confusion matrix with <code>np.sum(C)</code>
-    </p>
-
-    <p>
-      We now have code snippets that we can used to calculate all the terms in our simplified \(R_k\), the actually code uses some local variables to avoid repeating calculations but it should be possible to see the equivalence of the code at the beginning, the code we outlined here, and the math.
-    </p>
-  </div>
-  </div>
-  </div>
-
-  <div class="row">
-  <div class="section col-lg-8 col-lg-offset-2" id="alt-simplify">
-    <div class="row">
-    <center>
-      <h2>An Alternate Look at simplifying \(\cov\)</h2>
-    </center>
-    <p>
-      We simplified \(\sum_s^S \sum_k^N X_{sk}\bar{Y}_k\) by converting it into operations on the confusion matrix which let us cancel out terms in the foiled \(R_k\) calculation. There is another way to manipulate terms to get them to cancel.
-    </p>
-    </div>
-
-    <div class="row">
-    <!-- prettier-ignore -->
-    <div class="math">
-      <div class="math-overflow">
-        \[
-          \begin{align}
-            \bar{X}_\cssId{show-line-35}k &= \frac{1}{S}\sum_s^S X_{sk} \\
-            \cssId{show-line-36} S\bar{X}_k &= \sum_s^S X_{sk} \\
-            \cssId{show-line-37} \sum_s^S \sum_k^N X_{sk}\bar{Y}_k &= \sum_k^N S\bar{X}_k \bar{Y}_k \\
-            \cssId{show-line-38} \sum_s^S \sum_k^N X_{sk}\bar{Y}_k &= S \sum_k^N \bar{X}_k \bar{Y}_k \\
-            \cssId{show-line-39} \sum_s^S \sum_k^N Y_{sk}\bar{X}_k &= S \sum_k^N \bar{Y}_k \bar{X}_k \\
-            \cssId{show-line-40} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - S \sum_k^N \bar{X}_k\bar{Y}_k - S \sum_k^N \bar{Y}_k\bar{X}_k + S \sum_k^N \bar{X}_k \bar{Y}_k \\
-            \cssId{show-line-41} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - S \sum_k^N \bar{Y}_k\bar{X}_k
-          \end{align}
-        \]
-      </div>
-    </div>
-
-    <div class="explaintion">
-      <ul class="explain">
-        <li id="explain-line-35"> Recall our definition for \(\bar{X}_k\) </li>
-        <li id="explain-line-36"> Multiply each side by \(S\) </li>
-        <li id="explain-line-37"> Substitutes this new value into the term. </li>
-        <li id="explain-line-38"> No summation depends on \(S\) and because multiplication distributes over addition we can pull \(S\) out of the summation. </li>
-        <li id="explain-line-39"> We can do the same substitution for \(\sum_s^S \sum_k^N Y_{sk}\). </li>
-        <li id="explain-line-40"> Substitute these terms for <code>outer</code> and <code>inner</code> terms as well was our first transformation of the <code>last</code> term into the \(cov_k\) definition </li>
-        <li id="explain-line-41"> Cancel terms </li>
-      </ul>
-    </div>
-    <div class="clear"></div>
-    </div>
-  </div>
-  </div>
-
-  <div class="row">
-  <div class="section" id="mcc">
-    <div class="section" id="mcc-to-cov">
-
-      <div class="row">
-      <div class="col-lg-8 col-lg-offset-2">
-      <center>
-        <h2>Reduction to Matthews Correlation Coefficient for \(k=2\)</h2>
-      </center>
-
-      <p>
-        The Wikipedia page for MCC gives multiple ways to calculate it by reading from the confusion matrix and also the original equations that Matthews uses for calculation in his paper. This presentation skips however the original formula Matthews presented where the true label distribution and the predicted label distributions are cast as Random Variables and the correlation between the two is measured. This formulation allows us see that this is equivalent to the \(R_k\) metric.
-      </p>
-      </div>
-      </div>
-
-      <div class="row">
-      <!-- prettier-ignore -->
-      <div class="math">
-        <div class="math-overflow">
-          \[
-            \begin{align}
-              \cssId{show-line-42} \mcc(X, Y) &= \frac{\sum_s^S (Y_s - \bar{Y}) (X_s - \bar{X})}{\sqrt{\sum_s^S (X_s - \bar{X})^2 \sum_s^S (Y_s - \bar{Y})^2}} \\
-              \cssId{show-line-43} \mcc(X, Y) &= \frac{\sum_s^S (Y_s - \bar{Y}) (X_s - \bar{X})}{\sqrt{\sum_s^S (X_s - \bar{X})(X_s - \bar{X})\sum_s^S (Y_s - \bar{Y})(Y_s - \bar{Y}) }} \\
-              \cssId{show-line-44} \mcc(X, Y) &= \frac{\cov(Y, X)}{\sqrt{\cov(X, X)\cov(Y, Y)}} \\
-              \cssId{show-line-45} \mcc(X, Y) &= \frac{\cov(X, Y)}{\sqrt{\cov(X, X)\cov(Y, Y)}} \\
-            \end{align}
-          \]
-        </div>
-      </div>
-
-      <div class="explaination">
-        <ul class="explain">
-          <li id="explain-line-42"> This is the correlation based definition of  \(\mcc \) from his <a href="https://www.sciencedirect.com/science/article/abs/pii/0005279575901099?via%3Dihub">original paper</a> with variables renamed to fit our scheme. The Predicted labels \(P_n\) for Matthew is now \(X_n\) and the observations (previously \(S_n\)) are now \(Y_n\)</li>
-          <li id="explain-line-43"> \(\sum_s^S (X_s - \bar{X})^2\) expands to \(\sum_s^S (X_s - \bar{X})(X_s - \bar{X})\), The \(Y\) term can be similarly expanded</li>
-          <li id="explain-line-44"> These are the covariance definitions from earlier </li>
-          <li id="explain-line-45"> \(\cov\) is symmetric so \(\cov(Y, X) = \cov(X, Y)\). We can see this because all interactions between the variables in \(\sum_s^S (Y_s - \bar{Y})(X_s - \bar{X})\) are multiplications and multiplication is commutative so we can swap the order </li>
-        </ul>
-      </div>
-    <div class="clear"></div>
-    </div>
-    </div>
-
-    <div class="section" id="one-hot">
-      <div class="row">
-      <div class="col-lg-8 col-lg-offset-2">
-      <p>
-        We can see above that this calculation for \(\mcc\) is almost that exact same as for \(R_k\)! The only differences is that \(\mcc\) is calculated with the covariance between vectors of \(0\)s and \(1\)s of length \(S\) while \(R_k\) uses the \(\cov_k\) function to calculate covariance between two one-hot matrices \(\in \R^{S \text{x} 2}\).
-      </p>
-
-      <p>
-        This next step is a little odd and I don't have a great way to demonstrate this mathematically but we should be able to see that these results will be the same.
-      </p>
+            <!-- prettier-ignore -->
+            <div class="math-overflow">
+              \[
+                \mcc = \frac{
+                  \sum_k \sum_l \sum_m C_{kk}C_{lm} - C_{kl}C_{mk}
+                }{
+                  \sqrt{\sum_k (\sum_l C_{kl})(\sum_{k'|k' \neq k} \sum_{l'} C_{k'l'})}
+                  \sqrt{\sum_k (\sum_l C_{lk})(\sum_{k'|k' \neq k} \sum_{l'} C_{l'k'})}
+                }
+              \]
+            </div>
+            <p>
+              This looks nothing like the code you found and if anything looking
+              at Wikipedia has probably made things more confusing. This post
+              will start with a quick introduction to the \(R_k\) metric and
+              then hopefully help you understand how the above code works and
+              how why it produces the correct result.
+            </p>
           </div>
-      </div>
+        </div>
 
-      <div class="row">
-      <!-- prettier-ignore -->
-      <div class="math">
-        <div class="math-overflow">
-          \[
-            \begin{align}
-              \cssId{show-line-46} X &= \begin{bmatrix}
-                1 \\
-                0 \\
-                1 \\
-                1 \\
-                \vdots \\
-                0
-                \end{bmatrix} \\
-              \cssId{show-line-47} X' &= \begin{bmatrix}
-                0 & 1 \\
-                1 & 0 \\
-                0 & 1 \\
-                0 & 1 \\
-                \vdots & \vdots \\
-                1 & 0 \\
-                \end{bmatrix}
-            \end{align}
-          \]
+        <div class="row">
+          <div class="section col-lg-8 col-lg-offset-2" id="confusion-matrix">
+            <center>
+              <table class="tg">
+                <tr>
+                  <th class="tg-9wq8" colspan="2" rowspan="2"></th>
+                  <th class="tg-t4zm" colspan="2">Prediction</th>
+                </tr>
+                <tr>
+                  <td class="tg-nrix">1</td>
+                  <td class="tg-nrix">0</td>
+                </tr>
+                <tr>
+                  <td class="tg-t4zm" rowspan="2">Gold</td>
+                  <td class="tg-nrix">1</td>
+                  <td class="tg-cji8">TP</td>
+                  <td class="tg-cji8">FN<br /></td>
+                </tr>
+                <tr>
+                  <td class="tg-nrix">0<br /></td>
+                  <td class="tg-cji8">FP</td>
+                  <td class="tg-cji8">TN<br /></td>
+                </tr>
+              </table>
+            </center>
+
+            <p>
+              Throughout this post we will use a confusion matrix that looks
+              like the above. For a given example in the dataset we will add one
+              to the matrix where the row index is the class of the true label
+              and the column index is based on the predicted label. When the
+              predictions match the gold label the numbers will appear on the
+              diagonal while example where the model is wrong appear off it.
+            </p>
+
+            <p>
+              This confusion matrix can be extended to the multiclass setting by
+              adding a row and column for each new class.
+            </p>
+
+            <p></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="section" id="rk">
+            <center>
+              <h2>The \(R_k\) Metric</h2>
+            </center>
+
+            <div class="section" id="rk-simplification">
+              <!-- prettier-ignore -->
+              <div class="math">
+                <div class="math-overflow">
+                  <center>
+                    <h3>Definitions of terms</h3>
+                  </center>
+                  \[
+                    \begin{align}
+                      \cssId{show-line-1} R_k &= \frac{\cov_k(X, Y)}{\sqrt{\cov_k(X, X)}\sqrt{\cov_k(Y, Y)}} \\[10pt]
+                      \cssId{show-line-2} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\[10pt]
+                      \cssId{show-line-3} w_k &= \frac{1}{N} \\[10pt]
+                      \cssId{show-line-4} \cov(X, Y) &= \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_k) \\[10pt]
+                      \bar{X}_\cssId{show-line-5}k &= \frac{1}{S}\sum_s^S X_{sk} = \frac{1}{S}\sum_l^N C_{lk} \\[10pt]
+                      \bar{Y}_\cssId{show-line-6}k &= \frac{1}{S}\sum_s^S Y_{sk} = \frac{1}{S}\sum_l^N C_{kl} \\
+                    \end{align}
+                  \]
+                </div>
+
+                <div class="math-overflow">
+                  <center>
+                    <h3> Simplifying the \(R_k\) calculation </h3>
+                  </center>
+                  \[
+                    \begin{align}
+                      \cssId{show-line-7} \cov_k(X, Y) &= \sum_k^N w_k \cov(X_k, Y_k) \\[10pt]
+                      \cssId{show-line-8} \cov_k(X, Y) &= \sum_k^N w_k \sum_s^S (X_s - \bar{X}_s)(Y_s - \bar{Y}_s) \\[10pt]
+                      \cssId{show-line-9} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N (X_{sk} - \bar{X}_k)(Y_{sk} - \bar{Y}_k) \\[10pt]
+                      \cssId{show-line-10} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - X_{sk}\bar{Y}_k - Y_{sk}\bar{X}_k + \bar{X}_k \bar{Y}_k \\[10pt]
+                      \cssId{show-line-11} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_s^S \sum_k^N X_{sk}\bar{Y}_k - \sum_s^S \sum_k^N Y_{sk}\bar{X}_k + \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k
+                    \end{align}
+                  \]
+                </div>
+
+                <div class="math-overflow">
+                  <center>
+                    <h3> Simplifying \(\sum\nolimits_s^S \sum_k^N \bar{X}_k\bar{Y}_k\) </h3>
+                  </center>
+                  \[
+                    \begin{align}
+                      \cssId{show-line-12} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= S\sum_k^N \bar{X}_k \bar{Y}_k \\[10pt]
+                      \cssId{show-line-13} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= S\sum_k^N \frac{1}{S}\sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl} \\[10pt]
+                      \cssId{show-line-14} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= \frac{S}{S^2}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
+                      \cssId{show-line-15} \sum_s^S \sum_k^N \bar{X}_k \bar{Y}_k &= \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\
+                    \end{align}
+                  \]
+                </div>
+
+                <div class="math-overflow">
+                  <center>
+                    <h3> Simplifying \(\sum_s^S \sum_k^N X_{sk}\bar{Y}_k \) and \(\sum_s^S \sum_k^N Y_{sk} \bar{X}_k\) </h3>
+                  </center>
+                  \[
+                    \begin{align}
+                      \cssId{show-line-16} \sum_s^S \sum_k^N X_{sk}\bar{Y}_k &= \sum_k^N \bar{Y}_k \sum_s^S X_{sk} \\[10pt]
+                      \cssId{show-line-17} \sum_s^S X_{sk} &= \sum_l^N C_{lk} \\[10pt]
+                      \cssId{show-line-18} \sum_s^S \sum_k^N X_{sk} \bar{Y}_k &= \sum_k^N  \sum_l^N C_{lk} \frac{1}{S}\sum_l^N C_{kl} \\[10pt]
+                      \cssId{show-line-19} \sum_s^S \sum_k^N X_{sk} \bar{Y}_k &= \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
+                      \cssId{show-line-20} \sum_s^S \sum_k^N Y_{sk}\bar{X}_k &= \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} \\
+                    \end{align}
+                  \]
+                </div>
+
+                <p>
+                  From a math perspective there isn't a lot to do with the first term, we'll come back to this when we convert it to code. \(\sum_s^S \sum_k^N X_{sk}Y_{sk}\).
+                </p>
+
+                <div class="math-overflow">
+                  <center>
+                    <h3> Simplification of \(\cov_k\)</h3>
+                  </center>
+                  \[
+                    \begin{align}
+                      \cssId{show-line-21} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} + \frac{1}{S}\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{kl} \\[10pt]
+                      \cssId{show-line-22} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - \frac{1}{S} \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk} \\[10pt]
+                      \cssId{show-line-23} \cov_k(X, Y) &= \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{N} \\[10pt]
+                      \cssId{show-line-24} \cov_k(X, Y) &= \frac{\sum_s^S \sum_k^N X_{sk}Y_{sk} -  \frac{\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{S}}{N} * \frac{S}{S} \\[10pt]
+                      \cssId{show-line-25} \cov_k(X, Y) &= \frac{S * (\sum_s^S \sum_k^N X_{sk}Y_{sk}) -  \frac{S * (\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk})}{S}}{N * S} \\[10pt]
+                      \cssId{show-line-26} \cov_k(X, Y) &= \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S} \\[10pt]
+                      \cssId{show-line-27} \cov_k(X, X) &= \frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{N * S} \\[10pt]
+                      \cssId{show-line-28} \cov_k(Y, Y) &= \frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{N * S} \\[10pt]
+                    \end{align}
+                  \]
+                </div>
+
+                <div class="math-overflow">
+                  <center>
+                    <h3> Simplification of \(R_k\) </h3>
+                  </center>
+                  \[
+                    \begin{align}
+                      \cssId{show-line-29} R R_k &= \frac{
+                        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
+                      }{
+                        \sqrt{\frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}}{N * S}}\sqrt{\frac{S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{N * S}}
+                      } \\[10pt]
+
+                      \cssId{show-line-30} R_k &= \frac{
+                        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
+                      }{
+                        \sqrt{\frac{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}{(N*S)^2}}
+                      } \\[10pt]
+
+                      \cssId{show-line-31} R_k &= \frac{
+                        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
+                      }{
+                        \frac{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}{\sqrt{(N*S)^2}}
+                      } \\[10pt]
+
+                      \cssId{show-line-32} R_k &= \frac{
+                        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S}
+                      }{
+                        \frac{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}{N*S}
+                      } \\[10pt]
+
+                      \cssId{show-line-33} R_k &=
+                        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}{N * S} *
+                        \frac{N * S}{\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}} \\[10pt]
+
+                      \cssId{show-line-34} R_k &=
+                        \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}}
+                        {\sqrt{S\sum_s^S \sum_k^N X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} * S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}}}
+                    \end{align}
+                  \]
+                </div>
+              </div>
+
+              <div class="explaination">
+                <ul class="explain">
+                  <li id="explain-line-1">
+                    \(R_k\) is the multiclass extension of the discretized
+                    pearsons rank correlation and is this is the definition of
+                    it. <br />
+                    \(X\) and \(Y\) are one hot vectors \(\in \R^{S, N}\). Each
+                    row in the matrix represents a example in the dataset and
+                    each column represents a class in the problem. The row for
+                    example \(s\) has a 1 in column \(k\) if the label for that
+                    example is \(k\) and is zero otherwise. \(X\) represents the
+                    labels created from the models while \(Y\) is the gold
+                    labels.
+                  </li>
+                  <li id="explain-line-2">
+                    We define the covariance between two matrices to be a linear
+                    combination of the covariance between the columns of the
+                    matrices.
+                  </li>
+                  <li id="explain-line-3">
+                    \( w_k \) is the weight on some class \(k\) in our linear
+                    combination. We decide to use a uniform prior on the
+                    importance of each class.
+                  </li>
+                  <li id="explain-line-4">
+                    This is the definition of covariance.
+                  </li>
+                  <li id="explain-line-5">
+                    \(\bar{X}_k\) is the mean of the \(k^{th}\) column of of
+                    \(X\). Because \(X\) is a one hot where a column \(k\) for a
+                    row \(s\) is one if that examples was labeled with \(k\). We
+                    can read this value from the confusion matrix. It is the sum
+                    of all elements in column \(k\) of the confusion matrix
+                    because that is the class in \(X\) regardless of the class
+                    in \(\bar{Y}\). The denominator in the mean is the total
+                    number of samples because the mean is actually over all
+                    \(S\) rows in \(X\) even if we read the values from the
+                    confusion matrix.
+                  </li>
+                  <li id="explain-line-6">
+                    We can do the same transformation into a confusion matrix
+                    based calculation of \(Y\) except that the sum is along a
+                    row because we care about the value in \(Y\) regardless of
+                    the value in \(X\).
+                  </li>
+                  <li id="explain-line-7">
+                    Again this is our definition of covariance between two
+                    matrices.
+                  </li>
+                  <li id="explain-line-8">
+                    Here we substitute in the definition of covariance between
+                    vectors.
+                  </li>
+                  <li id="explain-line-9">
+                    \(w_k\) is a constant across each value in the summation. It
+                    is a multiplication which distributes over addition so we
+                    can pull it out of the summation. Note this only works
+                    because we defined \(w_k = \frac{1}{N}\) if \(w_k\) was
+                    different for each class \(k\) we would not be able to
+                    factor it out of the summation over \(k\).
+                  </li>
+                  <li id="explain-line-10">
+                    We foil the covariance calculation.
+                  </li>
+                  <li id="explain-line-11">
+                    By thinking of all the subtraction in this equation as
+                    adding the negative term all each term is combined with
+                    addition. Addition is commutative so we can rearrange the
+                    summations to apply them to each term individually.
+                  </li>
+                  <li id="explain-line-12">
+                    We can see that the variable \(s\) is not used inside
+                    summation, this means that the value calculated in the
+                    summation over \(k\) is repeated and summed \(s\) times.
+                    This is the definition of multiplication by \(S\).
+                  </li>
+                  <li id="explain-line-13">
+                    We substitute in our definitions of \(\bar{X}_k\) and
+                    \(\bar{Y}_k\) in terms of the confusion matrix
+                  </li>
+                  <li id="explain-line-14">
+                    Division is multiplication by the reciprocal and
+                    multiplication distributes of the addition of the summation
+                    so we can pull the division by \(S\) out.
+                  </li>
+                  <li id="explain-line-15">
+                    The \(S\) in the numerator cancels with one of the \(S\)s in
+                    the denominator.
+                  </li>
+                  <li id="explain-line-16">
+                    Similar to above we can factor \(\bar{Y}_k\) out of the
+                    summation over \(s\) because \(\bar{Y}_k\) doesn't depend on
+                    \(s\)
+                  </li>
+                  <li id="explain-line-17">
+                    \(\sum_s^S X_{sk}\) is the number of examples in \(X\) that
+                    belong to class \(k\). This can be read from the confusion
+                    matrix as described before.
+                  </li>
+                  <li id="explain-line-18">
+                    We substitute the confusion matrix definition for \(\sum_s^S
+                    X_{sk}\) was well as for \(\bar{Y}_k\)
+                  </li>
+                  <li id="explain-line-19">
+                    As established before we can factor the multiplication by
+                    \(\frac{1}{S}\) out of the summation because multiplication
+                    distributes over addition,
+                  </li>
+                  <li id="explain-line-20">
+                    \(\sum_s^S \sum_k^N Y_{sk}\bar{X}_k\) can be expanded
+                    similarly
+                  </li>
+                  <li id="explain-line-21">
+                    We substitute our simplified expressions into the foiled
+                    calculation of \( \cov_k \)
+                  </li>
+                  <li id="explain-line-22">
+                    Here we can see that the <code>outer</code> and
+                    <code>last</code> sections cancel out.
+                  </li>
+                  <li id="explain-line-23">
+                    We substitute our definition of \(w_k\)
+                  </li>
+                  <li id="explain-line-24">
+                    Any number divided by itself is \(1\) because this is the
+                    same as \(x * \frac{1}{x}\) and \(\frac{1}{x}\) is the
+                    multiplicative inverse (or reciprocal) of \(x\) and the
+                    result of a number times it multiplicative inverse is \(1\).
+                    We can multiply one side of this equation by \(1\) because
+                    \(1\) is the multiplicative identity and any multiplication
+                    by \(1\) results in the same number.
+                  </li>
+                  <li id="explain-line-25">
+                    The \(S\) in the numerator distributes over the subtraction.
+                    (You actually need to recast the subtraction is as addition
+                    of the negation in order to do it).
+                  </li>
+                  <li id="explain-line-26">
+                    The \(S\) in the denominator of the second term of the
+                    numerator cancels.
+                  </li>
+                  <li id="explain-line-27">
+                    \(\cov_k(X, X)\) can similarly be simplified but we don't
+                    have \(\bar{Y}_k\) so all the calculation based on the
+                    confusion matrix operate on columns like in \(C_{lk}\).
+                  </li>
+                  <li id="explain-line-28">
+                    In the same vain \(\cov(Y, Y)\) only has confusion matrix
+                    operations of \(C_{kl}\)
+                  </li>
+                  <li id="explain-line-29">
+                    Lets plug this back into the \(R_k\) definition.
+                  </li>
+                  <li id="explain-line-30">
+                    By the rule of square roots \(\sqrt{a}\sqrt{b}\) =
+                    \sqrt{ab}\) we can combine the two terms in the denominator.
+                  </li>
+                  <li id="explain-line-31">
+                    By the rule of square roots \(\sqrt{\frac{a}{b}} =
+                    \frac{\sqrt{a}}{\sqrt{b}}\) we can split the denominator
+                    into two separate terms of a fraction.
+                  </li>
+                  <li id="explain-line-32">
+                    \(\sqrt{a^2} = a\) so the square and square root in the
+                    denominator cancel.
+                  </li>
+                  <li id="explain-line-33">
+                    Division is multiplication by the reciprocal so we can
+                    rewrite the equation.
+                  </li>
+                  <li id="explain-line-34">
+                    The \(N * S\)'s cancel leaving us with a final simplified
+                    \(R_k\).
+                  </li>
+                </ul>
+              </div>
+              <div class="clear"></div>
+            </div>
+
+            <div class="row">
+              <div
+                class="section col-lg-8 col-lg-offset-2 math-overflow"
+                id="rk-conclustion"
+              >
+                <p>
+                  \[ R_k = \frac{S\sum_s^S \sum_k^N X_{sk}Y_{sk} - \sum_k^N
+                  \sum_l^N C_{kl} \sum_l^N C_{lk}} {\sqrt{S\sum_s^S \sum_k^N
+                  X_{sk}X_{sk} - \sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk} *
+                  S\sum_s^S \sum_k^N Y_{sk}Y_{sk} - \sum_k^N \sum_l^N C_{kl}
+                  \sum_l^N C_{kl}}} \] This still looks fairly complicated and
+                  we have this annoying disconnected where the majority of
+                  elements are calculated from the confusion matrix \(C\) but we
+                  have some things \(\sum_s^S X_{sk}Y_{sk}\), \(\sum_s^S
+                  X_{sk}X_{sk}\) \(\sum_s^S Y_{sk}Y_{sk}\) that are calculated
+                  based on the one hot representations of the predicted and gold
+                  labels. Calculating these terms using the one hot
+                  representation would be a waste of memory and the creation of
+                  the one-hots would be a waste of time. We want to calculate
+                  these terms based on the confusion matrix too. In the next
+                  section we will begin converting the terms in \(R_k\) into
+                  code and we will see how properties of these non-confusion
+                  matrix based terms will let use convert them into simple
+                  operations that act on the confusion matrix.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="section col-lg-8 col-lg-offset-2" id="convert-numpy">
+              <center>
+                <h2>Converting to numpy</h2>
+              </center>
+              <p>
+                Let's start translating these into numpy code. We'll start with
+                the simple ones.
+              </p>
+
+              <ul class="explain-free">
+                <li>
+                  \(S\) is the number of examples in the dataset. Because each
+                  example adds one to the confusion matrix \(S\) is just the sum
+                  of all the values in the confusion matrix. This is an easy
+                  translation numpy, <code>np.sum(C)</code>
+                </li>
+                <li>
+                  \(\sum_l^N C_{kl}\) is the sum each element in the \(k^{th}\)
+                  row. Calculating this sum for each row and stacking them
+                  together produces a vector which has the sum of each row
+                  respectively. Numpy is vectorized so we can convert these sums
+                  and the creation of the vecotor to numpy with a single call,
+                  <code>np.sum(C, axis=0)</code>
+                </li>
+                <li>
+                  \(\sum_l^N C_{lk}\) is the same as \(\sum_l^N C_{kl}\) except
+                  the sum is over the columns not that rows. This is similarly
+                  converted to numpy, <code>np.sum(C, axis=1)</code>
+                </li>
+                <li>
+                  \(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) This term
+                  generates the sum of products between the sum of a some column
+                  \(k\) and the sum of some row \(k\). When we have pre-computed
+                  the row and column sums and stored them in two vectors this
+                  operation is the dot product (the sum of the products of each
+                  element of two vectors, or \(\sum_i x_i y_i\).)
+                  <ul class="explain-free">
+                    <li>
+                      \(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{lk}\) from
+                      \(\cov(X, Y)\) translates to
+                      <code>np.dot(np.sum(C, axis=0), np.sum(C, axis=1))</code>
+                    </li>
+                    <li>
+                      \(\sum_k^N \sum_l^N C_{kl} \sum_l^N C_{kl}\) from
+                      \(\cov(Y, Y)\) translates to
+                      <code>np.dot(np.sum(C, axis=0), np.sum(C, axis=0))</code>
+                    </li>
+                    <li>
+                      \(\sum_k^N \sum_l^N C_{lk} \sum_l^N C_{lk}\) from
+                      \(\cov(X, X)\) translates to
+                      <code>np.dot(np.sum(C, axis=1), np.sum(C, axis=1))</code>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+
+              <p>
+                Transforming \(\sum_s^S \sum_k^N X_{sk}Y_{sk}\) is a little
+                trickier and depends on understanding what these matrices
+                represent. \(X\) and \(Y\) are one hot matrices \(\in \R^{s,k}\)
+                where \(X_{sk}\) is \(1\) if example \(s\) was classified as
+                class \(k\). As one hot matrices for a given example \(s\) only
+                a single element in the row will be \(1\). This means that when
+                example \(s\) is classified correctly the \(1\) will be in the
+                same location in \(X\) and \(Y\). This means that the sum over
+                \(k\) will be one. All the other products are \(0 * 0 = 0\). On
+                the other hand when the example is classified differently
+                between the predicted and the gold label then each product will
+                be \(0 * 0 = 0\) for classes that are not either label, \(1 * 0
+                = 0\) for the predicted class and \(0 * 1 = 0\) for gold class.
+                This means that the result of the summation over \(k\) is \(0\).
+                This can be applied to each example independently. In summary
+                the value will be \(1\) for correct examples and \(0\) for
+                incorrect examples. The number of correct examples can be read
+                from the confusion matrix. The counts on the diagonal are the
+                number of examples for each class where the predicted label
+                matches the gold labels. This sum can be expressed as \(\sum_k^N
+                C_{kk}\) and as <code>np.sum(np.diagonal(C))</code> or
+                <code>np.trace(C)</code> in code.
+              </p>
+
+              <p>
+                When the inputs match (both are \(X\) or both are \(Y\)) the
+                elements at a given \(sk\) will always match. Because these are
+                one hots the value of the multiplication is always one at the
+                match and the rest of the multiplications result in zero
+                (because these are one hots where there is only a single class
+                with a \(1\) in it). This means this summation over \(k\) will
+                always be one and because of the sum over \(s\) the result will
+                always be number of examples. This can be pulled from the
+                confusion matrix with <code>np.sum(C)</code>
+              </p>
+
+              <p>
+                We now have code snippets that we can used to calculate all the
+                terms in our simplified \(R_k\), the actually code uses some
+                local variables to avoid repeating calculations but it should be
+                possible to see the equivalence of the code at the beginning,
+                the code we outlined here, and the math.
+              </p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="section col-lg-8 col-lg-offset-2" id="alt-simplify">
+              <div class="row">
+                <center>
+                  <h2>An Alternate Look at simplifying \(\cov\)</h2>
+                </center>
+                <p>
+                  We simplified \(\sum_s^S \sum_k^N X_{sk}\bar{Y}_k\) by
+                  converting it into operations on the confusion matrix which
+                  let us cancel out terms in the foiled \(R_k\) calculation.
+                  There is another way to manipulate terms to get them to
+                  cancel.
+                </p>
+              </div>
+
+              <div class="row">
+                <!-- prettier-ignore -->
+                <div class="math">
+                  <div class="math-overflow">
+                    \[
+                      \begin{align}
+                        \bar{X}_\cssId{show-line-35}k &= \frac{1}{S}\sum_s^S X_{sk} \\
+                        \cssId{show-line-36} S\bar{X}_k &= \sum_s^S X_{sk} \\
+                        \cssId{show-line-37} \sum_s^S \sum_k^N X_{sk}\bar{Y}_k &= \sum_k^N S\bar{X}_k \bar{Y}_k \\
+                        \cssId{show-line-38} \sum_s^S \sum_k^N X_{sk}\bar{Y}_k &= S \sum_k^N \bar{X}_k \bar{Y}_k \\
+                        \cssId{show-line-39} \sum_s^S \sum_k^N Y_{sk}\bar{X}_k &= S \sum_k^N \bar{Y}_k \bar{X}_k \\
+                        \cssId{show-line-40} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - S \sum_k^N \bar{X}_k\bar{Y}_k - S \sum_k^N \bar{Y}_k\bar{X}_k + S \sum_k^N \bar{X}_k \bar{Y}_k \\
+                        \cssId{show-line-41} \cov_k(X, Y) &= w_k \sum_s^S \sum_k^N X_{sk}Y_{sk} - S \sum_k^N \bar{Y}_k\bar{X}_k
+                      \end{align}
+                    \]
+                  </div>
+                </div>
+
+                <div class="explaintion">
+                  <ul class="explain">
+                    <li id="explain-line-35">
+                      Recall our definition for \(\bar{X}_k\)
+                    </li>
+                    <li id="explain-line-36">Multiply each side by \(S\)</li>
+                    <li id="explain-line-37">
+                      Substitutes this new value into the term.
+                    </li>
+                    <li id="explain-line-38">
+                      No summation depends on \(S\) and because multiplication
+                      distributes over addition we can pull \(S\) out of the
+                      summation.
+                    </li>
+                    <li id="explain-line-39">
+                      We can do the same substitution for \(\sum_s^S \sum_k^N
+                      Y_{sk}\).
+                    </li>
+                    <li id="explain-line-40">
+                      Substitute these terms for <code>outer</code> and
+                      <code>inner</code> terms as well was our first
+                      transformation of the <code>last</code> term into the
+                      \(cov_k\) definition
+                    </li>
+                    <li id="explain-line-41">Cancel terms</li>
+                  </ul>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="section" id="mcc">
+              <div class="section" id="mcc-to-cov">
+                <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                    <center>
+                      <h2>
+                        Reduction to Matthews Correlation Coefficient for
+                        \(k=2\)
+                      </h2>
+                    </center>
+
+                    <p>
+                      The Wikipedia page for MCC gives multiple ways to
+                      calculate it by reading from the confusion matrix and also
+                      the original equations that Matthews uses for calculation
+                      in his paper. This presentation skips however the original
+                      formula Matthews presented where the true label
+                      distribution and the predicted label distributions are
+                      cast as Random Variables and the correlation between the
+                      two is measured. This formulation allows us see that this
+                      is equivalent to the \(R_k\) metric.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!-- prettier-ignore -->
+                  <div class="math">
+                    <div class="math-overflow">
+                      \[
+                        \begin{align}
+                          \cssId{show-line-42} \mcc(X, Y) &= \frac{\sum_s^S (Y_s - \bar{Y}) (X_s - \bar{X})}{\sqrt{\sum_s^S (X_s - \bar{X})^2 \sum_s^S (Y_s - \bar{Y})^2}} \\
+                          \cssId{show-line-43} \mcc(X, Y) &= \frac{\sum_s^S (Y_s - \bar{Y}) (X_s - \bar{X})}{\sqrt{\sum_s^S (X_s - \bar{X})(X_s - \bar{X})\sum_s^S (Y_s - \bar{Y})(Y_s - \bar{Y}) }} \\
+                          \cssId{show-line-44} \mcc(X, Y) &= \frac{\cov(Y, X)}{\sqrt{\cov(X, X)\cov(Y, Y)}} \\
+                          \cssId{show-line-45} \mcc(X, Y) &= \frac{\cov(X, Y)}{\sqrt{\cov(X, X)\cov(Y, Y)}} \\
+                        \end{align}
+                      \]
+                    </div>
+                  </div>
+
+                  <div class="explaination">
+                    <ul class="explain">
+                      <li id="explain-line-42">
+                        This is the correlation based definition of \(\mcc \)
+                        from his
+                        <a
+                          href="https://www.sciencedirect.com/science/article/abs/pii/0005279575901099?via%3Dihub"
+                          >original paper</a
+                        >
+                        with variables renamed to fit our scheme. The Predicted
+                        labels \(P_n\) for Matthew is now \(X_n\) and the
+                        observations (previously \(S_n\)) are now \(Y_n\)
+                      </li>
+                      <li id="explain-line-43">
+                        \(\sum_s^S (X_s - \bar{X})^2\) expands to \(\sum_s^S
+                        (X_s - \bar{X})(X_s - \bar{X})\), The \(Y\) term can be
+                        similarly expanded
+                      </li>
+                      <li id="explain-line-44">
+                        These are the covariance definitions from earlier
+                      </li>
+                      <li id="explain-line-45">
+                        \(\cov\) is symmetric so \(\cov(Y, X) = \cov(X, Y)\). We
+                        can see this because all interactions between the
+                        variables in \(\sum_s^S (Y_s - \bar{Y})(X_s - \bar{X})\)
+                        are multiplications and multiplication is commutative so
+                        we can swap the order
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+
+              <div class="section" id="one-hot">
+                <div class="row">
+                  <div class="col-lg-8 col-lg-offset-2">
+                    <p>
+                      We can see above that this calculation for \(\mcc\) is
+                      almost that exact same as for \(R_k\)! The only
+                      differences is that \(\mcc\) is calculated with the
+                      covariance between vectors of \(0\)s and \(1\)s of length
+                      \(S\) while \(R_k\) uses the \(\cov_k\) function to
+                      calculate covariance between two one-hot matrices \(\in
+                      \R^{S \text{x} 2}\).
+                    </p>
+
+                    <p>
+                      This next step is a little odd and I don't have a great
+                      way to demonstrate this mathematically but we should be
+                      able to see that these results will be the same.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <!-- prettier-ignore -->
+                  <div class="math">
+                    <div class="math-overflow">
+                      \[
+                        \begin{align}
+                          \cssId{show-line-46} X &= \begin{bmatrix}
+                            1 \\
+                            0 \\
+                            1 \\
+                            1 \\
+                            \vdots \\
+                            0
+                            \end{bmatrix} \\
+                          \cssId{show-line-47} X' &= \begin{bmatrix}
+                            0 & 1 \\
+                            1 & 0 \\
+                            0 & 1 \\
+                            0 & 1 \\
+                            \vdots & \vdots \\
+                            1 & 0 \\
+                            \end{bmatrix}
+                        \end{align}
+                      \]
+                    </div>
+                  </div>
+
+                  <div class="explaination">
+                    <ul class="explain">
+                      <li id="explain-line-46">
+                        Imagine \(x\) is some vector of ones and zeros that
+                        represent some labels for examples in a dataset.
+                      </li>
+                      <li id="explain-line-47">
+                        \(x'\) is a one hot representation of \(x\). We see that
+                        column \(1\) is the exact same as the original vector
+                        and column \(0\) is the flipped (all zeros are ones and
+                        ones zeros).
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+
+              <div class="section" id="multiclass-avg">
+                <!-- prettier-ignore -->
+                <div class="math">
+                  <div class="math-overflow">
+                    \[
+                      \begin{align}
+                        \cssId{show-line-48}\mcc(X, Y) &= \alpha \\
+                        \cssId{show-line-49}R_k(X'_1, Y) &= \alpha \\
+                        \cssId{show-line-50}R_k(X'_0, Y) &= \alpha \\
+                        \cssId{show-line-51}w_k &= \frac{1}{2} \\
+                        \cssId{show-line-52}R_k &= w_k * \alpha + w_k * \alpha \\
+                        \cssId{show-line-53}R_k &= w_k (\alpha + \alpha) \\
+                        \cssId{show-line-54}R_k &= w_k * 2\alpha \\
+                        \cssId{show-line-55}R_k &= \frac{2 * \alpha}{2} \\
+                        \cssId{show-line-56}R_k &= \alpha \\
+                      \end{align}
+                   \]
+                  </div>
+                </div>
+                <div class="explaination">
+                  <ul class="explain">
+                    <li id="explain-line-48">
+                      For some binary vectors \(X\) and \(Y\) we say the
+                      Matthews Correlation Coefficient is \(\alpha\)
+                    </li>
+                    <li id="explain-line-49">
+                      We saw above that all the calculations for a single column
+                      in \(R_k\) is the same as for \(\mcc\) and we saw how
+                      column one for \(X'\) is the same \(X\). This means the
+                      result will also be \(\alpha\)
+                    </li>
+                    <li id="explain-line-50">
+                      For column zero of \(X'\) we saw that it is the same as
+                      \(X\) but flipped. This means that all the means, sums and
+                      the like calculated by \(R_k\) are going to be the same.
+                      This result is also \(\alpha\)
+                    </li>
+                    <li id="explain-line-51">
+                      Earlier we defined \(w_k\) to be one over the number of
+                      classes we have which is in this case \(2\)
+                    </li>
+                    <li id="explain-line-52">
+                      We know that \(R_k\) is the linear combination of the
+                      \(R_k\) calculated for each column weighted by \(w_k\) as
+                      expressed here.
+                    </li>
+                    <li id="explain-line-53">
+                      We factor the \(w_k\) out of each term.
+                    </li>
+                    <li id="explain-line-54">
+                      Multiplication is repeated addition.
+                    </li>
+                    <li id="explain-line-55">
+                      We substitute \(\frac{1}{2}\) in for \(w_k\).
+                    </li>
+                    <li id="explain-line-56">
+                      We cancel to show that \(R_k(X', Y)\) is equal to
+                      \(\mcc(X, Y)\).
+                    </li>
+                  </ul>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <p>
+              Hopefully this explanation helps you to understand why the rather
+              opaque code found in many open source libraries actually does
+              calculate the \(R_k\) metric and why some people call it \(R_k\)
+              and some call it \(\mcc\).
+            </p>
+          </div>
         </div>
       </div>
-
-      <div class="explaination">
-        <ul class="explain">
-          <li id="explain-line-46">Imagine \(x\) is some vector of ones and zeros that represent some labels for examples in a dataset.</li>
-          <li id="explain-line-47">\(x'\) is a one hot representation of \(x\). We see that column \(1\) is the exact same as the original vector and column \(0\) is the flipped (all zeros are ones and ones zeros).</li>
-        </ul>
-      </div>
-      <div class="clear"></div>
-      </div>
-
     </div>
 
-    <div class="section" id="multiclass-avg">
-      <!-- prettier-ignore -->
-      <div class="math">
-        <div class="math-overflow">
-          \[
-            \begin{align}
-              \cssId{show-line-48}\mcc(X, Y) &= \alpha \\
-              \cssId{show-line-49}R_k(X'_1, Y) &= \alpha \\
-              \cssId{show-line-50}R_k(X'_0, Y) &= \alpha \\
-              \cssId{show-line-51}w_k &= \frac{1}{2} \\
-              \cssId{show-line-52}R_k &= w_k * \alpha + w_k * \alpha \\
-              \cssId{show-line-53}R_k &= w_k (\alpha + \alpha) \\
-              \cssId{show-line-54}R_k &= w_k * 2\alpha \\
-              \cssId{show-line-55}R_k &= \frac{2 * \alpha}{2} \\
-              \cssId{show-line-56}R_k &= \alpha \\
-            \end{align}
-         \]
+    <footer class="bg-dark-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <span class="copyright">Brian Lester, 2020</span>
+          </div>
+          <div class="col-md-4">
+            <!-- This should match the top one -->
+            <ul class="list-inline social-buttons">
+              <li>
+                <a href="https://twitter.com/blester125"
+                  ><i class="fab fa-twitter"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/blester125"
+                  ><i class="fab fa-linkedin"></i
+                ></a>
+              </li>
+              <li>
+                <a
+                  href="https://scholar.google.com/citations?user=OWSQqZMAAAAJ&hl=en"
+                >
+                  <i class="ai ai-google-scholar"></i>
+                </a>
+              </li>
+              <li>
+                <a href="https://pypi.org/user/BLester125/"
+                  ><i class="fab fa-python"></i
+                ></a>
+              </li>
+              <li>
+                <a href="https://github.com/blester125"
+                  ><i class="fab fa-github"></i
+                ></a>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-inline quicklinks">
+              <li>
+                Design based on "<a
+                  href="http://startbootstrap.com/template-overviews/agency/"
+                  >Agency</a
+                >" template.
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-      <div class="explaination">
-        <ul class="explain">
-          <li id="explain-line-48">For some binary vectors \(X\) and \(Y\) we say the Matthews Correlation Coefficient is \(\alpha\)</li>
-          <li id="explain-line-49">We saw above that all the calculations for a single column in \(R_k\) is the same as for \(\mcc\) and we saw how column one for \(X'\) is the same \(X\). This means the result will also be \(\alpha\)</li>
-          <li id="explain-line-50">For column zero of \(X'\) we saw that it is the same as \(X\) but flipped. This means that all the means, sums and the like calculated by \(R_k\) are going to be the same. This result is also \(\alpha\)</li>
-          <li id="explain-line-51">Earlier we defined \(w_k\) to be one over the number of classes we have which is in this case \(2\)</li>
-          <li id="explain-line-52">We know that \(R_k\) is the linear combination of the \(R_k\) calculated for each column weighted by \(w_k\) as expressed here.</li>
-          <li id="explain-line-53">We factor the \(w_k\) out of each term.</li>
-          <li id="explain-line-54">Multiplication is repeated addition.</li>
-          <li id="explain-line-55">We substitute \(\frac{1}{2}\) in for \(w_k\).</li>
-          <li id="explain-line-56">We cancel to show that \(R_k(X', Y)\) is equal to \(\mcc(X, Y)\).</li>
-        </ul>
-      </div>
-      <div class="clear"></div>
-    </div>
-
-  </div>
-  </div>
-</div>
-
-<div class="row">
-<div class="col-lg-8 col-lg-offset-2">
-<p>
-    Hopefully this explanation helps you to understand why the rather opaque code found in many open source libraries actually does calculate the \(R_k\) metric and why some people call it \(R_k\) and some call it \(\mcc\).
-</p>
-</div>
-</div>
-
-</div>
-    </div>
-
-  <footer class="bg-dark-gray">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <span class="copyright">Brian Lester, 2020</span>
-        </div>
-        <div class="col-md-4">
-          <!-- This should match the top one -->
-          <ul class="list-inline social-buttons">
-            <li>
-              <a href="https://twitter.com/blester125"><i class="fab fa-twitter"></i></a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/in/blester125"><i class="fab fa-linkedin"></i></a>
-            </li>
-            <li>
-              <a href="https://scholar.google.com/citations?user=OWSQqZMAAAAJ&hl=en">
-                <i class="ai ai-google-scholar"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://pypi.org/user/BLester125/"><i class="fab fa-python"></i></a>
-            </li>
-            <li>
-              <a href="https://github.com/blester125"><i class="fab fa-github"></i></a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-md-4">
-          <ul class="list-inline quicklinks">
-            <li>
-              Design based on "<a href="http://startbootstrap.com/template-overviews/agency/">Agency</a>" template.
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
-</body>
-
+    </footer>
+  </body>
 </html>
