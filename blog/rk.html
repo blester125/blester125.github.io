@@ -94,6 +94,7 @@
   <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon"/>
   <link rel="shortcut icon" href="../static/img/favicon.ico" type="image/x-icon"/>
 
+  <!-- prettier-ignore -->
   <div class="math-def">
     \[
       \newcommand{\cov}{\mathop{\rm cov}\nolimits}
@@ -174,6 +175,7 @@
     Have you ever taken a glance at the code in an open source ML library like <a href="https://github.com/dpressel/mead-baseline/blob/3f66864fd28eea1d227c69de1158a8301056faa0/python/eight_mile/confusion.py#L171">Mead-Baseline</a> or <a href="https://github.com/scikit-learn/scikit-learn/blob/b194674c4/sklearn/metrics/_classification.py#L821">scikit-learn</a> for the Matthews Correlation Coefficient (also called \(R_k\)) and seen something dense and confusing like the following?
     </p>
 
+    <!-- prettier-ignore -->
     <div class="code">
       <pre class="prettyprint linenums">
 def mcc(X, Y):
@@ -192,10 +194,12 @@ def mcc(X, Y):
       </pre>
     </div>
 
-    <div class="math-overflow">
     <p>
       You ask yourself "What is going on?" Luckily in the comments there is a link to <a href=https://en.wikipedia.org/wiki/Matthews_correlation_coefficient>wikipeida</a> and you think "oh good, this will clear things up". But then you see a formula that looks like the following for the multiclass calculation:
+    </p>
 
+    <!-- prettier-ignore -->
+    <div class="math-overflow">
       \[
         \mcc = \frac{
           \sum_k \sum_l \sum_m C_{kk}C_{lm} - C_{kl}C_{mk}
@@ -204,10 +208,10 @@ def mcc(X, Y):
           \sqrt{\sum_k (\sum_l C_{lk})(\sum_{k'|k' \neq k} \sum_{l'} C_{l'k'})}
         }
       \]
-
+    </div>
+    <p>
       This looks nothing like the code you found and if anything looking at Wikipedia has probably made things more confusing. This post will start with a quick introduction to the \(R_k\) metric and then hopefully help you understand how the above code works and how why it produces the correct result.
     </p>
-    </div>
   </div>
   </div>
 
@@ -256,6 +260,7 @@ def mcc(X, Y):
     </center>
 
     <div class='section' id='rk-simplification'>
+      <!-- prettier-ignore -->
       <div class="math">
         <div class="math-overflow">
           <center>
@@ -497,6 +502,7 @@ def mcc(X, Y):
     </div>
 
     <div class="row">
+    <!-- prettier-ignore -->
     <div class="math">
       <div class="math-overflow">
         \[
@@ -546,6 +552,7 @@ def mcc(X, Y):
       </div>
 
       <div class="row">
+      <!-- prettier-ignore -->
       <div class="math">
         <div class="math-overflow">
           \[
@@ -585,6 +592,7 @@ def mcc(X, Y):
       </div>
 
       <div class="row">
+      <!-- prettier-ignore -->
       <div class="math">
         <div class="math-overflow">
           \[
@@ -622,6 +630,7 @@ def mcc(X, Y):
     </div>
 
     <div class="section" id="multiclass-avg">
+      <!-- prettier-ignore -->
       <div class="math">
         <div class="math-overflow">
           \[
