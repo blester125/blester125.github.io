@@ -344,42 +344,46 @@
                   </div>
                   <div class="timeline-body">
                     <p class="text-muted job-left">
-                      <strong>Machine Learning Engineer</strong>&#8212;Specializing
-                      in using Deep Learning for Natural
+                      <strong>Machine Learning Engineer</strong
+                      >&#8212;Specializing in using Deep Learning for Natural
                       Language Processing (NLP). Research into new effective
                       training methods and model architectures, building client
                       models for production, and creating infrastructure that
                       enables distributed, cloud-native, training and
-                      horizontally salable model serving.
+                      horizontally scalable model serving.
                     </p>
                     <p class="text-muted job-left">
                       I maintain Mead-Baseline&#8212;our open-source
                       deep-learning toolkit. It is the go to path for all deep
                       learning work (research and production) within the
-                      company. I have created performant implementations of
-                      various complex neural network architectures including a
-                      Conditional Random Field and Beam Search.
+                      company. I have created performant, batched
+                      implementations of various complex neural network
+                      architectures including a Conditional Random Field (CRF)
+                      and Beam Search.
                     </p>
                     <p class="text-muted job-left">
                       Designed the label space and annotation guidelines for the
-                      Natural Language Understanding module of a customer
-                      self-service dialogue system in the technical support
-                      domain. My design focused on general intents, complex
-                      entities, and relations to cover diverse and complex
-                      conversational domain.
+                      Natural Language Understanding module of a customer facing
+                      dialogue system in the self-service technical support
+                      domain for a cyber security company. My design focused on
+                      general intents, slot values (which were combined to form
+                      complex entities), and relations to cover diverse and
+                      complex conversational domain.
                     </p>
                     <p class="text-muted job-left">
                       Created our cloud-native, deep-learning model training
-                      platform. Out platform is a Directed Acyclic Graph (DAG)
-                      engine powered by kubernetes that can execute any pipeline
-                      of tasks that can be run inside of docker containers. Our
-                      platform automatically parallelizes non dependent nodes in
-                      the DAG (allowing for Hyper Parameter Optimization (HPO))
-                      and can distribute a single step over multiple GPUs. Using
-                      Kubernetes allows for effective sharing of cluster
+                      platform. Our platform is a Directed Acyclic Graph (DAG)
+                      execution engine powered by kubernetes that can run a
+                      pipeline of tasks where each step can be anything that can
+                      be run inside of a docker container. Our platform
+                      automatically parallelizes non-dependent nodes in the DAG
+                      (allowing for efficient Hyper Parameter Optimization
+                      (HPO)) and can distribute the computation of a single step
+                      in the pipeline over multiple GPUs and compute nodes.
+                      Using Kubernetes allows for effective sharing of cluster
                       resources among disjoint users. The platform enables
-                      building mutli-step pipelines that can take a model from
-                      raw training data to a model that is ready for production.
+                      building mutli-step pipelines that can transform raw
+                      training data into a model that is ready for production.
                     </p>
                     <p class="text-muted job-left">
                       Created and Maintain our deep-learning model serving
@@ -387,17 +391,24 @@
                       enables rich Natural Language Understanding (NLU) via
                       cascading calls to a series of deep learning models. Both
                       the server itself and the TensorFlow Serving backend are
-                      deployed via Kubernetes. This server is currently powering
-                      NLU for several production dialogue systems.
+                      deployed via Kubernetes. The server includes components
+                      that are reusable across clients and also supports an
+                      extensive plugin system for client specific operations.
+                      This server is currently powering NLU for several
+                      production dialogue systems.
                     </p>
                     <p class="text-muted job-left">
                       Created a wide range of Machine Learning models powering
                       client-facing production models. The architectures and
                       tasks range from ConvNets for classification (used in
-                      intent detection), bLSTM-CRF taggers for general purpose
-                      tagging (NER, POS, Chunking) and client-specific slot
+                      intent detection, text categorization, and sentence
+                      segmentation), mention-ranking models for relation
+                      extraction, bLSTM-CRF taggers for general purpose tagging
+                      (NER, POS, Chunking) as well as client-specific slot
                       filling, to Transformer-based seq2seq models used to
-                      automatically suggest agent responses.
+                      automatically suggest agent responses. Production models
+                      were also calibrated to produce reliable scores via a mix
+                      of post-hoc methods and auxiliary confidence models.
                     </p>
                   </div>
                 </div>
@@ -417,13 +428,14 @@
                   </div>
                   <div class="timeline-body">
                     <p class="text-muted job-right">
-                      <strong>Lead Machine Learning Research Engineer</strong>&#8212;Used
-                      machine learning, natural language processing,
-                      computer vision, and cutting edge deep neural networks to
-                      power improve heuristic based existing features and create
-                      new features. Designed and Implemented our model serving
-                      infrastructure that processed 200 emails a day. Provided
-                      technical leadership to the data science team.
+                      <strong>Lead Machine Learning Research Engineer</strong
+                      >&#8212;Used machine learning, natural language
+                      processing, computer vision, and cutting edge deep neural
+                      networks to power improve heuristic based existing
+                      features and create new features. Designed and Implemented
+                      our model serving infrastructure that processed 200 emails
+                      a day. Provided technical leadership to the data science
+                      team.
                     </p>
                     <p class="text-muted job-right">
                       Trove would detect and surface sentences in emails that
@@ -473,8 +485,8 @@
                   </div>
                   <div class="timeline-body">
                     <p class="text-muted job-left">
-                      <strong>Software Engineering Intern</strong>&#8212;Specialized
-                      in Voice Recognition and User
+                      <strong>Software Engineering Intern</strong
+                      >&#8212;Specialized in Voice Recognition and User
                       Information Systems.
                     </p>
                     <p class="text-muted job-left">
@@ -1305,7 +1317,9 @@
             <h4 class="talk-location">
               Eastern Michigan University Machine Learning Conference
             </h4>
-            <p class="text-muted">March 2020, Upcoming<sup class="footnote text-muted">*</sup></p>
+            <p class="text-muted">
+              March 2020, Upcoming<sup class="footnote text-muted">*</sup>
+            </p>
             <p class="text-muted">
               In most settings, one trains a model and then evaluates it on some
               held out test set; however, there are some domains where one would
@@ -1324,7 +1338,9 @@
               high-fidelity confidence scores in the Natural Language
               Understanding module of a real world Dialogue System.
             </p>
-            <sub class="footnote text-muted"><sup class="text-muted">*</sup>Cancelled due to COVID-19</sub>
+            <sub class="footnote text-muted"
+              ><sup class="text-muted">*</sup>Cancelled due to COVID-19</sub
+            >
             <!-- <a href="">slides</a> -->
             <!-- <a href="">video</a> -->
           </div>
