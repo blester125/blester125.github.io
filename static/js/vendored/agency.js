@@ -8,10 +8,16 @@
 $(function() {
     $('a.page-scroll').bind('click', function(event) {
         var $anchor = $(this);
+        var loc = $anchor.attr('href');
         $anchor.blur();
         $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
+            scrollTop: $(loc).offset().top
         }, 1000, 'easeInOutExpo');
+        if (loc != "#page-top"){
+            window.history.pushState({}, "", loc)
+        } else {
+            window.history.pushState({}, "", "/")
+        }
         event.preventDefault();
     });
 });
