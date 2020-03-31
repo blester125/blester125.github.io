@@ -1,100 +1,10 @@
 const Cite = require('citation-js')
 
-function make_class(tag, cls_name) {
-    var cls = document.createElement(tag);
-    if (Array.isArray(cls_name)) {
-        for (var i = 0; i < cls_name.length; i++) {
-            cls.classList.add(cls_name[i]);
-        }
-    } else {
-        cls.classList.add(cls_name);
-    }
-    return cls
-}
-
-function make_centered_row(pad, root) {
-
-    var row = make_class("div", "row");
-    root.appendChild(row);
-
-    var leftPad = make_class("div", "col-lg-" + pad);
-    row.appendChild(leftPad);
-
-    var content = make_class("div", "col-lg-" + (12 - pad - pad));
-    row.appendChild(content);
-
-    var rightPad = make_class("div", "col-lg-" + pad);
-    row.appendChild(rightPad);
-
-    return content
-}
-
-function reference_to_html(citation, bibtex) {
-    var wrapper = document.createElement("div");
-
-    var link = make_class("a", "paper-link");
-    link.href = citation.URL;
-    wrapper.appendChild(link);
-
-    var content = make_centered_row(1, link);
-
-    var title = make_class("h3", "paper-title");
-    title.innerHTML = citation.title;
-    content.appendChild(title);
-
-    var author = make_class("h4", "paper-authors");
-    author.innerText = authorString(citation.author);
-    content.appendChild(author)
-
-    var description = make_class("p", "paper-venue");
-    description.innerHTML = venueString(citation);
-    content.appendChild(description)
-
-    var links = make_centered_row(1, wrapper);
-
-    var pdf = make_class("a", ["btn", "btn-primary", "paper-button-first"]);
-    pdf.href = citation.URL;
-    pdf.innerText = "PDF"
-    pdf.style['margin-left'] = "5%";
-    links.appendChild(pdf)
-
-    var bib_btn = make_class("a", ["btn", "btn-primary", "paper-button"]);
-    bib_btn.innerHTML = "BibTex";
-
-    // Create a model we can write the bibtex in
-    var modal = make_class("div", "modal");
-    modal.style.display = "none";
-    wrapper.appendChild(modal);
-
-    var modal_content = make_class("div", "modal-content");
-    modal.appendChild(modal_content);
-
-    var text_area = make_class("pre", "bibtex");
-    text_area.innerText = bibtex;
-    text_area.setAttribute('readonly', '')
-    modal_content.appendChild(text_area);
-
-    bib_btn.onclick = function() {
-        modal.style.display = "block";
-    }
-
-    window.onclick = function(event) {
-        if (event.target.className == "modal") {
-            event.target.style.display = "none";
-        }
-    }
-    links.appendChild(bib_btn)
-
-    var copy = make_class("button", ["btn", "btn-primary", "paper-button"]);
-    copy.setAttribute("data-clipboard-text", bibtex)
-    var clipboard_icon = make_class("i", ["far", "fa-copy"]);
-    copy.title = "Copy BibTex to Clipboard"
-    copy.appendChild(clipboard_icon)
-    links.appendChild(copy)
-
-    return wrapper
-}
-
+/**
+ * Extract author information from a citation and convert to a single string.
+ * The first letter of the given name is extracted and the people are separated by commas
+ * @param {*} author - the author information given by citation-js
+ */
 function authorString(author) {
     var author_string = "";
     for (var i = 0; i < author.length; i++) {
@@ -107,41 +17,10 @@ function authorString(author) {
     return author_string
 }
 
-function extract_year(citation) {
-    date_parts = citation.issued["date-parts"][0];
-    if (date_parts.length >= 1) {
-        return date_parts[0]
-    }
-    return 0;
-}
-
-function extract_first_author_family(citations) {
-    return citations.author[0].family
-}
-
-function readFile(fileName, func) {
-    $.ajax({
-        url: fileName,
-        success: func
-    });
-}
-
-function readFiles(fileNames, func) {
-    var content = [];
-    var requests = [];
-    for (var i = 0; i < fileNames.length; i++) {
-        requests.push($.ajax({
-            url: fileNames[i],
-            success: function(data) {
-                content.push(data);
-            }
-        }));
-    }
-    $.when.apply($, requests).done(function() {
-        func(content)
-    })
-}
-
+/**
+ * Extract venue information from the citation and return a string
+ * @param {*} citation - The citation object from citation-js
+ */
 function venueString(citation) {
     var venue_string = '';
     venue_string += citation['container-title'];
@@ -156,32 +35,31 @@ function venueString(citation) {
     return venue_string
 }
 
-function create_references(target, content) {
-    var bibs = [];
-    for (var i = 0; i < content.length; i++) {
-        var bib = new Cite(content[i])
-        bibs.push(bib.data[0])
+/**
+ * Extract the citation information from the citation and return as a string
+ * @param {*} citation - The citation object from citation-js
+ */
+function extract_year(citation) {
+    date_parts = citation.issued["date-parts"][0];
+    if (date_parts.length >= 1) {
+        return date_parts[0]
     }
-    sorted = sort_citations(bibs, content);
-    bibs = sorted[0];
-    content = sorted[1];
-    for (var i = 0; i < bibs.length; i++) {
-        var l = reference_to_html(bibs[i], content[i])
-        target.appendChild(l);
-    }
-    clipboard = new ClipboardJS('.paper-button');
+    return 0;
 }
 
-function generate_references(target, prefix, citations) {
-    var files = citations.split(/\r?\n/);
-    files = files.filter(file => file != '');
-    for (var i = 0; i < files.length; i++) {
-        files[i] = prefix + files[i];
-    }
-    var target = document.getElementById(target)
-    var content = readFiles(files, create_references.bind(null, target))
+/**
+ * Get the family name of the first author, return a string
+ * @param {*} citation - The citation object from citation-js
+ */
+function extract_first_author_family(citation) {
+    return citation.author[0].family
 }
 
+/**
+ * Compare citations, return based on the publication year and break ties with the first authors family name
+ * @param {*} a - The citation object from citation-js
+ * @param {*} b - The citation object from citation-js
+ */
 function compare_citations(a, b) {
     var a_year = extract_year(a);
     var b_year = extract_year(b);
@@ -191,6 +69,11 @@ function compare_citations(a, b) {
     return a_year < b_year ? 1 : -1;
 }
 
+/**
+ * Sort citations and permute the raw bibtext to match.
+ * @param {*} citations - A list of citation objects
+ * @param {List[str]} content - A list of bibtext strings
+ */
 function sort_citations(citations, content) {
     for (var i = 0; i < citations.length; i++) {
         citations[i] = [citations[i], i]
@@ -206,4 +89,74 @@ function sort_citations(citations, content) {
         sorted_content[i] = content[indices[i]];
     }
     return [citations, sorted_content]
+}
+
+/**
+ * Render out the references into the HTML
+ * Note:
+ *   This also adds a global onclick to the whole window so if you ever
+ *   click on a modal object it will disappear. I couldn't put this on
+ *   modal itself because it would make the modal content part unclickable?
+ * @param {str} target - The id of the element we are going to be populating
+ * @param {List[str]} content - The list of raw bibtext entries
+ */
+function create_references(target, content) {
+    // Use citation-js to parse bibtext
+    var bibs = [];
+    for (var i = 0; i < content.length; i++) {
+        var bib = new Cite(content[i])
+        bibs.push(bib.data[0])
+    }
+    // sort the citations
+    sorted = sort_citations(bibs, content);
+    bibs = sorted[0];
+    content = sorted[1];
+    // extract the relevant information from the citations
+    var publications = []
+    for (var i = 0; i < bibs.length; i++) {
+        publications.push({
+            id: bibs[i]["citation-label"],
+            modal_id: "modal-" + i,
+            link: bibs[i].URL,
+            title: bibs[i].title,
+            authors: authorString(bibs[i].author),
+            venue: venueString(bibs[i]),
+            bibtext: content[i],
+        });
+    }
+    // Render the publications into the HTML
+    var app = new Vue({
+        el: target,
+        data: {
+            publications: publications
+        },
+        methods: {
+            showModal: function(id) {
+                var modal = document.getElementById(id);
+                modal.style.display = "block";
+            },
+            hideModal: function(id) {
+                var modal = document.getElementById(id);
+                modal.style.display = "none";
+            }
+        }
+    })
+    // Activate clipboard js for all the copy bibtext buttons
+    clipboard = new ClipboardJS('.paper-button');
+}
+
+/**
+ * Given a list of file names and a path prefix, read all files and render into html
+ * @param {str} target - The string name of the element you are going to populate
+ * @param {str} prefix - The string prefix to add to all file names
+ * @param {str} citations - The index of citation files, each line represents a file to read
+ */
+function generate_references(target, prefix, citations) {
+    var files = citations.split(/\r?\n/);
+    files = files.filter(file => file != '');
+    for (var i = 0; i < files.length; i++) {
+        files[i] = prefix + files[i];
+    }
+    var target = document.getElementById(target)
+    readFiles(files, create_references.bind(null, target))
 }

@@ -17,7 +17,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="A site that catalogs what I have done." />
+    <meta name="description" content="Machine Learning Research Scientist." />
     <meta name="author" content="Brian Lester" />
 
     <title>Brian Lester</title>
@@ -77,16 +77,20 @@
     />
 
     <!-- jQuery -->
-    <script src="static/js/jquery.js"></script>
+    <script src="static/js/vendored/jquery.js"></script>
+    <!-- Vue JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- Bootstrap Core JavaScript -->
-    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/vendored/bootstrap.min.js"></script>
     <!-- Plugin JavaScript -->
-    <script src="static/js/jquery.easing.min.js"></script>
-    <script src="static/js/agency.js"></script>
-    <!-- Generate the publications section from by bib file -->
-    <script src="static/js/citation-0.4.0-9.js" type="text/javascript"></script>
-    <script src="static/js/clipboard.min.js" type="text/javascript"></script>
+    <script src="static/js/vendored/jquery.easing.min.js"></script>
+    <script src="static/js/vendored/agency.js"></script>
+    <script src="static/js/vendored/citation-0.4.0-9.js" type="text/javascript"></script>
+    <script src="static/js/vendored/clipboard.min.js" type="text/javascript"></script>
+    <!-- Custom JavaScript -->
+    <script src="static/js/fetch.js"></script>
     <script src="static/js/references.js"></script>
+    <script src="static/js/blog.js"></script>
     <script>
       readFile(
         "static/references/index.txt",
@@ -94,6 +98,13 @@
           null,
           "publications-container",
           "static/references/"
+        )
+      );
+      readFile(
+        "static/blog.json",
+        generate_blog.bind(
+            null,
+            "blog-container"
         )
       );
     </script>
@@ -138,13 +149,13 @@
               <a class="page-scroll" href="#skills">Skills</a>
             </li>
             <li>
-              <a class="page-scroll" href="#projects">Projects</a>
-            </li>
-            <li>
               <a class="page-scroll" href="#presentations">Presentations</a>
             </li>
             <li>
               <a class="page-scroll" href="#publications">Publications</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#projects">Projects</a>
             </li>
             <li>
               <a class="page-scroll" href="#education">Education</a>
@@ -219,102 +230,39 @@
           </div>
         </div>
 
-        <!-- <div class="row"> -->
-        <!--   <div class="col-lg-8 col-lg-offset-2"> -->
-        <!--     <h3> -->
-        <!--       Blog Title -->
-        <!--     </h3> -->
-        <!--     <div class="row"> -->
-        <!--       <div class="col-lg-2"> -->
-        <!--         <p class="text-muted">Blog Date</p> -->
-        <!--       </div> -->
-        <!--       <div class="col-lg-10"> -->
-        <!--         <span class="blog-tags"> -->
-        <!--           <i class="fas fa-tags"></i> -->
-        <!--           <a class="tag">Tag1,</a> -->
-        <!--           <a class="tag">Tag2,</a> -->
-        <!--           <a class="tag">...</a> -->
-        <!--         </span> -->
-        <!--       </div> -->
-        <!--     </div> -->
-        <!--     <div class="row col-lg-12"> -->
-        <!--       <p class="text-muted"> -->
-        <!--         blog summary -->
-        <!--       </p> -->
-        <!--     </div> -->
-        <!--     <div class="row col-lg-12"> -->
-        <!--       <a class="btn btn-primary btn-outline" href="BLOG-LINK" -->
-        <!--         >Continue Reading</a -->
-        <!--       > -->
-        <!--     </div> -->
-        <!--   </div> -->
-        <!-- </div> -->
-
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
-            <h3 class="blog-title">
-              Numerically Stable Softmax
-            </h3>
-            <div class="row">
-              <div class="col-lg-2">
-                <p class="text-muted">February, 2020</p>
-              </div>
-              <div class="col-lg-10">
-                <span class="blog-tags">
-                  <i class="fas fa-tags"></i>
-                  <a class="tag">neural networks,</a>
-                  <a class="tag">implementation,</a>
-                  <a class="tag">numerical stability</a>
-                </span>
-              </div>
-            </div>
-            <div class="row col-lg-12">
-              <p class="text-muted">
-                An explanation of the math behind the trick of subtracting the
-                max value from the logits to calculate the softmax in a
-                numerically stable way.
-              </p>
-            </div>
-            <div class="row col-lg-12">
-              <a class="btn btn-primary btn-outline" href="blog/softmax.html">
-                Continue Reading
-              </a>
-            </div>
-          </div>
+        <div id="blog-container">
+            <template v-for="blog in blogs">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <h3 class="blog-title">
+                            {{ blog.title }}
+                        </h3>
+                        <div class="row">
+                            <div class="col-lg-2">
+                                <p class="text-muted">{{ blog.date }}</p>
+                            </div>
+                            <div class="col-lg-10">
+                                <span class="blog-tags">
+                                    <i class="fas fa-tags"></i>
+                                    <span v-for="(tag, index) in blog.tags">
+                                        <a class="tag" v-if="index != blog.tags.length - 1">{{ tag }}, </a>
+                                        <a class="tag" v-else>{{ tag }}</a>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row col-lg-12">
+                            <p class="text-muted">
+                                {{ blog.description }}
+                            </p>
+                        </div>
+                        <div class="row col-lg-12">
+                            <a class="btn btn-primary btn-outline" :href="blog.link">Continue Reading</a>
+                        </div>
+                    </div>
+                </div>
+            </template>
         </div>
-
-        <div class="row">
-          <div class="col-lg-8 col-lg-offset-2">
-            <h3 class="blog-title">
-              Multiclass Matthew's Correlation Coefficient
-            </h3>
-            <div class="row">
-              <div class="col-lg-2">
-                <p class="text-muted">January, 2020</p>
-              </div>
-              <div class="col-lg-10">
-                <span class="blog-tags">
-                  <i class="fas fa-tags"></i>
-                  <a class="tag">metrics,</a>
-                  <a class="tag">implementation</a>
-                </span>
-              </div>
-            </div>
-            <div class="row col-lg-12">
-              <p class="text-muted">
-                An explanation of how the rather opaque vectorized
-                implementations of Multiclass Matthew's Correlation Coefficient
-                found in popular open-source, machine learning libraries work.
-              </p>
-            </div>
-            <div class="row col-lg-12">
-              <a class="btn btn-primary btn-outline" href="blog/rk.html">
-                Continue Reading
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- Experience Section -->
@@ -581,6 +529,239 @@
               .
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Presentations section -->
+    <section id="presentations" class="bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Presentations</h2>
+          </div>
+        </div>
+        <!-- <div class="row equal"> -->
+        <!--   <div class="col-sm-2 talk-image hidden-sm hidden-md"> -->
+        <!--     <img src="" class="img-thumbnail center-block" /> -->
+        <!--   </div> -->
+        <!--   <div class="col-lg-10"> -->
+        <!--     <h3 class="talk-title">Talk Title</h3> -->
+        <!--     <h4 class="talk-location">Talk Location</h4> -->
+        <!--     <p class="text-muted">Talk Date</p> -->
+        <!--     <p class="text-muted"> -->
+        <!--       Talk content -->
+        <!--     </p> -->
+        <!--          <a href="">slides</a> -->
+        <!--          <a href="">video</a> -->
+        <!--   </div> -->
+        <!-- </div> -->
+        <div class="row equal">
+          <div class="col-sm-2 talk-image hidden-sm hidden-md">
+            <img
+              src="static/img/presentations/neurips.png"
+              class="img-thumbnail center-block"
+            />
+          </div>
+          <div class="col-lg-10">
+            <h3 class="talk-title">NeurIPS Spotlight Talk on Mead-Baseline</h3>
+            <h4 class="talk-location">NeurIPS OSS Workshop</h4>
+            <p class="text-muted">December 2018</p>
+            <p class="text-muted">
+              A spotlight talk, at the Open Source Software workshop at NeurIPS
+              2018, highlighting the advantages of using our open-source,
+              model-building toolkit, Mead-Baseline, which provides high-level
+              model abstractions, correct evaluation metrics, and fast runtimes.
+              Mead-Baseline is the foundation of all Deep Learning work, in both
+              research and production, at Interactions.
+            </p>
+            <a href="presentations/slides/MLOSS-NeurIPS-Baseline.pdf">slides</a>
+          </div>
+        </div>
+
+        <div class="row equal">
+          <div class="col-sm-2 talk-image hidden-sm hidden-md">
+            <img
+              src="static/img/presentations/calibration.png"
+              class="img-thumbnail center-block"
+            />
+          </div>
+          <div class="col-lg-10">
+            <h3 class="talk-title">
+              How do I trust my Model? Confidence in the Confidence of Neural
+              Networks
+            </h3>
+            <h4 class="talk-location">
+              Eastern Michigan University Machine Learning Conference
+            </h4>
+            <p class="text-muted">
+              March 2020, Upcoming<sup class="footnote text-muted">*</sup>
+            </p>
+            <p class="text-muted">
+              In most settings, one trains a model and then evaluates it on some
+              held out test set; however, there are some domains where one would
+              rather have no answer than an uncertain one. For example, if you
+              have a human in the loop you might want to send an example to the
+              human to double check it rather than just using the label produced
+              by the model. Confidence models allows one to make decisions about
+              how much trust to put into a model's predictions.
+            </p>
+            <p class="text-muted">
+              This talk outlines the idea of confidence modeling, techniques
+              used to evaluate models that allow for the rejection of examples
+              based on confidences, the difficulties of getting well calibrated
+              posteriors from Deep Learning models, and a summary of current
+              work—using calibration techniques and auxiliary models—to produce
+              high-fidelity confidence scores in the Natural Language
+              Understanding module of a real world Dialogue System.
+            </p>
+            <sub class="footnote text-muted"
+              ><sup class="text-muted">*</sup>Cancelled due to COVID-19</sub
+            >
+            <!-- <a href="">slides</a> -->
+            <!-- <a href="">video</a> -->
+          </div>
+        </div>
+
+        <div class="row equal">
+          <div class="col-sm-2 talk-image hidden-sm hidden-md">
+            <img
+              src="static/img/presentations/masking.png"
+              class="img-thumbnail center-block"
+            />
+          </div>
+          <div class="col-lg-10">
+            <h3 class="talk-title">
+              Your Neural Network for Natural Language Processing is Probably
+              Wrong
+            </h3>
+            <h4 class="talk-location">A2D-NLP</h4>
+            <p class="text-muted">February 2020</p>
+            <p class="text-muted">
+              To efficiently train Deep Learning models processing multiple
+              examples at once—aka batching—is paramount. The rub is that in NLP
+              data often have differing sizes. We rectify this by adding empty
+              data to smaller examples to bring them up to size: a technique we
+              call padding. Padding comes with its own set of problems; if you
+              aren't careful, calculations will include your padding elements
+              and produce incorrect results.
+            </p>
+            <p class="text-muted">
+              In this practitioner focused talk we cover how to batch, pad, and
+              mask a range of neural network layers common in NLP including
+              operations that obviously require masking like mean pooling, token
+              level losses, and attention; complex operations like the CRF
+              forward algorithm and Viterbi decoding; and subtle operations that
+              you might not expect to require masking such as max pooling
+              following a 1D convolution.
+            </p>
+            <a
+              href="https://github.com/blester125/A2D-NLP-Talk-Feb-27-2020/blob/master/Your-Neural-Network-Is-Probably-Wrong.pdf"
+            >
+              slides
+            </a>
+          </div>
+        </div>
+
+        <div class="row equal">
+          <div class="col-sm-2 talk-image hidden-sm hidden-md">
+            <img
+              src="static/img/presentations/numpy-cython.png"
+              class="img-thumbnail center-block"
+            />
+          </div>
+          <div class="col-lg-10">
+            <h3 class="talk-title">Crunching Numbers with NumPy and Cython</h3>
+            <h4 class="talk-location">Michigan Python Meetup</h4>
+            <p class="text-muted">January 2020</p>
+            <p class="text-muted">
+              Based on a recent thread in the Ann Arbor data science Slack, this
+              talk walks through the collaborative optimization of some numeric
+              code. Beginning with a correct but slow implementation in Python,
+              we will work though a series of improvements using NumPy, the
+              Swiss army knife of scientific computing in Python. This talk will
+              introduce core NumPy concepts like broadcasting and vectorization,
+              and will wrap-up with a bespoke implementation in Cython for a
+              blisteringly fast solution that can scale up to 10s of thousands
+              of points in just second compared to the multi-hour runtime of a
+              pure python soltuion.
+            </p>
+            <a
+              href="https://github.com/blester125/MIPy-Talk-Jan-2-2020/blob/master/slides/slides.pdf"
+            >
+              slides
+            </a>
+          </div>
+        </div>
+
+        <div class="row equal">
+          <div class="col-sm-2 talk-image hidden-sm hidden-md">
+            <img
+              src="static/img/presentations/char-input.png"
+              class="img-thumbnail center-block"
+            />
+          </div>
+          <div class="col-lg-10">
+            <h3 class="talk-title">
+              Input Representations of Deep Neural Networks
+            </h3>
+            <h4 class="talk-location">PyData Ann Arbor</h4>
+            <p class="text-muted">October 2017</p>
+            <p class="text-muted">
+              A talk on creating robust models via learned character
+              compositional input representations based on bLSTMs to support an
+              open vocabulary for Deep Neural Networks.
+            </p>
+            <a
+              href="https://github.com/blester125/language_model/blob/master/PyDataLightningBrianLester.pdf"
+            >
+              slides
+            </a>
+            <a href="presentations/pydata-2017.html">
+              video
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Publications section -->
+    <section id="publications" class="bg-light-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Publications</h2>
+          </div>
+        </div>
+        <div id="publications-container">
+            <template v-for="pub in publications">
+                <div class="paper" :id="pub.id">
+                    <a class="paper-link" v-bind:href="pub.link">
+                        <div class="row">
+                            <div class="col-lg-1"></div>
+                            <div class="col-lg-10">
+                                <h3 class="paper-title" v-html="pub.title"></h3>
+                                <h4 class="paper-authors">{{ pub.authors }}</h4>
+                                <p class="paper-venue">{{ pub.venue }}</p>
+                            </div>
+                            <div class="col-lg-1"></div>
+                        </div>
+                    </a>
+                    <div class="row">
+                        <div class="col-lg-1"></div>
+                        <a class="btn btn-primary paper-button-first" v-bind:href="pub.link" style="margin-left: 5%;">PDF</a>
+                        <a class="btn btn-primary paper-button" v-on:click="showModal(pub.modal_id)">BibTex</a>
+                        <div class="modal" :id="pub.modal_id" style="display: none;" v-on:click="hideModal(pub.modal_id)">
+                            <div class="modal-content" onclick="event.stopPropagation();">
+                                <pre class="bibtex">{{ pub.bibtext }}</pre>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary paper-button" v-bind:data-clipboard-text="pub.bibtext" title="Copy BibTex to Clipboard">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+            </template>
         </div>
       </div>
     </section>
@@ -1256,209 +1437,6 @@
       </div>
     </section>
 
-    <!-- Presentations section -->
-    <section id="presentations" class="bg-light-gray">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Presentations</h2>
-          </div>
-        </div>
-        <!-- <div class="row equal"> -->
-        <!--   <div class="col-sm-2 talk-image hidden-sm hidden-md"> -->
-        <!--     <img src="" class="img-thumbnail center-block" /> -->
-        <!--   </div> -->
-        <!--   <div class="col-lg-10"> -->
-        <!--     <h3 class="talk-title">Talk Title</h3> -->
-        <!--     <h4 class="talk-location">Talk Location</h4> -->
-        <!--     <p class="text-muted">Talk Date</p> -->
-        <!--     <p class="text-muted"> -->
-        <!--       Talk content -->
-        <!--     </p> -->
-        <!--          <a href="">slides</a> -->
-        <!--          <a href="">video</a> -->
-        <!--   </div> -->
-        <!-- </div> -->
-        <div class="row equal">
-          <div class="col-sm-2 talk-image hidden-sm hidden-md">
-            <img
-              src="static/img/presentations/neurips.png"
-              class="img-thumbnail center-block"
-            />
-          </div>
-          <div class="col-lg-10">
-            <h3 class="talk-title">NeurIPS Spotlight Talk on Mead-Baseline</h3>
-            <h4 class="talk-location">NeurIPS OSS Workshop</h4>
-            <p class="text-muted">December 2018</p>
-            <p class="text-muted">
-              A spotlight talk, at the Open Source Software workshop at NeurIPS
-              2018, highlighting the advantages of using our open-source,
-              model-building toolkit, Mead-Baseline, which provides high-level
-              model abstractions, correct evaluation metrics, and fast runtimes.
-              Mead-Baseline is the foundation of all Deep Learning work, in both
-              research and production, at Interactions.
-            </p>
-            <a href="presentations/slides/MLOSS-NeurIPS-Baseline.pdf">slides</a>
-          </div>
-        </div>
-
-        <div class="row equal">
-          <div class="col-sm-2 talk-image hidden-sm hidden-md">
-            <img
-              src="static/img/presentations/calibration.png"
-              class="img-thumbnail center-block"
-            />
-          </div>
-          <div class="col-lg-10">
-            <h3 class="talk-title">
-              How do I trust my Model? Confidence in the Confidence of Neural
-              Networks
-            </h3>
-            <h4 class="talk-location">
-              Eastern Michigan University Machine Learning Conference
-            </h4>
-            <p class="text-muted">
-              March 2020, Upcoming<sup class="footnote text-muted">*</sup>
-            </p>
-            <p class="text-muted">
-              In most settings, one trains a model and then evaluates it on some
-              held out test set; however, there are some domains where one would
-              rather have no answer than an uncertain one. For example, if you
-              have a human in the loop you might want to send an example to the
-              human to double check it rather than just using the label produced
-              by the model. Confidence models allows one to make decisions about
-              how much trust to put into a model's predictions.
-            </p>
-            <p class="text-muted">
-              This talk outlines the idea of confidence modeling, techniques
-              used to evaluate models that allow for the rejection of examples
-              based on confidences, the difficulties of getting well calibrated
-              posteriors from Deep Learning models, and a summary of current
-              work—using calibration techniques and auxiliary models—to produce
-              high-fidelity confidence scores in the Natural Language
-              Understanding module of a real world Dialogue System.
-            </p>
-            <sub class="footnote text-muted"
-              ><sup class="text-muted">*</sup>Cancelled due to COVID-19</sub
-            >
-            <!-- <a href="">slides</a> -->
-            <!-- <a href="">video</a> -->
-          </div>
-        </div>
-
-        <div class="row equal">
-          <div class="col-sm-2 talk-image hidden-sm hidden-md">
-            <img
-              src="static/img/presentations/masking.png"
-              class="img-thumbnail center-block"
-            />
-          </div>
-          <div class="col-lg-10">
-            <h3 class="talk-title">
-              Your Neural Network for Natural Language Processing is Probably
-              Wrong
-            </h3>
-            <h4 class="talk-location">A2D-NLP</h4>
-            <p class="text-muted">February 2020</p>
-            <p class="text-muted">
-              To efficiently train Deep Learning models processing multiple
-              examples at once—aka batching—is paramount. The rub is that in NLP
-              data often have differing sizes. We rectify this by adding empty
-              data to smaller examples to bring them up to size: a technique we
-              call padding. Padding comes with its own set of problems; if you
-              aren't careful, calculations will include your padding elements
-              and produce incorrect results.
-            </p>
-            <p class="text-muted">
-              In this practitioner focused talk we cover how to batch, pad, and
-              mask a range of neural network layers common in NLP including
-              operations that obviously require masking like mean pooling, token
-              level losses, and attention; complex operations like the CRF
-              forward algorithm and Viterbi decoding; and subtle operations that
-              you might not expect to require masking such as max pooling
-              following a 1D convolution.
-            </p>
-            <a
-              href="https://github.com/blester125/A2D-NLP-Talk-Feb-27-2020/blob/master/Your-Neural-Network-Is-Probably-Wrong.pdf"
-            >
-              slides
-            </a>
-          </div>
-        </div>
-
-        <div class="row equal">
-          <div class="col-sm-2 talk-image hidden-sm hidden-md">
-            <img
-              src="static/img/presentations/numpy-cython.png"
-              class="img-thumbnail center-block"
-            />
-          </div>
-          <div class="col-lg-10">
-            <h3 class="talk-title">Crunching Numbers with NumPy and Cython</h3>
-            <h4 class="talk-location">Michigan Python Meetup</h4>
-            <p class="text-muted">January 2020</p>
-            <p class="text-muted">
-              Based on a recent thread in the Ann Arbor data science Slack, this
-              talk walks through the collaborative optimization of some numeric
-              code. Beginning with a correct but slow implementation in Python,
-              we will work though a series of improvements using NumPy, the
-              Swiss army knife of scientific computing in Python. This talk will
-              introduce core NumPy concepts like broadcasting and vectorization,
-              and will wrap-up with a bespoke implementation in Cython for a
-              blisteringly fast solution that can scale up to 10s of thousands
-              of points in just second compared to the multi-hour runtime of a
-              pure python soltuion.
-            </p>
-            <a
-              href="https://github.com/blester125/MIPy-Talk-Jan-2-2020/blob/master/slides/slides.pdf"
-            >
-              slides
-            </a>
-          </div>
-        </div>
-
-        <div class="row equal">
-          <div class="col-sm-2 talk-image hidden-sm hidden-md">
-            <img
-              src="static/img/presentations/char-input.png"
-              class="img-thumbnail center-block"
-            />
-          </div>
-          <div class="col-lg-10">
-            <h3 class="talk-title">
-              Input Representations of Deep Neural Networks
-            </h3>
-            <h4 class="talk-location">PyData Ann Arbor</h4>
-            <p class="text-muted">October 2017</p>
-            <p class="text-muted">
-              A talk on creating robust models via learned character
-              compositional input representations based on bLSTMs to support an
-              open vocabulary for Deep Neural Networks.
-            </p>
-            <a
-              href="https://github.com/blester125/language_model/blob/master/PyDataLightningBrianLester.pdf"
-            >
-              slides
-            </a>
-            <a href="presentations/pydata-2017.html">
-              video
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Publications section -->
-    <section id="publications">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Publications</h2>
-          </div>
-        </div>
-        <div id="publications-container"></div>
-      </div>
-    </section>
 
     <!-- Education Section -->
     <section id="education" class="bg-light-gray">
