@@ -85,8 +85,14 @@
     <!-- Plugin JavaScript -->
     <script src="static/js/vendored/jquery.easing.min.js"></script>
     <script src="static/js/vendored/agency.js"></script>
-    <script src="static/js/vendored/citation-0.4.0-9.js" type="text/javascript"></script>
-    <script src="static/js/vendored/clipboard.min.js" type="text/javascript"></script>
+    <script
+      src="static/js/vendored/citation-0.4.0-9.js"
+      type="text/javascript"
+    ></script>
+    <script
+      src="static/js/vendored/clipboard.min.js"
+      type="text/javascript"
+    ></script>
     <!-- Custom JavaScript -->
     <script src="static/js/fetch.js"></script>
     <script src="static/js/references.js"></script>
@@ -94,7 +100,7 @@
     <script>
       readFile(
         "static/references/index.txt",
-        generate_references.bind(
+        generateReferences.bind(
           null,
           "publications-container",
           "static/references/"
@@ -102,10 +108,7 @@
       );
       readFile(
         "static/blog.json",
-        generate_blog.bind(
-            null,
-            "blog-container"
-        )
+        generateBlogs.bind(null, "blog-container", "blog")
       );
     </script>
   </head>
@@ -231,38 +234,48 @@
         </div>
 
         <div id="blog-container">
-            <template v-for="blog in blogs">
+          <template v-for="blog in blogs">
+            <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h3 class="blog-title">
+                  {{ blog.title }}
+                </h3>
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <h3 class="blog-title">
-                            {{ blog.title }}
-                        </h3>
-                        <div class="row">
-                            <div class="col-lg-2">
-                                <p class="text-muted">{{ blog.date }}</p>
-                            </div>
-                            <div class="col-lg-10">
-                                <span class="blog-tags">
-                                    <i class="fas fa-tags"></i>
-                                    <span v-for="(tag, index) in blog.tags">
-                                        <a class="tag" v-if="index != blog.tags.length - 1">{{ tag }}, </a>
-                                        <a class="tag" v-else>{{ tag }}</a>
-                                    </span>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="row col-lg-12">
-                            <p class="text-muted">
-                                {{ blog.description }}
-                            </p>
-                        </div>
-                        <div class="row col-lg-12">
-                            <a class="btn btn-primary btn-outline" :href="blog.link">Continue Reading</a>
-                        </div>
-                    </div>
+                  <div class="col-lg-2">
+                    <p class="text-muted">{{ blog.date }}</p>
+                  </div>
+                  <div class="col-lg-10">
+                    <span class="blog-tags">
+                      <i class="fas fa-tags"></i>
+                      <span v-for="(tag, index) in blog.tags">
+                        <a
+                          class="tag"
+                          :href="tag.link"
+                          v-if="index != blog.tags.length - 1"
+                          >{{ tag.name }},
+                        </a>
+                        <a class="tag" :href="tag.link" v-else
+                          >{{ tag.name }}</a
+                        >
+                      </span>
+                    </span>
+                  </div>
                 </div>
-            </template>
+                <div class="row col-lg-12">
+                  <p class="text-muted">
+                    {{ blog.description }}
+                  </p>
+                </div>
+                <div class="row col-lg-12">
+                  <a class="btn btn-primary btn-outline" :href="blog.link"
+                    >Continue Reading</a
+                  >
+                </div>
+              </div>
+            </div>
+          </template>
         </div>
+      </div>
     </section>
 
     <!-- Experience Section -->
@@ -734,34 +747,52 @@
           </div>
         </div>
         <div id="publications-container">
-            <template v-for="pub in publications">
-                <div class="paper" :id="pub.id">
-                    <a class="paper-link" v-bind:href="pub.link">
-                        <div class="row">
-                            <div class="col-lg-1"></div>
-                            <div class="col-lg-10">
-                                <h3 class="paper-title" v-html="pub.title"></h3>
-                                <h4 class="paper-authors">{{ pub.authors }}</h4>
-                                <p class="paper-venue">{{ pub.venue }}</p>
-                            </div>
-                            <div class="col-lg-1"></div>
-                        </div>
-                    </a>
-                    <div class="row">
-                        <div class="col-lg-1"></div>
-                        <a class="btn btn-primary paper-button-first" v-bind:href="pub.link" style="margin-left: 5%;">PDF</a>
-                        <a class="btn btn-primary paper-button" v-on:click="showModal(pub.modal_id)">BibTex</a>
-                        <div class="modal" :id="pub.modal_id" style="display: none;" v-on:click="hideModal(pub.modal_id)">
-                            <div class="modal-content" onclick="event.stopPropagation();">
-                                <pre class="bibtex">{{ pub.bibtext }}</pre>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary paper-button" v-bind:data-clipboard-text="pub.bibtext" title="Copy BibTex to Clipboard">
-                            <i class="far fa-copy"></i>
-                        </button>
-                    </div>
+          <template v-for="pub in publications">
+            <div class="paper" :id="pub.id">
+              <a class="paper-link" v-bind:href="pub.link">
+                <div class="row">
+                  <div class="col-lg-1"></div>
+                  <div class="col-lg-10">
+                    <h3 class="paper-title" v-html="pub.title"></h3>
+                    <h4 class="paper-authors">{{ pub.authors }}</h4>
+                    <p class="paper-venue">{{ pub.venue }}</p>
+                  </div>
+                  <div class="col-lg-1"></div>
                 </div>
-            </template>
+              </a>
+              <div class="row">
+                <div class="col-lg-1"></div>
+                <a
+                  class="btn btn-primary paper-button-first"
+                  v-bind:href="pub.link"
+                  style="margin-left: 5%;"
+                  >PDF</a
+                >
+                <a
+                  class="btn btn-primary paper-button"
+                  v-on:click="showModal(pub.modal_id)"
+                  >BibTex</a
+                >
+                <div
+                  class="modal"
+                  :id="pub.modal_id"
+                  style="display: none;"
+                  v-on:click="hideModal(pub.modal_id)"
+                >
+                  <div class="modal-content" onclick="event.stopPropagation();">
+                    <pre class="bibtex">{{ pub.bibtext }}</pre>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary paper-button"
+                  v-bind:data-clipboard-text="pub.bibtext"
+                  title="Copy BibTex to Clipboard"
+                >
+                  <i class="far fa-copy"></i>
+                </button>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </section>
@@ -1436,7 +1467,6 @@
         </a>
       </div>
     </section>
-
 
     <!-- Education Section -->
     <section id="education" class="bg-light-gray">
