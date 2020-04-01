@@ -1,25 +1,18 @@
 [
-    {
-        "title": "Multiclass Matthew's Correlation Coefficient",
-        "month": 1,
-        "year": 2020,
-        "tags": [
-            "metrics",
-            "implementation"
-        ],
-        "description": "An explanation of how the rather opaque vectorized implementations of Multiclass Matthew's Correlation Coefficient found in popular open-source, machine learning libraries work.",
-        "link": "blog/rk.html"
-    },
-    {
-        "title": "Numerically Stable Softmax",
-        "month": 2,
-        "year": 2020,
-        "tags": [
-            "neural networks",
-            "implementation",
-            "numerical stability"
-        ],
-        "description": "An explanation of the math behind the trick of subtracting the max value from the logits to calculate the softmax in a numerically stable way.",
-        "link": "blog/softmax.html"
-    }
+  {
+    "title": "Multiclass Matthew's Correlation Coefficient",
+    "month": 1,
+    "year": 2020,
+    "tags": ["metrics", "implementation"],
+    "description": "An explanation of how the rather opaque vectorized implementations of Multiclass Matthew's Correlation Coefficient found in popular open-source, machine learning libraries work.",
+    "link": "rk.html"
+  },
+  {
+    "title": "Numerically Stable Softmax",
+    "month": 2,
+    "year": 2020,
+    "tags": ["neural networks", "implementation", "numerical stability"],
+    "description": "An explanation of the math behind the trick of subtracting the max value from the logits to calculate the softmax in a numerically stable way.",
+    "link": "softmax.html"
+  }
 ]
