@@ -838,11 +838,77 @@
         <!--         </p> -->
         <!--     </div> -->
         <!--     <div class="col-lg-2 project-image hidden-sm hidden-md"> -->
-        <!--         Picture -->
         <!--         <img src="" class="img-thumbnail center-block" /> -->
         <!--     </div> -->
         <!-- </div> -->
         <!-- </a> -->
+
+        <a
+          href="https://github.com/dpressel/mead-baseline"
+          ,
+          class="project-link"
+        >
+          <div class="row equal">
+            <div class="col-lg-10">
+              <div class="row">
+                <div class="col-lg-10">
+                  <h3 class="project-title">
+                    Mead-Baseline
+                  </h3>
+                </div>
+                <div class="col-lg-2">
+                  <h6 class="project-type">
+                    Open Source Library
+                  </h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-2">
+                  <p class="project-date">2018&ndash;Present</p>
+                </div>
+              </div>
+              <p class="project-content">
+                Core contributor to Mead-Baseline, a deep-learning toolkit for
+                NLP that provids a uniform API to both tensorflow and pytorch
+                backends, reusable implementations of complex neural
+                architectures and layers, strong deep learning based models and
+                good hyper-parameters, robust and correct evluation metrics, and
+                performant batched implementations. Mead-Baseline uses Inversion
+                of Control and an extensive plugin system to enable quick
+                experiments by changing sections of model archetecutre with just
+                a few lines of code. Model archetecture and training regime are
+                specified in a configuration file to allow for repeatable
+                research. Mead-Basline also enables easy access to a variety of
+                contextual embeddings in the form of large pretrained language
+                models like ELMo or BERT. Mead-Baseline also includes exporting
+                utilities to convert models into either tensorflow serving
+                servables or ONNX traced models which are ready to be deployed.
+                Mead-Baseline is a one-stop shop that can take models all the
+                way from prototyping to production.
+              </p>
+              <p class="project-content">
+                My main work has been on the API design and implementation of
+                the lower layers. I batched both the Conditional Random Field
+                and the Beam Search yielding 6x speed ups. Before development on
+                the framework basically stopped I created
+                <a href="https://github.com/clab/dynet">DyNet</a>
+                implementations of all the models in Mead-Baseline including
+                large transformers. I introduced the ability to perform
+                Constrained Decoding on the CRF where the rules of the
+                transition scheme can be used to narrow down the number of
+                possible transitions when doing Viterbi Decoding. Constrained
+                Decoding gives gains across the board and should always be used.
+              </p>
+            </div>
+            <div class="col-lg-2 project-image hidden-sm hidden-md">
+              <img
+                src="static/img/project/lstm.png"
+                class="img-thumbnail center-block"
+              />
+            </div>
+          </div>
+        </a>
 
         <a href="https://github.com/blester125/text-rank" class="project-link">
           <div class="row equal">
