@@ -83,7 +83,15 @@
     <script src="../static/js/fetch.js"></script>
     <script src="../static/js/blog.js"></script>
     <script>
-      readFile("../static/blog.json", generateTags.bind(null, "tag-container"));
+      readFile(
+        "../static/blog.json",
+        loadAndScrollTagPage.bind(
+          null,
+          window.location.hash,
+          500,
+          "tag-container"
+        )
+      );
     </script>
 
     <link rel="icon" href="../static/img/favicon.ico" type="image/x-icon" />
