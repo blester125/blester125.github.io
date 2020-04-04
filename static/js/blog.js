@@ -144,3 +144,23 @@ function generateTags(target, blogs) {
     },
   });
 }
+
+/**
+ * Dynamically generate the tag index and then scroll to the anchor.
+ * @param {str} anchor - The id of the html tag to scroll to.
+ * @param {int} scroll_speed - How fast we should scroll to the anchor.
+ * @param {str} target - The html tag to populate with the tag information.
+ * @param {List[*]} blogs - The list of blog information to use when generating the index.
+ */
+function loadAndScrollTagPage(anchor, scroll_speed, target, blogs) {
+  generateTags(target, blogs);
+  // Scroll to the anchor
+  if ($(anchor).length > 0) {
+    $("html, body").animate(
+      {
+        scrollTop: $(anchor).offset().top,
+      },
+      scroll_speed
+    );
+  }
+}
