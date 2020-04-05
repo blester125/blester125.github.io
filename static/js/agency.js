@@ -19,6 +19,7 @@ $(function () {
         1000,
         "easeInOutExpo"
       );
+    // If you are scrolling to the top strip the `#.*` from the url
     if (loc != "#page-top") {
       window.history.pushState({}, "", loc);
     } else {
