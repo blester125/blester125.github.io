@@ -1130,6 +1130,14 @@
                   pre-opened files but allows your users to pass in file paths
                   as strings.
                 </p>
+                <p class="pypi-description">
+                  It also includes the ability to automatically do shadow paging
+                  by pre-pending a write mode file with a <code>s</code>. This
+                  is done by proxying all the writes to a temporary file and
+                  then when you close the context manager the file was opened in
+                  the original file is replaced with the temporary file. This
+                  allows for atomic writes.
+                </p>
               </li>
               <li>
                 <a href="https://pypi.org/project/get-mnist/">get-mnist</a>
