@@ -14,5 +14,13 @@
     "tags": ["neural networks", "implementation", "numerical stability"],
     "description": "An explanation of the math behind the trick of subtracting the max value from the logits to calculate the softmax in a numerically stable way.",
     "link": "softmax.html"
+  },
+  {
+    "title": "Hot-swapping a Wacom Tablet on Linux",
+    "month": 6,
+    "year": 2020,
+    "tags": ["wacom", "systemd", "udev"],
+    "description": "There is a strong community supporting Wacom drawing tablets with easy to install drivers and software to help configure the tablet. One thing that is lacking is support for re-confutation when you unplug the tablet and plug it back in. In this post we dive into my solution.",
+    "link": "wacom.html"
   }
 ]
