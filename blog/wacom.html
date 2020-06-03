@@ -102,6 +102,9 @@
     ></script>
     <script src="../static/js/vendored/jquery.scrollintoview.min.js"></script>
 
+    <!-- Code formatting -->
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script
@@ -194,8 +197,8 @@
               <a
                 href="https://www.adultswim.com/videos/smiling-friends/smiling-friends"
                 >Similing Friends</a
-              >, I decided to try my hand at animation. It is difficult to
-              overstate just how bizarre the show is but you can't help but
+              ><a></a>, I decided to try my hand at animation. It is difficult
+              to overstate just how bizarre the show is but you can't help but
               watch and really notice how they pulled out all the stops. There
               is normal 2D animation, 3D animation, rotoscoped sections, and
               even one of those super gross, painted close ups you see sometimes
@@ -220,12 +223,12 @@
               <a
                 href="https://www.wacom.com/en-us/products/pen-tablets/wacom-intuos"
                 >Wacom Intuos Small</a
-              >. Given my skills on display here it should be clear I'm not
-              sponsored, this is just the tablet I got, it seems to work well as
-              a first tablet that is on the cheaper side. The problem is that I
-              use Linux on my daily driver and Wacom tablets aren't supported.
-              I've put a decent amount of work into getting everything running
-              smoothly and I wanted to share what I did here.
+              ><a></a>. Given my skills on display here it should be clear I'm
+              not sponsored, this is just the tablet I got, it seems to work
+              well as a first tablet that is on the cheaper side. The problem is
+              that I use Linux on my daily driver and Wacom tablets aren't
+              supported. I've put a decent amount of work into getting
+              everything running smoothly and I wanted to share what I did here.
             </p>
           </div>
           <div class="col-lg-6">
@@ -241,22 +244,281 @@
                 <a
                   href="https://www.amazon.com/Animators-Survival-Kit-Richard-Williams/dp/0571202284"
                   >The Animator's Survival Kit</a
-                >. Note the "Squash and Stretch", the ball stretches as it
-                approaches the ground and squishes as it hits the ground. It
+                ><a></a>. Note the "Squash and Stretch", the ball stretches as
+                it approaches the ground and squishes as it hits the ground. It
                 also has "Slow In, Slow Out" where the ball slows at the peaks
                 of its bounces.
               </figcaption>
             </figure>
           </div>
         </div>
-        <div class="row">
-          <ul>
-            <li>Setting up wacom drivers</li>
-            <li>Getting the vendor and product id</li>
-            <li>First attempt with a udev rule</li>
-            <li>Creating a udev listener</li>
-            <li>Creating a systemd service</li>
-          </ul>
+        <div class="row col-lg-8 col-lg-offset-2">
+          <h3>Setting up the Wacom Drivers</h3>
+
+          <p class="text-muted indent">
+            Unfortunately, Wacom tablets aren't supported on Linux. This means
+            that there aren't official drivers published by Wacom to facilitate
+            communication between the tablet and your computer. Luckily for us
+            there is a great community of people creating
+            <a href="https://linuxwacom.github.io/">open source drivers</a
+            ><a></a> for these tablets. Often these drivers ship with newer
+            versions of Linux. I personally only had to install
+            <span class="tt">libwacom</span>. I installed from source and their
+            documentation was pretty through and made the process easy.
+          </p>
+
+          <h3>Configuring the Tablet with <span class="tt">xsetwacom</span></h3>
+
+          <p class="text-muted indent">
+            The nice people over at The Linux Wacom Project who make the open
+            source drivers provide a handy tool,
+            <span class="tt">xsetwacom</span>, designed to facilitate things
+            like the configuration of the button that are commonly found on both
+            the tablets and on the styluses themselves.
+          </p>
+
+          <h4>Configuring the Buttons.</h4>
+
+          <p class="text-muted indent">
+            <span class="tt">xsetwacom</span> configures parts of the Wacom
+            eco-system by natural name rather than by id of the like. The
+            command <code>xsetwacom list</code> will return the name, id, and
+            type (<span class="tt">ERASER, STYLUS, PAD</span>, etc.). We can use
+            the <span class="tt">get</span> command to see the value of a
+            setting. We normally see calls like
+            <code>xsetwacom get "{device name}" {parameter}</code>. We can use
+            <span class="tt">xsetwacom list parameters</span> to see all the
+            set-able values. Once we decide on the value we set it like so
+            <code>xsetwacom set "{device name}" {parameter} {value}</code>, for
+            example,
+            <code
+              >xsetwacom set "Wacom Intuos S Pad pad" Button 1 "key ctrl
+              z"</code
+            >
+            sets button one on the tablet so the "undo" hotkey.
+          </p>
+
+          <h4>Configuring the Available Writing Space.</h4>
+
+          <p class="text-muted indent">
+            One quirk of Wacom tablets is that when you have multiple monitors
+            the drawing surface defaults to mapping to the whole screen.
+            Touching on the left edge of the tablet jumps to the left edge of
+            the left most monitor while the right edge would be all the way over
+            on the right side of the right monitor. This often cause tiny
+            movements on the pad to be a huge jump on the screen. We use the
+            <span class="tt">MapToOutput</span> command to limit the drawing
+            surface to a particular screen. You are supposed to be able to use
+            the name of the display that you get back from
+            <span class="tt">xrandr</span> but that never worked for me. When
+            this fails you can use the index (starting from zero) of the screen
+            when you consider the active screens. For example I use
+            <code
+              >xsetwacom set "Wacom Intuos S Pen stylus" MapToOutput
+              Head-0</code
+            >.
+          </p>
+
+          <p></p>
+
+          <h3>Re-configuration as you Remove and Plug-In the Tablet.</h3>
+
+          <p class="text-muted indent">
+            The problem is that you'll need to re-configure your tablet each
+            time you plug in your tablet or restart your computer. You can wrap
+            up all your configuration in a script and run that like I
+            <a
+              href="https://github.com/blester125/dotfiles/blob/master/wacom/xsetwacom.sh"
+              >did</a
+            ><a></a>. This is still a manual process that I would personally
+            forget to do all the time. Now we are going to look into how to do
+            this automatically.
+          </p>
+
+          <h4>A Failed Attempt with <span class="tt">udev</span> Rules.</h4>
+
+          <p class="text-muted indent">
+            Linux has things called <span class="tt">udev</span> rules. These
+            are actions that you can configure that are triggered when new
+            devices are plugged in. We can write a rule like
+            <code
+              >SUBSYTEM=="usb", ATTRS{idVendor}=="XXXX", ATTRS{idProduct} ==
+              "YYYY", RUN+="/path/to/my/script"</code
+            >
+            to run a script when a usb device is plugged in with an vendor id of
+            <span class="tt">XXXX</span> and a product id of
+            <span class="tt">YYYY</span>.
+          </p>
+
+          <p class="text-muted indent">
+            My first though was to run my setup script each time it detected
+            that my tablet was plugged in. The problem was that for
+            <span class="tt">xsetwacom</span> to work on the table the X server
+            needs to detect and process the tablet. This happens long after the
+            <span class="tt">udev</span> rule fires. People online were working
+            on trying to use sleeps to handle this but the problem was that you
+            needed a wrapper that would background itself once sleeping
+            (otherwise the sleep to wait for X would block and X wouldn't
+            actually detect it before we try to run the script). This was
+            getting far too complex so I want with a different solution.
+          </p>
+
+          <h4>Finding the vendor and product ids.</h4>
+
+          <p class="text-muted indent">
+            Both the <span class="tt">udev</span> rule and my eventual solution
+            require the vendor id and product id of the table. This can be
+            gotten with <code>lsusb</code>. The output will look like
+            <code>Bus 001 Device 006: ID 056a:0374 Wacom Co., Ltd</code> which
+            you can interpret like so
+            <code
+              >Bus {bus_number} Device {device_number}: ID
+              {vendor_id}:{product_id} {product_name}</code
+            >.
+          </p>
+
+          <h3>A Long Running <span class="tt">udev</span> Listener Service.</h3>
+
+          <p class="text-muted indent">
+            Instead of using a <span class="tt">udev</span> rules I wrote a
+            <a
+              href="https://github.com/blester125/dotfiles/blob/master/wacom/wacom-listener.py"
+              >python script</a
+            >
+            that listens to <span class="tt">udev</span> events. This is makes
+            it easier to have sleeps to wait for X to detect the tablet. This
+            script simply sits there and when a new device comes in with a
+            matching vendor id and product id we trigger our configuration
+            script. This script makes the tablet responsive to unplugging. Once
+            you plug it back in it will get re-configured.
+          </p>
+
+          <h4>A Note on Dependency Management.</h4>
+
+          <p class="text-muted indent">
+            My long running listener uses the
+            <span class="tt">pyudev</span> library. There are a few ways to make
+            this library accessible to the system service. I chose to install
+            the library in a <span class="tt">pyenv</span> environment. In my
+            listener script I point the <code>#!</code> line to the python
+            binary for this environment. When we execute this script it uses
+            this python interpreter. Other solutions would be to call the script
+            through that interpreter manually.
+          </p>
+
+          <h3>
+            <span class="tt">systemd</span> For Automatic Starts and Reloads on
+            Failure.
+          </h3>
+
+          <p class="text-muted indent">
+            The long-running server method works well but there is still the
+            manual step of starting it every time you boot your computer and
+            restarting it if it ever crashes. We use
+            <span class="tt">systend</span> to manage this service for us.
+          </p>
+
+          <!-- HTML generated using hilite.me -->
+          <div
+            style="
+              background: #f8f8f8;
+              overflow: auto;
+              width: auto;
+              padding: 0.2em 0.6em;
+            "
+          >
+            <pre
+              style="margin: 0; line-height: 125%;"
+            ><span style="color: #008000; font-weight: bold">[Unit]</span>
+<span style="color: #7D9029">Description</span><span style="color: #666666">=</span><span style="color: #BA2121">Wacom Plugin Service</span>
+
+<span style="color: #008000; font-weight: bold">[Service]</span>
+<span style="color: #7D9029">ExecStart</span><span style="color: #666666">=</span><span style="color: #BA2121">/home/brian/.shellrc/wacom/wacom-listener.py</span>
+<span style="color: #7D9029">Restart</span><span style="color: #666666">=</span><span style="color: #BA2121">on-failure</span>
+<span style="color: #7D9029">RestartSec</span><span style="color: #666666">=</span><span style="color: #BA2121">10</span>
+<span style="color: #7D9029">StartLimitBurst</span><span style="color: #666666">=</span><span style="color: #BA2121">10</span>
+<span style="color: #7D9029">Type</span><span style="color: #666666">=</span><span style="color: #BA2121">simple</span>
+<span style="color: #7D9029">Environment</span><span style="color: #666666">=</span><span style="color: #BA2121">PYTHONUNBUFFERED=1</span>
+
+<span style="color: #008000; font-weight: bold">[Install]</span>
+<span style="color: #7D9029">WantedBy</span><span style="color: #666666">=</span><span style="color: #BA2121">default.target</span>
+</pre>
+          </div>
+
+          <p class="text-muted indent">
+            This is our service configuration file, I've called it
+            <code>wacom.service</code>. There are obvious values like
+            <span class="tt">Description</span> which is the natural language
+            summary of what your service does.
+            <span class="tt">ExecStart</span> tells us how to run the service
+            while keys like <span class="tt">Restart</span> and
+            <span class="tt">RestartSec</span> control the settings for which to
+            restart the service.
+          </p>
+
+          <p class="text-muted indent">
+            One thing to point out is the line
+            <code>Environment=PYTHONUNBUFFERED=1</code>. This sets an
+            environment variable in the service. In this particular case we are
+            making the python output unbuffered. Normally python doesn't
+            actually print the output(or write it to a file) until a
+            <code>\n</code> is printed or the buffer files up. This environment
+            variable makes it so we always output. This is needed to make the
+            logging in the modules show up with
+            <span class="tt">journalctl</span>.
+          </p>
+
+          <p class="text-muted indent">
+            The following steps are needed to enable the service.
+          </p>
+
+          <ol class="text-muted">
+            <li>
+              Copy the service file into <code>~/.config/systemd/user/</code>.
+              Note that this needs to be a copy and not a soft link. When
+              enabling the service a soft link will be created and will complain
+              about having too many levels of soft lengths.
+            </li>
+            <li>Run <code>systemctl --user enable wacom.service</code></li>
+            <li>Run <code>systemctl --user start wacom.service</code></li>
+            <li>
+              Run <code>systemctl --user status wacom.service</code> to monitor
+              the health of the service
+            </li>
+            <li>
+              We can stop the service with
+              <code>systemctl --user stop wacom.serivce</code>, disable it with
+              <code>systemctl --user disable wacom.service</code>, and if we
+              change the service definition file we can reload the service with
+              <code
+                >systemctl --user daemond-reload && systemctl --user restart
+                wacom.service</code
+              >
+            </li>
+          </ol>
+
+          <p class="text-muted indent">
+            We can use <code>journalctl --user-unit wacom.service</code> to get
+            the logs from the service.
+          </p>
+
+          <p class="text-muted indent">
+            Now <span class="tt">systemd</span> should manage starting our
+            service on boot and restarting it should it crash. We can simulate a
+            crash with
+            <code>systemctl --user --signal=SIGKILL kill wacom.service</code>
+            and see how systemd will bring it back up.
+          </p>
+          <p class="text-muted indent">
+            Note: For most of these commands we should be able to drop the
+            <span class="tt">.service</span> suffix and just call is wacom when
+            using systemctl
+          </p>
+
+          <p class="text-muted indent">
+            Now this listener service should make it so that when we plug in the
+            tablet our defaults should be loaded.
+          </p>
         </div>
         <div class="row">
           <div class="col-lg-6">
