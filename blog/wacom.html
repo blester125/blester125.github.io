@@ -192,41 +192,41 @@
         </div>
         <div class="row">
           <div class="col-lg-6">
-            <p class="text-muted indent">
+            <p class="text-muted">
               Inspired by the very good (but incredibly weird)
               <a
                 href="https://www.adultswim.com/videos/smiling-friends/smiling-friends"
                 >Similing Friends</a
               ><a></a>, I decided to try my hand at animation. It is difficult
               to overstate just how bizarre the show is but you can't help but
-              watch and really notice how they pulled out all the stops. There
-              is normal 2D animation, 3D animation, rotoscoped sections, and
-              even one of those super gross, painted close ups you see sometimes
-              in Sponge Bob. There was even a character watching a live action
-              clip on a tablet. I really recommend the show but I totally
-              understand if it turns out too weird for you.
+              watch and see how they really pulled out all the stops. There is
+              normal 2D animation, 3D animation, a rotoscoped section, and even
+              one of those super gross, painted, close-ups you see sometimes in
+              Sponge Bob. There was even a character watching a live action clip
+              on a tablet. I really recommend the show but I totally understand
+              if it turns out to be too weird for you.
             </p>
             <p class="text-muted indent">
               I've never been a very good artist and I definitely have never
-              been about to draw consistently or quickly. Given that these are
-              some of the first skills that jump to ones mind when they here
-              animation you might be wondering what is wrong with me. My real
-              good is to be able to make something interesting and creative and
-              I hope that by picking 2D animation as a medium I'll be forced to
-              learn these skills. At a minimum I expect to get better at draw
-              circles, squares, and straight lines which should make the white
-              board drawing I do when explaining a complex algorithm a bit
-              easier to read.
+              been able to draw consistently or quickly. Given that these are
+              some of the first skills that come to mind mind when you think
+              about animation you might be wondering what is wrong with me. My
+              real goal is just to be able to make something interesting and
+              creative and I hope that by picking 2D animation as a medium I'll
+              be forced to learn these skills. At a minimum I expect to get
+              better at drawing circles, squares, and straight lines which
+              should make the white board diagrams I make when explaining a
+              complex algorithm a bit (or a lot?) easier to read.
             </p>
             <p class="text-muted indent">
-              To facilitate this I got a drawing tablet. I went with the
+              To facilitate this, I got a drawing tablet. I went with a
               <a
                 href="https://www.wacom.com/en-us/products/pen-tablets/wacom-intuos"
                 >Wacom Intuos Small</a
               ><a></a>. Given my skills on display here it should be clear I'm
               not sponsored, this is just the tablet I got, it seems to work
               well as a first tablet that is on the cheaper side. The problem is
-              that I use Linux on my daily driver and Wacom tablets aren't
+              that I use Linux as my daily driver and Wacom tablets aren't
               supported. I've put a decent amount of work into getting
               everything running smoothly and I wanted to share what I did here.
             </p>
@@ -239,15 +239,16 @@
                 class="img-responsive thumbnail"
               />
               <figcaption>
-                The classic bouncing ball everyone animates. It show cases a few
-                techniques that I learned from
+                The classic bouncing ball that everyone animates. It showcases a
+                few techniques that I learned from
                 <a
                   href="https://www.amazon.com/Animators-Survival-Kit-Richard-Williams/dp/0571202284"
                   >The Animator's Survival Kit</a
                 ><a></a>. Note the "Squash and Stretch", the ball stretches as
-                it approaches the ground and squishes as it hits the ground. It
-                also has "Slow In, Slow Out" where the ball slows at the peaks
-                of its bounces.
+                it gains speed when approaching the ground and squishes as it
+                hits the ground. It also has "Slow In, Slow Out" where the ball
+                slows as it is about to reach the peak of its bounce and slowly
+                accelerates as it starts to fall back to earth.
               </figcaption>
             </figure>
           </div>
@@ -255,21 +256,22 @@
         <div class="row col-lg-8 col-lg-offset-2">
           <h3>Setting up the Wacom Drivers</h3>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             Unfortunately, Wacom tablets aren't supported on Linux. This means
             that there aren't official drivers published by Wacom to facilitate
             communication between the tablet and your computer. Luckily for us
             there is a great community of people creating
             <a href="https://linuxwacom.github.io/">open source drivers</a
             ><a></a> for these tablets. Often these drivers ship with newer
-            versions of Linux. I personally only had to install
-            <span class="tt">libwacom</span>. I installed from source and their
-            documentation was pretty through and made the process easy.
+            versions of Linux. I personally only had to install the
+            <span class="tt">libwacom</span> package. I installed from source
+            and their documentation was pretty detailed and made the process
+            easy.
           </p>
 
           <h3>Configuring the Tablet with <span class="tt">xsetwacom</span></h3>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             The nice people over at The Linux Wacom Project who make the open
             source drivers provide a handy tool,
             <span class="tt">xsetwacom</span>, designed to facilitate things
@@ -279,13 +281,14 @@
 
           <h4>Configuring the Buttons.</h4>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             <span class="tt">xsetwacom</span> configures parts of the Wacom
-            eco-system by natural name rather than by id of the like. The
+            eco-system by natural name rather than by an id or the like. The
             command <code>xsetwacom list</code> will return the name, id, and
-            type (<span class="tt">ERASER, STYLUS, PAD</span>, etc.). We can use
-            the <span class="tt">get</span> command to see the value of a
-            setting. We normally see calls like
+            type (<span class="tt">ERASER, STYLUS, PAD</span>, etc.) of all the
+            detected Wacom devices. We can use the
+            <span class="tt">get</span> command to see the value of a setting.
+            We normally see calls like
             <code>xsetwacom get "{device name}" {parameter}</code>. We can use
             <span class="tt">xsetwacom list parameters</span> to see all the
             set-able values. Once we decide on the value we set it like so
@@ -300,12 +303,12 @@
 
           <h4>Configuring the Available Writing Space.</h4>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             One quirk of Wacom tablets is that when you have multiple monitors
             the drawing surface defaults to mapping to the whole screen.
             Touching on the left edge of the tablet jumps to the left edge of
-            the left most monitor while the right edge would be all the way over
-            on the right side of the right monitor. This often cause tiny
+            the left-most monitor while the right edge would be all the way over
+            on the right side of the right monitor. This often causes tiny
             movements on the pad to be a huge jump on the screen. We use the
             <span class="tt">MapToOutput</span> command to limit the drawing
             surface to a particular screen. You are supposed to be able to use
@@ -319,26 +322,24 @@
             >.
           </p>
 
-          <p></p>
-
           <h3>Re-configuration as you Remove and Plug-In the Tablet.</h3>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             The problem is that you'll need to re-configure your tablet each
             time you plug in your tablet or restart your computer. You can wrap
-            up all your configuration in a script and run that like I
+            up all your configuration in a
             <a
               href="https://github.com/blester125/dotfiles/blob/master/wacom/xsetwacom.sh"
-              >did</a
-            ><a></a>. This is still a manual process that I would personally
-            forget to do all the time. Now we are going to look into how to do
-            this automatically.
+              >script</a
+            ><a></a> and run that like I did. However, this is still a manual
+            process that I would personally forget to do all the time. Now we
+            are going to look into how to do this automatically.
           </p>
 
           <h4>A Failed Attempt with <span class="tt">udev</span> Rules.</h4>
 
-          <p class="text-muted indent">
-            Linux has things called <span class="tt">udev</span> rules. These
+          <p class="text-muted">
+            Linux has a thing called <span class="tt">udev</span> rules. These
             are actions that you can configure that are triggered when new
             devices are plugged in. We can write a rule like
             <code
@@ -351,21 +352,28 @@
           </p>
 
           <p class="text-muted indent">
-            My first though was to run my setup script each time it detected
+            My first thought was to run my setup script each time it detected
             that my tablet was plugged in. The problem was that for
-            <span class="tt">xsetwacom</span> to work on the table the X server
-            needs to detect and process the tablet. This happens long after the
-            <span class="tt">udev</span> rule fires. People online were working
-            on trying to use sleeps to handle this but the problem was that you
-            needed a wrapper that would background itself once sleeping
-            (otherwise the sleep to wait for X would block and X wouldn't
-            actually detect it before we try to run the script). This was
-            getting far too complex so I want with a different solution.
+            <span class="tt">xsetwacom</span> to work the X server needs to have
+            already detected and processed the tablet. This happens long after
+            the <span class="tt">udev</span> rule fires. People online were
+            working on trying to use sleeps to handle this. You script would
+            simply wait until the X server would have had time to find the
+            tablet before we try to configure it. The problem was that you
+            needed a wrapper around the configuration script. The wrapper would
+            need to trigger the configuration script and run it in the
+            background. This wrapper would then need to sleep and then configure
+            the tablet. This extra layer of indirection is needed because of if
+            the configuration script was to sleep in the foreground it would
+            block other things from running. If our script blocks then the X
+            server wouldn't actually detect it before our sleep is over and our
+            configuration would fail. This was getting far too complex and it
+            seemed too brittle, so I want with a different solution.
           </p>
 
           <h4>Finding the vendor and product ids.</h4>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             Both the <span class="tt">udev</span> rule and my eventual solution
             require the vendor id and product id of the table. This can be
             gotten with <code>lsusb</code>. The output will look like
@@ -379,23 +387,22 @@
 
           <h3>A Long Running <span class="tt">udev</span> Listener Service.</h3>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             Instead of using a <span class="tt">udev</span> rules I wrote a
             <a
               href="https://github.com/blester125/dotfiles/blob/master/wacom/wacom-listener.py"
               >python script</a
-            >
-            that listens to <span class="tt">udev</span> events. This is makes
-            it easier to have sleeps to wait for X to detect the tablet. This
-            script simply sits there and when a new device comes in with a
-            matching vendor id and product id we trigger our configuration
-            script. This script makes the tablet responsive to unplugging. Once
-            you plug it back in it will get re-configured.
+            ><a></a> that listens to <span class="tt">udev</span> events. This
+            is makes it easier to have sleeps to wait for X to detect the
+            tablet. This script simply sits there and when a new device comes in
+            with a matching vendor id and product id we trigger our
+            configuration script. This script makes the tablet responsive to
+            unplugging. Once you plug it back in it will get re-configured.
           </p>
 
           <h4>A Note on Dependency Management.</h4>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             My long running listener uses the
             <span class="tt">pyudev</span> library. There are a few ways to make
             this library accessible to the system service. I chose to install
@@ -411,7 +418,7 @@
             Failure.
           </h3>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             The long-running server method works well but there is still the
             manual step of starting it every time you boot your computer and
             restarting it if it ever crashes. We use
@@ -468,7 +475,7 @@
             <span class="tt">journalctl</span>.
           </p>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             The following steps are needed to enable the service.
           </p>
 
@@ -497,7 +504,7 @@
             </li>
           </ol>
 
-          <p class="text-muted indent">
+          <p class="text-muted">
             We can use <code>journalctl --user-unit wacom.service</code> to get
             the logs from the service.
           </p>
@@ -540,7 +547,7 @@
               Hopefully this post can help someone who is trying setup their
               Wacom tablet on Ubuntu Linux. I'm still draw poorly but at least
               now I can create my own reaction gifs. I'm think I'm going to go
-              draw a flower pot sliding across the flow to work on "overlapping
+              draw a flower pot sliding across the floor to work on "overlapping
               action", "drag", and "follow though".
             </p>
 
