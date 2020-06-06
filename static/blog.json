@@ -20,7 +20,7 @@
     "month": 6,
     "year": 2020,
     "tags": ["wacom", "systemd", "udev"],
-    "description": "There is a strong community supporting Wacom drawing tablets with easy to install drivers and software to help configure the tablet. One thing that is lacking is support for re-confutation when you unplug the tablet and plug it back in. In this post we dive into my solution.",
+    "description": "There is a strong community supporting Wacom drawing tablets with easy to install drivers and software to help configure the tablet. One thing that is lacking is support for re-configuration when you unplug the tablet and plug it back in. In this post we dive into my solution.",
     "link": "wacom.html"
   }
 ]
