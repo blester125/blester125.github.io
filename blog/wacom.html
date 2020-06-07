@@ -30,7 +30,7 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <meta name="author" content="Brian Lester" />
-    <title>Hot-swapping a Wacom Tabley on Linux</title>
+    <title>Hot-swapping a Wacom Tablet on Linux</title>
 
     <!-- Third Party CSS -->
     <link
@@ -196,25 +196,25 @@
               Inspired by the very good (but incredibly weird)
               <a
                 href="https://www.adultswim.com/videos/smiling-friends/smiling-friends"
-                >Similing Friends</a
+                >Smiling Friends</a
               ><a></a>, I decided to try my hand at animation. It is difficult
-              to overstate just how bizarre the show is but you can't help but
+              to overstate just how bizarre the show is, but you can't help but
               watch and see how they really pulled out all the stops. There is
               normal 2D animation, 3D animation, a rotoscoped section, and even
-              one of those super gross, painted, close-ups you see sometimes in
-              Sponge Bob. There was even a character watching a live action clip
-              on a tablet. I really recommend the show but I totally understand
-              if it turns out to be too weird for you.
+              one of those super gross, painted, close-up shots you see
+              sometimes in SpongeBob. There was even a character watching a live
+              action clip on a tablet. I really recommend the show, but I
+              totally understand if it turns out to be too weird for you.
             </p>
             <p class="text-muted indent">
               I've never been a very good artist and I definitely have never
               been able to draw consistently or quickly. Given that these are
               some of the first skills that come to mind mind when you think
-              about animation you might be wondering what is wrong with me. My
+              about animation, you might be wondering what is wrong with me. My
               real goal is just to be able to make something interesting and
-              creative and I hope that by picking 2D animation as a medium I'll
-              be forced to learn these skills. At a minimum I expect to get
-              better at drawing circles, squares, and straight lines which
+              creative. I also hope that by picking 2D animation as a medium
+              I'll be forced to learn these skills. At a minimum, I expect to
+              get better at drawing circles, squares, and straight lines which
               should make the white board diagrams I make when explaining a
               complex algorithm a bit (or a lot?) easier to read.
             </p>
@@ -223,8 +223,8 @@
               <a
                 href="https://www.wacom.com/en-us/products/pen-tablets/wacom-intuos"
                 >Wacom Intuos Small</a
-              ><a></a>. Given my skills on display here it should be clear I'm
-              not sponsored, this is just the tablet I got, it seems to work
+              ><a></a>. Given my skills on display here, it should be clear I'm
+              not sponsored, this is just the tablet I got. It seems to work
               well as a first tablet that is on the cheaper side. The problem is
               that I use Linux as my daily driver and Wacom tablets aren't
               supported. I've put a decent amount of work into getting
@@ -259,7 +259,7 @@
           <p class="text-muted">
             Unfortunately, Wacom tablets aren't supported on Linux. This means
             that there aren't official drivers published by Wacom to facilitate
-            communication between the tablet and your computer. Luckily for us
+            communication between the tablet and your computer. Luckily for us,
             there is a great community of people creating
             <a href="https://linuxwacom.github.io/">open source drivers</a
             ><a></a> for these tablets. Often these drivers ship with newer
@@ -272,18 +272,18 @@
           <h3>Configuring the Tablet with <span class="tt">xsetwacom</span></h3>
 
           <p class="text-muted">
-            The nice people over at The Linux Wacom Project who make the open
-            source drivers provide a handy tool,
+            The nice people over at The Linux Wacom Project, who make the open
+            source drivers, provide a handy tool,
             <span class="tt">xsetwacom</span>, designed to facilitate things
             like the configuration of the button that are commonly found on both
             the tablets and on the styluses themselves.
           </p>
 
-          <h4>Configuring the Buttons.</h4>
+          <h4>Configuring the Buttons</h4>
 
           <p class="text-muted">
             <span class="tt">xsetwacom</span> configures parts of the Wacom
-            eco-system by natural name rather than by an id or the like. The
+            eco-system by natural name, rather than by an id or the like. The
             command <code>xsetwacom list</code> will return the name, id, and
             type (<span class="tt">ERASER, STYLUS, PAD</span>, etc.) of all the
             detected Wacom devices. We can use the
@@ -301,28 +301,29 @@
             sets button one on the tablet so the "undo" hotkey.
           </p>
 
-          <h4>Configuring the Available Writing Space.</h4>
+          <h4>Configuring the Available Writing Space</h4>
 
           <p class="text-muted">
             One quirk of Wacom tablets is that when you have multiple monitors
-            the drawing surface defaults to mapping to the whole screen.
-            Touching on the left edge of the tablet jumps to the left edge of
-            the left-most monitor while the right edge would be all the way over
-            on the right side of the right monitor. This often causes tiny
-            movements on the pad to be a huge jump on the screen. We use the
+            the drawing surface defaults to mapping across all the available
+            monitors. Touching on the left edge of the tablet jumps to the left
+            edge of the left-most monitor, while the right edge would be all the
+            way over on the right side of the right monitor. This often causes
+            tiny movements on the pad to be a huge jump on the screen. We use
+            the
             <span class="tt">MapToOutput</span> command to limit the drawing
             surface to a particular screen. You are supposed to be able to use
             the name of the display that you get back from
-            <span class="tt">xrandr</span> but that never worked for me. When
-            this fails you can use the index (starting from zero) of the screen
-            when you consider the active screens. For example I use
+            <span class="tt">xrandr</span>, but that never worked for me. When
+            this fails, you can use the index (starting from zero) of the screen
+            when you consider the active screens. For example, I use
             <code
               >xsetwacom set "Wacom Intuos S Pen stylus" MapToOutput
               Head-0</code
             >.
           </p>
 
-          <h3>Re-configuration as you Remove and Plug-In the Tablet.</h3>
+          <h3>Re-configuration as you Remove and Plug-In the Tablet</h3>
 
           <p class="text-muted">
             The problem is that you'll need to re-configure your tablet each
@@ -336,12 +337,12 @@
             are going to look into how to do this automatically.
           </p>
 
-          <h4>A Failed Attempt with <span class="tt">udev</span> Rules.</h4>
+          <h4>A Failed Attempt with <span class="tt">udev</span> Rules</h4>
 
           <p class="text-muted">
-            Linux has a thing called <span class="tt">udev</span> rules. These
-            are actions that you can configure that are triggered when new
-            devices are plugged in. We can write a rule like
+            Linux has a feature called <span class="tt">udev</span> rules. These
+            are user defined actions that are triggered when new devices are
+            plugged in. We can write a rule like
             <code
               >SUBSYTEM=="usb", ATTRS{idVendor}=="XXXX", ATTRS{idProduct} ==
               "YYYY", RUN+="/path/to/my/script"</code
@@ -354,24 +355,24 @@
           <p class="text-muted indent">
             My first thought was to run my setup script each time it detected
             that my tablet was plugged in. The problem was that for
-            <span class="tt">xsetwacom</span> to work the X server needs to have
-            already detected and processed the tablet. This happens long after
-            the <span class="tt">udev</span> rule fires. People online were
-            working on trying to use sleeps to handle this. You script would
-            simply wait until the X server would have had time to find the
+            <span class="tt">xsetwacom</span> to work, the X server needs to
+            have already detected and processed the tablet. This happens long
+            after the <span class="tt">udev</span> rule fires. People online
+            were working on trying to use sleeps to handle this. You script
+            would simply wait until the X server would have had time to find the
             tablet before we try to configure it. The problem was that you
             needed a wrapper around the configuration script. The wrapper would
             need to trigger the configuration script and run it in the
             background. This wrapper would then need to sleep and then configure
-            the tablet. This extra layer of indirection is needed because of if
-            the configuration script was to sleep in the foreground it would
-            block other things from running. If our script blocks then the X
-            server wouldn't actually detect it before our sleep is over and our
+            the tablet. This extra layer of indirection is needed because if the
+            configuration script was to sleep in the foreground it would block
+            other things from running. If our script sleeping blocks the X
+            server then it would have never detected our tablet and
             configuration would fail. This was getting far too complex and it
             seemed too brittle, so I want with a different solution.
           </p>
 
-          <h4>Finding the vendor and product ids.</h4>
+          <h4>Finding the vendor and product ids</h4>
 
           <p class="text-muted">
             Both the <span class="tt">udev</span> rule and my eventual solution
@@ -385,22 +386,23 @@
             >.
           </p>
 
-          <h3>A Long Running <span class="tt">udev</span> Listener Service.</h3>
+          <h3>A Long Running <span class="tt">udev</span> Listener Service</h3>
 
           <p class="text-muted">
-            Instead of using a <span class="tt">udev</span> rules I wrote a
+            Instead of using a <span class="tt">udev</span> rules, I wrote a
             <a
               href="https://github.com/blester125/dotfiles/blob/master/wacom/wacom-listener.py"
               >python script</a
             ><a></a> that listens to <span class="tt">udev</span> events. This
             is makes it easier to have sleeps to wait for X to detect the
-            tablet. This script simply sits there and when a new device comes in
-            with a matching vendor id and product id we trigger our
+            tablet. This script simply sits there and when a new device comes
+            in, with a matching vendor id and product id, we trigger our
             configuration script. This script makes the tablet responsive to
-            unplugging. Once you plug it back in it will get re-configured.
+            unplugging. Once you plug the tablet back in, it will get
+            re-configured.
           </p>
 
-          <h4>A Note on Dependency Management.</h4>
+          <h4>A Note on Dependency Management</h4>
 
           <p class="text-muted">
             My long running listener uses the
@@ -415,11 +417,11 @@
 
           <h3>
             <span class="tt">systemd</span> For Automatic Starts and Reloads on
-            Failure.
+            Failure
           </h3>
 
           <p class="text-muted">
-            The long-running server method works well but there is still the
+            The long-running server method works well, but there is still the
             manual step of starting it every time you boot your computer and
             restarting it if it ever crashes. We use
             <span class="tt">systend</span> to manage this service for us.
@@ -453,11 +455,11 @@
           </div>
 
           <p class="text-muted indent">
-            This is our service configuration file, I've called it
+            This is our service configuration file&mdash;I've called it
             <code>wacom.service</code>. There are obvious values like
             <span class="tt">Description</span> which is the natural language
             summary of what your service does.
-            <span class="tt">ExecStart</span> tells us how to run the service
+            <span class="tt">ExecStart</span> tells us how to run the service,
             while keys like <span class="tt">Restart</span> and
             <span class="tt">RestartSec</span> control the settings for which to
             restart the service.
@@ -466,7 +468,7 @@
           <p class="text-muted indent">
             One thing to point out is the line
             <code>Environment=PYTHONUNBUFFERED=1</code>. This sets an
-            environment variable in the service. In this particular case we are
+            environment variable in the service. In this particular case, we are
             making the python output unbuffered. Normally python doesn't
             actually print the output(or write it to a file) until a
             <code>\n</code> is printed or the buffer files up. This environment
@@ -514,12 +516,12 @@
             service on boot and restarting it should it crash. We can simulate a
             crash with
             <code>systemctl --user --signal=SIGKILL kill wacom.service</code>
-            and see how systemd will bring it back up.
+            and see how <span class="tt">systemd</span> will bring it back up.
           </p>
           <p class="text-muted indent">
             Note: For most of these commands we should be able to drop the
             <span class="tt">.service</span> suffix and just call is wacom when
-            using systemctl
+            using <code>systemctl</code> commands.
           </p>
 
           <p class="text-muted indent">
@@ -545,10 +547,10 @@
           <div class="col-lg-6">
             <p class="text-muted indent">
               Hopefully this post can help someone who is trying setup their
-              Wacom tablet on Ubuntu Linux. I'm still draw poorly but at least
-              now I can create my own reaction gifs. I'm think I'm going to go
-              draw a flower pot sliding across the floor to work on "overlapping
-              action", "drag", and "follow though".
+              Wacom tablet on Ubuntu Linux. I'm still drawing poorly, but at
+              least I can create my own reaction gifs now. I'm think I'm going
+              to go draw a flower pot sliding across the floor to work on
+              "overlapping action", "drag", and "follow though".
             </p>
 
             <p></p>
