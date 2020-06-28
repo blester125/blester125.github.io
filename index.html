@@ -639,7 +639,7 @@
               Eastern Michigan University Machine Learning Conference
             </h4>
             <p class="text-muted">
-              March 2020, Upcoming<sup class="footnote text-muted">*</sup>
+              March 2020<sup class="footnote text-muted">*</sup>
             </p>
             <p class="text-muted">
               In most settings, one trains a model and then evaluates it on some
@@ -1140,6 +1140,44 @@
                 </p>
               </li>
               <li>
+                <a href="https://pypi.org/project/word-vectors/">
+                  word-vectors
+                </a>
+                <p class="pypi-description">
+                  Utilities to read and write common word vector formats such as
+                  word2vec and glove. Also introduces a new format called Leader
+                  which is a binary format like word2vec but we prefix the word
+                  with its length. This allows for reading without having to
+                  iterate over characters like word2vec does at the cost of just
+                  3 bytes of disk space per word. Our benchmarks show this
+                  format is faster for all common pre-trained embeddings.
+                </p>
+              </li>
+              <li>
+                <a href="https://pypi.org/project/iobes/">
+                  iobes
+                </a>
+                <p class="pypi-description">
+                  A small library for parsing, converting, and manipulating span
+                  level NLP tasks the are encoded with token level annotations
+                  like IOBES or BIO.
+                </p>
+              </li>
+              <li>
+                <a href="https://pypi.org/project/inverted-index/">
+                  inverted-index
+                </a>
+                <p class="pypi-description">
+                  A small, extensible, in-memory inverted index to quickly added
+                  full text search to a script. It also includes a
+                  <code>prompt_toolkit</code> completer that will search the
+                  inverted index as you type. Selecting an option will replace
+                  the input with that value. This is useful for when there are a
+                  lot of options to choose from and you want to provide a fuzzy
+                  search when looking for the right one.
+                </p>
+              </li>
+              <li>
                 <a href="https://pypi.org/project/get-mnist/">get-mnist</a>
                 <p class="pypi-description">
                   Lightweight utilities to download and load both the MNIST and
@@ -1152,19 +1190,6 @@
                   A GUI around surfraw that lets you open a search box from
                   anywhere, it also lets you do a search where the query is
                   whatever text is highlighted.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/word-vectors/">
-                  word-vectors
-                </a>
-                <p class="pypi-description">
-                  Utilities to read and write common word vector formats such as
-                  word2vec and glove. Also introduces a new format called Dense
-                  which is a binary format like word2vec but the word is stored
-                  in a fixed width. This uses a bit more disk space but allows
-                  for faster reading and enables the ability to read from
-                  multiple threads.
                 </p>
               </li>
               <li>
