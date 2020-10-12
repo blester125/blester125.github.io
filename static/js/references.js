@@ -36,13 +36,25 @@ function venueString(citation) {
 }
 
 /**
- * Extract the citation information from the citation and return as a string
+ * Extract the year from the citation
  * @param {*} citation - The citation object from citation-js
  */
 function extractYear(citation) {
   date_parts = citation.issued["date-parts"][0];
   if (date_parts.length >= 1) {
-    return date_parts[0];
+    return parseInt(date_parts[0], 10);
+  }
+  return 0;
+}
+
+/**
+ * Extract the month from the citation
+ * @param {*} citation - The citation object from citation-js
+ */
+function extractMonth(citation) {
+  date_parts = citation.issued["date-parts"][0];
+  if (date_parts.length >= 2) {
+    return parseInt(date_parts[1], 10);
   }
   return 0;
 }
@@ -63,8 +75,15 @@ function extractFirstAuthor_family(citation) {
 function compareCitations(a, b) {
   var a_year = extractYear(a);
   var b_year = extractYear(b);
-  if (a_year == b_year) {
-    return extractFirstAuthor_family(a) > extractFirstAuthor_family(b) ? 1 : -1;
+  if (a_year === b_year) {
+    var a_month = extractMonth(a);
+    var b_month = extractMonth(b);
+    if (a_month === b_month) {
+      return extractFirstAuthor_family(a) > extractFirstAuthor_family(b)
+        ? 1
+        : -1;
+    }
+    return a_month < b_month ? 1 : -1;
   }
   return a_year < b_year ? 1 : -1;
 }
