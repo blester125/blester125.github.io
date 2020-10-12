@@ -274,9 +274,7 @@
           <template v-for="blog in blogs">
             <div class="row">
               <div class="col-lg-8 col-lg-offset-2">
-                <h3 class="blog-title">
-                  {{ blog.title }}
-                </h3>
+                <h3 class="blog-title">{{ blog.title }}</h3>
                 <div class="row">
                   <div class="col-lg-2">
                     <p class="text-muted">{{ blog.date }}</p>
@@ -299,9 +297,7 @@
                   </div>
                 </div>
                 <div class="row col-lg-12">
-                  <p class="text-muted">
-                    {{ blog.description }}
-                  </p>
+                  <p class="text-muted">{{ blog.description }}</p>
                 </div>
                 <div class="row col-lg-12">
                   <a class="btn btn-primary btn-outline" :href="blog.link"
@@ -327,6 +323,27 @@
         <div class="row">
           <div class="col-lg-12">
             <ul class="timeline">
+              <!-- Begin Google AI Resident -->
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <img
+                    class="img-circle img-responsive"
+                    src="static/img/experience/google-ai.png"
+                  />
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4>Google</h4>
+                    <h4 class="subheading">October 2020&#8211;Present</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted job-right">
+                      <strong>AI Resident</strong>&#8212;Working on Natural
+                      Language Processing and Understanding.
+                    </p>
+                  </div>
+                </div>
+              </li>
               <!-- Begin Interactions -->
               <li>
                 <div class="timeline-image">
@@ -338,7 +355,7 @@
                 <div class="timeline-panel">
                   <div class="timeline-heading">
                     <h4>Interactions</h4>
-                    <h4 class="subheading">April 2018&#8211;Present</h4>
+                    <h4 class="subheading">April 2018&#8211;October 2020</h4>
                   </div>
                   <div class="timeline-body">
                     <p class="text-muted job-left">
@@ -761,9 +778,7 @@
             >
               slides
             </a>
-            <a href="presentations/pydata-2017.html">
-              video
-            </a>
+            <a href="presentations/pydata-2017.html"> video </a>
           </div>
         </div>
       </div>
@@ -796,7 +811,7 @@
                 <a
                   class="btn btn-primary paper-button-first"
                   v-bind:href="pub.link"
-                  style="margin-left: 5%;"
+                  style="margin-left: 5%"
                   >PDF</a
                 >
                 <a
@@ -807,7 +822,7 @@
                 <div
                   class="modal"
                   :id="pub.modal_id"
-                  style="display: none;"
+                  style="display: none"
                   v-on:click="hideModal(pub.modal_id)"
                 >
                   <div class="modal-content" onclick="event.stopPropagation();">
@@ -881,14 +896,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Mead-Baseline
-                  </h3>
+                  <h3 class="project-title">Mead-Baseline</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    Open Source Library
-                  </h6>
+                  <h6 class="project-type">Open Source Library</h6>
                 </div>
               </div>
               <div class="row">
@@ -944,9 +955,7 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Text Rank
-                  </h3>
+                  <h3 class="project-title">Text Rank</h3>
                 </div>
                 <div class="col-lg-2">
                   <h6 class="project-type">
@@ -985,14 +994,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    String Distance
-                  </h3>
+                  <h3 class="project-title">String Distance</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    Open Source Library
-                  </h6>
+                  <h6 class="project-type">Open Source Library</h6>
                 </div>
               </div>
               <div class="row">
@@ -1023,14 +1028,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Quick KNN
-                  </h3>
+                  <h3 class="project-title">Quick KNN</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    Open Source Library
-                  </h6>
+                  <h6 class="project-type">Open Source Library</h6>
                 </div>
               </div>
               <div class="row">
@@ -1061,14 +1062,10 @@
           <div class="col-lg-10">
             <div class="row">
               <div class="col-lg-10">
-                <h3 class="project-title">
-                  Dependency Parsing
-                </h3>
+                <h3 class="project-title">Dependency Parsing</h3>
               </div>
               <div class="col-lg-2">
-                <h6 class="project-type">
-                  Personal Project
-                </h6>
+                <h6 class="project-type">Personal Project</h6>
               </div>
             </div>
             <div class="row">
@@ -1098,14 +1095,10 @@
           <div class="col-lg-10">
             <div class="row">
               <div class="col-lg-10">
-                <h3 class="project-title">
-                  PyPI Packages
-                </h3>
+                <h3 class="project-title">PyPI Packages</h3>
               </div>
               <div class="col-lg-2">
-                <h6 class="project-type">
-                  Open Source Libraries
-                </h6>
+                <h6 class="project-type">Open Source Libraries</h6>
               </div>
             </div>
             <div class="row">
@@ -1154,9 +1147,7 @@
                 </p>
               </li>
               <li>
-                <a href="https://pypi.org/project/iobes/">
-                  iobes
-                </a>
+                <a href="https://pypi.org/project/iobes/"> iobes </a>
                 <p class="pypi-description">
                   A small library for parsing, converting, and manipulating span
                   level NLP tasks the are encoded with token level annotations
@@ -1251,14 +1242,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Decomposable Attention
-                  </h3>
+                  <h3 class="project-title">Decomposable Attention</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    Personal Project
-                  </h6>
+                  <h6 class="project-type">Personal Project</h6>
                 </div>
               </div>
               <div class="row">
@@ -1294,14 +1281,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Steering Angles
-                  </h3>
+                  <h3 class="project-title">Steering Angles</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    Personal Project
-                  </h6>
+                  <h6 class="project-type">Personal Project</h6>
                 </div>
               </div>
               <div class="row">
@@ -1335,14 +1318,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Multi-Digit Recognition
-                  </h3>
+                  <h3 class="project-title">Multi-Digit Recognition</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    Personal Project
-                  </h6>
+                  <h6 class="project-type">Personal Project</h6>
                 </div>
               </div>
               <div class="row">
@@ -1389,9 +1368,7 @@
                   </h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    University of Pittsburgh
-                  </h6>
+                  <h6 class="project-type">University of Pittsburgh</h6>
                 </div>
               </div>
               <div class="row">
@@ -1424,14 +1401,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Particle Simulation
-                  </h3>
+                  <h3 class="project-title">Particle Simulation</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    University of Pittsburgh
-                  </h6>
+                  <h6 class="project-type">University of Pittsburgh</h6>
                 </div>
               </div>
               <div class="row">
@@ -1466,14 +1439,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Secure File Sharing System
-                  </h3>
+                  <h3 class="project-title">Secure File Sharing System</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    University of Pittsburgh
-                  </h6>
+                  <h6 class="project-type">University of Pittsburgh</h6>
                 </div>
               </div>
               <div class="row">
@@ -1519,9 +1488,7 @@
                   </h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    Personal Project
-                  </h6>
+                  <h6 class="project-type">Personal Project</h6>
                 </div>
               </div>
               <div class="row">
@@ -1561,14 +1528,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    Compiler
-                  </h3>
+                  <h3 class="project-title">Compiler</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    University of Pittsburgh
-                  </h6>
+                  <h6 class="project-type">University of Pittsburgh</h6>
                 </div>
               </div>
               <div class="row">
@@ -1610,9 +1573,7 @@
                   </h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    University of Pittsburgh
-                  </h6>
+                  <h6 class="project-type">University of Pittsburgh</h6>
                 </div>
               </div>
               <div class="row">
@@ -1650,14 +1611,10 @@
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
-                  <h3 class="project-title">
-                    League Maker
-                  </h3>
+                  <h3 class="project-title">League Maker</h3>
                 </div>
                 <div class="col-lg-2">
-                  <h6 class="project-type">
-                    University of Pittsburgh
-                  </h6>
+                  <h6 class="project-type">University of Pittsburgh</h6>
                 </div>
               </div>
               <div class="row">
@@ -1706,7 +1663,7 @@
               <i class="fa fa-university fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Degrees</h4>
-            <p class="text-muted" style="text-align: left;">
+            <p class="text-muted" style="text-align: left">
               Double Major at the University of Pittsburgh.
               <br />
               Bachelor of Science in Computer Science with honors.
@@ -1720,7 +1677,7 @@
               <i class="fas fa-pencil-alt fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Significant Courses</h4>
-            <p class="text-muted" style="text-align: left;">
+            <p class="text-muted" style="text-align: left">
               Data Communications and Computer Networks
               <br />
               High Performance Computing
@@ -1743,7 +1700,7 @@
               <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
             </span>
             <h4 class="service-heading">Continuous Learning</h4>
-            <p class="text-muted" style="text-align: left;">
+            <p class="text-muted" style="text-align: left">
               Audit lectures and completed assignments for many online courses
               including, Coursea Machine Learning, Udacity Machine Learning
               Nanodegree, Stanford CS 224n Deep Learning for Natural Language

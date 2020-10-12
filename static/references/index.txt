@@ -1,5 +1,8 @@
 jindal-etal-2019-effective.bib
 lester-2018-dynamically.bib
-lester-2020-computationally.bib
 pressel-2018-baseline.bib
 pressel-etal-2018-baseline.bib
+lester-2020-leader.bib
+lester-2020-multiple.bib
+lester-2020-iobes.bib
+lester-2020-constrained.bib
