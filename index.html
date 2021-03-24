@@ -175,27 +175,25 @@
               <a href="#page-top"></a>
             </li>
             <li>
-              <a class="page-scroll" href="static/resume/BrianLesterCV.pdf">
-                Resume
-              </a>
-            </li>
-            <li>
-              <a class="page-scroll" href="#blog">Blog</a>
+              <a class="page-scroll" href="static/cv/BrianLesterCV.pdf"> CV </a>
             </li>
             <li>
               <a class="page-scroll" href="#experience">Experience</a>
             </li>
             <li>
-              <a class="page-scroll" href="#skills">Skills</a>
+              <a class="page-scroll" href="#publications">Publications</a>
             </li>
             <li>
               <a class="page-scroll" href="#presentations">Presentations</a>
             </li>
             <li>
-              <a class="page-scroll" href="#publications">Publications</a>
+              <a class="page-scroll" href="#skills">Skills</a>
             </li>
             <li>
               <a class="page-scroll" href="#projects">Projects</a>
+            </li>
+            <li>
+              <a class="page-scroll" href="#blog">Blog</a>
             </li>
             <li>
               <a class="page-scroll" href="#education">Education</a>
@@ -257,60 +255,6 @@
       </div>
     </header>
 
-    <!-- Blog Section -->
-    <section id="blog" class="bg-light-gray">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Blog</h2>
-            <h3 class="section-subheading text-muted">
-              A collection of blog posts, mostly about how the math of machine
-              learning works.
-            </h3>
-          </div>
-        </div>
-
-        <div id="blog-container">
-          <template v-for="blog in blogs">
-            <div class="row">
-              <div class="col-lg-8 col-lg-offset-2">
-                <h3 class="blog-title">{{ blog.title }}</h3>
-                <div class="row">
-                  <div class="col-lg-2">
-                    <p class="text-muted">{{ blog.date }}</p>
-                  </div>
-                  <div class="col-lg-10">
-                    <span class="blog-tags">
-                      <i class="fas fa-tags"></i>
-                      <span v-for="(tag, index) in blog.tags">
-                        <a
-                          class="tag"
-                          :href="tag.link"
-                          v-if="index != blog.tags.length - 1"
-                          >{{ tag.name }},
-                        </a>
-                        <a class="tag" :href="tag.link" v-else
-                          >{{ tag.name }}</a
-                        >
-                      </span>
-                    </span>
-                  </div>
-                </div>
-                <div class="row col-lg-12">
-                  <p class="text-muted">{{ blog.description }}</p>
-                </div>
-                <div class="row col-lg-12">
-                  <a class="btn btn-primary btn-outline" :href="blog.link"
-                    >Continue Reading</a
-                  >
-                </div>
-              </div>
-            </div>
-          </template>
-        </div>
-      </div>
-    </section>
-
     <!-- Experience Section -->
     <section id="experience">
       <div class="container">
@@ -341,6 +285,12 @@
                       <strong>AI Resident</strong>&#8212;Working on Natural
                       Language Processing and Understanding.
                     </p>
+                    <p>
+                      Interesting in efficiently leveraging massive pre-trained
+                      transformers and adding structured prediction atop
+                      powerful local features created by large contextual
+                      embeddings.
+                    </p>
                   </div>
                 </div>
               </li>
@@ -360,12 +310,12 @@
                   <div class="timeline-body">
                     <p class="text-muted job-left">
                       <strong>Machine Learning Engineer</strong
-                      >&#8212;Specializing in using Deep Learning for Natural
-                      Language Processing (NLP). Research into new effective
-                      training methods and model architectures, building client
-                      models for production, and creating infrastructure that
-                      enables distributed, cloud-native, training and
-                      horizontally scalable model serving.
+                      >&#8212;Specialized in using Deep Learning for Natural
+                      Language Processing (NLP). Researched new and effective
+                      training methods and model architectures, built
+                      client-facing models for production, and created
+                      infrastructure that enables distributed, cloud-native,
+                      training and horizontally scalable model serving.
                     </p>
                     <p class="text-muted job-left">
                       I maintain Mead-Baseline&#8212;our open-source
@@ -401,7 +351,7 @@
                       training data into a model that is ready for production.
                     </p>
                     <p class="text-muted job-left">
-                      Created and Maintain our deep-learning model serving
+                      Created and maintain our deep-learning model serving
                       infrastructure. The server, backed by TensorFlow Serving,
                       enables rich Natural Language Understanding (NLU) via
                       cascading calls to a series of deep learning models. Both
@@ -531,63 +481,67 @@
       </div>
     </section>
 
-    <!-- Skills section -->
-    <section id="skills" class="bg-light-gray">
+    <!-- Publications section -->
+    <section id="publications" class="bg-light-gray">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Skills</h2>
-            <h3 class="section-subheading text-muted">
-              Skilled in Data Science, Software Engineering, and more.
-            </h3>
+            <h2 class="section-heading">Publications</h2>
           </div>
         </div>
-        <div class="row text-center">
-          <div class="col-md-3">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-brain fa-inverse fa-stack-1x"></i>
-            </span>
-            <h4 class="service-heading">Deep and Machine Learning</h4>
-            <p class="text-muted">
-              Extensive experience in using Pytorch, TensorFlow, and
-              Scikit-learn for NLP applications.
-            </p>
-          </div>
-          <div class="col-md-3">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-server fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">Cloud and Infrastructure</h4>
-            <p class="text-muted">
-              Deep Understanding of building and deploying applications with
-              Kubernetes, Docker, Flux, Prometheus, Apache Nifi, MongoDB, GitLab
-              CI/CD, and GitHub actions
-            </p>
-          </div>
-          <div class="col-md-3">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fas fa-flask fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">Data Science</h4>
-            <p class="text-muted">
-              Experience with Data Science toolkits such as NumPy, Pandas,
-              Faiss, Gensim, SpaCy, NLTK, SciPy, and Matplotlib
-            </p>
-          </div>
-          <div class="col-md-3">
-            <span class="fa-stack fa-4x">
-              <i class="fa fa-circle fa-stack-2x text-primary"></i>
-              <i class="fa fa-code fa-stack-1x fa-inverse"></i>
-            </span>
-            <h4 class="service-heading">Programming Languages</h4>
-            <p class="text-muted">
-              In-depth understanding of Python, Cython, Java, and C. Experience
-              with Javascript, C++, HTML, and \(\rm \LaTeX \)
-            </p>
-          </div>
+        <div id="publications-container">
+          <template v-for="pub in publications">
+            <div class="paper" :id="pub.id">
+              <a class="paper-link" v-bind:href="pub.link">
+                <div class="row">
+                  <div class="col-lg-1"></div>
+                  <div class="col-lg-10">
+                    <h3 class="paper-title" v-html="pub.title"></h3>
+                    <h4 class="paper-authors">{{ pub.authors }}</h4>
+                    <p class="paper-venue">{{ pub.venue }}</p>
+                  </div>
+                  <div class="col-lg-1"></div>
+                </div>
+              </a>
+              <div class="row">
+                <div class="col-lg-1"></div>
+                <a
+                  class="btn btn-primary paper-button-first"
+                  v-bind:href="pub.link"
+                  style="margin-left: 5%"
+                  >PDF</a
+                >
+                <a
+                  class="btn btn-primary paper-button"
+                  v-on:click="showModal(pub.modal_id)"
+                  >BibTex</a
+                >
+                <div
+                  class="modal"
+                  :id="pub.modal_id"
+                  style="display: none"
+                  v-on:click="hideModal(pub.modal_id)"
+                >
+                  <div class="modal-content" onclick="event.stopPropagation();">
+                    <pre class="bibtex">{{ pub.bibtext }}</pre>
+                  </div>
+                </div>
+                <button
+                  class="btn btn-primary paper-button"
+                  v-bind:data-clipboard-text="pub.bibtext"
+                  title="Copy BibTex to Clipboard"
+                >
+                  <i class="far fa-copy"></i>
+                </button>
+                <a
+                  v-if="pub.code"
+                  class="btn btn-primary paper-button"
+                  v-bind:href="pub.code"
+                  >Code</a
+                >
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </section>
@@ -784,61 +738,63 @@
       </div>
     </section>
 
-    <!-- Publications section -->
-    <section id="publications" class="bg-light-gray">
+    <!-- Skills section -->
+    <section id="skills" class="bg-light-gray">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading">Publications</h2>
+            <h2 class="section-heading">Skills</h2>
+            <h3 class="section-subheading text-muted">
+              Skilled in Data Science, Software Engineering, and more.
+            </h3>
           </div>
         </div>
-        <div id="publications-container">
-          <template v-for="pub in publications">
-            <div class="paper" :id="pub.id">
-              <a class="paper-link" v-bind:href="pub.link">
-                <div class="row">
-                  <div class="col-lg-1"></div>
-                  <div class="col-lg-10">
-                    <h3 class="paper-title" v-html="pub.title"></h3>
-                    <h4 class="paper-authors">{{ pub.authors }}</h4>
-                    <p class="paper-venue">{{ pub.venue }}</p>
-                  </div>
-                  <div class="col-lg-1"></div>
-                </div>
-              </a>
-              <div class="row">
-                <div class="col-lg-1"></div>
-                <a
-                  class="btn btn-primary paper-button-first"
-                  v-bind:href="pub.link"
-                  style="margin-left: 5%"
-                  >PDF</a
-                >
-                <a
-                  class="btn btn-primary paper-button"
-                  v-on:click="showModal(pub.modal_id)"
-                  >BibTex</a
-                >
-                <div
-                  class="modal"
-                  :id="pub.modal_id"
-                  style="display: none"
-                  v-on:click="hideModal(pub.modal_id)"
-                >
-                  <div class="modal-content" onclick="event.stopPropagation();">
-                    <pre class="bibtex">{{ pub.bibtext }}</pre>
-                  </div>
-                </div>
-                <button
-                  class="btn btn-primary paper-button"
-                  v-bind:data-clipboard-text="pub.bibtext"
-                  title="Copy BibTex to Clipboard"
-                >
-                  <i class="far fa-copy"></i>
-                </button>
-              </div>
-            </div>
-          </template>
+        <div class="row text-center">
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-brain fa-inverse fa-stack-1x"></i>
+            </span>
+            <h4 class="service-heading">Deep and Machine Learning</h4>
+            <p class="text-muted">
+              Extensive experience in using Jax, Flax, TensorFlow, Pytorch, and
+              Scikit-learn for ML, specifically NLP, applications.
+            </p>
+          </div>
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-server fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Cloud and Infrastructure</h4>
+            <p class="text-muted">
+              Deep Understanding of building and deploying applications with
+              Kubernetes, Docker, Flux, Prometheus, Apache Nifi, MongoDB, GitLab
+              CI/CD, and GitHub actions
+            </p>
+          </div>
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fas fa-flask fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Data Science</h4>
+            <p class="text-muted">
+              Experience with Data Science toolkits such as NumPy, Pandas,
+              Faiss, Gensim, SpaCy, NLTK, SciPy, and Matplotlib
+            </p>
+          </div>
+          <div class="col-md-3">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-code fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Programming Languages</h4>
+            <p class="text-muted">
+              In-depth understanding of Python, Cython, Java, and C. Experience
+              with Javascript, C++, HTML, and \(\rm \LaTeX \)
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -944,6 +900,43 @@
             <div class="col-lg-2 project-image hidden-sm hidden-md">
               <img
                 src="static/img/project/lstm.png"
+                class="img-thumbnail center-block"
+              />
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/blester125/iobes" , class="project-link">
+          <div class="row equal">
+            <div class="col-lg-10">
+              <div class="row">
+                <div class="col-lg-10">
+                  <h3 class="project-title">IOBES</h3>
+                </div>
+                <div class="col-lg-2">
+                  <h6 class="project-type">Open Source Library</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-2">
+                  <p class="project-date">November 2020</p>
+                </div>
+              </div>
+              <p class="project-content">
+                A small library for parsing, converting, and manipulating span
+                level NLP tasks (NER, slot-filling, etc) that are encoded as
+                token level annotations like IOBES or BIO.
+                <a href="https://www.aclweb.org/anthology/2020.nlposs-1.16/"
+                  >A paper describing this library, and the need for
+                  standardized tools for span level NLP, was published at the
+                  second workshop on NLP Open Source Software.</a
+                >
+              </p>
+            </div>
+            <div class="col-lg-2 project-image hidden-sm hidden-md">
+              <img
+                src="static/img/project/iobes.png"
                 class="img-thumbnail center-block"
               />
             </div>
@@ -1144,14 +1137,10 @@
                   iterate over characters like word2vec does at the cost of just
                   3 bytes of disk space per word. Our benchmarks show this
                   format is faster for all common pre-trained embeddings.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/iobes/"> iobes </a>
-                <p class="pypi-description">
-                  A small library for parsing, converting, and manipulating span
-                  level NLP tasks the are encoded with token level annotations
-                  like IOBES or BIO.
+                  <a href="https://arxiv.org/abs/2009.13699">
+                    A paper describing the new embedding format, benchmarks
+                    done, and the library can be found here.</a
+                  >
                 </p>
               </li>
               <li>
@@ -1203,8 +1192,8 @@
               <li>
                 <a href="https://pypi.org/project/quick-knn/">quick-knn</a>
                 <p class="pypi-description">
-                  An LSH implementation that support MinHash and Random
-                  Hyperplanes.
+                  An LSH implementation that supports Jaccard Similarity through
+                  MinHash and cosine similarity via Random Hyperplanes.
                 </p>
               </li>
               <li>
@@ -1588,7 +1577,7 @@
                 tracking the distances between sets of repeating characters to
                 try to estimate the length of the key. I didn't have time to
                 implement frequency analysis to try to figure out what the key
-                actually was. This program is written in C and includes the C
+                actually was. This program is written in C and includes a C
                 implementaion of a Red-Black tree (used to track the offsets
                 between repeating sequences of characters).
               </p>
@@ -1647,8 +1636,62 @@
       </div>
     </section>
 
+    <!-- Blog Section -->
+    <section id="blog" class="bg-light-gray">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading">Blog</h2>
+            <h3 class="section-subheading text-muted">
+              A collection of blog posts, mostly about how the math of machine
+              learning works.
+            </h3>
+          </div>
+        </div>
+
+        <div id="blog-container">
+          <template v-for="blog in blogs">
+            <div class="row">
+              <div class="col-lg-8 col-lg-offset-2">
+                <h3 class="blog-title">{{ blog.title }}</h3>
+                <div class="row">
+                  <div class="col-lg-2">
+                    <p class="text-muted">{{ blog.date }}</p>
+                  </div>
+                  <div class="col-lg-10">
+                    <span class="blog-tags">
+                      <i class="fas fa-tags"></i>
+                      <span v-for="(tag, index) in blog.tags">
+                        <a
+                          class="tag"
+                          :href="tag.link"
+                          v-if="index != blog.tags.length - 1"
+                          >{{ tag.name }},
+                        </a>
+                        <a class="tag" :href="tag.link" v-else
+                          >{{ tag.name }}</a
+                        >
+                      </span>
+                    </span>
+                  </div>
+                </div>
+                <div class="row col-lg-12">
+                  <p class="text-muted">{{ blog.description }}</p>
+                </div>
+                <div class="row col-lg-12">
+                  <a class="btn btn-primary btn-outline" :href="blog.link"
+                    >Continue Reading</a
+                  >
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+
     <!-- Education Section -->
-    <section id="education" class="bg-light-gray">
+    <section id="education">
       <div class="container">
         <div class="row col-lg-12 text-center">
           <h2 class="section-heading">Education</h2>

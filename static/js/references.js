@@ -141,6 +141,7 @@ function createReferences(target, content) {
       authors: authorString(bibs[i].author),
       venue: venueString(bibs[i]),
       bibtext: content[i],
+      code: bibs[i].note,
     });
   }
   // Render the publications into the HTML
