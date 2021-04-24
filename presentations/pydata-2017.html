@@ -55,9 +55,7 @@
     />
     <link
       rel="stylesheet"
-      href="https://cdn.rawgit.com/jpswalsh/academicons/v1.8.6/css/academicons.min.css"
-      integrity="sha384-qpNsn9fNAkiBXwcwfxPTn1Ou6UU9P6pYGWQqLRIJOlPsAKOA+8XzN2coCnVnb8Fa"
-      crossorigin="anonymous"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
     />
     <link
       href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
@@ -88,10 +86,10 @@
     <![endif]-->
 
     <!-- favicon, the logo in the tab -->
-    <link rel="icon" href="static/img/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
     <link
       rel="shortcut icon"
-      href="static/img/favicon.ico"
+      href="/static/img/favicon.ico"
       type="image/x-icon"
     />
 
@@ -108,71 +106,26 @@
     ></script>
 
     <!-- Custom CSS -->
-    <link href="../static/css/agency.css" rel="stylesheet" type="text/css" />
-    <link href="../static/css/teaching.css" rel="stylesheet" type="text/css" />
-    <link href="../static/css/nav.css" rel="stylesheet" />
+    <link href="/static/css/agency.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/teaching.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/nav.css" rel="stylesheet" />
+    <link href="/static/css/nav-placeholder.css" rel="stylesheet" />
 
     <!-- Custom JavaScript -->
-    <script src="../static/js/agency.js"></script>
+    <script src="/static/js/fetch.js"></script>
+    <script>
+      $(function () {
+        $("#nav").load("/static/nav.html", function () {
+          loadScript("/static/js/agency.js");
+        });
+        $("#footer").load("/static/footer.html", function () {
+          $(".social-links").load("/static/socials.html");
+        });
+      });
+    </script>
   </head>
   <body class="bg-light-gray">
-    <!-- Navigation -->
-    <nav class="navbar navbar-default navbar-shrink">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-          <button
-            type="button"
-            class="navbar-toggle"
-            data-toggle="collapse"
-            data-target="#bs-example-navbar-collapse-1"
-          >
-            <span class="sr-only">Toggle navigation</span>
-            <i class="fas fa-bars fa-1x"></i>
-          </button>
-          <a class="navbar-brand page-scroll" href="../#page-top">
-            Brian Lester
-          </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li class="hidden">
-              <a href="../#page-top"></a>
-            </li>
-            <li>
-              <a class="page-scroll" href="../static/resume/BrianLesterCV.pdf">
-                Resume
-              </a>
-            </li>
-            <li>
-              <a class="page-scroll" href="../#blog">Blog</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="../#experience">Experience</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="../#skills">Skills</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="../#projects">Projects</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="../#presentations">Presentations</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="../#publications">Publications</a>
-            </li>
-            <li>
-              <a class="page-scroll" href="../#education">Education</a>
-            </li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
+    <div id="nav" class="navbar-placeholder"></div>
 
     <div class="container">
       <div class="row">
@@ -210,60 +163,6 @@
       </div>
     </div>
 
-    <footer
-      class="bg-dark-gray"
-      style="position: absolute; bottom: 0; width: 100%;"
-    >
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4">
-            <span class="copyright">Brian Lester, 2020</span>
-          </div>
-          <div class="col-md-4">
-            <!-- This should match the top one -->
-            <ul class="list-inline social-buttons">
-              <li>
-                <a href="https://twitter.com/blester125">
-                  <i class="fab fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.linkedin.com/in/blester125">
-                  <i class="fab fa-linkedin"></i>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://scholar.google.com/citations?user=OWSQqZMAAAAJ&hl=en"
-                >
-                  <i class="ai ai-google-scholar"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://pypi.org/user/BLester125/">
-                  <i class="fab fa-python"></i>
-                </a>
-              </li>
-              <li>
-                <a href="https://github.com/blester125">
-                  <i class="fab fa-github"></i>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="col-md-4">
-            <ul class="list-inline quicklinks">
-              <li>
-                Design based on "
-                <a href="http://startbootstrap.com/template-overviews/agency/">
-                  Agency
-                </a>
-                " template.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </footer>
+    <div id="footer" style="position: absolute; bottom: 0; width: 100%"></div>
   </body>
 </html>

@@ -4,10 +4,10 @@
  * @param {Callable} func - The function to call with the returned data
  */
 function readFile(fileName, func) {
-    $.ajax({
-        url: fileName,
-        success: func
-    });
+  $.ajax({
+    url: fileName,
+    success: func,
+  });
 }
 
 /**
@@ -18,17 +18,30 @@ function readFile(fileName, func) {
  * @param {Callable} func - The function to call on the list of returned data
  */
 function readFiles(fileNames, func) {
-    var content = [];
-    var requests = [];
-    for (var i = 0; i < fileNames.length; i++) {
-        requests.push($.ajax({
-            url: fileNames[i],
-            success: function(data) {
-                content.push(data);
-            }
-        }));
-    }
-    $.when.apply($, requests).done(function() {
-        func(content)
-    })
+  var content = [];
+  var requests = [];
+  for (var i = 0; i < fileNames.length; i++) {
+    requests.push(
+      $.ajax({
+        url: fileNames[i],
+        success: function (data) {
+          content.push(data);
+        },
+      })
+    );
+  }
+  $.when.apply($, requests).done(function () {
+    func(content);
+  });
+}
+
+/**
+ * Load a script file from url
+ * @param {str} url - The location to load the script from.
+ * @param {} location - Where to add the script as a child.
+ */
+function loadScript(url, location = document.head) {
+  var scriptTag = document.createElement("script");
+  scriptTag.src = url;
+  location.appendChild(scriptTag);
 }

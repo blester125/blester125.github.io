@@ -9,6 +9,9 @@ $(function () {
   $("a.page-scroll").bind("click", function (event) {
     var $anchor = $(this);
     var loc = $anchor.attr("href");
+    // The nav bar has `/#anchor` so that other pages that use it will link to
+    // the main page, here we remove it if it exists so scrolling works.
+    loc = loc.replace(/^\//, "");
     $anchor.blur();
     $("html, body")
       .stop()
