@@ -226,8 +226,8 @@
             The nice people over at The Linux Wacom Project, who make the open
             source drivers, provide a handy tool,
             <span class="tt">xsetwacom</span>, designed to facilitate things
-            like the configuration of the button that are commonly found on both
-            the tablets and on the styluses themselves.
+            like the configuration of the buttons that are commonly found on
+            both the tablets and on the styluses themselves.
           </p>
 
           <h4>Configuring the Buttons</h4>
@@ -236,8 +236,9 @@
             <span class="tt">xsetwacom</span> configures parts of the Wacom
             eco-system by natural name, rather than by an id or the like. The
             command <code>xsetwacom list</code> will return the name, id, and
-            type (<span class="tt">ERASER, STYLUS, PAD</span>, etc.) of all the
-            detected Wacom devices. We can use the
+            type (<span class="tt">ERASER</span>,
+            <span class="tt">STYLUS</span>, <span class="tt">PAD</span>, etc.)
+            of all the detected Wacom devices. We can use the
             <span class="tt">get</span> command to see the value of a setting.
             We normally see calls like
             <code>xsetwacom get "{device name}" {parameter}</code>. We can use
@@ -309,7 +310,7 @@
             <span class="tt">xsetwacom</span> to work, the X server needs to
             have already detected and processed the tablet. This happens long
             after the <span class="tt">udev</span> rule fires. People online
-            were working on trying to use sleeps to handle this. You script
+            were working on trying to use sleeps to handle this. Your script
             would simply wait until the X server would have had time to find the
             tablet before we try to configure it. The problem was that you
             needed a wrapper around the configuration script. The wrapper would
@@ -340,7 +341,7 @@
           <h3>A Long Running <span class="tt">udev</span> Listener Service</h3>
 
           <p class="text-muted">
-            Instead of using a <span class="tt">udev</span> rules, I wrote a
+            Instead of using <span class="tt">udev</span> rules, I wrote a
             <a
               href="https://github.com/blester125/dotfiles/blob/master/wacom/wacom-listener.py"
               >python script</a
@@ -374,7 +375,7 @@
           <p class="text-muted">
             The long-running server method works well, but there is still the
             manual step of starting it every time you boot your computer and
-            restarting it if it ever crashes. We use
+            restarting it if it ever crashes. We can use
             <span class="tt">systend</span> to manage this service for us.
           </p>
 
