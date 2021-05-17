@@ -19,24 +19,21 @@
 
     <meta
       name="og:description"
-      content="A lightiting talk on using character compositional models to enable an open vocbulary in Deep Neural Networks for NLP."
+      content="My pre-recorded talk from the SustaiNLP 2020 workshop on how constrained decoding can replace CRFs in BiLSTM-CRF taggers."
     />
-    <meta
-      name="og:title"
-      content="Input Representations in Deep Neural Networks"
-    />
+    <meta name="og:title" content="Constrained Decoding SustiNLP 2020 Talk" />
     <meta
       name="og:url"
-      content="https://blester125.com/presentations/pydata-2017.html"
+      content="https://blester125.com/presentations/constrained-sustainlp-2020.html"
     />
-    <meta
-      name="og:image"
-      content="https://blester125.com/static/img/presentations/char-input.png"
-    />
+    <!-- <meta -->
+    <!--   name="og:image" -->
+    <!--   content="https://blester125.com/static/img/project/iobes.png" -->
+    <!-- /> -->
     <meta name="twitter:card" content="summary_large_image" />
 
     <meta name="author" content="Brian Lester" />
-    <title>Input Representations in Deep Neural Networks</title>
+    <title>Constrained Decoding SustaiNLP 2020 Talk</title>
 
     <!-- Third Party CSS -->
     <link
@@ -131,23 +128,24 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2" id="information">
           <h1 class="talk-title">
-            Input Representations of Deep Neural Networks
+            Constrained Decoding for Computationally Efficient Named Entity
+            Recognition Taggers
           </h1>
-          <h2 class="talk-location">PyData Ann Arbor</h2>
-          <p class="text-muted">October 2017</p>
+          <h2 class="talk-location">SustaiNLP Workshop</h2>
+          <p class="text-muted">November 2020</p>
         </div>
       </div>
 
       <div class="row">
-        <div class="col-lg-9 col-lg-offset-2">
-          <div class="embed-responsive embed-responsive-16by9" id="video">
-            <iframe
-              class="embed-responsive-item"
-              src="https://www.youtube.com/embed/SPt5Bg3Rk7U?start=1590&rel=0"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            ></iframe>
+        <div class="col-lg-12">
+          <div id="presentation-embed-38940105">
+            <script src="https://slideslive.com/embed_presentation.js"></script>
+            <script>
+              embed = new SlidesLiveEmbed("presentation-embed-38940105", {
+                presentationId: "38940105",
+                autoPlay: false, // change to true to autoplay the embedded presentation
+              });
+            </script>
           </div>
         </div>
       </div>
@@ -155,9 +153,11 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2" id="abstract">
           <p class="text-muted">
-            A talk on creating robust models via learned character compositional
-            input representations based on bLSTMs to support an open vocabulary
-            for Deep Neural Networks.
+            A talk about how constrained decoding, a way to make sure taggers do
+            not output an illegal series of tokens, can be used instead of a CRF
+            as the final output of a BiLSTM tagger. The differences in model
+            performance are statistically insignificant and constrained decoding
+            yields a x2 speedup for training.
           </p>
         </div>
       </div>

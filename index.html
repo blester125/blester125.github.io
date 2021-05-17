@@ -464,6 +464,24 @@
                   v-bind:href="pub.code"
                   >Code</a
                 >
+                <a
+                  v-if="pub.poster"
+                  class="btn btn-primary paper-button"
+                  v-bind:href="pub.poster"
+                  >Poster</a
+                >
+                <a
+                  v-if="pub.video"
+                  class="btn btn-primary paper-button"
+                  v-bind:href="pub.video"
+                  >Video</a
+                >
+                <a
+                  v-if="pub.slides"
+                  class="btn btn-primary paper-button"
+                  v-bind:href="pub.slides"
+                  >Slides</a
+                >
               </div>
             </div>
           </template>

@@ -110,6 +110,22 @@ function sortCitations(citations, content) {
   return [citations, sorted_content];
 }
 
+function extractCode(citation) {
+  return citation._graph[1].data.properties.code;
+}
+
+function extractVideo(citation) {
+  return citation._graph[1].data.properties.video;
+}
+
+function extractPoster(citation) {
+  return citation._graph[1].data.properties.poster;
+}
+
+function extractSlides(citation) {
+  return citation._graph[1].data.properties.slides;
+}
+
 /**
  * Render out the references into the HTML
  * Note:
@@ -141,7 +157,10 @@ function createReferences(target, content) {
       authors: authorString(bibs[i].author),
       venue: venueString(bibs[i]),
       bibtext: content[i],
-      code: bibs[i].note,
+      code: extractCode(bibs[i]),
+      video: extractVideo(bibs[i]),
+      poster: extractPoster(bibs[i]),
+      slides: extractSlides(bibs[i]),
     });
   }
   // Render the publications into the HTML
