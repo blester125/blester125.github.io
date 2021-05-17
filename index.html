@@ -429,62 +429,65 @@
                 </div>
               </a>
               <div class="container">
-              <div class="row">
-                <div class="col-1"></div>
-                <div class="col-10">
-                <a
-                  class="btn btn-primary paper-button"
-                  v-bind:href="pub.link"
-                  >PDF</a
-                >
-                <a
-                  class="btn btn-primary paper-button"
-                  v-on:click="showModal(pub.modal_id)"
-                  >BibTex</a
-                >
-                <div
-                  class="modal"
-                  :id="pub.modal_id"
-                  style="display: none"
-                  v-on:click="hideModal(pub.modal_id)"
-                >
-                  <div class="modal-content" onclick="event.stopPropagation();">
-                    <pre class="bibtex">{{ pub.bibtext }}</pre>
+                <div class="row">
+                  <div class="col-1"></div>
+                  <div class="col-10">
+                    <a
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.link"
+                      >PDF</a
+                    >
+                    <a
+                      class="btn btn-primary paper-button"
+                      v-on:click="showModal(pub.modal_id)"
+                      >BibTex</a
+                    >
+                    <div
+                      class="modal"
+                      :id="pub.modal_id"
+                      style="display: none"
+                      v-on:click="hideModal(pub.modal_id)"
+                    >
+                      <div
+                        class="modal-content"
+                        onclick="event.stopPropagation();"
+                      >
+                        <pre class="bibtex">{{ pub.bibtext }}</pre>
+                      </div>
+                    </div>
+                    <button
+                      class="btn btn-primary paper-button"
+                      v-bind:data-clipboard-text="pub.bibtext"
+                      title="Copy BibTex to Clipboard"
+                    >
+                      <i class="far fa-copy"></i>
+                    </button>
+                    <a
+                      v-if="pub.code"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.code"
+                      >Code</a
+                    >
+                    <a
+                      v-if="pub.poster"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.poster"
+                      >Poster</a
+                    >
+                    <a
+                      v-if="pub.video"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.video"
+                      >Video</a
+                    >
+                    <a
+                      v-if="pub.slides"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.slides"
+                      >Slides</a
+                    >
                   </div>
                 </div>
-                <button
-                  class="btn btn-primary paper-button"
-                  v-bind:data-clipboard-text="pub.bibtext"
-                  title="Copy BibTex to Clipboard"
-                >
-                  <i class="far fa-copy"></i>
-                </button>
-                <a
-                  v-if="pub.code"
-                  class="btn btn-primary paper-button"
-                  v-bind:href="pub.code"
-                  >Code</a
-                >
-                <a
-                  v-if="pub.poster"
-                  class="btn btn-primary paper-button"
-                  v-bind:href="pub.poster"
-                  >Poster</a
-                >
-                <a
-                  v-if="pub.video"
-                  class="btn btn-primary paper-button"
-                  v-bind:href="pub.video"
-                  >Video</a
-                >
-                <a
-                  v-if="pub.slides"
-                  class="btn btn-primary paper-button"
-                  v-bind:href="pub.slides"
-                  >Slides</a
-                           >
-                </div>
-              </div>
               </div>
             </div>
           </template>
