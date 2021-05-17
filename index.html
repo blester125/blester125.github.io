@@ -428,12 +428,13 @@
                   <div class="col-lg-1"></div>
                 </div>
               </a>
+              <div class="container">
               <div class="row">
-                <div class="col-lg-1"></div>
+                <div class="col-1"></div>
+                <div class="col-10">
                 <a
-                  class="btn btn-primary paper-button-first"
+                  class="btn btn-primary paper-button"
                   v-bind:href="pub.link"
-                  style="margin-left: 5%"
                   >PDF</a
                 >
                 <a
@@ -481,7 +482,9 @@
                   class="btn btn-primary paper-button"
                   v-bind:href="pub.slides"
                   >Slides</a
-                >
+                           >
+                </div>
+              </div>
               </div>
             </div>
           </template>

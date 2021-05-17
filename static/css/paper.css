@@ -22,11 +22,7 @@ a.paper-link {
 a.paper-button {
     margin-left: 0.25%;
     margin-right: 0.25%;
-}
-
-a.paper-button-first {
-    margin-left: 5%;
-    margin-right: 0.25%;
+    margin-bottom: 0.5%;
 }
 
 .modal {
