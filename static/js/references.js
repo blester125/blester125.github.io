@@ -110,20 +110,69 @@ function sortCitations(citations, content) {
   return [citations, sorted_content];
 }
 
+/**
+ * Extract my custom `code` attribute from a citation.
+ * @param {*} citation - The full citation object.
+ */
 function extractCode(citation) {
   return citation._graph[1].data.properties.code;
 }
 
+/**
+ * Extract my custom `video` attribute from a citation.
+ * @param {*} citation - The full citation object.
+ */
 function extractVideo(citation) {
   return citation._graph[1].data.properties.video;
 }
 
+/**
+ * Extract my custom `poster` attribute from a citation.
+ * @param {*} citation - The full citation object.
+ */
 function extractPoster(citation) {
   return citation._graph[1].data.properties.poster;
 }
 
+/**
+ * Extract my custom `slides` attribute from a citation.
+ * @param {*} citation - The full citation object.
+ */
 function extractSlides(citation) {
   return citation._graph[1].data.properties.slides;
+}
+
+/**
+ * Extract my custom `pdf` attribute from a citation.
+ * @param {*} citation - The full citation object.
+ */
+function extractPDFLink(citation) {
+  return citation._graph[1].data.properties.pdf;
+}
+
+/**
+ * Normalize a link by removing any trailing `/`.
+ * @param {str} link - The link.
+ * @returns {str} The link with the final `/` removed.
+ */
+function normalizeLink(link) {
+  return link.replace(/\/$/, "");
+}
+
+/**
+ * Convert common abstract links to pdf links.
+ * @param {str} link - The link to the paper abstract.
+ * @returns {str} The new link to the pdf, or just the original link if
+ *   conversion fails.
+ */
+function rewritePDFLink(link) {
+  link = normalizeLink(link);
+  if (link.search("arxiv") != -1) {
+    return link.replace("/abs/", "/pdf/").concat(".pdf");
+  } else if (link.search("aclweb") != -1) {
+    return link.concat(".pdf");
+  }
+  return link;
 }
 
 /**
@@ -153,6 +202,9 @@ function createReferences(target, content) {
       id: bibs[i]["citation-label"],
       modal_id: "modal-" + i,
       link: bibs[i].URL,
+      // Try to extract a `pdf` field from the citation, fall back to url
+      // rewrites if it is not present.
+      direct_link: extractPDFLink(bibs[i]) || rewritePDFLink(bibs[i].URL),
       title: bibs[i].title,
       authors: authorString(bibs[i].author),
       venue: venueString(bibs[i]),

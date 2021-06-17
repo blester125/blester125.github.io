@@ -431,12 +431,16 @@
               <div class="row">
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10">
-                  <a class="btn btn-primary paper-button" v-bind:href="pub.link"
+                  <a
+                    class="btn btn-primary paper-button"
+                    v-bind:href="pub.direct_link"
+                    v-bind:title="'Open PDF for \'' + pub.title + '\''"
                     >PDF</a
                   >
                   <a
                     class="btn btn-primary paper-button"
                     v-on:click="showModal(pub.modal_id)"
+                    v-bind:title="'View BibTex for \'' + pub.title + '\''"
                     >BibTex</a
                   >
                   <div
@@ -455,7 +459,7 @@
                   <button
                     class="btn btn-primary paper-button"
                     v-bind:data-clipboard-text="pub.bibtext"
-                    title="Copy BibTex to Clipboard"
+                    v-bind:title="'Copy BibTex for \'' +pub.title + '\' to clipboard'"
                   >
                     <i class="far fa-copy"></i>
                   </button>
@@ -463,24 +467,28 @@
                     v-if="pub.code"
                     class="btn btn-primary paper-button"
                     v-bind:href="pub.code"
+                    v-bind:title="'View code used in \'' + pub.title + '\''"
                     >Code</a
                   >
                   <a
                     v-if="pub.poster"
                     class="btn btn-primary paper-button"
                     v-bind:href="pub.poster"
+                    v-bind:title="'View the conference poster that accompanied \'' + pub.title + '\''"
                     >Poster</a
                   >
                   <a
                     v-if="pub.video"
                     class="btn btn-primary paper-button"
                     v-bind:href="pub.video"
+                    v-bind:title="'View the conference recording that accompanied \'' + pub.title + '\''"
                     >Video</a
                   >
                   <a
                     v-if="pub.slides"
                     class="btn btn-primary paper-button"
                     v-bind:href="pub.slides"
+                    v-bind:title="'View the conference slides that accompanied \'' + pub.title + '\''"
                     >Slides</a
                   >
                 </div>
