@@ -1004,38 +1004,68 @@
           </div>
         </a>
 
-        <div class="row equal">
-          <div class="col-lg-10">
-            <div class="row">
-              <div class="col-lg-10">
-                <h3 class="project-title">Dependency Parsing</h3>
+        <a
+          href="https://github.com/blester125/path-finding"
+          ,
+          class="project-link"
+        >
+          <div class="row equal">
+            <div class="col-lg-10">
+              <div class="row">
+                <div class="col-lg-10">
+                  <h3 class="project-title">Path Finding</h3>
+                </div>
+                <div class="col-lg-2">
+                  <h6 class="project-type">Personal Project</h6>
+                </div>
               </div>
-              <div class="col-lg-2">
-                <h6 class="project-type">Personal Project</h6>
+              <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-2">
+                  <p class="project-date">April, 2020</p>
+                </div>
               </div>
+              <p class="project-content">
+                Various path-finding algorithms via dynamic programming.
+                Algorithms implemented include:
+              </p>
+              <ul>
+                <li class="text-muted">Breath-First Search.</li>
+                <li class="text-muted">Dijkstra's Algorithm.</li>
+                <li class="text-muted">
+                  A* Search with a Euclidean Distance Heuristic.
+                </li>
+              </ul>
+              <p class="project-content">
+                Algoritms are agnostic to the implementation of the underlaying
+                graph implementation. Both grid-based and adjaceny-based graphs
+                are provided.
+              </p>
+              <p class="project-content">
+                Path-finding with fuel-based constraints&mdash;effectivly a
+                maximum path distance&mdash;and refill stations is also
+                included. This is done in a two step procedure using a
+                meta-graph. First minimum distance paths are found between all
+                combinations of the staring position, the ending positions, and
+                all refilling stations. Then, any path longer than the fuel
+                capacity is removed. The result is a meta-graph of reachable
+                points with edges weighted based on the length of the path. Then
+                the same shortest-path algorithm is applied to this meta-graph
+                to find a path between the start and end positions that travels
+                through required refilling stations. The final path is then
+                reconstructed by replacing the abstract path of
+                <code>Node&nbsp;a</code>&rarr;<code>Node&nbsp;b</code> in the
+                meta-graph with the actual path from a to be found in step one.
+              </p>
             </div>
-            <div class="row">
-              <div class="col-lg-10"></div>
-              <div class="col-lg-2">
-                <p class="project-date"></p>
-              </div>
+            <div class="col-lg-2 project-image hidden-sm hidden-md">
+              <img
+                src="static/img/project/path-finding.png"
+                class="img-thumbnail center-block"
+              />
             </div>
-            <p class="project-content">
-              Dependency parsing via Deep Learning models written in PyTorch.
-              Supports training parsers via dynamic oracles using either the Arc
-              Eager or the Arc Hybrid transition scheme or a Graph based parser
-              using Biaffine Attention. Currently working on creating a shared
-              interface between the two parser types with plans to release it as
-              an open source library
-            </p>
           </div>
-          <div class="col-lg-2 project-image hidden-sm hidden-md">
-            <img
-              src="static/img/project/dep-parse.webp"
-              class="img-thumbnail center-block"
-            />
-          </div>
-        </div>
+        </a>
 
         <div class="row equal">
           <div class="col-lg-10">
@@ -1171,6 +1201,39 @@
           <div class="col-lg-2 project-image hidden-sm hidden-md">
             <img
               src="static/img/project/pypi.png"
+              class="img-thumbnail center-block"
+            />
+          </div>
+        </div>
+
+        <div class="row equal">
+          <div class="col-lg-10">
+            <div class="row">
+              <div class="col-lg-10">
+                <h3 class="project-title">Dependency Parsing</h3>
+              </div>
+              <div class="col-lg-2">
+                <h6 class="project-type">Personal Project</h6>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-10"></div>
+              <div class="col-lg-2">
+                <p class="project-date"></p>
+              </div>
+            </div>
+            <p class="project-content">
+              Dependency parsing via Deep Learning models written in PyTorch.
+              Supports training parsers via dynamic oracles using either the Arc
+              Eager or the Arc Hybrid transition scheme or a Graph based parser
+              using Biaffine Attention. Currently working on creating a shared
+              interface between the two parser types with plans to release it as
+              an open source library
+            </p>
+          </div>
+          <div class="col-lg-2 project-image hidden-sm hidden-md">
+            <img
+              src="static/img/project/dep-parse.webp"
               class="img-thumbnail center-block"
             />
           </div>
