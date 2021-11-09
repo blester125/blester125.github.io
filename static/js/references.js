@@ -169,7 +169,7 @@ function rewritePDFLink(link) {
   link = normalizeLink(link);
   if (link.search("arxiv") != -1) {
     return link.replace("/abs/", "/pdf/").concat(".pdf");
-  } else if (link.search("aclweb") != -1) {
+  } else if (link.search("acl") != -1) {
     return link.concat(".pdf");
   }
   return link;
