@@ -145,12 +145,8 @@
         });
       });
       readFile(
-        "static/references/index.txt",
-        generateReferences.bind(
-          null,
-          "publications-container",
-          "static/references/"
-        )
+        "static/references/references.json",
+        generateReferences.bind(null, "publications-container")
       );
       readFile(
         "static/blog.json",
@@ -422,8 +418,47 @@
                   <div class="col-lg-1"></div>
                   <div class="col-lg-10">
                     <h3 class="paper-title" v-html="pub.title"></h3>
-                    <h4 class="paper-authors">{{ pub.authors }}</h4>
-                    <p class="paper-venue">{{ pub.venue }}</p>
+                    <h4 class="paper-authors">
+                      <template v-for="(author, index) in pub.authors">
+                        <span class="paper-authors">
+                          <span
+                            v-if="author === 'Brian Lester'"
+                            style="color: rgb(51, 51, 51)"
+                            ><b>{{ author }}</b></span
+                          ><!--
+                                --><span v-else>{{ author }}</span
+                          ><!--
+                                --><span v-if="index !== pub.authors.length - 1"
+                            >,
+                          </span>
+                        </span>
+                      </template>
+                    </h4>
+                    <p class="paper-venue">
+                      <span class="paper-venue">
+                        <b v-if="pub.bold_venue">{{ pub.venue }}</b>
+                        <span v-else>{{ pub.venue }}</span>, </span
+                      ><!--
+                        --><span class="paper-venue">
+                        <b v-if="pub.bold_venue">{{ pub.year }}</b>
+                        <span v-else>{{ pub.year }}</span></span
+                      ><!--
+                        --><span v-if="pub.workshop" class="paper-venue"
+                        >; {{ pub.workshop }}</span
+                      ><!--
+                        --><span class="paper-venue" v-if="pub.location"
+                        >, {{ pub.location }}.</span
+                      ><!--
+                        --><span class="paper-venue" v-else>.</span
+                      ><!--
+                        --><span class="paper-venue" v-if="pub.citation_count"
+                        ><b> {{ pub.citation_count }}</b>
+                        <span class="paper-venue" v-if="pub.citation_count == 1"
+                          >citation</span
+                        >
+                        <span class="paper-venue" v-else>citations</span></span
+                      >
+                    </p>
                   </div>
                   <div class="col-lg-1"></div>
                 </div>
@@ -453,12 +488,12 @@
                       class="modal-content"
                       onclick="event.stopPropagation();"
                     >
-                      <pre class="bibtex">{{ pub.bibtext }}</pre>
+                      <pre class="bibtex">{{ pub.bibtex }}</pre>
                     </div>
                   </div>
                   <button
                     class="btn btn-primary paper-button"
-                    v-bind:data-clipboard-text="pub.bibtext"
+                    v-bind:data-clipboard-text="pub.bibtex"
                     v-bind:title="'Copy BibTex for \'' +pub.title + '\' to clipboard'"
                   >
                     <i class="far fa-copy"></i>
