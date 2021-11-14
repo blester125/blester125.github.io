@@ -4,9 +4,13 @@
  * @param {Callable} func - The function to call with the returned data
  */
 function readFile(fileName, func) {
+  console.log("Reading file " + fileName);
   $.ajax({
     url: fileName,
     success: func,
+    error: function (xhr, error) {
+      console.log("Failed to read " + fileName);
+    },
   });
 }
 

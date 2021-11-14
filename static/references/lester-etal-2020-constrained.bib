@@ -13,7 +13,4 @@
     url = "https://www.aclweb.org/anthology/2020.findings-emnlp.166",
     pages = "1841--1848",
     abstract = "Current state-of-the-art models for named entity recognition (NER) are neural models with a conditional random field (CRF) as the final layer. Entities are represented as per-token labels with a special structure in order to decode them into spans. Current work eschews prior knowledge of how the span encoding scheme works and relies on the CRF learning which transitions are illegal and which are not to facilitate global coherence. We find that by constraining the output to suppress illegal transitions we can train a tagger with a cross-entropy loss twice as fast as a CRF with differences in F1 that are statistically insignificant, effectively eliminating the need for a CRF. We analyze the dynamics of tag co-occurrence to explain when these constraints are most effective and provide open source implementations of our tagger in both PyTorch and TensorFlow.",
-    code = "https://github.com/blester125/constrained-decoding",
-    video = "https://blester125.com/presentations/constrained-sustainlp-2020.html",
-    slides = "https://blester125.com/static/presentations/slides/Constrained-Decoding-SustaiNLP-2020.pdf",
 }
