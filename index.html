@@ -513,6 +513,13 @@
                     v-bind:title="'View the conference slides that accompanied \'' + pub.title + '\''"
                     >Slides</a
                   >
+                  <a
+                    v-if="pub.semantic_scholar_id"
+                    class="btn btn-primary paper-button"
+                    v-bind:href="'https://www.semanticscholar.org/paper/' + pub.semantic_scholar_id"
+                    v-bind:title="'View \'' + pub.title + '\' on Semantic Scholar.'"
+                    ><i class="ai ai-semantic-scholar"></i
+                  ></a>
                 </div>
               </div>
             </div>

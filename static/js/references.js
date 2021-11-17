@@ -122,6 +122,9 @@ function generateReferences(target, citations) {
         for (var i = 0; i < this.publications.length; i++) {
           const data = this;
           const j = i;
+          if (this.publications[i].citation_count) {
+            continue;
+          }
           if (this.publications[i].semantic_scholar_id) {
             $.ajax({
               url:
