@@ -20,27 +20,6 @@
     "bibtex": "static/references/lester-etal-2021-prompt.bib"
   },
   {
-    "refkey": "jindal-etal-2019-effective",
-    "title": "An Effective Label Noise Model for DNN Text Classification",
-    "author": [
-      { "last": "Jindal", "first": "Ishan" },
-      { "last": "Pressel", "first": "Daniel" },
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Nokleby", "first": "Matthew" }
-    ],
-    "conference": "NAACL",
-    "year": "2019",
-    "workshop": null,
-    "location": "Minneapolis, Minnesota",
-    "url": "https://www.aclweb.org/anthology/N19-1328",
-    "code": null,
-    "video": null,
-    "poster": "https://blester125.com/static/presentations/posters/Noise-Model-NAACL-2018-Poster.pdf",
-    "slides": null,
-    "semantic_scholar_id": "8b222b3915ce5115bcae189fccd6526125f079c2",
-    "bibtex": "static/references/jindal-etal-2019-effective.bib"
-  },
-  {
     "refkey": "wei-etal-2021-finetuned",
     "title": "Finetuned Language Models Are Zero-Shot Learners",
     "author": [
@@ -65,6 +44,27 @@
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
     "bibtex": "static/references/wei-2021-finetuned.bib"
+  },
+  {
+    "refkey": "jindal-etal-2019-effective",
+    "title": "An Effective Label Noise Model for DNN Text Classification",
+    "author": [
+      { "last": "Jindal", "first": "Ishan" },
+      { "last": "Pressel", "first": "Daniel" },
+      { "last": "Lester", "first": "Brian" },
+      { "last": "Nokleby", "first": "Matthew" }
+    ],
+    "conference": "NAACL",
+    "year": "2019",
+    "workshop": null,
+    "location": "Minneapolis, Minnesota",
+    "url": "https://www.aclweb.org/anthology/N19-1328",
+    "code": null,
+    "video": null,
+    "poster": "https://blester125.com/static/presentations/posters/Noise-Model-NAACL-2018-Poster.pdf",
+    "slides": null,
+    "semantic_scholar_id": "8b222b3915ce5115bcae189fccd6526125f079c2",
+    "bibtex": "static/references/jindal-etal-2019-effective.bib"
   },
   {
     "refkey": "pressel-etal-2018-baseline",
