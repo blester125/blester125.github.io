@@ -1562,37 +1562,52 @@
           </div>
         </a>
 
-        <a href="https://github.com/blester125/diffie-hellman", class="project-link">
-        <div class="row equal">
-             <div class="col-lg-10">
-                 <div class="row">
-                     <div class="col-lg-10">
-                         <h3 class="project-title">
-                             Diffie Hellman Key Exchange
-                         </h3>
-                     </div>
-                     <div class="col-lg-2">
-                         <h6 class="project-type">
-                             Pedagogical Project
-                         </h6>
-                     </div>
-                 </div>
-                 <div class="row">
-                     <div class="col-lg-10"></div>
-                     <div class="col-lg-2">
-                         <p class="project-date">Winter 2021</p>
-                     </div>
-                 </div>
-                 <p class="project-content">
-		 A small example of how two parties can use some public information and a secret that each of them keep to derive a shared secret over public, un-trusted communication channels using Diffie-Hellman Key Exchange. Working from a shared prime number \(n\) and a primitve root modulo \(n\), \(g\), Alice and Bob can derive a shared key based on private information they each have, \(a\) and \(b\) (integers between \(1\) and \(n\)) respectively. Alice sends Bob \(g^a \;\mathrm{mod}\; n\) and Bob sends Alice \(g^b \;\mathrm{mod}\; n\). Bob then raises Alices results to the power of \(b\) while Alice raises Bob's to the power of \(a\). This results in both of them having a shared secret&mdash; \(g^{ab} \;\mathrm{mod}\; n\). An attacker, Eve, seeing only the public information can only calculate \(g^{a+b} \;\mathrm{mod}\; n\) without solving the descrete log problem.
-                 </p>
-             </div>
-             <div class="col-lg-2 project-image hidden-sm hidden-md">
-                 <img src="static/img/project/diffie-hellman-key-exchange.png" class="img-thumbnail center-block" />
-             </div>
-         </div>
-         </a>
-
+        <a
+          href="https://github.com/blester125/diffie-hellman"
+          ,
+          class="project-link"
+        >
+          <div class="row equal">
+            <div class="col-lg-10">
+              <div class="row">
+                <div class="col-lg-10">
+                  <h3 class="project-title">Diffie Hellman Key Exchange</h3>
+                </div>
+                <div class="col-lg-2">
+                  <h6 class="project-type">Pedagogical Project</h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-2">
+                  <p class="project-date">Winter 2021</p>
+                </div>
+              </div>
+              <p class="project-content">
+                A small example of how two parties can use some public
+                information and a secret that each of them keep to derive a
+                shared secret over public, un-trusted communication channels
+                using Diffie-Hellman Key Exchange. Working from a shared prime
+                number \(n\) and a primitve root modulo \(n\), \(g\), Alice and
+                Bob can derive a shared key based on private information they
+                each have, \(a\) and \(b\) (integers between \(1\) and \(n\))
+                respectively. Alice sends Bob \(g^a \;\mathrm{mod}\; n\) and Bob
+                sends Alice \(g^b \;\mathrm{mod}\; n\). Bob then raises Alices
+                results to the power of \(b\) while Alice raises Bob's to the
+                power of \(a\). This results in both of them having a shared
+                secret&mdash; \(g^{ab} \;\mathrm{mod}\; n\). An attacker, Eve,
+                seeing only the public information can only calculate \(g^{a+b}
+                \;\mathrm{mod}\; n\) without solving the descrete log problem.
+              </p>
+            </div>
+            <div class="col-lg-2 project-image hidden-sm hidden-md">
+              <img
+                src="static/img/project/diffie-hellman-key-exchange.png"
+                class="img-thumbnail center-block"
+              />
+            </div>
+          </div>
+        </a>
 
         <a
           href="https://github.com/blester125/facial_recognition"
