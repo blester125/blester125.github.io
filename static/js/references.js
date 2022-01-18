@@ -87,7 +87,6 @@ function generateReferences(target, citations) {
       semantic_scholar_id: citations[i].semantic_scholar_id,
     });
   }
-  console.log(JSON.stringify(publications));
   // Render the publications into the HTML
   var app = new Vue({
     el: document.getElementById(target),
@@ -136,7 +135,6 @@ function generateReferences(target, citations) {
                   ...data.publications[j],
                 };
                 publication.citation_count = resp.citationCount;
-                console.log(JSON.stringify(publication));
                 data.$set(data.publications, j, publication);
               },
               error: function (xhr, error) {

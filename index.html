@@ -130,15 +130,15 @@
         $("#footer").load("static/footer.html", function () {
           $(".social-links").load("static/socials.html");
         });
+        readFile(
+          "static/references/references.json",
+          generateReferences.bind(null, "publications-container")
+        );
+        readFile(
+          "static/blog.json",
+          generateBlogs.bind(null, "blog-container", "blog")
+        );
       });
-      readFile(
-        "static/references/references.json",
-        generateReferences.bind(null, "publications-container")
-      );
-      readFile(
-        "static/blog.json",
-        generateBlogs.bind(null, "blog-container", "blog")
-      );
     </script>
   </head>
 
