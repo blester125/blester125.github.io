@@ -191,13 +191,46 @@
                   <div class="timeline-body">
                     <p class="text-muted job-right">
                       <strong>AI Resident</strong>&#8212;Working on Natural
-                      Language Processing and Understanding.
+                      Language Processing and Understanding research.
                     </p>
                     <p class="text-muted job-right">
                       Interesting in efficiently leveraging massive pre-trained
                       transformers and adding structured prediction atop
                       powerful local features created by large contextual
                       embeddings.
+                    </p>
+                    <p class="text-muted job-right">
+                      Prompt Tuning&#8212;an efficient method of controlling
+                      large pre-trained language models. Matches performance of
+                      full model fine-tuning with T5 using only 0.003% of the
+                      parameters.
+                    </p>
+                    <p class="text-muted job-right">
+                      Flan&#8212;Multitask training for a 137 billion parameter
+                      transformer-based decoder-only language model to create a
+                      model thiat is better at zero-shot prompting, few-shot
+                      in-context learning, and Prompt Tuning. This shows Prompt
+                      Tuning can be applied to large models, in both absolute
+                      parameter count (137 billion) and depth (64 layers).
+                    </p>
+                    <p class="text-muted job-right">
+                      SPoT&#8212;Using multitask prompts as strong
+                      initialization for Prompt Tuning resulting in increased
+                      performance. With a SuperGLUE test set performance of 89.2
+                      we are just 0.1 point behind fine-tuned T5 using only 400K
+                      parameters per task instead of the 11B parameters per task
+                      like T5 XXL uses. We also used the similarity between
+                      prompts on different tasks to estimate task similarity.
+                      Using this prompt similarity metric we were able to select
+                      just 3 pre-training tasks that recovered half of the
+                      performance gain realized from a brute force search (which
+                      would requiring 48 different runs).
+                    </p>
+                    <p class="text-muted job-right">
+                      Added partial network training, lazy loading, and
+                      auto-regressive cache pre-filling of T5X, the open-source
+                      reimplementation of T5 in Jax. This final change reduced
+                      inference latency from 30 seconds to 2.4.
                     </p>
                   </div>
                 </div>
