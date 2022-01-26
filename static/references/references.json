@@ -89,6 +89,28 @@
     "bibtex": "static/references/pressel-etal-2018-baseline.bib"
   },
   {
+    "refkey": "vu-etal-2021-spot",
+    "title": "SPoT: Better Frozen Model Adaptation through Soft Prompt Transfer",
+    "author": [
+      { "first": "Tu", "last": "Vu" },
+      { "first": "Brian", "last": "Lester" },
+      { "first": "Noah", "last": "Constant" },
+      { "first": "Rami", "last": "Al-Rfou" },
+      { "first": "Daniel Matthew", "last": "Cer" }
+    ],
+    "conference": "ACL",
+    "year": 2022,
+    "workshop": "Submission, arXiv:2110.07904",
+    "location": null,
+    "url": "https://arxiv.org/abs/2110.07904",
+    "code": null,
+    "video": null,
+    "poster": null,
+    "slides": null,
+    "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
+    "bibtex": "static/references/vu-etal-2021-spot.bib"
+  },
+  {
     "refkey": "lester-2020-multiple",
     "title": "Multiple Word Embeddings for Increased Diversity of Representation",
     "author": [
@@ -110,28 +132,6 @@
     "semantic_scholar_id": "3bedaea865f4fb922f6f7ee257ab73e2399de7b5",
     "citation_count": 5,
     "bibtex": "static/references/lester-2020-multiple.bib"
-  },
-  {
-    "refkey": "vu-etal-2021-spot",
-    "title": "SPoT: Better Frozen Model Adaptation through Soft Prompt Transfer",
-    "author": [
-      { "first": "Tu", "last": "Vu" },
-      { "first": "Brian", "last": "Lester" },
-      { "first": "Noah", "last": "Constant" },
-      { "first": "Rami", "last": "Al-Rfou" },
-      { "first": "Daniel Matthew", "last": "Cer" }
-    ],
-    "conference": "ACL",
-    "year": 2022,
-    "workshop": "Submission, arXiv:2110.07904",
-    "location": null,
-    "url": "https://arxiv.org/abs/2110.07904",
-    "code": null,
-    "video": null,
-    "poster": null,
-    "slides": null,
-    "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
-    "bibtex": "static/references/vu-etal-2021-spot.bib"
   },
   {
     "refkey": "lester-etal-2020-constrained",
