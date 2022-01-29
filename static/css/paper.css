@@ -40,6 +40,7 @@ button.paper-button {
   overflow: auto; /* Enable scroll if needed */
   background-color: rgb(0, 0, 0); /* Fallback color */
   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  pointer-events: all;
 }
 
 .modal-content {
@@ -49,8 +50,35 @@ button.paper-button {
   z-index: 2060;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+  pointer-events: all;
 }
 
 .bibtex {
   border: 1px solid #000;
+}
+
+.paper {
+  position: relative;
+}
+
+.paper .paper-link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.paper .paper-inner {
+  postition: relative;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.paper .paper-inner a {
+  pointer-events: all;
+}
+
+.paper .paper-inner button {
+  pointer-events: all;
 }

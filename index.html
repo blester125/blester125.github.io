@@ -433,7 +433,8 @@
         <div id="publications-container">
           <template v-for="pub in publications">
             <div class="paper" :id="pub.id">
-              <a class="paper-link" v-bind:href="pub.link">
+              <a class="paper-link" v-bind:href="pub.link"></a>
+              <div class="paper-inner">
                 <div class="row">
                   <div class="col-lg-1"></div>
                   <div class="col-lg-10">
@@ -482,77 +483,77 @@
                   </div>
                   <div class="col-lg-1"></div>
                 </div>
-              </a>
-              <div class="row">
-                <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                  <a
-                    class="btn btn-primary paper-button"
-                    v-bind:href="pub.direct_link"
-                    v-bind:title="'Open PDF for \'' + pub.title + '\''"
-                    >PDF</a
-                  >
-                  <a
-                    class="btn btn-primary paper-button"
-                    v-on:click="showModal(pub.modal_id)"
-                    v-bind:title="'View BibTex for \'' + pub.title + '\''"
-                    >BibTex</a
-                  >
-                  <div
-                    class="modal"
-                    :id="pub.modal_id"
-                    style="display: none"
-                    v-on:click="hideModal(pub.modal_id)"
-                  >
-                    <div
-                      class="modal-content"
-                      onclick="event.stopPropagation();"
+                <div class="row">
+                  <div class="col-lg-1"></div>
+                  <div class="col-lg-10">
+                    <a
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.direct_link"
+                      v-bind:title="'Open PDF for \'' + pub.title + '\''"
+                      >PDF</a
                     >
-                      <pre class="bibtex">{{ pub.bibtex }}</pre>
+                    <a
+                      class="btn btn-primary paper-button"
+                      v-on:click="showModal(pub.modal_id)"
+                      v-bind:title="'View BibTex for \'' + pub.title + '\''"
+                      >BibTex</a
+                    >
+                    <div
+                      class="modal"
+                      :id="pub.modal_id"
+                      style="display: none"
+                      v-on:click="hideModal(pub.modal_id)"
+                    >
+                      <div
+                        class="modal-content"
+                        onclick="event.stopPropagation();"
+                      >
+                        <pre class="bibtex">{{ pub.bibtex }}</pre>
+                      </div>
                     </div>
+                    <button
+                      class="btn btn-primary paper-button"
+                      v-bind:data-clipboard-text="pub.bibtex"
+                      v-bind:title="'Copy BibTex for \'' +pub.title + '\' to clipboard'"
+                    >
+                      <i class="far fa-copy"></i>
+                    </button>
+                    <a
+                      v-if="pub.code"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.code"
+                      v-bind:title="'View code used in \'' + pub.title + '\''"
+                      >Code</a
+                    >
+                    <a
+                      v-if="pub.poster"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.poster"
+                      v-bind:title="'View the conference poster that accompanied \'' + pub.title + '\''"
+                      >Poster</a
+                    >
+                    <a
+                      v-if="pub.video"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.video"
+                      v-bind:title="'View the conference recording that accompanied \'' + pub.title + '\''"
+                      >Video</a
+                    >
+                    <a
+                      v-if="pub.slides"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="pub.slides"
+                      v-bind:title="'View the conference slides that accompanied \'' + pub.title + '\''"
+                      >Slides</a
+                    >
+                    <a
+                      v-if="pub.semantic_scholar_id"
+                      class="btn btn-primary paper-button"
+                      v-bind:href="'https://www.semanticscholar.org/paper/' + pub.semantic_scholar_id"
+                      v-bind:title="'View \'' + pub.title + '\' on Semantic Scholar.'"
+                      ><i class="ai ai-semantic-scholar"></i
+                    ></a>
                   </div>
-                  <button
-                    class="btn btn-primary paper-button"
-                    v-bind:data-clipboard-text="pub.bibtex"
-                    v-bind:title="'Copy BibTex for \'' +pub.title + '\' to clipboard'"
-                  >
-                    <i class="far fa-copy"></i>
-                  </button>
-                  <a
-                    v-if="pub.code"
-                    class="btn btn-primary paper-button"
-                    v-bind:href="pub.code"
-                    v-bind:title="'View code used in \'' + pub.title + '\''"
-                    >Code</a
-                  >
-                  <a
-                    v-if="pub.poster"
-                    class="btn btn-primary paper-button"
-                    v-bind:href="pub.poster"
-                    v-bind:title="'View the conference poster that accompanied \'' + pub.title + '\''"
-                    >Poster</a
-                  >
-                  <a
-                    v-if="pub.video"
-                    class="btn btn-primary paper-button"
-                    v-bind:href="pub.video"
-                    v-bind:title="'View the conference recording that accompanied \'' + pub.title + '\''"
-                    >Video</a
-                  >
-                  <a
-                    v-if="pub.slides"
-                    class="btn btn-primary paper-button"
-                    v-bind:href="pub.slides"
-                    v-bind:title="'View the conference slides that accompanied \'' + pub.title + '\''"
-                    >Slides</a
-                  >
-                  <a
-                    v-if="pub.semantic_scholar_id"
-                    class="btn btn-primary paper-button"
-                    v-bind:href="'https://www.semanticscholar.org/paper/' + pub.semantic_scholar_id"
-                    v-bind:title="'View \'' + pub.title + '\' on Semantic Scholar.'"
-                    ><i class="ai ai-semantic-scholar"></i
-                  ></a>
                 </div>
               </div>
             </div>
@@ -580,8 +581,8 @@
         <!--     <p class="text-muted"> -->
         <!--       Talk content -->
         <!--     </p> -->
-        <!--          <a href="">slides</a> -->
-        <!--          <a href="">video</a> -->
+        <!--          <a href="" class="btn btn-primary">Slides</a> -->
+        <!--          <a href="" class="btn btn-primary">ideo</a> -->
         <!--   </div> -->
         <!-- </div> -->
         <div class="row equal">
@@ -612,8 +613,6 @@
               stack of references that can serve as a deep dive into the soft
               prompting space.
             </p>
-            <!-- <a href="">slides</a> -->
-            <!-- <a href="">video</a> -->
           </div>
         </div>
         <div class="row equal">
@@ -635,7 +634,9 @@
               Mead-Baseline is the foundation of all Deep Learning work, in both
               research and production, at Interactions.
             </p>
-            <a href="static/presentations/slides/MLOSS-NeurIPS-Baseline.pdf"
+            <a
+              href="static/presentations/slides/MLOSS-NeurIPS-Baseline.pdf"
+              class="btn btn-primary"
               >slides</a
             >
           </div>
@@ -680,8 +681,6 @@
             <sub class="footnote text-muted"
               ><sup class="text-muted">*</sup>Cancelled due to COVID-19</sub
             >
-            <!-- <a href="">slides</a> -->
-            <!-- <a href="">video</a> -->
           </div>
         </div>
 
@@ -719,8 +718,9 @@
             </p>
             <a
               href="https://github.com/blester125/A2D-NLP-Talk-Feb-27-2020/blob/master/Your-Neural-Network-Is-Probably-Wrong.pdf"
+              class="btn btn-primary"
             >
-              slides
+              Slides
             </a>
           </div>
         </div>
@@ -750,8 +750,9 @@
             </p>
             <a
               href="https://github.com/blester125/MIPy-Talk-Jan-2-2020/blob/master/slides/slides.pdf"
+              class="btn btn-primary"
             >
-              slides
+              Slides
             </a>
           </div>
         </div>
@@ -776,10 +777,13 @@
             </p>
             <a
               href="https://github.com/blester125/language_model/blob/master/PyDataLightningBrianLester.pdf"
+              class="btn btn-primary"
             >
-              slides
+              Slides
             </a>
-            <a href="presentations/pydata-2017.html"> video </a>
+            <a href="presentations/pydata-2017.html" class="btn btn-primary"
+              >Video</a
+            >
           </div>
         </div>
       </div>
@@ -867,42 +871,44 @@
             </h3>
           </div>
         </div>
-        <!-- <a href="", class="project-link"> -->
-        <!-- <div class="row equal"> -->
+        <!-- <div class="project-block"> -->
+        <!--   <a href="", class="project-link"></a> -->
+        <!--   <div class="row equal project-inner"> -->
         <!--     <div class="col-lg-10"> -->
-        <!--         <div class="row"> -->
-        <!--             <div class="col-lg-10"> -->
-        <!--                 <h3 class="project-title"> -->
-        <!--                     Project Title -->
-        <!--                 </h3> -->
-        <!--             </div> -->
-        <!--             <div class="col-lg-2"> -->
-        <!--                 <h6 class="project-type"> -->
-        <!--                     Project Type -->
-        <!--                 </h6> -->
-        <!--             </div> -->
+        <!--       <div class="row"> -->
+        <!--         <div class="col-lg-10"> -->
+        <!--           <h3 class="project-title"> -->
+        <!--             Project Title -->
+        <!--           </h3> -->
         <!--         </div> -->
-        <!--         <div class="row"> -->
-        <!--             <div class="col-lg-10"></div> -->
-        <!--             <div class="col-lg-2"> -->
-        <!--                 <p class="project-date">Project Date</p> -->
-        <!--             </div> -->
+        <!--         <div class="col-lg-2"> -->
+        <!--           <h6 class="project-type"> -->
+        <!--             Project Type -->
+        <!--           </h6> -->
+        <!--         </div> -->
+        <!--       </div> -->
+        <!--       <div class="row"> -->
+        <!--         <div class="col-lg-10"></div> -->
+        <!--           <div class="col-lg-2"> -->
+        <!--             <p class="project-date">Project Date</p> -->
+        <!--           </div> -->
         <!--         </div> -->
         <!--         <p class="project-content"> -->
         <!--           Project Content -->
         <!--         </p> -->
-        <!--     </div> -->
-        <!--     <div class="col-lg-2 project-image hidden-sm hidden-md"> -->
+        <!--       </div> -->
+        <!--       <div class="col-lg-2 project-image hidden-sm hidden-md"> -->
         <!--         <img src="" class="img-thumbnail center-block" /> -->
+        <!--       </div> -->
         <!--     </div> -->
+        <!--   </div> -->
         <!-- </div> -->
-        <!-- </a> -->
-        <a
-          href="https://github.com/google-research/prompt-tuning"
-          ,
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/google-research/prompt-tuning"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -941,14 +947,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/quantum-simulator"
-          ,
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/quantum-simulator"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -987,13 +993,14 @@
               />
             </div>
           </div>
-        </a>
-        <a
-          href="https://github.com/dpressel/mead-baseline"
-          ,
-          class="project-link"
-        >
-          <div class="row equal">
+        </div>
+
+        <div class="project-block">
+          <a
+            href="https://github.com/dpressel/mead-baseline"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1049,10 +1056,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a href="https://github.com/blester125/iobes" , class="project-link">
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/iobes"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1086,10 +1097,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a href="https://github.com/blester125/text-rank" class="project-link">
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/text-rank"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1122,13 +1137,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/string-distance"
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/string-distance"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1159,10 +1175,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a href="https://github.com/blester125/quick_knn" class="project-link">
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/quick_knn"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1194,14 +1214,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/path-finding"
-          ,
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/path-finding"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1257,185 +1277,194 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <div class="row equal">
-          <div class="col-lg-10">
-            <div class="row">
-              <div class="col-lg-10">
-                <h3 class="project-title">PyPI Packages</h3>
+        <div class="project-block">
+          <div class="row equal project-inner">
+            <div class="col-lg-10">
+              <div class="row">
+                <div class="col-lg-10">
+                  <h3 class="project-title">PyPI Packages</h3>
+                </div>
+                <div class="col-lg-2">
+                  <h6 class="project-type">Open Source Libraries</h6>
+                </div>
               </div>
-              <div class="col-lg-2">
-                <h6 class="project-type">Open Source Libraries</h6>
+              <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-2">
+                  <p class="project-date"></p>
+                </div>
               </div>
+              <p class="project-content">
+                I have a collection of libraries hosted on PyPI, most enable
+                narrow data science verticals but some are generic utilities.
+              </p>
+              <ul class="project-list">
+                <li>
+                  <a href="https://pypi.org/project/file-or-name/">
+                    file-or-name
+                  </a>
+                  <p class="pypi-description">
+                    A decorator that lets you mark a function parameter as a
+                    file. This will automatically open the file when the
+                    function is called. This lets you write easy to test
+                    function that assume pre-opened files but allows your users
+                    to pass in file paths as strings.
+                  </p>
+                  <p class="pypi-description">
+                    It also includes the ability to automatically do shadow
+                    paging by pre-pending a write mode file with a
+                    <code>s</code>. This is done by proxying all the writes to a
+                    temporary file and then when you close the context manager
+                    the file was opened in the original file is replaced with
+                    the temporary file. This allows for atomic writes.
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/word-vectors/">
+                    word-vectors
+                  </a>
+                  <p class="pypi-description">
+                    Utilities to read and write common word vector formats such
+                    as word2vec and glove. Also introduces a new format called
+                    Leader which is a binary format like word2vec but we prefix
+                    the word with its length. This allows for reading without
+                    having to iterate over characters like word2vec does at the
+                    cost of just 3 bytes of disk space per word. Our benchmarks
+                    show this format is faster for all common pre-trained
+                    embeddings.
+                    <a href="https://arxiv.org/abs/2009.13699">
+                      A paper describing the new embedding format, benchmarks
+                      done, and the library can be found here.</a
+                    >
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/inverted-index/">
+                    inverted-index
+                  </a>
+                  <p class="pypi-description">
+                    A small, extensible, in-memory inverted index to quickly
+                    added full text search to a script. It also includes a
+                    <code>prompt_toolkit</code> completer that will search the
+                    inverted index as you type. Selecting an option will replace
+                    the input with that value. This is useful for when there are
+                    a lot of options to choose from and you want to provide a
+                    fuzzy search when looking for the right one.
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/get-mnist/">get-mnist</a>
+                  <p class="pypi-description">
+                    Lightweight utilities to download and load both the MNIST
+                    and Fashion MNIST datasets. The only dependency is NumPy.
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/search-cli/">search-cli</a>
+                  <p class="pypi-description">
+                    A GUI around surfraw that lets you open a search box from
+                    anywhere, it also lets you do a search where the query is
+                    whatever text is highlighted.
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/prehashed/">prehashed</a>
+                  <p class="pypi-description">
+                    A dictionary subclass that stores the sha1 hash of keys
+                    rather than the full key. This reduces storage space, for
+                    example if your keys are long documents you can store and
+                    retrieve stats about them without storing the whole document
+                    in memory.
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/true-case/">true-case</a>
+                  <p class="pypi-description">
+                    An interface that gives the probability that a token should
+                    be capitalized. Probabilities were estimated from the
+                    CNN/DailyMail dataset.
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/quick-knn/">quick-knn</a>
+                  <p class="pypi-description">
+                    An LSH implementation that supports Jaccard Similarity
+                    through MinHash and cosine similarity via Random
+                    Hyperplanes.
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/string-distance/">
+                    string-distance
+                  </a>
+                  <p class="pypi-description">
+                    Cython implementations of various string distance
+                    algorithms.
+                  </p>
+                </li>
+                <li>
+                  <a href="https://pypi.org/project/delta-of-delta/">
+                    delta-of-delta
+                  </a>
+                  <p class="pypi-description">
+                    Pedagogical implementations of various time-stamp encoding
+                    algorithms.
+                  </p>
+                </li>
+              </ul>
             </div>
-            <div class="row">
-              <div class="col-lg-10"></div>
-              <div class="col-lg-2">
-                <p class="project-date"></p>
-              </div>
+            <div class="col-lg-2 project-image hidden-sm hidden-md">
+              <img
+                src="static/img/project/pypi.png"
+                class="img-thumbnail center-block"
+              />
             </div>
-            <p class="project-content">
-              I have a collection of libraries hosted on PyPI, most enable
-              narrow data science verticals but some are generic utilities.
-            </p>
-            <ul class="project-list">
-              <li>
-                <a href="https://pypi.org/project/file-or-name/">
-                  file-or-name
-                </a>
-                <p class="pypi-description">
-                  A decorator that lets you mark a function parameter as a file.
-                  This will automatically open the file when the function is
-                  called. This lets you write easy to test function that assume
-                  pre-opened files but allows your users to pass in file paths
-                  as strings.
-                </p>
-                <p class="pypi-description">
-                  It also includes the ability to automatically do shadow paging
-                  by pre-pending a write mode file with a <code>s</code>. This
-                  is done by proxying all the writes to a temporary file and
-                  then when you close the context manager the file was opened in
-                  the original file is replaced with the temporary file. This
-                  allows for atomic writes.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/word-vectors/">
-                  word-vectors
-                </a>
-                <p class="pypi-description">
-                  Utilities to read and write common word vector formats such as
-                  word2vec and glove. Also introduces a new format called Leader
-                  which is a binary format like word2vec but we prefix the word
-                  with its length. This allows for reading without having to
-                  iterate over characters like word2vec does at the cost of just
-                  3 bytes of disk space per word. Our benchmarks show this
-                  format is faster for all common pre-trained embeddings.
-                  <a href="https://arxiv.org/abs/2009.13699">
-                    A paper describing the new embedding format, benchmarks
-                    done, and the library can be found here.</a
-                  >
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/inverted-index/">
-                  inverted-index
-                </a>
-                <p class="pypi-description">
-                  A small, extensible, in-memory inverted index to quickly added
-                  full text search to a script. It also includes a
-                  <code>prompt_toolkit</code> completer that will search the
-                  inverted index as you type. Selecting an option will replace
-                  the input with that value. This is useful for when there are a
-                  lot of options to choose from and you want to provide a fuzzy
-                  search when looking for the right one.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/get-mnist/">get-mnist</a>
-                <p class="pypi-description">
-                  Lightweight utilities to download and load both the MNIST and
-                  Fashion MNIST datasets. The only dependency is NumPy.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/search-cli/">search-cli</a>
-                <p class="pypi-description">
-                  A GUI around surfraw that lets you open a search box from
-                  anywhere, it also lets you do a search where the query is
-                  whatever text is highlighted.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/prehashed/">prehashed</a>
-                <p class="pypi-description">
-                  A dictionary subclass that stores the sha1 hash of keys rather
-                  than the full key. This reduces storage space, for example if
-                  your keys are long documents you can store and retrieve stats
-                  about them without storing the whole document in memory.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/true-case/">true-case</a>
-                <p class="pypi-description">
-                  An interface that gives the probability that a token should be
-                  capitalized. Probabilities were estimated from the
-                  CNN/DailyMail dataset.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/quick-knn/">quick-knn</a>
-                <p class="pypi-description">
-                  An LSH implementation that supports Jaccard Similarity through
-                  MinHash and cosine similarity via Random Hyperplanes.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/string-distance/">
-                  string-distance
-                </a>
-                <p class="pypi-description">
-                  Cython implementations of various string distance algorithms.
-                </p>
-              </li>
-              <li>
-                <a href="https://pypi.org/project/delta-of-delta/">
-                  delta-of-delta
-                </a>
-                <p class="pypi-description">
-                  Pedagogical implementations of various time-stamp encoding
-                  algorithms.
-                </p>
-              </li>
-            </ul>
-          </div>
-          <div class="col-lg-2 project-image hidden-sm hidden-md">
-            <img
-              src="static/img/project/pypi.png"
-              class="img-thumbnail center-block"
-            />
           </div>
         </div>
 
-        <div class="row equal">
-          <div class="col-lg-10">
-            <div class="row">
-              <div class="col-lg-10">
-                <h3 class="project-title">Dependency Parsing</h3>
+        <div class="project-block">
+          <div class="row equal project-inner">
+            <div class="col-lg-10">
+              <div class="row">
+                <div class="col-lg-10">
+                  <h3 class="project-title">Dependency Parsing</h3>
+                </div>
+                <div class="col-lg-2">
+                  <h6 class="project-type">Personal Project</h6>
+                </div>
               </div>
-              <div class="col-lg-2">
-                <h6 class="project-type">Personal Project</h6>
+              <div class="row">
+                <div class="col-lg-10"></div>
+                <div class="col-lg-2">
+                  <p class="project-date"></p>
+                </div>
               </div>
+              <p class="project-content">
+                Dependency parsing via Deep Learning models written in PyTorch.
+                Supports training parsers via dynamic oracles using either the
+                Arc Eager or the Arc Hybrid transition scheme or a Graph based
+                parser using Biaffine Attention. Currently working on creating a
+                shared interface between the two parser types with plans to
+                release it as an open source library
+              </p>
             </div>
-            <div class="row">
-              <div class="col-lg-10"></div>
-              <div class="col-lg-2">
-                <p class="project-date"></p>
-              </div>
+            <div class="col-lg-2 project-image hidden-sm hidden-md">
+              <img
+                src="static/img/project/dep-parse.webp"
+                class="img-thumbnail center-block"
+              />
             </div>
-            <p class="project-content">
-              Dependency parsing via Deep Learning models written in PyTorch.
-              Supports training parsers via dynamic oracles using either the Arc
-              Eager or the Arc Hybrid transition scheme or a Graph based parser
-              using Biaffine Attention. Currently working on creating a shared
-              interface between the two parser types with plans to release it as
-              an open source library
-            </p>
-          </div>
-          <div class="col-lg-2 project-image hidden-sm hidden-md">
-            <img
-              src="static/img/project/dep-parse.webp"
-              class="img-thumbnail center-block"
-            />
           </div>
         </div>
 
-        <a
-          href="https://github.com/blester125/Decomposable_Attention"
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/Decomposable_Attention"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1468,13 +1497,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/Self_Driving_Network"
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/Self_Driving_Network"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1505,13 +1535,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/multi_digit_recognition"
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/multi_digit_recognition"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1550,13 +1581,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/TCP-with-Minet"
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/TCP-with-Minet"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1591,10 +1623,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a href="https://github.com/blester125/CS_1645" class="project-link">
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/CS_1645"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1626,13 +1662,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/Secure-File-Sharing"
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/Secure-File-Sharing"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1670,14 +1707,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/diffie-hellman"
-          ,
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/diffie-hellman"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1717,13 +1754,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/facial_recognition"
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/facial_recognition"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1762,13 +1800,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/CS_1622_Compilers"
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/CS_1622_Compilers"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1801,14 +1840,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/Kasiski_Examination"
-          ,
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/Kasiski_Examination"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1844,14 +1883,14 @@
               />
             </div>
           </div>
-        </a>
+        </div>
 
-        <a
-          href="https://github.com/blester125/LeagueMakers"
-          ,
-          class="project-link"
-        >
-          <div class="row equal">
+        <div class="project-block">
+          <a
+            href="https://github.com/blester125/LeagueMakers"
+            class="project-link"
+          ></a>
+          <div class="row equal project-inner">
             <div class="col-lg-10">
               <div class="row">
                 <div class="col-lg-10">
@@ -1887,7 +1926,7 @@
               />
             </div>
           </div>
-        </a>
+        </div>
       </div>
     </section>
 

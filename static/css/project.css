@@ -9,11 +9,11 @@ h6.project-type {
 }
 
 p.project-content {
-  color:#777;
+  color: #777;
 }
 
 p.project-date {
-  color:#777;
+  color: #777;
   text-align: right;
 }
 
@@ -25,7 +25,7 @@ p.project-date {
 }
 
 a.project-link {
-  color:inherit;
+  color: inherit;
   text-decoration: none;
 }
 
@@ -40,8 +40,30 @@ ul.project-list li {
 }
 
 p.pypi-description {
-  color:#777;
+  color: #777;
   margin-left: 2%;
   margin-bottom: 1px;
   line-height: 1.1;
+}
+
+.project-block {
+  position: relative;
+}
+
+.project-block .project-link {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+.project-block .project-inner {
+  position: relative;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-block .project-inner a {
+  pointer-events: all;
 }
