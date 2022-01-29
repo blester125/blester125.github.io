@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta
+      name="og:description"
+      content="A walkthough of how I build my resume with LaTeX GitHub Actions."
+    />
+    <meta name="og:title" content="Autobuilding Resume" />
+    <meta name="og:url" content="https://blester125.com/blog/resume.html" />
+    <meta name="og:image" content="" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="author" content="Brian Lester" />
+    <title>Autobuilding Resume with LaTeX and GitHub Actions.</title>
+
+    <!-- Third Party CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+      crossorigin="anonymous"
+    />
+
+    <!-- Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css"
+      integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity=sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+    <![endif]-->
+
+    <!-- favicon, the logo in the tab -->
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="/static/img/favicon.ico"
+      type="image/x-icon"
+    />
+
+    <!-- Third Party Javascript -->
+    <script
+      src="https://code.jquery.com/jquery-1.11.1.min.js"
+      integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+      integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../static/js/vendored/jquery.scrollintoview.min.js"></script>
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom CSS -->
+    <link href="/static/css/agency.css" rel="stylesheet" />
+    <link href="/static/css/teaching.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/nav.css" rel="stylesheet" />
+    <link href="/static/css/nav-placeholder.css" rel="stylesheet" />
+
+    <!-- Custom JS -->
+    <script src="/static/js/interactive.js"></script>
+    <script src="/static/js/fetch.js"></script>
+    <script type="text/javascript">
+      window.onload = addHoverToLines.bind(null, "show-line-", 10, 0.01);
+      $(function () {
+        $("#nav").load("/static/nav.html", function () {
+          loadScript("/static/js/agency.js");
+        });
+        $("#footer").load("/static/footer.html", function () {
+          $(".social-links").load("/static/socials.html");
+        });
+      });
+    </script>
+  </head>
+  <body class="bg-light-gray">
+    <div id="nav" class="navbar-placeholder"></div>
+
+    <div class="container">
+      <div class="content">
+        <div class="section" id="title">
+          <center>
+            <h1>
+              Autobuilding my Resume with \(\rm \LaTeX \) and GitHub Actions.
+            </h1>
+          </center>
+        </div>
+        <div class="row">
+          <div class="section col-lg-8 col-lg-offset-2" id="introduction">
+            <p>My Blog</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+  </body>
+</html>

@@ -22,5 +22,13 @@
     "tags": ["wacom", "systemd", "udev"],
     "description": "There is a strong community supporting Wacom drawing tablets with easy to install drivers and software to help configure the tablet. One thing that is lacking is support for re-configuration when you unplug the tablet and plug it back in. In this post we dive into my solution.",
     "link": "wacom.html"
+  },
+  {
+    "title": "Autobuilding my Resume with LaTeX and GitHub Actions",
+    "month": 1,
+    "year": 2022,
+    "tags": ["latex", "ci/cd", "github-actions"],
+    "description": "placeholder",
+    "link": "resume.html"
   }
 ]

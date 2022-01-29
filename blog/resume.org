@@ -1,0 +1,16 @@
+* My Resume with LaTex
+** Including BibTex references
+** Building with Docker
+** Getting citation counts from semantic scholar
+* Building with a Github Action
+** Running an action in docker
+** Commit when you use docker
+Needed to use artifacts and two pipelines
+* Building when citations change
+** Workflow dispatch
+** Citations pipelines
+*** Running a step on failure
+** Triggering the build pipelines
+*** Workflow run
+Only running when citations fail.
+*** Making it still work for the other cases
