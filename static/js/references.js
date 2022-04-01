@@ -39,6 +39,19 @@ function boldConference(conference) {
 }
 
 /**
+ * Remove some special html from the title as they aren't rendered in the
+ * Button title mouse overs.
+ * @param {str} title - The title with the html in it.
+ * @returns {str} The title without the html.
+ */
+function cleanTitle(title) {
+  // I control all the titles I create so manual cleaning where I update this
+  // function when need be seems fine. If things every get really hairy I can
+  // add a `raw_title` field to the reference json blob.
+  return title.replace(/<\/?samp>/gi, "");
+}
+
+/**
  * Convert the list of author {"first": ..., "last": ...} to a string.
  * @param {List[Dict[str, str]]} authors - The list of authors on a paper.
  * @returns {List[str]} A list of formatted author strings.
@@ -82,6 +95,7 @@ function generateReferences(target, citations) {
       poster: citations[i].poster,
       slides: citations[i].slides,
       bibtex: null,
+      raw_title: cleanTitle(citations[i].title),
       bibtex_location: citations[i].bibtex,
       citation_count: citations[i].citation_count,
       semantic_scholar_id: citations[i].semantic_scholar_id,
@@ -103,7 +117,7 @@ function generateReferences(target, citations) {
         modal.style.display = "none";
       },
       loadBibTeX: function () {
-        // Load the bibtex file as a string.
+        // Load the bibtex file as a string and update it in the data async.
         for (var i = 0; i < this.publications.length; i++) {
           const data = this;
           const j = i;
@@ -117,7 +131,7 @@ function generateReferences(target, citations) {
         }
       },
       citationCount: function () {
-        // fetch citation counts from semantic scholar
+        // fetch citation counts from semantic scholar and add to data async.
         for (var i = 0; i < this.publications.length; i++) {
           const data = this;
           const j = i;
@@ -148,6 +162,8 @@ function generateReferences(target, citations) {
       },
     },
     mounted() {
+      // When this is loaded, start fetching bibtex from disk and Semantic
+      // Scholar citation counts async
       this.loadBibTeX();
       this.citationCount();
     },

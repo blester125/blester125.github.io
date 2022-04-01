@@ -494,13 +494,13 @@
                     <a
                       class="btn btn-primary paper-button"
                       v-bind:href="pub.direct_link"
-                      v-bind:title="'Open PDF for \'' + pub.title + '\''"
+                      v-bind:title="'Open PDF for \'' + pub.raw_title + '\''"
                       >PDF</a
                     >
                     <a
                       class="btn btn-primary paper-button"
                       v-on:click="showModal(pub.modal_id)"
-                      v-bind:title="'View BibTex for \'' + pub.title + '\''"
+                      v-bind:title="'View BibTex for \'' + pub.raw_title + '\''"
                       >BibTex</a
                     >
                     <div
@@ -519,7 +519,7 @@
                     <button
                       class="btn btn-primary paper-button"
                       v-bind:data-clipboard-text="pub.bibtex"
-                      v-bind:title="'Copy BibTex for \'' +pub.title + '\' to clipboard'"
+                      v-bind:title="'Copy BibTex for \'' +pub.raw_title + '\' to clipboard'"
                     >
                       <i class="far fa-copy"></i>
                     </button>
@@ -527,35 +527,35 @@
                       v-if="pub.code"
                       class="btn btn-primary paper-button"
                       v-bind:href="pub.code"
-                      v-bind:title="'View code used in \'' + pub.title + '\''"
+                      v-bind:title="'View code used in \'' + pub.raw_title + '\''"
                       >Code</a
                     >
                     <a
                       v-if="pub.poster"
                       class="btn btn-primary paper-button"
                       v-bind:href="pub.poster"
-                      v-bind:title="'View the conference poster that accompanied \'' + pub.title + '\''"
+                      v-bind:title="'View the conference poster that accompanied \'' + pub.raw_title + '\''"
                       >Poster</a
                     >
                     <a
                       v-if="pub.video"
                       class="btn btn-primary paper-button"
                       v-bind:href="pub.video"
-                      v-bind:title="'View the conference recording that accompanied \'' + pub.title + '\''"
+                      v-bind:title="'View the conference recording that accompanied \'' + pub.raw_title + '\''"
                       >Video</a
                     >
                     <a
                       v-if="pub.slides"
                       class="btn btn-primary paper-button"
                       v-bind:href="pub.slides"
-                      v-bind:title="'View the conference slides that accompanied \'' + pub.title + '\''"
+                      v-bind:title="'View the conference slides that accompanied \'' + pub.raw_title + '\''"
                       >Slides</a
                     >
                     <a
                       v-if="pub.semantic_scholar_id"
                       class="btn btn-primary paper-button"
                       v-bind:href="'https://www.semanticscholar.org/paper/' + pub.semantic_scholar_id"
-                      v-bind:title="'View \'' + pub.title + '\' on Semantic Scholar.'"
+                      v-bind:title="'View \'' + pub.raw_title + '\' on Semantic Scholar.'"
                       ><i class="ai ai-semantic-scholar"></i
                     ></a>
                   </div>
