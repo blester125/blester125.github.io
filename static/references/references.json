@@ -67,6 +67,28 @@
     "bibtex": "static/references/jindal-etal-2019-effective.bib"
   },
   {
+    "refkey": "vu-etal-2021-spot",
+    "title": "SPoT: Better Frozen Model Adaptation through Soft Prompt Transfer",
+    "author": [
+      { "first": "Tu", "last": "Vu" },
+      { "first": "Brian", "last": "Lester" },
+      { "first": "Noah", "last": "Constant" },
+      { "first": "Rami", "last": "Al-Rfou" },
+      { "first": "Daniel Matthew", "last": "Cer" }
+    ],
+    "conference": "ACL",
+    "year": 2022,
+    "workshop": null,
+    "location": "Online",
+    "url": "https://arxiv.org/abs/2110.07904",
+    "code": null,
+    "video": null,
+    "poster": null,
+    "slides": null,
+    "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
+    "bibtex": "static/references/vu-etal-2021-spot.bib"
+  },
+  {
     "refkey": "pressel-etal-2018-baseline",
     "title": "Baseline: A Library for Rapid Modeling, Experimentation and Development of Deep Learning Algorithms targeting NLP",
     "author": [
@@ -89,26 +111,49 @@
     "bibtex": "static/references/pressel-etal-2018-baseline.bib"
   },
   {
-    "refkey": "vu-etal-2021-spot",
-    "title": "SPoT: Better Frozen Model Adaptation through Soft Prompt Transfer",
+    "refkey": "lester-2020-multiple",
+    "title": "Multiple Word Embeddings for Increased Diversity of Representation",
     "author": [
-      { "first": "Tu", "last": "Vu" },
-      { "first": "Brian", "last": "Lester" },
-      { "first": "Noah", "last": "Constant" },
-      { "first": "Rami", "last": "Al-Rfou" },
-      { "first": "Daniel Matthew", "last": "Cer" }
+      { "last": "Lester", "first": "Brian" },
+      { "last": "Pressel", "first": "Daniel" },
+      { "last": "Hemmeter", "first": "Amy" },
+      { "last": "Choudhury", "first": "Sagnik Ray" },
+      { "last": "Bangalore", "first": "Srinivas" }
     ],
-    "conference": "ACL",
-    "year": 2022,
-    "workshop": null,
-    "location": "Online",
-    "url": "https://arxiv.org/abs/2110.07904",
-    "code": null,
+    "conference": "Preprint",
+    "year": 2020,
+    "workshop": "arXiv:2009.14394",
+    "location": null,
+    "url": "https://arxiv.org/abs/2009.14394",
+    "code": "https://github.com/blester125/multi-look-embeddings",
     "video": null,
     "poster": null,
     "slides": null,
-    "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
-    "bibtex": "static/references/vu-etal-2021-spot.bib"
+    "semantic_scholar_id": "3bedaea865f4fb922f6f7ee257ab73e2399de7b5",
+    "citation_count": 5,
+    "bibtex": "static/references/lester-2020-multiple.bib"
+  },
+  {
+    "refkey": "lester-etal-2020-constrained",
+    "title": "Constrained Decoding for Computationally Efficient Named Entity Recognition Taggers",
+    "author": [
+      { "last": "Lester", "first": "Brian" },
+      { "last": "Pressel", "first": "Daniel" },
+      { "last": "Hemmeter", "first": "Amy" },
+      { "last": "Choudhury", "first": "Sagnik Ray" },
+      { "last": "Bangalore", "first": "Srinivas" }
+    ],
+    "conference": "EMNLP",
+    "year": 2020,
+    "workshop": "Findings",
+    "location": "Online",
+    "url": "https://www.aclweb.org/anthology/2020.findings-emnlp.166",
+    "code": "https://github.com/blester125/constrained-decoding",
+    "video": "presentations/constrained-sustainlp-2020.html",
+    "poster": null,
+    "slides": "static/presentations/slides/Constrained-Decoding-SustaiNLP-2020.pdf",
+    "semantic_scholar_id": "988542a34d923ae96957bc692c67f120706ea37e",
+    "bibtex": "static/references/lester-etal-2020-constrained.bib"
   },
   {
     "refkey": "roberts-etal-2022-t5x",
@@ -171,51 +216,6 @@
     "bibtex": "static/references/roberts-etal-2022-t5x.bib"
   },
   {
-    "refkey": "lester-2020-multiple",
-    "title": "Multiple Word Embeddings for Increased Diversity of Representation",
-    "author": [
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Pressel", "first": "Daniel" },
-      { "last": "Hemmeter", "first": "Amy" },
-      { "last": "Choudhury", "first": "Sagnik Ray" },
-      { "last": "Bangalore", "first": "Srinivas" }
-    ],
-    "conference": "Preprint",
-    "year": 2020,
-    "workshop": "arXiv:2009.14394",
-    "location": null,
-    "url": "https://arxiv.org/abs/2009.14394",
-    "code": "https://github.com/blester125/multi-look-embeddings",
-    "video": null,
-    "poster": null,
-    "slides": null,
-    "semantic_scholar_id": "3bedaea865f4fb922f6f7ee257ab73e2399de7b5",
-    "citation_count": 5,
-    "bibtex": "static/references/lester-2020-multiple.bib"
-  },
-  {
-    "refkey": "lester-etal-2020-constrained",
-    "title": "Constrained Decoding for Computationally Efficient Named Entity Recognition Taggers",
-    "author": [
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Pressel", "first": "Daniel" },
-      { "last": "Hemmeter", "first": "Amy" },
-      { "last": "Choudhury", "first": "Sagnik Ray" },
-      { "last": "Bangalore", "first": "Srinivas" }
-    ],
-    "conference": "EMNLP",
-    "year": 2020,
-    "workshop": "Findings",
-    "location": "Online",
-    "url": "https://www.aclweb.org/anthology/2020.findings-emnlp.166",
-    "code": "https://github.com/blester125/constrained-decoding",
-    "video": "presentations/constrained-sustainlp-2020.html",
-    "poster": null,
-    "slides": "static/presentations/slides/Constrained-Decoding-SustaiNLP-2020.pdf",
-    "semantic_scholar_id": "988542a34d923ae96957bc692c67f120706ea37e",
-    "bibtex": "static/references/lester-etal-2020-constrained.bib"
-  },
-  {
     "refkey": "lester-2020-iobes",
     "title": "iobes: Library for Span Level Processing",
     "author": [{ "first": "Brian", "last": "Lester" }],
@@ -252,27 +252,6 @@
     "bibtex": "static/references/lester-2018-dynamically.bib"
   },
   {
-    "refkey": "lester-etal-2021-intent",
-    "title": "Intent Features for Rich Natural Language Understanding",
-    "author": [
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Choudhury", "first": "Sagnik Ray" },
-      { "last": "Prasad", "first": "Rashmi" },
-      { "last": "Bangalore", "first": "Srinivas" }
-    ],
-    "conference": "NAACL",
-    "year": 2021,
-    "workshop": "Industry Track",
-    "location": "Online",
-    "url": "https://www.aclweb.org/anthology/2021.naacl-industry.27",
-    "code": "https://github.com/blester125/global-local-model",
-    "poster": "static/presentations/posters/Intent-Features-NAACL-2021-Industry-Track-Poster.pdf",
-    "video": "https://underline.io/lecture/20107-intent-features-for-rich-natural-language-understanding",
-    "slides": "static/presentations/slides/Intent-Features-NAACL-2021-Industry-Track.pdf",
-    "semantic_scholar_id": "7f6f7e56da14711b2645007492aece0af38ddd06",
-    "bibtex": "static/references/lester-etal-2021-intent.bib"
-  },
-  {
     "refkey": "pressel-2018-baseline",
     "title": "Baseline: Strong, Extensible, Reproducible, Deep Learning Baselines for NLP",
     "author": [
@@ -294,6 +273,27 @@
     "slides": "static/presentations/slides/MLOSS-NeurIPS-2018-Baseline.pdf",
     "semantic_scholar_id": "5be88bd5ab23d1ce85419d9aceec4588278e1ae1",
     "bibtex": "static/references/pressel-2018-baseline.bib"
+  },
+  {
+    "refkey": "lester-etal-2021-intent",
+    "title": "Intent Features for Rich Natural Language Understanding",
+    "author": [
+      { "last": "Lester", "first": "Brian" },
+      { "last": "Choudhury", "first": "Sagnik Ray" },
+      { "last": "Prasad", "first": "Rashmi" },
+      { "last": "Bangalore", "first": "Srinivas" }
+    ],
+    "conference": "NAACL",
+    "year": 2021,
+    "workshop": "Industry Track",
+    "location": "Online",
+    "url": "https://www.aclweb.org/anthology/2021.naacl-industry.27",
+    "code": "https://github.com/blester125/global-local-model",
+    "poster": "static/presentations/posters/Intent-Features-NAACL-2021-Industry-Track-Poster.pdf",
+    "video": "https://underline.io/lecture/20107-intent-features-for-rich-natural-language-understanding",
+    "slides": "static/presentations/slides/Intent-Features-NAACL-2021-Industry-Track.pdf",
+    "semantic_scholar_id": "7f6f7e56da14711b2645007492aece0af38ddd06",
+    "bibtex": "static/references/lester-etal-2021-intent.bib"
   },
   {
     "refkey": "lester-2020-leader",
