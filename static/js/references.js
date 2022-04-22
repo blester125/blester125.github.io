@@ -65,6 +65,19 @@ function formatAuthors(authors) {
 }
 
 /**
+ * Detect if I am the first author on a paper.
+ * @param {obj} The json citation.
+ * @return {bool} True if I am the first author, false otherwise.
+ */
+function firstAuthor(citation) {
+  if (citation.authors[0].first === "Brian" && citation.authors[0].last === "Lester") {
+    return true;
+  }
+  return false;
+}
+
+
+/**
  * Render out the references into the HTML
  * Note:
  *   This also adds a global onclick to the whole window so if you ever
@@ -106,6 +119,37 @@ function generateReferences(target, citations) {
     el: document.getElementById(target),
     data: {
       publications: publications,
+    },
+    computed: {
+      // Create a sorted view of the publications based on citation count.
+      // Each time we touch the publications array (like when the citation
+      // count is loaded in) a new sorted version will be made.
+      sortedPublications: function () {
+	// Sort a copy of the publications array as the async functions are
+	// still writing position based information and js sort is in place.
+	return [...this.publications].sort((p1, p2) => {
+          // If two papers have the same citationCount
+	  if (p1.citation_count === p2.citation_count) {
+            // If two papers came out in the same year
+            if (p1.year === p2.year) {
+              p1_first = firstAuthor(p1);
+              p2_first = firstAuthor(p2);
+              // If I am the first author on both or neither
+	      // Sort by title
+              if (p1_first && p2_first || !(p1_first || p2_first)) {
+                return p1.title < p2.title ? 1 : -1;
+	      // Put first author papers first.
+	      } else if (p1_first) {
+                return -1
+	      } else if (p2_first) {
+		return 1
+	      }
+	    }
+            return p1.year < p2.year ? 1 : -1;
+	  }
+	  return p1.citation_count < p2.citation_count ? 1 : -1;
+	});
+      }
     },
     methods: {
       showModal: function (id) {

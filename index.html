@@ -432,7 +432,7 @@
           </div>
         </div>
         <div id="publications-container">
-          <template v-for="pub in publications">
+          <template v-for="pub in sortedPublications">
             <div class="paper" :id="pub.id">
               <a class="paper-link" v-bind:href="pub.link"></a>
               <div class="paper-inner">

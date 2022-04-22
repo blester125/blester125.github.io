@@ -1,25 +1,5 @@
 [
   {
-    "refkey": "lester-etal-2021-power",
-    "title": "The Power of Scale for Parameter-Efficient Prompt Tuning",
-    "author": [
-      { "first": "Brian", "last": "Lester" },
-      { "first": "Rami", "last": "Al-Rfou" },
-      { "first": "Noah", "last": "Constant" }
-    ],
-    "conference": "EMNLP",
-    "year": 2021,
-    "workshop": null,
-    "location": "Online and Punta Cana, Dominican Republic",
-    "url": "https://aclanthology.org/2021.emnlp-main.243",
-    "slides": "static/presentations/slides/Prompt-Tuning-Presentation-EMNLP-2021.pdf",
-    "code": "https://github.com/google-research/prompt-tuning",
-    "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
-    "video": "presentations/prompt-tuning-emnlp-2021.html",
-    "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "bibtex": "static/references/lester-etal-2021-prompt.bib"
-  },
-  {
     "refkey": "wei-etal-2021-finetuned",
     "title": "Finetuned Language Models Are Zero-Shot Learners",
     "author": [
@@ -294,6 +274,26 @@
     "slides": "static/presentations/slides/Intent-Features-NAACL-2021-Industry-Track.pdf",
     "semantic_scholar_id": "7f6f7e56da14711b2645007492aece0af38ddd06",
     "bibtex": "static/references/lester-etal-2021-intent.bib"
+  },
+  {
+    "refkey": "lester-etal-2021-power",
+    "title": "The Power of Scale for Parameter-Efficient Prompt Tuning",
+    "author": [
+      { "first": "Brian", "last": "Lester" },
+      { "first": "Rami", "last": "Al-Rfou" },
+      { "first": "Noah", "last": "Constant" }
+    ],
+    "conference": "EMNLP",
+    "year": 2021,
+    "workshop": null,
+    "location": "Online and Punta Cana, Dominican Republic",
+    "url": "https://aclanthology.org/2021.emnlp-main.243",
+    "slides": "static/presentations/slides/Prompt-Tuning-Presentation-EMNLP-2021.pdf",
+    "code": "https://github.com/google-research/prompt-tuning",
+    "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
+    "video": "presentations/prompt-tuning-emnlp-2021.html",
+    "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
+    "bibtex": "static/references/lester-etal-2021-prompt.bib"
   },
   {
     "refkey": "lester-2020-leader",
