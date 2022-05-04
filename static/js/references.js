@@ -125,8 +125,10 @@ function generateReferences(target, citations) {
       // Each time we touch the publications array (like when the citation
       // count is loaded in) a new sorted version will be made.
       sortedPublications: function () {
-	// Sort a copy of the publications array as the async functions are
-	// still writing position based information and js sort is in place.
+	// Sort a copy of the publications array as the async functions the
+	// are fetching information like citation counts are writing position
+	// based into publications and js .sort is in place (would cause
+	// writes to the wrong publication if it moved).
 	return [...this.publications].sort((p1, p2) => {
           // If two papers have the same citationCount
 	  if (p1.citation_count === p2.citation_count) {
@@ -145,8 +147,11 @@ function generateReferences(target, citations) {
 		return 1
 	      }
 	    }
+            // Put more recent papers first.
             return p1.year < p2.year ? 1 : -1;
 	  }
+          // undefined citation counts will be sorted to the end as
+          // `N < null` is true
 	  return p1.citation_count < p2.citation_count ? 1 : -1;
 	});
       }
