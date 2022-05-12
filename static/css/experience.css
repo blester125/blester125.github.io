@@ -3,6 +3,10 @@ p.job-left {
   padding-bottom: 2%;
 }
 
+ul.job-left {
+  text-align: left;
+}
+
 p.job-right {
   padding-bottom: 2%;
 }
