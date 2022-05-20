@@ -70,7 +70,7 @@ function formatAuthors(authors) {
  * @return {bool} True if I am the first author, false otherwise.
  */
 function firstAuthor(citation) {
-  if (citation.authors[0].first === "Brian" && (citation.authors[0].last === "Lester" || citation.authors[0].last == "Lester"*)) {
+  if (citation.authors[0].first === "Brian" && (citation.authors[0].last === "Lester" || citation.authors[0].last == "Lester*")) {
     return true;
   }
   return false;
