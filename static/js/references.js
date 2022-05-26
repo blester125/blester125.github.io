@@ -30,12 +30,8 @@ TOP_TIER_CONFERENCES = ["EMNLP", "ACL", "NAACL", "ICLR", "NeurIPS"];
  * @param {str} conference - The conference string.
  * @returns {bool} True if the conference and year should be bolded.
  */
-function boldConference(conference) {
-  var idx = TOP_TIER_CONFERENCES.indexOf(conference);
-  if (idx === -1) {
-    return null;
-  }
-  return true;
+function boldConference(conference, conferences = TOP_TIER_CONFERENCES) {
+  return conferences.indexOf(conference) != -1;
 }
 
 /**
@@ -125,35 +121,53 @@ function generateReferences(target, citations) {
       // Each time we touch the publications array (like when the citation
       // count is loaded in) a new sorted version will be made.
       sortedPublications: function () {
-	// Sort a copy of the publications array as the async functions the
-	// are fetching information like citation counts are writing position
-	// based into publications and js .sort is in place (would cause
-	// writes to the wrong publication if it moved).
-	return [...this.publications].sort((p1, p2) => {
+        // Sort a copy of the publications array as the async functions the
+        // are fetching information like citation counts are writing position
+        // based into publications and js .sort is in place (would cause
+        // writes to the wrong publication if it moved).
+        return [...this.publications].sort((p1, p2) => {
           // If two papers have the same citationCount
-	  if (p1.citation_count === p2.citation_count) {
+          if (p1.citation_count === p2.citation_count) {
             // If two papers came out in the same year
             if (p1.year === p2.year) {
               p1_first = firstAuthor(p1);
               p2_first = firstAuthor(p2);
               // If I am the first author on both or neither
-	      // Sort by title
+              // Sort by title
               if (p1_first && p2_first || !(p1_first || p2_first)) {
                 return p1.title < p2.title ? 1 : -1;
-	      // Put first author papers first.
-	      } else if (p1_first) {
+                // Put first author papers first.
+              } else if (p1_first) {
                 return -1
-	      } else if (p2_first) {
-		return 1
-	      }
-	    }
+              } else if (p2_first) {
+                return 1
+              }
+            }
             // Put more recent papers first.
             return p1.year < p2.year ? 1 : -1;
-	  }
+          }
           // undefined citation counts will be sorted to the end as
           // `N < null` is true
-	  return p1.citation_count < p2.citation_count ? 1 : -1;
-	});
+          return p1.citation_count < p2.citation_count ? 1 : -1;
+        });
+      },
+      // Sum the total number of citations across publications.
+      totalCitations: function() {
+        return this.publications.reduce(
+            (partialSum, p) => partialSum + p.citation_count || 0, 0);
+      },
+      // Calculate my H Index. Given a list of publications, sorted by citation
+      // count, if the 6th paper (1-indexed) has >= 6 citations, it means that
+      // there are (at least) 6 papers with at least 6 citations as all previous
+      // publications have more citations (due to the sort). We find the first
+      // 0-indexed publication where this doesn't hold to find our H Index.
+      hIndex: function() {
+        for (var i = 0; i < this.sortedPublications.length; i++) {
+          if ((this.sortedPublications[i].citation_count || 0) < (i + 1)) {
+            break
+          }
+        }
+        return i
       }
     },
     methods: {

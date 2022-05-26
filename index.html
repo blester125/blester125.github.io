@@ -433,141 +433,142 @@
 
     <!-- Publications section -->
     <section id="publications" class="bg-light-gray">
-      <div class="container">
+      <div class="container" id="publications-container">
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Publications</h2>
+            <h3 class="section-subheading text-muted">
+              H Index: {{ hIndex}} <br /> Total Citations {{ totalCitations }}
+            </h3>
           </div>
         </div>
-        <div id="publications-container">
-          <template v-for="pub in sortedPublications">
-            <div class="paper" :id="pub.id">
-              <a class="paper-link" v-bind:href="pub.link"></a>
-              <div class="paper-inner">
-                <div class="row">
-                  <div class="col-lg-1"></div>
-                  <div class="col-lg-10">
-                    <h3 class="paper-title" v-html="pub.title"></h3>
-                    <h4 class="paper-authors">
-                      <template v-for="(author, index) in pub.authors">
-                        <span class="paper-authors">
-                          <span
-                            v-if="author === 'Brian Lester' || author === 'Brian Lester*'"
-                            style="color: rgb(51, 51, 51)"
-                            ><b>{{ author }}</b></span
-                          ><!--
-                                --><span v-else>{{ author }}</span
-                          ><!--
-                                --><span v-if="index !== pub.authors.length - 1"
-                            >,
-                          </span>
+        <template v-for="pub in sortedPublications">
+          <div class="paper" :id="pub.id">
+            <a class="paper-link" v-bind:href="pub.link"></a>
+            <div class="paper-inner">
+              <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                  <h3 class="paper-title" v-html="pub.title"></h3>
+                  <h4 class="paper-authors">
+                    <template v-for="(author, index) in pub.authors">
+                      <span class="paper-authors">
+                        <span
+                          v-if="author === 'Brian Lester' || author === 'Brian Lester*'"
+                          style="color: rgb(51, 51, 51)"
+                          ><b>{{ author }}</b></span
+                        ><!--
+                              --><span v-else>{{ author }}</span
+                        ><!--
+                              --><span v-if="index !== pub.authors.length - 1"
+                          >,
                         </span>
-                      </template>
-                    </h4>
-                    <p class="paper-venue">
-                      <span class="paper-venue">
-                        <b v-if="pub.bold_venue">{{ pub.venue }}</b>
-                        <span v-else>{{ pub.venue }}</span>, </span
-                      ><!--
-                        --><span class="paper-venue">
-                        <b v-if="pub.bold_venue">{{ pub.year }}</b>
-                        <span v-else>{{ pub.year }}</span></span
-                      ><!--
-                        --><span v-if="pub.workshop" class="paper-venue"
-                        >; {{ pub.workshop }}</span
-                      ><!--
-                        --><span class="paper-venue" v-if="pub.location"
-                        >, {{ pub.location }}.</span
-                      ><!--
-                        --><span class="paper-venue" v-else>.</span
-                      ><!--
-                        --><span class="paper-venue" v-if="pub.citation_count"
-                        ><b> {{ pub.citation_count }}</b>
-                        <span class="paper-venue" v-if="pub.citation_count == 1"
-                          >citation</span
-                        >
-                        <span class="paper-venue" v-else>citations</span></span
+                      </span>
+                    </template>
+                  </h4>
+                  <p class="paper-venue">
+                    <span class="paper-venue">
+                      <b v-if="pub.bold_venue">{{ pub.venue }}</b>
+                      <span v-else>{{ pub.venue }}</span>, </span
+                    ><!--
+                      --><span class="paper-venue">
+                      <b v-if="pub.bold_venue">{{ pub.year }}</b>
+                      <span v-else>{{ pub.year }}</span></span
+                    ><!--
+                      --><span v-if="pub.workshop" class="paper-venue"
+                      >; {{ pub.workshop }}</span
+                    ><!--
+                      --><span class="paper-venue" v-if="pub.location"
+                      >, {{ pub.location }}.</span
+                    ><!--
+                      --><span class="paper-venue" v-else>.</span
+                    ><!--
+                      --><span class="paper-venue" v-if="pub.citation_count"
+                      ><b> {{ pub.citation_count }}</b>
+                      <span class="paper-venue" v-if="pub.citation_count == 1"
+                        >citation</span
                       >
-                    </p>
-                  </div>
-                  <div class="col-lg-1"></div>
+                      <span class="paper-venue" v-else>citations</span></span
+                    >
+                  </p>
                 </div>
-                <div class="row">
-                  <div class="col-lg-1"></div>
-                  <div class="col-lg-10">
-                    <a
-                      class="btn btn-primary paper-button"
-                      v-bind:href="pub.direct_link"
-                      v-bind:title="'Open PDF for \'' + pub.raw_title + '\''"
-                      >PDF</a
-                    >
-                    <a
-                      class="btn btn-primary paper-button"
-                      v-on:click="showModal(pub.modal_id)"
-                      v-bind:title="'View BibTex for \'' + pub.raw_title + '\''"
-                      >BibTex</a
-                    >
+                <div class="col-lg-1"></div>
+              </div>
+              <div class="row">
+                <div class="col-lg-1"></div>
+                <div class="col-lg-10">
+                  <a
+                    class="btn btn-primary paper-button"
+                    v-bind:href="pub.direct_link"
+                    v-bind:title="'Open PDF for \'' + pub.raw_title + '\''"
+                    >PDF</a
+                  >
+                  <a
+                    class="btn btn-primary paper-button"
+                    v-on:click="showModal(pub.modal_id)"
+                    v-bind:title="'View BibTex for \'' + pub.raw_title + '\''"
+                    >BibTex</a
+                  >
+                  <div
+                    class="modal"
+                    :id="pub.modal_id"
+                    style="display: none"
+                    v-on:click="hideModal(pub.modal_id)"
+                  >
                     <div
-                      class="modal"
-                      :id="pub.modal_id"
-                      style="display: none"
-                      v-on:click="hideModal(pub.modal_id)"
+                      class="modal-content"
+                      onclick="event.stopPropagation();"
                     >
-                      <div
-                        class="modal-content"
-                        onclick="event.stopPropagation();"
-                      >
-                        <pre class="bibtex">{{ pub.bibtex }}</pre>
-                      </div>
+                      <pre class="bibtex">{{ pub.bibtex }}</pre>
                     </div>
-                    <button
-                      class="btn btn-primary paper-button"
-                      v-bind:data-clipboard-text="pub.bibtex"
-                      v-bind:title="'Copy BibTex for \'' +pub.raw_title + '\' to clipboard'"
-                    >
-                      <i class="far fa-copy"></i>
-                    </button>
-                    <a
-                      v-if="pub.code"
-                      class="btn btn-primary paper-button"
-                      v-bind:href="pub.code"
-                      v-bind:title="'View code used in \'' + pub.raw_title + '\''"
-                      >Code</a
-                    >
-                    <a
-                      v-if="pub.poster"
-                      class="btn btn-primary paper-button"
-                      v-bind:href="pub.poster"
-                      v-bind:title="'View the conference poster that accompanied \'' + pub.raw_title + '\''"
-                      >Poster</a
-                    >
-                    <a
-                      v-if="pub.video"
-                      class="btn btn-primary paper-button"
-                      v-bind:href="pub.video"
-                      v-bind:title="'View the conference recording that accompanied \'' + pub.raw_title + '\''"
-                      >Video</a
-                    >
-                    <a
-                      v-if="pub.slides"
-                      class="btn btn-primary paper-button"
-                      v-bind:href="pub.slides"
-                      v-bind:title="'View the conference slides that accompanied \'' + pub.raw_title + '\''"
-                      >Slides</a
-                    >
-                    <a
-                      v-if="pub.semantic_scholar_id"
-                      class="btn btn-primary paper-button"
-                      v-bind:href="'https://www.semanticscholar.org/paper/' + pub.semantic_scholar_id"
-                      v-bind:title="'View \'' + pub.raw_title + '\' on Semantic Scholar.'"
-                      ><i class="ai ai-semantic-scholar"></i
-                    ></a>
                   </div>
+                  <button
+                    class="btn btn-primary paper-button"
+                    v-bind:data-clipboard-text="pub.bibtex"
+                    v-bind:title="'Copy BibTex for \'' +pub.raw_title + '\' to clipboard'"
+                  >
+                    <i class="far fa-copy"></i>
+                  </button>
+                  <a
+                    v-if="pub.code"
+                    class="btn btn-primary paper-button"
+                    v-bind:href="pub.code"
+                    v-bind:title="'View code used in \'' + pub.raw_title + '\''"
+                    >Code</a
+                  >
+                  <a
+                    v-if="pub.poster"
+                    class="btn btn-primary paper-button"
+                    v-bind:href="pub.poster"
+                    v-bind:title="'View the conference poster that accompanied \'' + pub.raw_title + '\''"
+                    >Poster</a
+                  >
+                  <a
+                    v-if="pub.video"
+                    class="btn btn-primary paper-button"
+                    v-bind:href="pub.video"
+                    v-bind:title="'View the conference recording that accompanied \'' + pub.raw_title + '\''"
+                    >Video</a
+                  >
+                  <a
+                    v-if="pub.slides"
+                    class="btn btn-primary paper-button"
+                    v-bind:href="pub.slides"
+                    v-bind:title="'View the conference slides that accompanied \'' + pub.raw_title + '\''"
+                    >Slides</a
+                  >
+                  <a
+                    v-if="pub.semantic_scholar_id"
+                    class="btn btn-primary paper-button"
+                    v-bind:href="'https://www.semanticscholar.org/paper/' + pub.semantic_scholar_id"
+                    v-bind:title="'View \'' + pub.raw_title + '\' on Semantic Scholar.'"
+                    ><i class="ai ai-semantic-scholar"></i
+                  ></a>
                 </div>
               </div>
             </div>
-          </template>
-        </div>
+          </div>
+        </template>
       </div>
     </section>
 
@@ -577,6 +578,9 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Presentations</h2>
+            <h3 class="section-subheading text-muted">
+              Invited Talks and Meetups
+            </h3>
           </div>
         </div>
         <!-- <div class="row equal"> -->
