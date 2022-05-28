@@ -66,12 +66,15 @@ function formatAuthors(authors) {
  * @return {bool} True if I am the first author, false otherwise.
  */
 function firstAuthor(citation) {
-  if (citation.authors[0].first === "Brian" && (citation.authors[0].last === "Lester" || citation.authors[0].last == "Lester*")) {
+  if (
+    citation.authors[0].first === "Brian" &&
+    (citation.authors[0].last === "Lester" ||
+      citation.authors[0].last == "Lester*")
+  ) {
     return true;
   }
   return false;
 }
-
 
 /**
  * Render out the references into the HTML
@@ -134,13 +137,13 @@ function generateReferences(target, citations) {
               p2_first = firstAuthor(p2);
               // If I am the first author on both or neither
               // Sort by title
-              if (p1_first && p2_first || !(p1_first || p2_first)) {
+              if ((p1_first && p2_first) || !(p1_first || p2_first)) {
                 return p1.title < p2.title ? 1 : -1;
                 // Put first author papers first.
               } else if (p1_first) {
-                return -1
+                return -1;
               } else if (p2_first) {
-                return 1
+                return 1;
               }
             }
             // Put more recent papers first.
@@ -152,23 +155,28 @@ function generateReferences(target, citations) {
         });
       },
       // Sum the total number of citations across publications.
-      totalCitations: function() {
+      totalCitations: function () {
         return this.publications.reduce(
-            (partialSum, p) => partialSum + p.citation_count || 0, 0);
+          (partialSum, p) => partialSum + p.citation_count || 0,
+          0
+        );
       },
       // Calculate my H Index. Given a list of publications, sorted by citation
       // count, if the 6th paper (1-indexed) has >= 6 citations, it means that
       // there are (at least) 6 papers with at least 6 citations as all previous
       // publications have more citations (due to the sort). We find the first
       // 0-indexed publication where this doesn't hold to find our H Index.
-      hIndex: function() {
+      hIndex: function () {
         for (var i = 0; i < this.sortedPublications.length; i++) {
-          if ((this.sortedPublications[i].citation_count || 0) < (i + 1)) {
-            break
+          if ((this.sortedPublications[i].citation_count || 0) < i + 1) {
+            break;
           }
         }
-        return i
-      }
+        return i;
+      },
+      publicationCount: function () {
+        return this.sortedPublications.length;
+      },
     },
     methods: {
       showModal: function (id) {
