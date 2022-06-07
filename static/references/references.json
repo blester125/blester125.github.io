@@ -63,7 +63,7 @@
     "url": "https://aclanthology.org/2022.acl-long.346",
     "code": null,
     "video": null,
-    "poster": null,
+    "poster": "static/presentations/posters/spot-acl-2022-poster.pdf",
     "slides": null,
     "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
     "bibtex": "static/references/vu-etal-2022-spot.bib"
