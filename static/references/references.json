@@ -61,7 +61,7 @@
     "workshop": null,
     "location": "Online",
     "url": "https://aclanthology.org/2022.acl-long.346",
-    "code": null,
+    "code": "https://github.com/google-research/prompt-tuning/tree/main/prompt_tuning/spot",
     "video": null,
     "poster": "static/presentations/posters/spot-acl-2022-poster.pdf",
     "slides": null,
