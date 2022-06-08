@@ -110,6 +110,7 @@ function generateReferences(target, citations) {
       raw_title: cleanTitle(citations[i].title),
       bibtex_location: citations[i].bibtex,
       citation_count: citations[i].citation_count,
+      fallback_citation_count_date: citations[i].fallback_citation_count_date,
       semantic_scholar_id: citations[i].semantic_scholar_id,
     });
   }
@@ -118,6 +119,8 @@ function generateReferences(target, citations) {
     el: document.getElementById(target),
     data: {
       publications: publications,
+      // Is our citation data live?
+      live_data: true,
     },
     computed: {
       // Create a sorted view of the publications based on citation count.
@@ -206,9 +209,6 @@ function generateReferences(target, citations) {
         for (var i = 0; i < this.publications.length; i++) {
           const data = this;
           const j = i;
-          if (this.publications[i].citation_count) {
-            continue;
-          }
           if (this.publications[i].semantic_scholar_id) {
             $.ajax({
               url:
@@ -220,12 +220,17 @@ function generateReferences(target, citations) {
                   ...data.publications[j],
                 };
                 publication.citation_count = resp.citationCount;
+                // Remove the fallback date as it is live
+                publication.fallback_citation_count_date = null;
                 data.$set(data.publications, j, publication);
               },
               error: function (xhr, error) {
                 console.log(
-                  "Failed to read " + data.puplications[j].semantic_scholar_id
+                  "Failed to read " + data.publications[j].semantic_scholar_id
                 );
+                console.log(xhr);
+                // Triggers data staleness warning
+                data.live_data = false;
               },
             });
           }

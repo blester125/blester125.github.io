@@ -441,6 +441,7 @@
               h-index: {{ hIndex}} <br />
               Publications: {{ publicationCount }} <br />
               Total Citations: {{ totalCitations }}
+              <small v-if="!live_data"><br />Note: Citation Counts and derivied data may not be up to date.</small>
             </h3>
           </div>
         </div>
@@ -490,7 +491,9 @@
                       <span class="paper-venue" v-if="pub.citation_count == 1"
                         >citation</span
                       >
-                      <span class="paper-venue" v-else>citations</span></span
+                      <span class="paper-venue" v-else>citations</span>
+                      <span class="paper-venue" v-if="pub.fallback_citation_count_date"
+                        >as of {{ pub.fallback_citation_count_date }}</span></span
                     >
                   </p>
                 </div>
