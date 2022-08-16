@@ -1,5 +1,28 @@
 [
   {
+    "refkey": "lester-etal-2022-recycling",
+    "title": "Reducing Retraining by Recycling Parameter-Efficient Prompts",
+    "author": [
+      { "last": "Lester*", "first": "Brian" },
+      { "last": "Yurtsever*", "first": "Joshua" },
+      { "last": "Shakeri", "first": "Siamak" },
+      { "last": "Constant", "first": "Noah" }
+    ],
+    "conference": "Preprint",
+    "year": 2022,
+    "workshop": "arXiv:2208.05577",
+    "location": null,
+    "url": "https://arxiv.org/abs/2208.05577",
+    "code": "https://github.com/google-research/prompt-tuning/tree/main/prompt_tuning/recycling",
+    "video": null,
+    "poster": null,
+    "slides": null,
+    "semantic_scholar_id": null,
+    "citation_count": null,
+    "fallback_citation_count_date": "2022/08/10",
+    "bibtex": "static/references/lester-etal-2022-recycling.bib"
+  },
+  {
     "refkey": "wei-etal-2022-finetuned",
     "title": "Finetuned Language Models Are Zero-Shot Learners",
     "author": [
