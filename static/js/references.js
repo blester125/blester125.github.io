@@ -14,16 +14,18 @@ function normalizeLink(link) {
  *   conversion fails.
  */
 function rewritePDFLink(link) {
-  link = normalizeLink(link);
-  if (link.search("arxiv") != -1) {
-    return link.replace("/abs/", "/pdf/").concat(".pdf");
-  } else if (link.search("acl") != -1) {
-    return link.concat(".pdf");
+  if (link) {
+    link = normalizeLink(link);
+    if (link.search("arxiv") != -1) {
+      return link.replace("/abs/", "/pdf/").concat(".pdf");
+    } else if (link.search("acl") != -1) {
+      return link.concat(".pdf");
+    }
   }
   return link;
 }
 
-TOP_TIER_CONFERENCES = ["EMNLP", "ACL", "NAACL", "ICLR", "NeurIPS"];
+TOP_TIER_CONFERENCES = ["EMNLP", "ACL", "NAACL", "ICLR", "NeurIPS", "ICML"];
 
 /**
  * Decide which conferences to bold.
@@ -67,8 +69,9 @@ function formatAuthors(authors) {
  */
 function firstAuthor(citation) {
   if (
-      citation.authors[0] === "Brian Lester" ||
-      citation.authors[0] === "Brian Lester*") {
+    citation.authors[0] === "Brian Lester" ||
+    citation.authors[0] === "Brian Lester*"
+  ) {
     return true;
   }
   return false;
@@ -131,7 +134,7 @@ function generateReferences(target, citations) {
         // writes to the wrong publication if it moved).
         return [...this.publications].sort((p1, p2) => {
           // If two papers have the same citationCount
-	  console.debug("=================================================");
+          console.debug("=================================================");
           console.debug("Publication Titles:");
           console.debug(p1.title);
           console.debug(p2.title);
@@ -141,26 +144,26 @@ function generateReferences(target, citations) {
           // Make sure 0 and null are treated as equal for this comparison.
           if ((p1.citation_count || 0) === (p2.citation_count || 0)) {
             // If two papers came out in the same year
-	    console.debug("Publication Years:");
+            console.debug("Publication Years:");
             console.debug(p1.year);
             console.debug(p2.year);
             if (p1.year === p2.year) {
               p1_first = firstAuthor(p1);
               p2_first = firstAuthor(p2);
-	      console.debug("I'm I the first author of the publication?");
-	      console.debug(p1_first);
+              console.debug("I'm I the first author of the publication?");
+              console.debug(p1_first);
               console.debug(p2_first);
               // If I am the first author on both or neither
               // Sort by title
               if ((p1_first && p2_first) || !(p1_first || p2_first)) {
-		console.debug("Sorting by title");
+                console.debug("Sorting by title");
                 return p1.title < p2.title ? 1 : -1;
                 // Put first author papers first.
               } else if (p1_first) {
-		console.debug("Sorting by me being the first author.");
+                console.debug("Sorting by me being the first author.");
                 return -1;
               } else if (p2_first) {
-		console.debug("Sorting by me not being the first author.");
+                console.debug("Sorting by me not being the first author.");
                 return 1;
               }
             }
@@ -170,7 +173,7 @@ function generateReferences(target, citations) {
           }
           // undefined citation counts will be sorted to the end as
           // `N < null` is true
-	  console.debug("Unequal Citations, sorting by citation count");
+          console.debug("Unequal Citations, sorting by citation count");
           return p1.citation_count < p2.citation_count ? 1 : -1;
         });
       },
