@@ -1,5 +1,33 @@
 [
   {
+    "refkey": "kandpal-etal-2023-git-theta",
+    "title": "Git-Theta: A Git Extension for Collaborative Development of Machine Learning Models",
+    "author": [
+      { "last": "Kandpal*", "first": "Nikhil" },
+      { "last": "Lester*", "first": "Brian" },
+      { "last": "Muqeeth", "first": "Mohammed" },
+      { "last": "Mascarenhas", "first": "Anisha" },
+      { "last": "Evans", "first": "Monty" },
+      { "last": "Baskaran", "first": "Vishal" },
+      { "last": "Huang", "first": "Tenghao" },
+      { "last": "Liu", "first": "Haokun" },
+      { "last": "Raffel", "first": "Colin" }
+    ],
+    "conference": "ICML",
+    "year": 2023,
+    "workshop": null,
+    "location": "Honolulu, Hawaii",
+    "url": null,
+    "code": "https://github.com/r-three/git-theta",
+    "video": null,
+    "poster": null,
+    "slides": null,
+    "semantic_scholar_id": null,
+    "citation_count": 0,
+    "fallback_citation_count_date": "2023/05/30",
+    "bibtex": "static/references/kandpal-etal-2023-git-theta.bib"
+  },
+  {
     "refkey": "lester-etal-2022-recycling",
     "title": "Reducing Retraining by Recycling Parameter-Efficient Prompts",
     "author": [
@@ -112,14 +140,14 @@
     "year": 2022,
     "workshop": null,
     "location": "Online and Abu Dhabi, UAE",
-    "url": "http://arxiv.org/abs/2205.12647",
+    "url": "https://aclanthology.org/2022.emnlp-main.630",
     "code": "https://github.com/google-research/prompt-tuning/tree/main/prompt_tuning/x_gen",
     "video": null,
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "d05a071b35112e306cd01853ca9a8f899b8dedc2",
-    "citation_count": null,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 12,
+    "fallback_citation_count_date": "2023/05/30",
     "bibtex": "static/references/vu-etal-2022-multilingual.bib"
   },
   {
