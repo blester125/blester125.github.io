@@ -26,17 +26,3 @@ jobs:
       uses: creyD/prettier_action@v4.3
       with:
         prettier_options: --write static/references/references.json
-    - name: Commit New Citation Hash
-      id: commit
-      # If the previous step failed (the hashes didn't match) we commit the new
-      # hash to the .citations-hash file.
-      run: |
-        git add -A
-        git diff-index --quiet HEAD \
-        || git -c user.name="GitHub" -c user.email="noreply@github.com" commit \
-           --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
-           -m "Update Citation Fallback Counts."
-    - name: Push Changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
