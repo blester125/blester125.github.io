@@ -3,15 +3,42 @@
     "refkey": "kandpal-etal-2023-git-theta",
     "title": "Git-Theta: A Git Extension for Collaborative Development of Machine Learning Models",
     "author": [
-      { "last": "Kandpal*", "first": "Nikhil" },
-      { "last": "Lester*", "first": "Brian" },
-      { "last": "Muqeeth", "first": "Mohammed" },
-      { "last": "Mascarenhas", "first": "Anisha" },
-      { "last": "Evans", "first": "Monty" },
-      { "last": "Baskaran", "first": "Vishal" },
-      { "last": "Huang", "first": "Tenghao" },
-      { "last": "Liu", "first": "Haokun" },
-      { "last": "Raffel", "first": "Colin" }
+      {
+        "last": "Kandpal*",
+        "first": "Nikhil"
+      },
+      {
+        "last": "Lester*",
+        "first": "Brian"
+      },
+      {
+        "last": "Muqeeth",
+        "first": "Mohammed"
+      },
+      {
+        "last": "Mascarenhas",
+        "first": "Anisha"
+      },
+      {
+        "last": "Evans",
+        "first": "Monty"
+      },
+      {
+        "last": "Baskaran",
+        "first": "Vishal"
+      },
+      {
+        "last": "Huang",
+        "first": "Tenghao"
+      },
+      {
+        "last": "Liu",
+        "first": "Haokun"
+      },
+      {
+        "last": "Raffel",
+        "first": "Colin"
+      }
     ],
     "conference": "ICML",
     "year": 2023,
@@ -24,17 +51,29 @@
     "slides": null,
     "semantic_scholar_id": "9f5771d882af5d356d0d8ad76a8ccf2a5ecc5352",
     "citation_count": 0,
-    "fallback_citation_count_date": "2023/05/30",
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/kandpal-etal-2023-git-theta.bib"
   },
   {
     "refkey": "lester-etal-2022-recycling",
     "title": "Reducing Retraining by Recycling Parameter-Efficient Prompts",
     "author": [
-      { "last": "Lester*", "first": "Brian" },
-      { "last": "Yurtsever*", "first": "Joshua" },
-      { "last": "Shakeri", "first": "Siamak" },
-      { "last": "Constant", "first": "Noah" }
+      {
+        "last": "Lester*",
+        "first": "Brian"
+      },
+      {
+        "last": "Yurtsever*",
+        "first": "Joshua"
+      },
+      {
+        "last": "Shakeri",
+        "first": "Siamak"
+      },
+      {
+        "last": "Constant",
+        "first": "Noah"
+      }
     ],
     "conference": "Preprint",
     "year": 2022,
@@ -46,23 +85,50 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "2d3b6058370b804009fd7866098f4fca2d1894ca",
-    "citation_count": 0,
-    "fallback_citation_count_date": "2022/08/10",
+    "citation_count": 5,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/lester-etal-2022-recycling.bib"
   },
   {
     "refkey": "wei-etal-2022-finetuned",
     "title": "Finetuned Language Models Are Zero-Shot Learners",
     "author": [
-      { "last": "Wei", "first": "Jason" },
-      { "last": "Bosma", "first": "Maarten" },
-      { "last": "Zhao", "first": "Vincent Y" },
-      { "last": "Guu", "first": "Kelvin" },
-      { "last": "Yu", "first": "Adams Wei" },
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Du", "first": "Nan" },
-      { "last": "Dai", "first": "Andrew M" },
-      { "last": "Le", "first": "Quoc V" }
+      {
+        "last": "Wei",
+        "first": "Jason"
+      },
+      {
+        "last": "Bosma",
+        "first": "Maarten"
+      },
+      {
+        "last": "Zhao",
+        "first": "Vincent Y"
+      },
+      {
+        "last": "Guu",
+        "first": "Kelvin"
+      },
+      {
+        "last": "Yu",
+        "first": "Adams Wei"
+      },
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Du",
+        "first": "Nan"
+      },
+      {
+        "last": "Dai",
+        "first": "Andrew M"
+      },
+      {
+        "last": "Le",
+        "first": "Quoc V"
+      }
     ],
     "conference": "ICLR",
     "year": 2022,
@@ -74,18 +140,30 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 137,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 1042,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
   {
     "refkey": "jindal-etal-2019-effective",
     "title": "An Effective Label Noise Model for DNN Text Classification",
     "author": [
-      { "last": "Jindal", "first": "Ishan" },
-      { "last": "Pressel", "first": "Daniel" },
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Nokleby", "first": "Matthew" }
+      {
+        "last": "Jindal",
+        "first": "Ishan"
+      },
+      {
+        "last": "Pressel",
+        "first": "Daniel"
+      },
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Nokleby",
+        "first": "Matthew"
+      }
     ],
     "conference": "NAACL",
     "year": "2019",
@@ -97,19 +175,34 @@
     "poster": "static/presentations/posters/Noise-Model-NAACL-2018-Poster.pdf",
     "slides": null,
     "semantic_scholar_id": "8b222b3915ce5115bcae189fccd6526125f079c2",
-    "citation_count": 21,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 42,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/jindal-etal-2019-effective.bib"
   },
   {
     "refkey": "vu-etal-2022-spot",
     "title": "SPoT: Better Frozen Model Adaptation through Soft Prompt Transfer",
     "author": [
-      { "first": "Tu", "last": "Vu" },
-      { "first": "Brian", "last": "Lester" },
-      { "first": "Noah", "last": "Constant" },
-      { "first": "Rami", "last": "Al-Rfou" },
-      { "first": "Daniel Matthew", "last": "Cer" }
+      {
+        "first": "Tu",
+        "last": "Vu"
+      },
+      {
+        "first": "Brian",
+        "last": "Lester"
+      },
+      {
+        "first": "Noah",
+        "last": "Constant"
+      },
+      {
+        "first": "Rami",
+        "last": "Al-Rfou"
+      },
+      {
+        "first": "Daniel Matthew",
+        "last": "Cer"
+      }
     ],
     "conference": "ACL",
     "year": 2022,
@@ -121,20 +214,38 @@
     "poster": "static/presentations/posters/spot-acl-2022-poster.pdf",
     "slides": null,
     "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
-    "citation_count": 24,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 131,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/vu-etal-2022-spot.bib"
   },
   {
     "refkey": "vu-etal-2022-multilingual",
     "title": "Overcoming Catastrophic Forgetting in Zero-Shot Cross-Lingual Generation",
     "author": [
-      { "first": "Tu", "last": "Vu" },
-      { "first": "Aditya", "last": "Barua" },
-      { "first": "Brian", "last": "Lester" },
-      { "first": "Daniel Matthew", "last": "Cer" },
-      { "first": "Mohit", "last": "Iyyer" },
-      { "first": "Noah", "last": "Constant" }
+      {
+        "first": "Tu",
+        "last": "Vu"
+      },
+      {
+        "first": "Aditya",
+        "last": "Barua"
+      },
+      {
+        "first": "Brian",
+        "last": "Lester"
+      },
+      {
+        "first": "Daniel Matthew",
+        "last": "Cer"
+      },
+      {
+        "first": "Mohit",
+        "last": "Iyyer"
+      },
+      {
+        "first": "Noah",
+        "last": "Constant"
+      }
     ],
     "conference": "EMNLP",
     "year": 2022,
@@ -146,19 +257,34 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "d05a071b35112e306cd01853ca9a8f899b8dedc2",
-    "citation_count": 12,
-    "fallback_citation_count_date": "2023/05/30",
+    "citation_count": 20,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/vu-etal-2022-multilingual.bib"
   },
   {
     "refkey": "pressel-etal-2018-baseline",
     "title": "Baseline: A Library for Rapid Modeling, Experimentation and Development of Deep Learning Algorithms targeting NLP",
     "author": [
-      { "last": "Pressel", "first": "Daniel" },
-      { "last": "Choudhury", "first": "Sagnik Ray" },
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Zhao", "first": "Yanjie" },
-      { "last": "Barta", "first": "Matt" }
+      {
+        "last": "Pressel",
+        "first": "Daniel"
+      },
+      {
+        "last": "Choudhury",
+        "first": "Sagnik Ray"
+      },
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Zhao",
+        "first": "Yanjie"
+      },
+      {
+        "last": "Barta",
+        "first": "Matt"
+      }
     ],
     "conference": "ACL",
     "year": 2018,
@@ -170,19 +296,34 @@
     "poster": "static/presentations/posters/Mead-Baseline-NLPOSS-2018.pdf",
     "slides": null,
     "semantic_scholar_id": "1db083076dff68bf43307b72720e8d06e9e73993",
-    "citation_count": 13,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 16,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/pressel-etal-2018-baseline.bib"
   },
   {
     "refkey": "lester-2020-multiple",
     "title": "Multiple Word Embeddings for Increased Diversity of Representation",
     "author": [
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Pressel", "first": "Daniel" },
-      { "last": "Hemmeter", "first": "Amy" },
-      { "last": "Choudhury", "first": "Sagnik Ray" },
-      { "last": "Bangalore", "first": "Srinivas" }
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Pressel",
+        "first": "Daniel"
+      },
+      {
+        "last": "Hemmeter",
+        "first": "Amy"
+      },
+      {
+        "last": "Choudhury",
+        "first": "Sagnik Ray"
+      },
+      {
+        "last": "Bangalore",
+        "first": "Srinivas"
+      }
     ],
     "conference": "Preprint",
     "year": 2020,
@@ -202,11 +343,26 @@
     "refkey": "lester-etal-2020-constrained",
     "title": "Constrained Decoding for Computationally Efficient Named Entity Recognition Taggers",
     "author": [
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Pressel", "first": "Daniel" },
-      { "last": "Hemmeter", "first": "Amy" },
-      { "last": "Choudhury", "first": "Sagnik Ray" },
-      { "last": "Bangalore", "first": "Srinivas" }
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Pressel",
+        "first": "Daniel"
+      },
+      {
+        "last": "Hemmeter",
+        "first": "Amy"
+      },
+      {
+        "last": "Choudhury",
+        "first": "Sagnik Ray"
+      },
+      {
+        "last": "Bangalore",
+        "first": "Srinivas"
+      }
     ],
     "conference": "EMNLP",
     "year": 2020,
@@ -218,57 +374,186 @@
     "poster": null,
     "slides": "static/presentations/slides/Constrained-Decoding-SustaiNLP-2020.pdf",
     "semantic_scholar_id": "988542a34d923ae96957bc692c67f120706ea37e",
-    "citation_count": 3,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 6,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/lester-etal-2020-constrained.bib"
   },
   {
     "refkey": "roberts-etal-2022-t5x",
     "title": "Scaling Up Models and Data with <samp>t5x</samp> and <samp>seqio</samp>",
     "author": [
-      { "first": "Adam", "last": "Roberts" },
-      { "first": "Hyung Won", "last": "Chung" },
-      { "first": "Anselm", "last": "Levskaya" },
-      { "first": "Gaurav", "last": "Mishra" },
-      { "first": "James", "last": "Bradbury" },
-      { "first": "Daniel", "last": "Andor" },
-      { "first": "Sharan", "last": "Narang" },
-      { "first": "Brian", "last": "Lester" },
-      { "first": "Colin", "last": "Gaffney" },
-      { "first": "Afroz", "last": "Mohiuddin" },
-      { "first": "Curtis", "last": "Hawthorne" },
-      { "first": "Aitor", "last": "Lewkowycz" },
-      { "first": "Alex", "last": "Salcianu" },
-      { "first": "Marc van", "last": "Zee" },
-      { "first": "Jacob", "last": "Austin" },
-      { "first": "Sebastian", "last": "Goodman" },
-      { "first": "Livio Baldini", "last": "Soares" },
-      { "first": "Haitang", "last": "Hu" },
-      { "first": "Sasha", "last": "Tsvyashchenko" },
-      { "first": "Aakanksha", "last": "Chowdhery" },
-      { "first": "Jasmijn", "last": "Bastings" },
-      { "first": "Jannis", "last": "Bulian" },
-      { "first": "Xavier", "last": "Garcia" },
-      { "first": "Jianmo", "last": "Ni" },
-      { "first": "Andrew", "last": "Chen" },
-      { "first": "Kathleen", "last": "Kenealy" },
-      { "first": "Jonathan H.", "last": "Clark" },
-      { "first": "Stephan", "last": "Lee" },
-      { "first": "Dan", "last": "Garrette" },
-      { "first": "James", "last": "Lee-Thorp" },
-      { "first": "Colin", "last": "Raffel" },
-      { "first": "Noam", "last": "Shazeer" },
-      { "first": "Marvin", "last": "Ritter" },
-      { "first": "Maarten", "last": "Bosma" },
-      { "first": "Alexandre", "last": "Passos" },
-      { "first": "Jeremy", "last": "Maitin-Shepard" },
-      { "first": "Noah", "last": "Fiedel" },
-      { "first": "Mark", "last": "Omernick" },
-      { "first": "Brennan", "last": "Saeta" },
-      { "first": "Ryan", "last": "Sepassi" },
-      { "first": "Alexander", "last": "Spiridonov" },
-      { "first": "Joshua", "last": "Newlan" },
-      { "first": "Andrea", "last": "Gesmundo" }
+      {
+        "first": "Adam",
+        "last": "Roberts"
+      },
+      {
+        "first": "Hyung Won",
+        "last": "Chung"
+      },
+      {
+        "first": "Anselm",
+        "last": "Levskaya"
+      },
+      {
+        "first": "Gaurav",
+        "last": "Mishra"
+      },
+      {
+        "first": "James",
+        "last": "Bradbury"
+      },
+      {
+        "first": "Daniel",
+        "last": "Andor"
+      },
+      {
+        "first": "Sharan",
+        "last": "Narang"
+      },
+      {
+        "first": "Brian",
+        "last": "Lester"
+      },
+      {
+        "first": "Colin",
+        "last": "Gaffney"
+      },
+      {
+        "first": "Afroz",
+        "last": "Mohiuddin"
+      },
+      {
+        "first": "Curtis",
+        "last": "Hawthorne"
+      },
+      {
+        "first": "Aitor",
+        "last": "Lewkowycz"
+      },
+      {
+        "first": "Alex",
+        "last": "Salcianu"
+      },
+      {
+        "first": "Marc van",
+        "last": "Zee"
+      },
+      {
+        "first": "Jacob",
+        "last": "Austin"
+      },
+      {
+        "first": "Sebastian",
+        "last": "Goodman"
+      },
+      {
+        "first": "Livio Baldini",
+        "last": "Soares"
+      },
+      {
+        "first": "Haitang",
+        "last": "Hu"
+      },
+      {
+        "first": "Sasha",
+        "last": "Tsvyashchenko"
+      },
+      {
+        "first": "Aakanksha",
+        "last": "Chowdhery"
+      },
+      {
+        "first": "Jasmijn",
+        "last": "Bastings"
+      },
+      {
+        "first": "Jannis",
+        "last": "Bulian"
+      },
+      {
+        "first": "Xavier",
+        "last": "Garcia"
+      },
+      {
+        "first": "Jianmo",
+        "last": "Ni"
+      },
+      {
+        "first": "Andrew",
+        "last": "Chen"
+      },
+      {
+        "first": "Kathleen",
+        "last": "Kenealy"
+      },
+      {
+        "first": "Jonathan H.",
+        "last": "Clark"
+      },
+      {
+        "first": "Stephan",
+        "last": "Lee"
+      },
+      {
+        "first": "Dan",
+        "last": "Garrette"
+      },
+      {
+        "first": "James",
+        "last": "Lee-Thorp"
+      },
+      {
+        "first": "Colin",
+        "last": "Raffel"
+      },
+      {
+        "first": "Noam",
+        "last": "Shazeer"
+      },
+      {
+        "first": "Marvin",
+        "last": "Ritter"
+      },
+      {
+        "first": "Maarten",
+        "last": "Bosma"
+      },
+      {
+        "first": "Alexandre",
+        "last": "Passos"
+      },
+      {
+        "first": "Jeremy",
+        "last": "Maitin-Shepard"
+      },
+      {
+        "first": "Noah",
+        "last": "Fiedel"
+      },
+      {
+        "first": "Mark",
+        "last": "Omernick"
+      },
+      {
+        "first": "Brennan",
+        "last": "Saeta"
+      },
+      {
+        "first": "Ryan",
+        "last": "Sepassi"
+      },
+      {
+        "first": "Alexander",
+        "last": "Spiridonov"
+      },
+      {
+        "first": "Joshua",
+        "last": "Newlan"
+      },
+      {
+        "first": "Andrea",
+        "last": "Gesmundo"
+      }
     ],
     "conference": "Preprint",
     "year": 2022,
@@ -280,14 +565,19 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1ed66e048bb025e75aa5ea660545285212e5341f",
-    "citation_count": 6,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 100,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/roberts-etal-2022-t5x.bib"
   },
   {
     "refkey": "lester-2020-iobes",
     "title": "iobes: Library for Span Level Processing",
-    "author": [{ "first": "Brian", "last": "Lester" }],
+    "author": [
+      {
+        "first": "Brian",
+        "last": "Lester"
+      }
+    ],
     "conference": "ACL",
     "year": 2021,
     "workshop": "NLP-OSS",
@@ -298,16 +588,22 @@
     "poster": "static/presentations/posters/iobes-nlposs-2020.pdf",
     "slides": "static/presentations/slides/iobes-nlposs-2020.pdf",
     "semantic_scholar_id": "d701ef7637f499b8c3145cac07deec3f94195ec4",
-    "citation_count": 2,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 3,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/lester-2020-iobes.bib"
   },
   {
     "refkey": "lester-2018-dynamically",
     "title": "Dynamically Adjusting a Voice Recognition System",
     "author": [
-      { "first": "Brian", "last": "Lester" },
-      { "first": "Sorin M.", "last": "Panainte" }
+      {
+        "first": "Brian",
+        "last": "Lester"
+      },
+      {
+        "first": "Sorin M.",
+        "last": "Panainte"
+      }
     ],
     "conference": "US Patent 9,984,688",
     "year": 2019,
@@ -327,12 +623,30 @@
     "refkey": "pressel-2018-baseline",
     "title": "Baseline: Strong, Extensible, Reproducible, Deep Learning Baselines for NLP",
     "author": [
-      { "last": "Pressel", "first": "Daniel" },
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Choudhury", "first": "Sagnik Ray" },
-      { "last": "Barta", "first": "Matt" },
-      { "last": "Zhao", "first": "Yanjie" },
-      { "last": "Hemmeter", "first": "Amy" }
+      {
+        "last": "Pressel",
+        "first": "Daniel"
+      },
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Choudhury",
+        "first": "Sagnik Ray"
+      },
+      {
+        "last": "Barta",
+        "first": "Matt"
+      },
+      {
+        "last": "Zhao",
+        "first": "Yanjie"
+      },
+      {
+        "last": "Hemmeter",
+        "first": "Amy"
+      }
     ],
     "conference": "NeurIPS",
     "year": 2018,
@@ -344,18 +658,30 @@
     "poster": "static/presentations/posters/Mead-Baseline-MLOSS-NeurIPS-2018.pdf",
     "slides": "static/presentations/slides/MLOSS-NeurIPS-2018-Baseline.pdf",
     "semantic_scholar_id": "5be88bd5ab23d1ce85419d9aceec4588278e1ae1",
-    "citation_count": 1,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 2,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/pressel-2018-baseline.bib"
   },
   {
     "refkey": "lester-etal-2021-intent",
     "title": "Intent Features for Rich Natural Language Understanding",
     "author": [
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Choudhury", "first": "Sagnik Ray" },
-      { "last": "Prasad", "first": "Rashmi" },
-      { "last": "Bangalore", "first": "Srinivas" }
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Choudhury",
+        "first": "Sagnik Ray"
+      },
+      {
+        "last": "Prasad",
+        "first": "Rashmi"
+      },
+      {
+        "last": "Bangalore",
+        "first": "Srinivas"
+      }
     ],
     "conference": "NAACL",
     "year": 2021,
@@ -367,17 +693,26 @@
     "video": "https://underline.io/lecture/20107-intent-features-for-rich-natural-language-understanding",
     "slides": "static/presentations/slides/Intent-Features-NAACL-2021-Industry-Track.pdf",
     "semantic_scholar_id": "7f6f7e56da14711b2645007492aece0af38ddd06",
-    "citation_count": null,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 0,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/lester-etal-2021-intent.bib"
   },
   {
     "refkey": "lester-etal-2021-power",
     "title": "The Power of Scale for Parameter-Efficient Prompt Tuning",
     "author": [
-      { "first": "Brian", "last": "Lester" },
-      { "first": "Rami", "last": "Al-Rfou" },
-      { "first": "Noah", "last": "Constant" }
+      {
+        "first": "Brian",
+        "last": "Lester"
+      },
+      {
+        "first": "Rami",
+        "last": "Al-Rfou"
+      },
+      {
+        "first": "Noah",
+        "last": "Constant"
+      }
     ],
     "conference": "EMNLP",
     "year": 2021,
@@ -389,15 +724,20 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 277,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 1395,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
   },
   {
     "refkey": "lester-2020-leader",
     "title": "Leader: Prefixing a Length for Faster Word Vector Serialization",
-    "author": [{ "first": "Brian", "last": "Lester" }],
+    "author": [
+      {
+        "first": "Brian",
+        "last": "Lester"
+      }
+    ],
     "conference": "Preprint",
     "year": 2020,
     "workshop": "arXiv:2009.13699",
@@ -408,8 +748,8 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "25375a645d4633dd2c062e019cdc15823833f29d",
-    "citation_count": null,
-    "fallback_citation_count_date": "2022/06/08",
+    "citation_count": 0,
+    "fallback_citation_count_date": "2023/09/26",
     "bibtex": "static/references/lester-2020-leader.bib"
   }
 ]
