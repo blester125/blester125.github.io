@@ -23,7 +23,7 @@ jobs:
       run: |
         python3 citations.py static/references/references.json
     - name: Prettify Citations
-      uses: creyD/prettier_action@3.4
+      uses: creyD/prettier_action@v4.3
       with:
         prettier_options: --write static/references/references.json
     - name: Commit New Citation Hash
