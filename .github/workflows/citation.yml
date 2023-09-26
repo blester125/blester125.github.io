@@ -1,0 +1,42 @@
+name: Citations
+# A workflow that fetches the citation counts from semantic scholar and compares
+# them to the stored citations.
+
+on:
+  schedule:
+  - cron: "0 4 * * *"  # Run everyday at 4 am UTC.
+  # Enable manually triggering from GitHub.
+  workflow_dispatch:
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set Up Python 3
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.6
+    - name: Fetch Citations
+      env:
+        SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+      run: |
+        python3 citations.py static/references/references.json
+    - name: Prettify Citations
+      uses: creyD/prettier_action@3.4
+      with:
+        prettier_options: --write static/references/references.json
+    - name: Commit New Citation Hash
+      id: commit
+      # If the previous step failed (the hashes didn't match) we commit the new
+      # hash to the .citations-hash file.
+      run: |
+        git add -A
+        git diff-index --quiet HEAD \
+        || git -c user.name="GitHub" -c user.email="noreply@github.com" commit \
+           --author="github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>" \
+           -m "Update Citation Fallback Counts."
+    - name: Push Changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
