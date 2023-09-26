@@ -185,7 +185,6 @@ function generateReferences(target, citations) {
         var display = this.sortedPublications.filter((ent) => !ent.position);
         var special = this.sortedPublications.filter((ent) => ent.position);
         special.forEach((ent) => display.splice(ent.position - 1, 0, ent));
-        console.log(display);
         return display;
       },
       // Sum the total number of citations across publications.
