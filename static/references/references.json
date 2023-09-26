@@ -391,7 +391,8 @@
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
     "citation_count": 277,
     "fallback_citation_count_date": "2022/06/08",
-    "bibtex": "static/references/lester-etal-2021-prompt.bib"
+    "bibtex": "static/references/lester-etal-2021-prompt.bib",
+    "position": 1
   },
   {
     "refkey": "lester-2020-leader",

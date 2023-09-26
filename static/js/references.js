@@ -113,6 +113,7 @@ function generateReferences(target, citations) {
       citation_count: citations[i].citation_count,
       fallback_citation_count_date: citations[i].fallback_citation_count_date,
       semantic_scholar_id: citations[i].semantic_scholar_id,
+      position: citations[i].position || null,
     });
   }
   // Render the publications into the HTML
@@ -176,6 +177,16 @@ function generateReferences(target, citations) {
           console.debug("Unequal Citations, sorting by citation count");
           return p1.citation_count < p2.citation_count ? 1 : -1;
         });
+      },
+      // Re-order citations based on override key, this lets me edit the order
+      // how I want, i.e. put prompt-tuning first. Note: the "position" key
+      // starts at `1` not `0`
+      displayPublications: function () {
+        var display = this.sortedPublications.filter((ent) => !ent.position);
+        var special = this.sortedPublications.filter((ent) => ent.position);
+        special.forEach((ent) => display.splice(ent.position - 1, 0, ent));
+        console.log(display);
+        return display;
       },
       // Sum the total number of citations across publications.
       totalCitations: function () {
