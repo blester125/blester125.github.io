@@ -28,6 +28,8 @@ def main():
     if len(sys.argv) == 1:
         raise ValueError("usage: python citations.py references.json")
     api_key = os.environ.get("SEMANTIC_SCHOLAR_API_KEY")
+    if api_key is not None:
+        print("USING API KEY")
     today = date()
 
     filename = sys.argv[1]
