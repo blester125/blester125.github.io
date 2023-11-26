@@ -4,6 +4,7 @@ from datetime import datetime
 import json
 import os
 import sys
+import time
 import urllib.request
 
 
@@ -43,6 +44,7 @@ def main():
                 reference["fallback_citation_count_date"] = today
             except ValueError:
                 pass
+            time.sleep(1)
         new_references.append(reference)
 
     assert len(new_references) == len(references)
