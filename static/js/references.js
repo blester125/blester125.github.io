@@ -25,7 +25,15 @@ function rewritePDFLink(link) {
   return link;
 }
 
-TOP_TIER_CONFERENCES = ["EMNLP", "ACL", "NAACL", "ICLR", "NeurIPS", "ICML"];
+TOP_TIER_CONFERENCES = [
+  "EMNLP",
+  "ACL",
+  "NAACL",
+  "ICLR",
+  "NeurIPS",
+  "ICML",
+  "JMLR",
+];
 
 /**
  * Decide which conferences to bold.
