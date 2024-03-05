@@ -46,7 +46,7 @@ def main():
                 reference["fallback_citation_count_date"] = today
             except ValueError:
                 pass
-            time.sleep(1)
+            time.sleep(10)
         new_references.append(reference)
 
     assert len(new_references) == len(references)
