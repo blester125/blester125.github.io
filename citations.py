@@ -13,7 +13,8 @@ def get_citation_count(paper_id, api_key=None):
     req = urllib.request.Request(url)
     if api_key:
       req.add_header("x-api-key", api_key)
-    r = urllib.request.urlopen(url)
+      req.add_header("User-Agent", "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11")
+    r = urllib.request.urlopen(req)
     if r.getcode() != 200:
         raise ValueError("Invalid Response!")
     data = json.loads(r.read())
