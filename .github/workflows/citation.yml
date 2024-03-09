@@ -4,7 +4,7 @@ name: Citations
 
 on:
   schedule:
-  - cron: "0 4 * * *"  # Run everyday at 4 am UTC.
+    - cron: "0 4 * * *" # Run everyday at 4 am UTC.
   # Enable manually triggering from GitHub.
   workflow_dispatch:
 
@@ -12,17 +12,18 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - name: Set Up Python 3
-      uses: actions/setup-python@v2
-      with:
-        python-version: "3.11"
-    - name: Fetch Citations
-      env:
-        SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
-      run: |
-        python3 citations.py static/references/references.json
-    - name: Prettify Citations
-      uses: creyD/prettier_action@v4.3
-      with:
-        prettier_options: --write static/references/references.json
+      - uses: actions/checkout@v2
+      - name: Set Up Python 3
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.11"
+      - name: Fetch Citations
+        env:
+          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+        run: |
+          pip install requests
+          python3 citations.py static/references/references.json
+      - name: Prettify Citations
+        uses: creyD/prettier_action@v4.3
+        with:
+          prettier_options: --write static/references/references.json

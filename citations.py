@@ -4,20 +4,19 @@ from datetime import datetime
 import json
 import os
 import sys
-import time
-import urllib.request
+import requests
 
 
 def get_citation_count(paper_id, api_key=None):
     url = f"https://api.semanticscholar.org/graph/v1/paper/{paper_id}?fields=citationCount"
-    req = urllib.request.Request(url)
-    if api_key:
-      req.add_header("x-api-key", api_key)
-      req.add_header("User-Agent", "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11")
-    r = urllib.request.urlopen(req)
-    if r.getcode() != 200:
+    # Use requests as the default urllib library auto capitalizes fields like "x-api-key"
+    # to "X-api-key" and the semantic scholar server seems to be case-sensitive even though
+    # they should not be according to RFC 2616.
+    headers = {"x-api-key": api_key} if api_key else {}
+    r = requests.get(url, headers=headers)
+    if r.status_code != 200:
         raise ValueError("Invalid Response!")
-    data = json.loads(r.read())
+    data = r.json()
     return data["citationCount"]
 
 
@@ -47,7 +46,6 @@ def main():
                 reference["fallback_citation_count_date"] = today
             except ValueError:
                 pass
-            time.sleep(10)
         new_references.append(reference)
 
     assert len(new_references) == len(references)
