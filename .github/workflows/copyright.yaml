@@ -1,12 +1,11 @@
-name: Citations
-# A workflow that fetches the citation counts from semantic scholar and compares
-# them to the stored citations.
+name: Copyright
+# A workflow that updates the current year in the copyright notice on my site.
 
 on:
   schedule:
     # Now that live data API is so limited, we want to get the new citations
     # and rebuild/deploy the site more often. Once an hour.
-    - cron: "0 0 1 1 *"
+    - cron: "0 * * * *"
   # Enable manually triggering from GitHub.
   workflow_dispatch:
 
@@ -19,13 +18,10 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: "3.11"
-      - name: Fetch Citations
-        env:
-          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
+      - name: Update Copyright
         run: |
-          pip install requests
-          python3 citations.py static/references/references.json
-      - name: Prettify Citations
+          python3 update-copyright.py
+      - name: Prettify Footer
         uses: creyD/prettier_action@v4.3
         with:
-          prettier_options: --write static/references/references.json
+          prettier_options: --write static/footer.html
