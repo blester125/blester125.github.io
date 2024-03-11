@@ -243,36 +243,41 @@ function generateReferences(target, citations) {
         }
       },
       citationCount: function () {
+        const data = this;
+        data.live_data = false;
+        // The new API limits on SemanticScholar makes it impossible to get the
+        // data live on client side anymore :(
+        //
         // fetch citation counts from semantic scholar and add to data async.
-        for (var i = 0; i < this.publications.length; i++) {
-          const data = this;
-          const j = i;
-          if (this.publications[i].semantic_scholar_id) {
-            $.ajax({
-              url:
-                "https://api.semanticscholar.org/graph/v1/paper/" +
-                this.publications[i].semantic_scholar_id +
-                "?fields=citationCount",
-              success: function (resp) {
-                let publication = {
-                  ...data.publications[j],
-                };
-                publication.citation_count = resp.citationCount;
-                // Remove the fallback date as it is live
-                publication.fallback_citation_count_date = null;
-                data.$set(data.publications, j, publication);
-              },
-              error: function (xhr, error) {
-                console.log(
-                  "Failed to read " + data.publications[j].semantic_scholar_id
-                );
-                console.log(xhr);
-                // Triggers data staleness warning
-                data.live_data = false;
-              },
-            });
-          }
-        }
+        // for (var i = 0; i < this.publications.length; i++) {
+        //   const data = this;
+        //   const j = i;
+        //   if (this.publications[i].semantic_scholar_id) {
+        //     $.ajax({
+        //       url:
+        //         "https://api.semanticscholar.org/graph/v1/paper/" +
+        //         this.publications[i].semantic_scholar_id +
+        //         "?fields=citationCount",
+        //       success: function (resp) {
+        //         let publication = {
+        //           ...data.publications[j],
+        //         };
+        //         publication.citation_count = resp.citationCount;
+        //         // Remove the fallback date as it is live
+        //         publication.fallback_citation_count_date = null;
+        //         data.$set(data.publications, j, publication);
+        //       },
+        //       error: function (xhr, error) {
+        //         console.log(
+        //           "Failed to read " + data.publications[j].semantic_scholar_id
+        //         );
+        //         console.log(xhr);
+        //         // Triggers data staleness warning
+        //         data.live_data = false;
+        //       },
+        //     });
+        //   }
+        // }
       },
     },
     mounted() {
