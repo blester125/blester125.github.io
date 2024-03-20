@@ -15,7 +15,7 @@
     />
     <meta
       name="og:image"
-      content="https://blester125.com/static/img/blog/.png"
+      content="https://blester125.com/static/img/blog/uniform-entropy.png"
     />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -136,7 +136,13 @@
         </div>
         <div class="row">
           <div class="section col-lg-8 col-lg-offset-2" id="introduction">
-            <p>Introduce the Setting</p>
+            <p>
+              Commonly in Machine Learning, the notion of Entropy is used to
+              describe how data behavies, to train models, and the like. When
+              applied to a Uniform distribution, these equations have special
+              forms that make them eaiser to compute. Some of these are found
+              below.
+            </p>
           </div>
         </div>
 
@@ -170,8 +176,9 @@
                 This is the original definition of entropy that is related to
                 compression. The best compression for a symbol with a
                 probability \(p(x)\) is a code of length \(\log \frac{1}{p}\)
-                \cite{}. Therefore the amount of information can be viewed as
-                the expectation of the length when perfectly compressed.
+                (Shannon and Weaver 1949). Therefore the amount of information
+                can be viewed as the expectation of the length when perfectly
+                compressed.
               </li>
               <li id="explain-line-2">
                 Apply the Rule of Logs, \(\log \frac{A}{B} = \log A - \log B\)
@@ -403,7 +410,8 @@
         <div class="row">
           <div class="section col-lg-8 col-lg-offset-2" id="conclusion">
             <p>
-              Now we can always refer back to this is I ever dobut myself lol.
+              Now we see that things like Entropy and KL Divergence have special
+              forms when applied to a Uniform distributions.
             </p>
           </div>
         </div>
