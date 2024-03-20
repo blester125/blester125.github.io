@@ -22,5 +22,13 @@
     "tags": ["wacom", "systemd", "udev"],
     "description": "There is a strong community supporting Wacom drawing tablets with easy to install drivers and software to help configure the tablet. One thing that is lacking is support for re-configuration when you unplug the tablet and plug it back in. In this post we dive into my solution.",
     "link": "wacom.html"
+  },
+  {
+    "title": "Entropy and the Uniform Distribution",
+    "month": 3,
+    "year": 2024,
+    "tags": ["information theory", "machine learning"],
+    "description": "Common entropy calculations have special forms when applied to the Uniform distribution.",
+    "link": "uniform-entropy.html"
   }
 ]
