@@ -153,12 +153,12 @@
             <div class="math-overflow">
               \[
                 \begin{align}
-                  \cssId{show-line-1}H(x) &= \mathbb{E}[\log\frac{1}{p(x)}] \\
-                  \cssId{show-line-2}H(x) &= \mathbb{E}[\log 1 - \log p(x)] \\
-                  \cssId{show-line-3}H(x) &= \mathbb{E}[0 - \log p(x)] \\
-                  \cssId{show-line-4}H(x) &= \mathbb{E}[- \log p(x)] \\
-                  \cssId{show-line-5}H(x) &= \sum_{x\in\mathcal{X}}p(x) * - \log p(x) \\
-                  \cssId{show-line-6}H(x) &= -\sum_{x\in\mathcal{X}}p(x) \log p(x) \qed \\
+                  \cssId{show-line-1}H[P] &= \mathbb{E}[\log\frac{1}{p(x)}] \\
+                  &=\cssId{show-line-2}{\mathbb{E}[\log 1 - \log p(x)]} \\
+                  &=\cssId{show-line-3}{\mathbb{E}[0 - \log p(x)]} \\
+                  &=\cssId{show-line-4}{\mathbb{E}[- \log p(x)]} \\
+                  &=\cssId{show-line-5}{\sum_{x\in\mathcal{X}}p(x) * - \log p(x)} \\
+                  \cssId{show-line-6} H[P] &= -\sum_{x\in\mathcal{X}}p(x) \log p(x) \qed \\
                 \end{align}
               \]
             </div>
@@ -167,33 +167,26 @@
           <div class="explaination">
             <ul class="explain">
               <li id="explain-line-1">
-                This is the definition of softmax; it takes a vector x and
-                exponentiates each element. It then normalizes each element by
-                the sum of all exponentiated elements.
+                This is the original definition of entropy that is related to
+                compression. The best compression for a symbol with a
+                probability \(p(x)\) is a code of length \(\log \frac{1}{p}\)
+                \cite{}. Therefore the amount of information can be viewed as
+                the expectation of the length when perfectly compressed.
               </li>
               <li id="explain-line-2">
-                This is the equality we are trying to prove.
+                Apply the Rule of Logs, \(\log \frac{A}{B} = \log A - \log B\)
               </li>
-              <li id="explain-line-3">
-                This is our definition of \( \alpha \). We are using the max of
-                all elements in \(x\) because that is what people do for
-                numerical stability, but this could be any arbitrary number.
-              </li>
-              <li id="explain-line-4">
-                This is the same as the definition of softmax, but we include
-                the subtraction of \(\alpha\) from each element. This is the
-                value we want to transform the softmax equation into.
-              </li>
+              <li id="explain-line-3">\(\log 1 = 0\)</li>
+              <li id="explain-line-4">\(0\) is the additive identity.</li>
               <li id="explain-line-5">
-                Again, this is our definition of the softmax.
+                The expectation for a discrete random variable is the sum of the
+                the probability of some value times the function applied to that
+                value for all possible values.
               </li>
               <li id="explain-line-6">
-                Anything divided by itself is \(1\) (because this is the same as
-                multiplying by the multiplicative inverse which yields the
-                multiplicative identity) and any number multiplied by \(1\) is
-                itself (because \(1\) is the multiplicative identity). This
-                means we can introduce this \(\frac{e^{-\alpha}}{e^{-\alpha}}\)
-                via multiplication without changing any values.
+                Multiplication distributes over addition, so we can pull the
+                \(-1\) out of the summation. We have now arrived at the equation
+                that people in ML generally use for entropy.
               </li>
             </ul>
           </div>
@@ -211,8 +204,8 @@
             <div class="math-overflow">
               \[
                 \begin{align}
-                  \cssId{show-line-7}H(x) &= -\sum_{x\in\mathcal{X}} p(x) \log p(x) \\
-                  \cssId{show-line-8}p(x) &= \frac{1}{|\mathcal{X}|} \\
+                  \cssId{show-line-7}H[P] &= -\sum_{x\in\mathcal{X}} p(x) \log p(x) \\
+                  \cssId{show-line-8}u(x) &= \frac{1}{|\mathcal{X}|} \\
                   \cssId{show-line-9}U &= \forall_{x \in \mathcal{X}}\text{  } p(x) = \frac{1}{|\mathcal{X}|}
                 \end{align}
               \]
@@ -221,15 +214,16 @@
             <div class="math-overflow">
               \[
                 \begin{align}
-                  \cssId{show-line-10}H(U) &= -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} \log \frac{1}{|\mathcal{X}|} \\
-                  &= \cssId{show-line-11}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} (\log 1 - \log |\mathcal{X}|) }\\
-                  &= \cssId{show-line-12}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|}\log(1) - \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
-                  &= \cssId{show-line-13}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} * 0 - \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
-                  &= \cssId{show-line-14}{ -\sum_{x\in\mathcal{X}} -\frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
-                  &= \cssId{show-line-15}{ \sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
-                  &= \cssId{show-line-16}{ \frac{1}{|\mathcal{X}|}\sum_{x\in\mathcal{X}} \log |\mathcal{X}| }\\
-                  &= \cssId{show-line-17}{ \frac{1}{|\mathcal{X}|} * |\mathcal{X}| * \log |\mathcal{X}| }\\
-                  \cssId{show-line-18}H(U) &= \log |\mathcal{X}| \qed \\
+                  \cssId{show-line-10}H[U] &= -\sum_{x\in\mathcal{X}} u(x) \log u(x) \\
+                  \cssId{show-line-11}H[U] &= -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} \log \frac{1}{|\mathcal{X}|} \\
+                  &= \cssId{show-line-12}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} (\log 1 - \log |\mathcal{X}|) }\\
+                  &= \cssId{show-line-13}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|}\log(1) - \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
+                  &= \cssId{show-line-14}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} * 0 - \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
+                  &= \cssId{show-line-15}{ -\sum_{x\in\mathcal{X}} -\frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
+                  &= \cssId{show-line-16}{ \sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
+                  &= \cssId{show-line-17}{ \frac{1}{|\mathcal{X}|}\sum_{x\in\mathcal{X}} \log |\mathcal{X}| }\\
+                  &= \cssId{show-line-18}{ \frac{1}{|\mathcal{X}|} * |\mathcal{X}| * \log |\mathcal{X}| }\\
+                  \cssId{show-line-19}H[U] &= \log |\mathcal{X}| \qed \\
                 \end{align}
               \]
             </div>
@@ -238,56 +232,51 @@
           <div class="explaination">
             <ul class="explain">
               <li id="explain-line-7">
-                This is the definition of softmax; it takes a vector x and
-                exponentiates each element. It then normalizes each element by
-                the sum of all exponentiated elements.
+                This is the definition of entropy we found above.
               </li>
               <li id="explain-line-8">
-                This is the equality we are trying to prove.
+                In a uniform distribution, the probability for a given symbol is
+                \(1\) divided by the number of possible symbols.
               </li>
               <li id="explain-line-9">
-                This is our definition of \( \alpha \). We are using the max of
-                all elements in \(x\) because that is what people do for
-                numerical stability, but this could be any arbitrary number.
+                For a uniform distribution, all symbols have the same
+                probability.
               </li>
               <li id="explain-line-10">
-                This is the same as the definition of softmax, but we include
-                the subtraction of \(\alpha\) from each element. This is the
-                value we want to transform the softmax equation into.
+                The entropy of a uniform distribution.
               </li>
-              <li id="explain-line-11">
-                Again, this is our definition of the softmax.
-              </li>
+              <li id="explain-line-11">We plug in the values for \(u(x)\).</li>
               <li id="explain-line-12">
-                Anything divided by itself is \(1\) (because this is the same as
-                multiplying by the multiplicative inverse which yields the
-                multiplicative identity) and any number multiplied by \(1\) is
-                itself (because \(1\) is the multiplicative identity). This
-                means we can introduce this \(\frac{e^{-\alpha}}{e^{-\alpha}}\)
-                via multiplication without changing any values.
+                Apply the rule of logs, \(\log \frac{A}{B} = \log A - \log B\).
               </li>
               <li id="explain-line-13">
-                The product of two fractions is the product of their numerators
-                divided by the product of their denominators.
+                Distribution \(\frac{1}{|\mathcal{X}|}\)
               </li>
-              <li id="explain-line-14">
-                Multiplication distributes over the addition in the summation so
-                we can push the \( e^{-\alpha} \) into the summation
-              </li>
+              <li id="explain-line-14">\(\log 1 = 0\)</li>
               <li id="explain-line-15">
-                The rules of exponents state that when multiplying elements that
-                have the same base we can sum the exponents.
+                \(0\) multiplied by anything is \(0\).
               </li>
               <li id="explain-line-16">
-                Addition is commutative so we can move the \( -\alpha \) after
-                the \( x_i \)
+                Multiplication distributes over addition so we can pull the
+                \(-1\) out of the summation.
               </li>
               <li id="explain-line-17">
-                We showed that both \(\softmax(x)\) and \(\softmax(x - \alpha)\)
-                are equal to the same value so by the transitive property they
-                are equal to each other.
+                Multiplication distributes over addition so we can pull the
+                \(\frac{1}{|\mathcal{X}|}\) out of the summation.
               </li>
-              <li id="explain-line-18">Explain</li>
+              <li id="explain-line-18">
+                As the value in the summation, \(\log |\mathcal{X}|\), does not
+                depend on \(x\), the result of the summation will be the
+                addition of it \(|\mathcal{X}|\) times. Multiplication is
+                repeated addition, thus the summation is the same as multiplying
+                by \(|\mathcal{X}\).
+              </li>
+              <li id="explain-line-19">
+                Multiplication by the reciprocal always yields \(1\) and \(1\)
+                is the multiplicative identity. Therefore we are just left with
+                the Entropy of the Uniform distribution as the log of the
+                vocabulary size.
+              </li>
             </ul>
           </div>
         </div>
@@ -305,11 +294,11 @@
             <div class="math-overflow">
               \[
                 \begin{align}
-                  \cssId{show-line-19}KL(p || q) &= \sum_{x\in\mathcal{X}} p(x) \log\frac{p(x)}{q(x)} \\
-                  \cssId{show-line-20}H(p) &= -\sum_{x\in\mathcal{X}} p(x) \log p(x) \\
-                  \cssId{show-line-21}H(U) &= \log |\mathcal{X}| \\
-                  \cssId{show-line-22}u(x) &= \frac{1}{|\mathcal{X}|} \\
-                  \cssId{show-line-23}\sum_{x\in\mathcal{X}} p(x) &= 1
+                  \cssId{show-line-20}KL(P || Q) &= \sum_{x\in\mathcal{X}} p(x) \log\frac{p(x)}{q(x)} \\
+                  \cssId{show-line-21}H[P] &= -\sum_{x\in\mathcal{X}} p(x) \log p(x) \\
+                  \cssId{show-line-22}H[U] &= \log |\mathcal{X}| \\
+                  \cssId{show-line-23}u(x) &= \frac{1}{|\mathcal{X}|} \\
+                  \cssId{show-line-24}\sum_{x\in\mathcal{X}} p(x) &= 1
                 \end{align}
               \]
             </div>
@@ -317,22 +306,22 @@
             <div class="math-overflow">
               \[
                 \begin{align}
-                  \cssId{show-line-24}KL(p || U) &= \sum_{x\in\mathcal{X}} p(x) \log\frac{p(x)}{u(x)} \\
-                  &= \cssId{show-line-25}{\sum_{x\in\mathcal{X}} p(x) (\log p(x) - \log u(x))} \\
-                  &= \cssId{show-line-26}{\sum_{x\in\mathcal{X}} p(x)\log p(x) - p(x)\log u(x)} \\
-                  &= \cssId{show-line-27}{\sum_{x\in\mathcal{X}} p(x)\log p(x) - \sum_{x\in\mathcal{X}} p(x)\log u(x)} \\
-                  &= \cssId{show-line-28}{-H(p) - \sum_{x\in\mathcal{X}} p(x)\log u(x)} \\
-                  &= \cssId{show-line-29}{-H(p) - \sum_{x\in\mathcal{X}} p(x)\log \frac{1}{|\mathcal{X}|}} \\
-                  &= \cssId{show-line-30}{-H(p) - \sum_{x\in\mathcal{X}} p(x)(\log 1 - \log |\mathcal{X}|)} \\
-                  &= \cssId{show-line-31}{-H(p) - \sum_{x\in\mathcal{X}} p(x)\log 1 - p(x)\log |\mathcal{X}|} \\
-                  &= \cssId{show-line-32}{-H(p) - \sum_{x\in\mathcal{X}} p(x) * 0 - p(x)\log |\mathcal{X}|} \\
-                  &= \cssId{show-line-33}{-H(p) - \sum_{x\in\mathcal{X}} - p(x)\log |\mathcal{X}|} \\
-                  &= \cssId{show-line-34}{-H(p) + \sum_{x\in\mathcal{X}} p(x)\log |\mathcal{X}|} \\
-                  &= \cssId{show-line-35}{-H(p) + \log |\mathcal{X}| \sum_{x\in\mathcal{X}} p(x)} \\
-                  &= \cssId{show-line-36}{-H(p) + \log |\mathcal{X}| * 1} \\
-                  &= \cssId{show-line-37}{-H(p) + \log |\mathcal{X}|} \\
-                  &= \cssId{show-line-38}{\log |\mathcal{X}| -H(p)} \\
-                  \cssId{show-line-39}KL(p || U) &= H(U) - H(p) \qed \\
+                  \cssId{show-line-25}KL(P || U) &= \sum_{x\in\mathcal{X}} p(x) \log\frac{p(x)}{u(x)} \\
+                  &= \cssId{show-line-26}{\sum_{x\in\mathcal{X}} p(x) (\log p(x) - \log u(x))} \\
+                  &= \cssId{show-line-27}{\sum_{x\in\mathcal{X}} p(x)\log p(x) - p(x)\log u(x)} \\
+                  &= \cssId{show-line-28}{\sum_{x\in\mathcal{X}} p(x)\log p(x) - \sum_{x\in\mathcal{X}} p(x)\log u(x)} \\
+                  &= \cssId{show-line-29}{-H[P] - \sum_{x\in\mathcal{X}} p(x)\log u(x)} \\
+                  &= \cssId{show-line-30}{-H[P] - \sum_{x\in\mathcal{X}} p(x)\log \frac{1}{|\mathcal{X}|}} \\
+                  &= \cssId{show-line-31}{-H[P] - \sum_{x\in\mathcal{X}} p(x)(\log 1 - \log |\mathcal{X}|)} \\
+                  &= \cssId{show-line-32}{-H[P] - \sum_{x\in\mathcal{X}} p(x)\log 1 - p(x)\log |\mathcal{X}|} \\
+                  &= \cssId{show-line-33}{-H[P] - \sum_{x\in\mathcal{X}} p(x) * 0 - p(x)\log |\mathcal{X}|} \\
+                  &= \cssId{show-line-34}{-H[P] - \sum_{x\in\mathcal{X}} - p(x)\log |\mathcal{X}|} \\
+                  &= \cssId{show-line-35}{-H[P] + \sum_{x\in\mathcal{X}} p(x)\log |\mathcal{X}|} \\
+                  &= \cssId{show-line-36}{-H[P] + \log |\mathcal{X}| \sum_{x\in\mathcal{X}} p(x)} \\
+                  &= \cssId{show-line-37}{-H[P] + \log |\mathcal{X}| * 1} \\
+                  &= \cssId{show-line-38}{-H[P] + \log |\mathcal{X}|} \\
+                  &= \cssId{show-line-39}{\log |\mathcal{X}| -H[P]} \\
+                  \cssId{show-line-40}KL(P || U) &= H[U] - H[P] \qed \\
                 \end{align}
               \]
             </div>
@@ -340,37 +329,82 @@
 
           <div class="explaination">
             <ul class="explain">
-              <li id="explain-line-19">
-                This is the definition of softmax; it takes a vector x and
-                exponentiates each element. It then normalizes each element by
-                the sum of all exponentiated elements.
+              <li id="explain-line-20">The definition of KL Divergence.</li>
+              <li id="explain-line-21">
+                The definition of entropy we estabilished above.
               </li>
-              <li id="explain-line-21">explain</li>
-              <li id="explain-line-22">explain</li>
-              <li id="explain-line-23">explain</li>
-              <li id="explain-line-24">explain</li>
-              <li id="explain-line-25">explain</li>
-              <li id="explain-line-26">explain</li>
-              <li id="explain-line-27">explain</li>
-              <li id="explain-line-28">explain</li>
-              <li id="explain-line-29">explain</li>
-              <li id="explain-line-30">explain</li>
-              <li id="explain-line-31">explain</li>
-              <li id="explain-line-32">explain</li>
-              <li id="explain-line-33">explain</li>
-              <li id="explain-line-34">explain</li>
-              <li id="explain-line-35">explain</li>
-              <li id="explain-line-36">explain</li>
-              <li id="explain-line-37">explain</li>
-              <li id="explain-line-38">explain</li>
-              <li id="explain-line-39">explain</li>
+              <li id="explain-line-22">
+                The entropy of the uniform distirbution we established above.
+              </li>
+              <li id="explain-line-23">
+                The probability of some symbol in a uniform distribution.
+              </li>
+              <li id="explain-line-24">
+                For a probability distribution to be valid, it must sum to
+                \(1\).
+              </li>
+              <li id="explain-line-25">
+                Our KL divergence between some distribution \(P\) and the
+                uniform distribution.
+              </li>
+              <li id="explain-line-26">
+                Apply the rule of logs, \(\log \frac{A}{B} = \log A - \log B\).
+              </li>
+              <li id="explain-line-27">
+                Distribute multiplication of \(p(x)\).
+              </li>
+              <li id="explain-line-28">Linearity of the Sum.</li>
+              <li id="explain-line-29">
+                Based on our definition above, the first term in the negative
+                entropy of \(P\).
+              </li>
+              <li id="explain-line-30">
+                Plug in the probability given by the uniform distribution.
+              </li>
+              <li id="explain-line-31">
+                Apply the rule of logs, \(\log \frac{A}{B} = \log A - \log B\).
+              </li>
+              <li id="explain-line-32">Distribute \(p(x)\).</li>
+              <li id="explain-line-33">\(\log 1 = 0\).</li>
+              <li id="explain-line-34">
+                \(0\) multiplied by anything is zero and zero is the additive
+                identity.
+              </li>
+              <li id="explain-line-35">
+                Multiplication distributes over addition, thus we can pull the
+                \(-1\) out of the summation.
+              </li>
+              <li id="explain-line-36">
+                \(\log |\mathcal{X}|\) does not depend on the value of \(x\),
+                thus we pull it out of the summation, again because
+                multiplication distributes over addition.
+              </li>
+              <li id="explain-line-37">
+                Based on the definition of a valid probability distribution, the
+                final term is equal to \(1\).
+              </li>
+              <li id="explain-line-38">
+                \(1\) is the multiplicative identity.
+              </li>
+              <li id="explain-line-39">
+                Addition is commutative, so we can rearrange the terms.
+              </li>
+              <li id="explain-line-40">
+                Above we found that \(\log |\mathcal{X}|\) is the entropy of the
+                uniform distribution. Therefore, we have found that the KL
+                Divergence between some distribution \(P\) and the uniform
+                distribution is given by the entropy of the uniform distribution
+                minus the entropy of \(P\).
+              </li>
             </ul>
           </div>
         </div>
 
         <div class="row">
           <div class="section col-lg-8 col-lg-offset-2" id="conclusion">
-            <p></p>
+            <p>
+              Now we can always refer back to this is I ever dobut myself lol.
+            </p>
           </div>
         </div>
       </div>
