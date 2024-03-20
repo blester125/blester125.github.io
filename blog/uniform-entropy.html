@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta
+      name="og:description"
+      content="How Entropy Measures Change when you are working with a Uniform Distribution"
+    />
+    <meta name="og:title" content="KL Divergence and Uniform Distributions." />
+    <meta
+      name="og:url"
+      content="https://blester125.com/blog/uniform-entropy.html"
+    />
+    <meta
+      name="og:image"
+      content="https://blester125.com/static/img/blog/.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="author" content="Brian Lester" />
+    <title>KL Divergence and Uniform Distributions.</title>
+
+    <!-- Third Party CSS -->
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+      crossorigin="anonymous"
+    />
+
+    <!-- Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0/css/all.min.css"
+      integrity="sha256-ybRkN9dBjhcS2qrW1z+hfCxq+1aBdwyQM5wlQoQVt/0="
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Kaushan+Script"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" integrity="sha384-0s5Pv64cNZJieYFkXYOTId2HMA2Lfb6q2nAcx2n0RTLUnCAoTTsS0nKEO27XyKcY" crossorigin="anonymous"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js" integrity=sha384-ZoaMbDF+4LeFxg6WdScQ9nnR1QC2MIRxA1O9KWEXQwns1G8UNyIEZIQidzb0T1fo" crossorigin="anonymous"></script>
+    <![endif]-->
+
+    <!-- favicon, the logo in the tab -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+    <!-- Third Party Javascript -->
+    <script
+      src="https://code.jquery.com/jquery-1.11.1.min.js"
+      integrity="sha256-VAvG3sHdS5LqTT+5A/aeq/bZGa/Uj04xKxY8KM/w9EE="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+      integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../static/js/vendored/jquery.scrollintoview.min.js"></script>
+
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3.0.5/es5/tex-mml-chtml.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Custom CSS -->
+    <link href="/static/css/agency.css" rel="stylesheet" />
+    <link href="/static/css/teaching.css" rel="stylesheet" type="text/css" />
+    <link href="/static/css/nav.css" rel="stylesheet" />
+    <link href="/static/css/nav-placeholder.css" rel="stylesheet" />
+
+    <!-- Custom JS -->
+    <script src="/static/js/interactive.js"></script>
+    <script src="/static/js/fetch.js"></script>
+    <script type="text/javascript">
+      window.onload = addHoverToLines.bind(null, "show-line-", 10, 0.01);
+      $(function () {
+        $("#nav").load("/static/nav.html", function () {
+          loadScript("/static/js/agency.js");
+        });
+        $("#footer").load("/static/footer.html", function () {
+          $(".social-links").load("/static/socials.html");
+        });
+      });
+    </script>
+
+    <!-- prettier-ignore -->
+    <div class="math-def">
+      \[
+        \newcommand{\softmax}{\mathop{\rm softmax}\nolimits}
+        \newcommand{\qed}{\tag*{$\Box$}}
+      \]
+    </div>
+  </head>
+  <body class="bg-light-gray">
+    <div id="nav" class="navbar-placeholder"></div>
+
+    <div class="container">
+      <div class="content">
+        <div class="section" id="title">
+          <center>
+            <h1>Entropy and a Uniform Distribution</h1>
+          </center>
+        </div>
+        <div class="row">
+          <div class="section col-lg-8 col-lg-offset-2" id="introduction">
+            <p>Introduce the Setting</p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="section" id="entropy">
+            <center>
+              <h2>Definition of Entropy</h2>
+            </center>
+          </div>
+        </div>
+        <div class="row">
+          <!-- prettier-ignore -->
+          <div class="math">
+            <div class="math-overflow">
+              \[
+                \begin{align}
+                  \cssId{show-line-1}H(x) &= \mathbb{E}[\log\frac{1}{p(x)}] \\
+                  \cssId{show-line-2}H(x) &= \mathbb{E}[\log 1 - \log p(x)] \\
+                  \cssId{show-line-3}H(x) &= \mathbb{E}[0 - \log p(x)] \\
+                  \cssId{show-line-4}H(x) &= \mathbb{E}[- \log p(x)] \\
+                  \cssId{show-line-5}H(x) &= \sum_{x\in\mathcal{X}}p(x) * - \log p(x) \\
+                  \cssId{show-line-6}H(x) &= -\sum_{x\in\mathcal{X}}p(x) \log p(x) \qed \\
+                \end{align}
+              \]
+            </div>
+          </div>
+
+          <div class="explaination">
+            <ul class="explain">
+              <li id="explain-line-1">
+                This is the definition of softmax; it takes a vector x and
+                exponentiates each element. It then normalizes each element by
+                the sum of all exponentiated elements.
+              </li>
+              <li id="explain-line-2">
+                This is the equality we are trying to prove.
+              </li>
+              <li id="explain-line-3">
+                This is our definition of \( \alpha \). We are using the max of
+                all elements in \(x\) because that is what people do for
+                numerical stability, but this could be any arbitrary number.
+              </li>
+              <li id="explain-line-4">
+                This is the same as the definition of softmax, but we include
+                the subtraction of \(\alpha\) from each element. This is the
+                value we want to transform the softmax equation into.
+              </li>
+              <li id="explain-line-5">
+                Again, this is our definition of the softmax.
+              </li>
+              <li id="explain-line-6">
+                Anything divided by itself is \(1\) (because this is the same as
+                multiplying by the multiplicative inverse which yields the
+                multiplicative identity) and any number multiplied by \(1\) is
+                itself (because \(1\) is the multiplicative identity). This
+                means we can introduce this \(\frac{e^{-\alpha}}{e^{-\alpha}}\)
+                via multiplication without changing any values.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="row">
+          <div class="section" id="entropy">
+            <center>
+              <h2>The Entropy of a Uniform Distribution</h2>
+            </center>
+          </div>
+        </div>
+        <div class="row">
+          <!-- prettier-ignore -->
+          <div class="math">
+            <div class="math-overflow">
+              \[
+                \begin{align}
+                  \cssId{show-line-7}H(x) &= -\sum_{x\in\mathcal{X}} p(x) \log p(x) \\
+                  \cssId{show-line-8}p(x) &= \frac{1}{|\mathcal{X}|} \\
+                  \cssId{show-line-9}U &= \forall_{x \in \mathcal{X}}\text{  } p(x) = \frac{1}{|\mathcal{X}|}
+                \end{align}
+              \]
+            </div>
+
+            <div class="math-overflow">
+              \[
+                \begin{align}
+                  \cssId{show-line-10}H(U) &= -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} \log \frac{1}{|\mathcal{X}|} \\
+                  &= \cssId{show-line-11}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} (\log 1 - \log |\mathcal{X}|) }\\
+                  &= \cssId{show-line-12}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|}\log(1) - \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
+                  &= \cssId{show-line-13}{ -\sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|} * 0 - \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
+                  &= \cssId{show-line-14}{ -\sum_{x\in\mathcal{X}} -\frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
+                  &= \cssId{show-line-15}{ \sum_{x\in\mathcal{X}} \frac{1}{|\mathcal{X}|}\log |\mathcal{X}| }\\
+                  &= \cssId{show-line-16}{ \frac{1}{|\mathcal{X}|}\sum_{x\in\mathcal{X}} \log |\mathcal{X}| }\\
+                  &= \cssId{show-line-17}{ \frac{1}{|\mathcal{X}|} * |\mathcal{X}| * \log |\mathcal{X}| }\\
+                  \cssId{show-line-18}H(U) &= \log |\mathcal{X}| \qed \\
+                \end{align}
+              \]
+            </div>
+          </div>
+
+          <div class="explaination">
+            <ul class="explain">
+              <li id="explain-line-7">
+                This is the definition of softmax; it takes a vector x and
+                exponentiates each element. It then normalizes each element by
+                the sum of all exponentiated elements.
+              </li>
+              <li id="explain-line-8">
+                This is the equality we are trying to prove.
+              </li>
+              <li id="explain-line-9">
+                This is our definition of \( \alpha \). We are using the max of
+                all elements in \(x\) because that is what people do for
+                numerical stability, but this could be any arbitrary number.
+              </li>
+              <li id="explain-line-10">
+                This is the same as the definition of softmax, but we include
+                the subtraction of \(\alpha\) from each element. This is the
+                value we want to transform the softmax equation into.
+              </li>
+              <li id="explain-line-11">
+                Again, this is our definition of the softmax.
+              </li>
+              <li id="explain-line-12">
+                Anything divided by itself is \(1\) (because this is the same as
+                multiplying by the multiplicative inverse which yields the
+                multiplicative identity) and any number multiplied by \(1\) is
+                itself (because \(1\) is the multiplicative identity). This
+                means we can introduce this \(\frac{e^{-\alpha}}{e^{-\alpha}}\)
+                via multiplication without changing any values.
+              </li>
+              <li id="explain-line-13">
+                The product of two fractions is the product of their numerators
+                divided by the product of their denominators.
+              </li>
+              <li id="explain-line-14">
+                Multiplication distributes over the addition in the summation so
+                we can push the \( e^{-\alpha} \) into the summation
+              </li>
+              <li id="explain-line-15">
+                The rules of exponents state that when multiplying elements that
+                have the same base we can sum the exponents.
+              </li>
+              <li id="explain-line-16">
+                Addition is commutative so we can move the \( -\alpha \) after
+                the \( x_i \)
+              </li>
+              <li id="explain-line-17">
+                We showed that both \(\softmax(x)\) and \(\softmax(x - \alpha)\)
+                are equal to the same value so by the transitive property they
+                are equal to each other.
+              </li>
+              <li id="explain-line-18">Explain</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="section" id="entropy">
+            <center>
+              <h2>KL Divergence from a Uniform Distribution</h2>
+            </center>
+          </div>
+        </div>
+        <div class="row">
+          <!-- prettier-ignore -->
+          <div class="math">
+            <div class="math-overflow">
+              \[
+                \begin{align}
+                  \cssId{show-line-19}KL(p || q) &= \sum_{x\in\mathcal{X}} p(x) \log\frac{p(x)}{q(x)} \\
+                  \cssId{show-line-20}H(p) &= -\sum_{x\in\mathcal{X}} p(x) \log p(x) \\
+                  \cssId{show-line-21}H(U) &= \log |\mathcal{X}| \\
+                  \cssId{show-line-22}u(x) &= \frac{1}{|\mathcal{X}|} \\
+                  \cssId{show-line-23}\sum_{x\in\mathcal{X}} p(x) &= 1
+                \end{align}
+              \]
+            </div>
+
+            <div class="math-overflow">
+              \[
+                \begin{align}
+                  \cssId{show-line-24}KL(p || U) &= \sum_{x\in\mathcal{X}} p(x) \log\frac{p(x)}{u(x)} \\
+                  &= \cssId{show-line-25}{\sum_{x\in\mathcal{X}} p(x) (\log p(x) - \log u(x))} \\
+                  &= \cssId{show-line-26}{\sum_{x\in\mathcal{X}} p(x)\log p(x) - p(x)\log u(x)} \\
+                  &= \cssId{show-line-27}{\sum_{x\in\mathcal{X}} p(x)\log p(x) - \sum_{x\in\mathcal{X}} p(x)\log u(x)} \\
+                  &= \cssId{show-line-28}{-H(p) - \sum_{x\in\mathcal{X}} p(x)\log u(x)} \\
+                  &= \cssId{show-line-29}{-H(p) - \sum_{x\in\mathcal{X}} p(x)\log \frac{1}{|\mathcal{X}|}} \\
+                  &= \cssId{show-line-30}{-H(p) - \sum_{x\in\mathcal{X}} p(x)(\log 1 - \log |\mathcal{X}|)} \\
+                  &= \cssId{show-line-31}{-H(p) - \sum_{x\in\mathcal{X}} p(x)\log 1 - p(x)\log |\mathcal{X}|} \\
+                  &= \cssId{show-line-32}{-H(p) - \sum_{x\in\mathcal{X}} p(x) * 0 - p(x)\log |\mathcal{X}|} \\
+                  &= \cssId{show-line-33}{-H(p) - \sum_{x\in\mathcal{X}} - p(x)\log |\mathcal{X}|} \\
+                  &= \cssId{show-line-34}{-H(p) + \sum_{x\in\mathcal{X}} p(x)\log |\mathcal{X}|} \\
+                  &= \cssId{show-line-35}{-H(p) + \log |\mathcal{X}| \sum_{x\in\mathcal{X}} p(x)} \\
+                  &= \cssId{show-line-36}{-H(p) + \log |\mathcal{X}| * 1} \\
+                  &= \cssId{show-line-37}{-H(p) + \log |\mathcal{X}|} \\
+                  &= \cssId{show-line-38}{\log |\mathcal{X}| -H(p)} \\
+                  \cssId{show-line-39}KL(p || U) &= H(U) - H(p) \qed \\
+                \end{align}
+              \]
+            </div>
+          </div>
+
+          <div class="explaination">
+            <ul class="explain">
+              <li id="explain-line-19">
+                This is the definition of softmax; it takes a vector x and
+                exponentiates each element. It then normalizes each element by
+                the sum of all exponentiated elements.
+              </li>
+              <li id="explain-line-21">explain</li>
+              <li id="explain-line-22">explain</li>
+              <li id="explain-line-23">explain</li>
+              <li id="explain-line-24">explain</li>
+              <li id="explain-line-25">explain</li>
+              <li id="explain-line-26">explain</li>
+              <li id="explain-line-27">explain</li>
+              <li id="explain-line-28">explain</li>
+              <li id="explain-line-29">explain</li>
+              <li id="explain-line-30">explain</li>
+              <li id="explain-line-31">explain</li>
+              <li id="explain-line-32">explain</li>
+              <li id="explain-line-33">explain</li>
+              <li id="explain-line-34">explain</li>
+              <li id="explain-line-35">explain</li>
+              <li id="explain-line-36">explain</li>
+              <li id="explain-line-37">explain</li>
+              <li id="explain-line-38">explain</li>
+              <li id="explain-line-39">explain</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="section col-lg-8 col-lg-offset-2" id="conclusion">
+            <p></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer"></div>
+  </body>
+</html>
