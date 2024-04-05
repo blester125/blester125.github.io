@@ -3,13 +3,34 @@
     "refkey": "lester-etal-2024-compression",
     "title": "Training LLMs over Neurally Compressed Text",
     "author": [
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Lee", "first": "Jaehoon" },
-      { "last": "Alemi", "first": "Alex" },
-      { "last": "Pennington", "first": "Jeffrey" },
-      { "last": "Roberts", "first": "Adam" },
-      { "last": "Sohl-Dickstein", "first": "Jascha" },
-      { "last": "Constant", "first": "Noah" }
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Lee",
+        "first": "Jaehoon"
+      },
+      {
+        "last": "Alemi",
+        "first": "Alex"
+      },
+      {
+        "last": "Pennington",
+        "first": "Jeffrey"
+      },
+      {
+        "last": "Roberts",
+        "first": "Adam"
+      },
+      {
+        "last": "Sohl-Dickstein",
+        "first": "Jascha"
+      },
+      {
+        "last": "Constant",
+        "first": "Noah"
+      }
     ],
     "conference": "Preprint",
     "year": 2024,
