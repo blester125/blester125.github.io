@@ -109,6 +109,7 @@ function generateReferences(target, citations) {
       venue: citations[i].conference,
       bold_venue: boldConference(citations[i].conference),
       year: citations[i].year,
+      month: citations[i].month || 13,
       workshop: citations[i].workshop,
       location: citations[i].location,
       code: citations[i].code,
@@ -131,69 +132,106 @@ function generateReferences(target, citations) {
       publications: publications,
       // Is our citation data live?
       live_data: true,
+      sort_by: "custom",
     },
     computed: {
       // Create a sorted view of the publications based on citation count.
       // Each time we touch the publications array (like when the citation
       // count is loaded in) a new sorted version will be made.
       sortedPublications: function () {
-        // Sort a copy of the publications array as the async functions the
-        // are fetching information like citation counts are writing position
-        // based into publications and js .sort is in place (would cause
-        // writes to the wrong publication if it moved).
-        return [...this.publications].sort((p1, p2) => {
-          // If two papers have the same citationCount
-          console.debug("=================================================");
-          console.debug("Publication Titles:");
-          console.debug(p1.title);
-          console.debug(p2.title);
-          console.debug("Publication Citations:");
-          console.debug(p1.citation_count);
-          console.debug(p2.citation_count);
-          // Make sure 0 and null are treated as equal for this comparison.
-          if ((p1.citation_count || 0) === (p2.citation_count || 0)) {
-            // If two papers came out in the same year
-            console.debug("Publication Years:");
-            console.debug(p1.year);
-            console.debug(p2.year);
-            if (p1.year === p2.year) {
-              p1_first = firstAuthor(p1);
-              p2_first = firstAuthor(p2);
-              console.debug("I'm I the first author of the publication?");
-              console.debug(p1_first);
-              console.debug(p2_first);
-              // If I am the first author on both or neither
-              // Sort by title
-              if ((p1_first && p2_first) || !(p1_first || p2_first)) {
-                console.debug("Sorting by title");
-                return p1.title < p2.title ? 1 : -1;
-                // Put first author papers first.
-              } else if (p1_first) {
-                console.debug("Sorting by me being the first author.");
-                return -1;
-              } else if (p2_first) {
-                console.debug("Sorting by me not being the first author.");
-                return 1;
+        if (this.sort_by == "custom") {
+          // Sort a copy of the publications array as the async functions the
+          // are fetching information like citation counts are writing position
+          // based into publications and js .sort is in place (would cause
+          // writes to the wrong publication if it moved).
+          return [...this.publications].sort((p1, p2) => {
+            // If two papers have the same citationCount
+            console.debug("=================================================");
+            console.debug("Publication Titles:");
+            console.debug(p1.title);
+            console.debug(p2.title);
+            console.debug("Publication Citations:");
+            console.debug(p1.citation_count);
+            console.debug(p2.citation_count);
+            // Make sure 0 and null are treated as equal for this comparison.
+            if ((p1.citation_count || 0) === (p2.citation_count || 0)) {
+              // If two papers came out in the same year
+              console.debug("Publication Years:");
+              console.debug(p1.year);
+              console.debug(p2.year);
+              if (p1.year === p2.year) {
+                p1_first = firstAuthor(p1);
+                p2_first = firstAuthor(p2);
+                console.debug("I'm I the first author of the publication?");
+                console.debug(p1_first);
+                console.debug(p2_first);
+                // If I am the first author on both or neither
+                // Sort by title
+                if ((p1_first && p2_first) || !(p1_first || p2_first)) {
+                  console.debug("Sorting by title");
+                  return p1.title < p2.title ? 1 : -1;
+                  // Put first author papers first.
+                } else if (p1_first) {
+                  console.debug("Sorting by me being the first author.");
+                  return -1;
+                } else if (p2_first) {
+                  console.debug("Sorting by me not being the first author.");
+                  return 1;
+                }
               }
+              // Put more recent papers first.
+              console.debug("Unequal years, sorting by publication year");
+              return p1.year < p2.year ? 1 : -1;
+            }
+            // undefined citation counts will be sorted to the end as
+            // `N < null` is true
+            console.debug("Unequal Citations, sorting by citation count");
+            return p1.citation_count < p2.citation_count ? 1 : -1;
+          });
+        } else if (this.sort_by == "year") {
+          return [...this.publications].sort((p1, p2) => {
+            if (p1.year === p2.year) {
+              if (p1.month == p2.month) {
+                p1_first = firstAuthor(p1);
+                p2_first = firstAuthor(p2);
+                console.debug("I'm I the first author of the publication?");
+                console.debug(p1_first);
+                console.debug(p2_first);
+                // If I am the first author on both or neither
+                // Sort by title
+                if ((p1_first && p2_first) || !(p1_first || p2_first)) {
+                  console.debug("Sorting by title");
+                  return p1.title < p2.title ? 1 : -1;
+                  // Put first author papers first.
+                } else if (p1_first) {
+                  console.debug("Sorting by me being the first author.");
+                  return -1;
+                } else if (p2_first) {
+                  console.debug("Sorting by me not being the first author.");
+                  return 1;
+                }
+              }
+              console.debug("Unequal months, sorting by year/month");
+              return p1.month < p2.month ? 1 : -1;
             }
             // Put more recent papers first.
             console.debug("Unequal years, sorting by publication year");
             return p1.year < p2.year ? 1 : -1;
-          }
-          // undefined citation counts will be sorted to the end as
-          // `N < null` is true
-          console.debug("Unequal Citations, sorting by citation count");
-          return p1.citation_count < p2.citation_count ? 1 : -1;
-        });
+          });
+        }
       },
       // Re-order citations based on override key, this lets me edit the order
       // how I want, i.e. put prompt-tuning first. Note: the "position" key
       // starts at `1` not `0`
       displayPublications: function () {
-        var display = this.sortedPublications.filter((ent) => !ent.position);
-        var special = this.sortedPublications.filter((ent) => ent.position);
-        special.forEach((ent) => display.splice(ent.position - 1, 0, ent));
-        return display;
+        if (this.sort_by == "custom") {
+          var display = this.sortedPublications.filter((ent) => !ent.position);
+          var special = this.sortedPublications.filter((ent) => ent.position);
+          special.forEach((ent) => display.splice(ent.position - 1, 0, ent));
+          return display;
+        } else {
+          return this.sortedPublications;
+        }
       },
       // Sum the total number of citations across publications.
       totalCitations: function () {
@@ -227,6 +265,13 @@ function generateReferences(target, citations) {
       hideModal: function (id) {
         var modal = document.getElementById(id);
         modal.style.display = "none";
+      },
+      toggleSort: function () {
+        if (this.sort_by == "custom") {
+          this.sort_by = "year";
+        } else if (this.sort_by == "year") {
+          this.sort_by = "custom";
+        }
       },
       loadBibTeX: function () {
         // Load the bibtex file as a string and update it in the data async.

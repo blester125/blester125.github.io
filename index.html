@@ -442,12 +442,21 @@
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Publications</h2>
             <h3 class="section-subheading text-muted">
-              h-index: {{ hIndex}} <br />
+              <span v-if="hIndex != 0">h-index: {{ hIndex}}</span> <br />
               Publications: {{ publicationCount }} <br />
               Total Citations: {{ totalCitations }}
               <small v-if="!live_data"
                 ><br />Note: Citation Counts and derivied data may not be up to
-                date.</small
+                date.<br
+              /></small>
+              <small
+                >Sort by:
+                <span v-on:click="toggleSort"
+                  ><a>
+                    <span v-if="sort_by == 'custom'">year</span>
+                    <span v-else>custom</span></a
+                  ></span
+                ></small
               >
             </h3>
           </div>
