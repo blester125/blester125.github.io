@@ -133,6 +133,7 @@ function generateReferences(target, citations) {
       // Is our citation data live?
       live_data: true,
       sort_by: "custom",
+      h_index: 0,
     },
     computed: {
       // Create a sorted view of the publications based on citation count.
@@ -251,7 +252,10 @@ function generateReferences(target, citations) {
             break;
           }
         }
-        return i;
+        if (i != 0) {
+          this.h_index = i;
+        }
+        return this.h_index;
       },
       publicationCount: function () {
         return this.sortedPublications.length;
