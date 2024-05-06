@@ -252,7 +252,7 @@ function generateReferences(target, citations) {
             break;
           }
         }
-        if (i != 0) {
+        if (this.h_index == 0) {
           this.h_index = i;
         }
         return this.h_index;
