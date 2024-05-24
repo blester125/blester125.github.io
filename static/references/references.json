@@ -191,7 +191,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 2188,
+    "citation_count": 2201,
     "fallback_citation_count_date": "2024/05/24",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
@@ -267,7 +267,7 @@
     "poster": "static/presentations/posters/spot-acl-2022-poster.pdf",
     "slides": null,
     "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
-    "citation_count": 202,
+    "citation_count": 203,
     "fallback_citation_count_date": "2024/05/24",
     "bibtex": "static/references/vu-etal-2022-spot.bib"
   },
@@ -624,7 +624,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1ed66e048bb025e75aa5ea660545285212e5341f",
-    "citation_count": 140,
+    "citation_count": 141,
     "fallback_citation_count_date": "2024/05/24",
     "bibtex": "static/references/roberts-etal-2022-t5x.bib"
   },
@@ -788,7 +788,7 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 2428,
+    "citation_count": 2433,
     "fallback_citation_count_date": "2024/05/24",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
