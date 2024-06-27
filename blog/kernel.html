@@ -1,35 +1,29 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Kernel Trick</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
-</head>
-<body>
-<p>
-
-  \[
-     \begin{align}
-     x &= \begin{bmatrix} x_1 & x_2 \end{bmatrix} \\
-     y &= \begin{bmatrix} y_1 & y_2 \end{bmatrix} \\
-     \phi(x) &= \begin{bmatrix} 1 & x_1^2 & \sqrt{2}x_1x_2 & x_2^2 & \sqrt{2}x_1 & \sqrt{2}x_2 \end{bmatrix} \\
-     \phi(y) &= \begin{bmatrix} 1 & y_1^2 & \sqrt{2}y_1y_2 & y_2^2 & \sqrt{2}y_1 & \sqrt{2}y_2 \end{bmatrix} \\
-     \phi(x)^T\phi(y) &= 1 + x_1^2y_1^2 + 2x_1x_2y_1y_2 + x_2^2y_2^2 + 2x_1y_1 + 2x_2y_2 \\
-     kernel &= (1 + x^Ty)^2 \\
-     kernel &= (1 + x_1y_1 + x_2y_2)^2 \\
-     kernel &= (1 + x_1y_1 + x_2y_2)(1 + x_1y_1 + x_2y_2) \\
-     kernel &= 1 + (x_1y_1 + x_2y_2) + (x_1y_1 + x_2y_2) (x_1y_1 + x_2y_2)^2 \\
-     kernel &= 1 + 2(x_1y_1 + x_2y_2) + x_1y_1^2 + 2x_1y_1x_2y_2 + x_2y_2^2 \\
-     kernel &= 1 + 2x_1y_1 + 2x_2y_2 + x_1y_1^2 + 2x_1y_1x_2y_2 + x_2y_2^2 \\
-     kernel &= \phi(x)^T\phi(y) \\
-     \end{align}
-  \]
-
-
-</p>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Kernel Trick</title>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
+  </head>
+  <body>
+    <p>
+      \[ \begin{align} x &= \begin{bmatrix} x_1 & x_2 \end{bmatrix} \\ y &=
+      \begin{bmatrix} y_1 & y_2 \end{bmatrix} \\ \phi(x) &= \begin{bmatrix} 1 &
+      x_1^2 & \sqrt{2}x_1x_2 & x_2^2 & \sqrt{2}x_1 & \sqrt{2}x_2 \end{bmatrix}
+      \\ \phi(y) &= \begin{bmatrix} 1 & y_1^2 & \sqrt{2}y_1y_2 & y_2^2 &
+      \sqrt{2}y_1 & \sqrt{2}y_2 \end{bmatrix} \\ \phi(x)^T\phi(y) &= 1 +
+      x_1^2y_1^2 + 2x_1x_2y_1y_2 + x_2^2y_2^2 + 2x_1y_1 + 2x_2y_2 \\ kernel &=
+      (1 + x^Ty)^2 \\ kernel &= (1 + x_1y_1 + x_2y_2)^2 \\ kernel &= (1 + x_1y_1
+      + x_2y_2)(1 + x_1y_1 + x_2y_2) \\ kernel &= 1 + (x_1y_1 + x_2y_2) +
+      (x_1y_1 + x_2y_2) (x_1y_1 + x_2y_2)^2 \\ kernel &= 1 + 2(x_1y_1 + x_2y_2)
+      + x_1y_1^2 + 2x_1y_1x_2y_2 + x_2y_2^2 \\ kernel &= 1 + 2x_1y_1 + 2x_2y_2 +
+      x_1y_1^2 + 2x_1y_1x_2y_2 + x_2y_2^2 \\ kernel &= \phi(x)^T\phi(y) \\
+      \end{align} \]
+    </p>
+  </body>
 </html>

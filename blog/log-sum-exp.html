@@ -1,70 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>Numberically Stable LogSumExp</title>
-  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-  <script id="MathJax-script" async
-          src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
-  </script>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Numberically Stable LogSumExp</title>
+    <script
+      id="MathJax-script"
+      async
+      src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+    ></script>
 
-  <!--- Custom Code --->
-  <script src="../js/interactive.js"></script>
-  <script type='text/javascript'>
-    window.onload = addHoverToLines.bind(null, 'show-line-')
-  </script>
-  <link rel="stylesheet" type="text/css" href="../css/teaching.css">
-
-</head>
-<body>
-
-<div class="content">
-  <div class="math-def">
-      \[
-        \newcommand{\qed}{\tag*{$\Box$}}
-      \]
-  </div>
-  <div class="math">
-    \[
-      \begin{align}
-        \cssId{show-line-1} \log \sum_{i+1}^n e^{x_i} &= \alpha + \log \sum_{i=1}^n e_{x_i - \alpha} \\
-        \cssId{show-line-2} \alpha &= \max_i x_i
-      \end{align}
-    \]
-
-    \[
-      \begin{align}
-        \cssId{show-line-3} y &= \log \sum_{i=1}^n e^{x_i} \\
-        \cssId{show-line-4} e^y &= e^{\log \sum\nolimits_{i=1}^n e^{x_i}} \\
-        \cssId{show-line-5} e^y &= \sum_{i=1}^n e^{x_i} \\
-        \cssId{show-line-6} e^{-\alpha} e^y &= e^{-\alpha} \sum_{i=1}^n e^{x_i} \\
-        \cssId{show-line-7} e^{-\alpha} e^y &= \sum_{i=1}^n e^{-\alpha} e^{x_i} \\
-        \cssId{show-line-8} e^{-\alpha + y} &= \sum_{i=1}^n e^{-\alpha + x_i} \\
-        \cssId{show-line-9} e^{y -\alpha} &= \sum_{i=1}^n e^{x_i -\alpha} \\
-        \cssId{show-line-10} \log e^{y -\alpha} &= \log \sum_{i=1}^n e^{x_i -\alpha} \\
+    <!--- Custom Code --->
+    <script src="../js/interactive.js"></script>
+    <script type="text/javascript">
+      window.onload = addHoverToLines.bind(null, "show-line-");
+    </script>
+    <link rel="stylesheet" type="text/css" href="../css/teaching.css" />
+  </head>
+  <body>
+    <div class="content">
+      <div class="math-def">\[ \newcommand{\qed}{\tag*{$\Box$}} \]</div>
+      <div class="math">
+        \[ \begin{align} \cssId{show-line-1} \log \sum_{i+1}^n e^{x_i} &= \alpha
+        + \log \sum_{i=1}^n e_{x_i - \alpha} \\ \cssId{show-line-2} \alpha &=
+        \max_i x_i \end{align} \] \[ \begin{align} \cssId{show-line-3} y &= \log
+        \sum_{i=1}^n e^{x_i} \\ \cssId{show-line-4} e^y &= e^{\log
+        \sum\nolimits_{i=1}^n e^{x_i}} \\ \cssId{show-line-5} e^y &=
+        \sum_{i=1}^n e^{x_i} \\ \cssId{show-line-6} e^{-\alpha} e^y &=
+        e^{-\alpha} \sum_{i=1}^n e^{x_i} \\ \cssId{show-line-7} e^{-\alpha} e^y
+        &= \sum_{i=1}^n e^{-\alpha} e^{x_i} \\ \cssId{show-line-8} e^{-\alpha +
+        y} &= \sum_{i=1}^n e^{-\alpha + x_i} \\ \cssId{show-line-9} e^{y
+        -\alpha} &= \sum_{i=1}^n e^{x_i -\alpha} \\ \cssId{show-line-10} \log
+        e^{y -\alpha} &= \log \sum_{i=1}^n e^{x_i -\alpha} \\
         \cssId{show-line-11} y -\alpha &= \log \sum_{i=1}^n e^{x_i -\alpha} \\
         \cssId{show-line-12} y &= \alpha + \log \sum_{i=1}^n e^{x_i -\alpha} \\
-        \cssId{show-line-13} \log \sum_{i=1}^n e^{x_i} &= \alpha + \log \sum_{i=1}^n e^{x_i -\alpha} \qed
-      \end{align}
-    \]
-  </div>
-  <div class="explaination">
-    <ul class="explain">
-      <li id="explain-line-1"> This is the equality we are trying to prove </li>
-      <li id="explain-line-2"> This is our definition of \( \alpha \) but this could be any constant \( c \)</li>
-      <li id="explain-line-3"> First we will call the result of the log sum exp \( y \)</li>
-      <li id="explain-line-4"> We exponentiate each side of the equation and maintain equality</li>
-      <li id="explain-line-5"> \( e^{\log} \) cancel because \( \log \) is the inverse of exponentiation </li>
-      <li id="explain-line-6"> Multiply each side by the same things to maintain equality </li>
-      <li id="explain-line-7"> Push it into the summation because multiplication distributes over addition</li>
-      <li id="explain-line-8"> Rule of exponents to multiply things with the same base we add their exponents </li>
-      <li id="explain-line-9"> Commutative addition lets us re-write the sum so `\( -\alpha \) come after </li>
-      <li id="explain-line-10"> Take the log of each side while maintaining equality </li>
-      <li id="explain-line-11"> \( \log e \) cancels </li>
-      <li id="explain-line-12"> Add \( \alpha \) to each side and rearrange with commutative addition</li>
-      <li id="explain-line-13"> Replace our \( y \) with the our original definition and we can see that the two values are equal</li>
-  </div>
-</div>
-</body>
+        \cssId{show-line-13} \log \sum_{i=1}^n e^{x_i} &= \alpha + \log
+        \sum_{i=1}^n e^{x_i -\alpha} \qed \end{align} \]
+      </div>
+      <div class="explaination">
+        <ul class="explain">
+          <li id="explain-line-1">
+            This is the equality we are trying to prove
+          </li>
+          <li id="explain-line-2">
+            This is our definition of \( \alpha \) but this could be any
+            constant \( c \)
+          </li>
+          <li id="explain-line-3">
+            First we will call the result of the log sum exp \( y \)
+          </li>
+          <li id="explain-line-4">
+            We exponentiate each side of the equation and maintain equality
+          </li>
+          <li id="explain-line-5">
+            \( e^{\log} \) cancel because \( \log \) is the inverse of
+            exponentiation
+          </li>
+          <li id="explain-line-6">
+            Multiply each side by the same things to maintain equality
+          </li>
+          <li id="explain-line-7">
+            Push it into the summation because multiplication distributes over
+            addition
+          </li>
+          <li id="explain-line-8">
+            Rule of exponents to multiply things with the same base we add their
+            exponents
+          </li>
+          <li id="explain-line-9">
+            Commutative addition lets us re-write the sum so `\( -\alpha \) come
+            after
+          </li>
+          <li id="explain-line-10">
+            Take the log of each side while maintaining equality
+          </li>
+          <li id="explain-line-11">\( \log e \) cancels</li>
+          <li id="explain-line-12">
+            Add \( \alpha \) to each side and rearrange with commutative
+            addition
+          </li>
+          <li id="explain-line-13">
+            Replace our \( y \) with the our original definition and we can see
+            that the two values are equal
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
