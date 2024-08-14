@@ -1,5 +1,45 @@
 [
   {
+    "refkey": "tam-etal-2024-remm",
+    "title": "Realistic Evaluation of Model Merging for Compositional Generalization",
+    "author": [
+      {
+        "last": "Tam*",
+        "first": "Derek"
+      },
+      {
+        "last": "Kant*",
+        "first": "Yash"
+      },
+      {
+        "last": "Lester*",
+        "first": "Brian"
+      },
+      {
+        "last": "Gilitschenski",
+        "first": "Igor"
+      },
+      {
+        "last": "Raffel",
+        "first": "Colin"
+      }
+    ],
+    "conference": "Preprint",
+    "year": 2024,
+    "month": 9,
+    "workshop": "arXiv:2409.18314",
+    "location": null,
+    "url": "https://arxiv.org/abs/2409.18314",
+    "code": null,
+    "video": null,
+    "poster": null,
+    "slides": null,
+    "semantic_scholar_id": null,
+    "citation_count": null,
+    "fallback_citation_count_date": "2024/08/14",
+    "bibtex": "static/references/tam-etal-2024-remm.bib"
+  },
+  {
     "refkey": "lester-etal-2024-compression",
     "title": "Training LLMs over Neurally Compressed Text",
     "author": [
