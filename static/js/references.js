@@ -33,6 +33,7 @@ TOP_TIER_CONFERENCES = [
   "NeurIPS",
   "ICML",
   "JMLR",
+  "TMLR",
 ];
 
 /**

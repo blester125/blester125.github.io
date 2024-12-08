@@ -72,12 +72,12 @@
         "first": "Noah"
       }
     ],
-    "conference": "Preprint",
+    "conference": "TMLR",
     "year": 2024,
-    "month": 3,
-    "workshop": "arXiv:2404.03626",
-    "location": null,
-    "url": "https://arxiv.org/abs/2404.03626",
+    "month": 12,
+    "workshop": null,
+    "location": "Online",
+    "url": "https://openreview.net/forum?id=pRvhMSV48t",
     "code": null,
     "video": null,
     "poster": null,
