@@ -72,6 +72,19 @@ function formatAuthors(authors) {
 }
 
 /**
+ * Convert the workshop string so that is preceeded by a ; and space.
+ *   Designed to allow for html in the workshop.
+ * @param {str} workshop - The name of the workshop
+ * @returns {str} The formatted workshop name
+ */
+function formatWorkshop(workshop) {
+  if (workshop) {
+    return "; " + workshop
+  }
+  return workshop
+}
+
+/**
  * Detect if I am the first author on a paper.
  * @param {obj} The json citation.
  * @return {bool} True if I am the first author, false otherwise.
@@ -111,7 +124,7 @@ function generateReferences(target, citations) {
       bold_venue: boldConference(citations[i].conference),
       year: citations[i].year,
       month: citations[i].month || 13,
-      workshop: citations[i].workshop,
+      workshop: formatWorkshop(citations[i].workshop),
       location: citations[i].location,
       code: citations[i].code,
       video: citations[i].video,

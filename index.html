@@ -493,8 +493,8 @@
                       <b v-if="pub.bold_venue">{{ pub.year }}</b>
                       <span v-else>{{ pub.year }}</span></span
                     ><!--
-                      --><span v-if="pub.workshop" class="paper-venue"
-                      >; {{ pub.workshop }}</span
+		    --><span v-if="pub.workshop" v-html="pub.workshop" class="paper-venue"
+                      ></span
                     ><!--
                       --><span class="paper-venue" v-if="pub.location"
                       >, {{ pub.location }}.</span
