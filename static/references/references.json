@@ -307,7 +307,7 @@
     "poster": "static/presentations/posters/spot-acl-2022-poster.pdf",
     "slides": null,
     "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
-    "citation_count": 263,
+    "citation_count": 264,
     "fallback_citation_count_date": "2025/03/04",
     "bibtex": "static/references/vu-etal-2022-spot.bib"
   },
@@ -828,7 +828,7 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 3495,
+    "citation_count": 3498,
     "fallback_citation_count_date": "2025/03/04",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
