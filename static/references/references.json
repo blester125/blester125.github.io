@@ -175,7 +175,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "2d3b6058370b804009fd7866098f4fca2d1894ca",
-    "citation_count": 9,
+    "citation_count": 10,
     "fallback_citation_count_date": "2025/03/27",
     "bibtex": "static/references/lester-etal-2022-recycling.bib"
   },
@@ -231,7 +231,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 3363,
+    "citation_count": 3367,
     "fallback_citation_count_date": "2025/03/27",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
@@ -307,7 +307,7 @@
     "poster": "static/presentations/posters/spot-acl-2022-poster.pdf",
     "slides": null,
     "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
-    "citation_count": 268,
+    "citation_count": 269,
     "fallback_citation_count_date": "2025/03/27",
     "bibtex": "static/references/vu-etal-2022-spot.bib"
   },
@@ -351,7 +351,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "d05a071b35112e306cd01853ca9a8f899b8dedc2",
-    "citation_count": 62,
+    "citation_count": 63,
     "fallback_citation_count_date": "2025/03/27",
     "bibtex": "static/references/vu-etal-2022-multilingual.bib"
   },
@@ -828,7 +828,7 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 3608,
+    "citation_count": 3610,
     "fallback_citation_count_date": "2025/03/27",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
