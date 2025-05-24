@@ -828,7 +828,7 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 3884,
+    "citation_count": 3885,
     "fallback_citation_count_date": "2025/05/24",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
