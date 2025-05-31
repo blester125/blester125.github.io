@@ -231,7 +231,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 3665,
+    "citation_count": 3664,
     "fallback_citation_count_date": "2025/05/31",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
@@ -267,7 +267,7 @@
     "poster": "static/presentations/posters/Noise-Model-NAACL-2018-Poster.pdf",
     "slides": null,
     "semantic_scholar_id": "8b222b3915ce5115bcae189fccd6526125f079c2",
-    "citation_count": 48,
+    "citation_count": 49,
     "fallback_citation_count_date": "2025/05/31",
     "bibtex": "static/references/jindal-etal-2019-effective.bib"
   },
@@ -828,7 +828,7 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 3938,
+    "citation_count": 3942,
     "fallback_citation_count_date": "2025/05/31",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
