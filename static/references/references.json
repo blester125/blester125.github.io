@@ -123,7 +123,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "577defbd8ee036bae10363750ebef8ce49089208",
-    "citation_count": null,
+    "citation_count": 0,
     "fallback_citation_count_date": "2025/06/10",
     "bibtex": "static/references/kandpal-etal-2025-common-pile.bib"
   },
