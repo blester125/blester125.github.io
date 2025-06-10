@@ -1,5 +1,133 @@
 [
   {
+    "refkey": "kandpal-etal-2025-common-pile",
+    "title": "The Common Pile v0.1: An 8TB Dataset of Public Domain and Openly Licensed Text",
+    "author": [
+      {
+        "last": "Kandpal*",
+        "first": "Nikhil"
+      },
+      {
+        "last": "Lester*",
+        "first": "Brian"
+      },
+      {
+        "last": "Raffel*",
+        "first": "Colin"
+      },
+      {
+        "last": "Majstorovic",
+        "first": "Sebastian"
+      },
+      {
+        "last": "Biderman",
+        "first": "Stella"
+      },
+      {
+        "last": "Abbasi",
+        "first": "Baber"
+      },
+      {
+        "last": "Soldaini",
+        "first": "Luca"
+      },
+      {
+        "last": "Shippole",
+        "first": "Enrico"
+      },
+      {
+        "last": "Cooper",
+        "first": "A. Feder"
+      },
+      {
+        "last": "Skowron",
+        "first": "Aviya"
+      },
+      {
+        "last": "Kirchenbauer",
+        "first": "John"
+      },
+      {
+        "last": "Longpre",
+        "first": "Shayne"
+      },
+      {
+        "last": "Sutawika",
+        "first": "Lintang"
+      },
+      {
+        "last": "Albalak",
+        "first": "Alon"
+      },
+      {
+        "last": "Xu",
+        "first": "Zhenlin"
+      },
+      {
+        "last": "Penedo",
+        "first": "Guilherme"
+      },
+      {
+        "last": "Allal",
+        "first": "Loubna Ben"
+      },
+      {
+        "last": "Bakouch",
+        "first": "Elie"
+      },
+      {
+        "last": "Pressman",
+        "first": "John David"
+      },
+      {
+        "last": "Fan",
+        "first": "Honglu"
+      },
+      {
+        "last": "Stander",
+        "first": "Dashiell"
+      },
+      {
+        "last": "Song",
+        "first": "Guangyu"
+      },
+      {
+        "last": "Gokaslan",
+        "first": "Aaron"
+      },
+      {
+        "last": "Goldstein",
+        "first": "Tom"
+      },
+      {
+        "last": "Bartoldson",
+        "first": "Brian R."
+      },
+      {
+        "last": "Kailkhura",
+        "first": "Bhavya"
+      },
+      {
+        "last": "Murray",
+        "first": "Tyler"
+      }
+    ],
+    "conference": "Preprint",
+    "year": 2025,
+    "month": 6,
+    "workshop": "arXiv:2506.05209",
+    "location": null,
+    "url": "https://arxiv.org/abs/2506.05209",
+    "code": "https://github.com/r-three/common-pile",
+    "video": null,
+    "poster": null,
+    "slides": null,
+    "semantic_scholar_id": "577defbd8ee036bae10363750ebef8ce49089208",
+    "citation_count": null,
+    "fallback_citation_count_date": "2025/06/10",
+    "bibtex": "static/references/kandpal-etal-2025-common-pile.bib"
+  },
+  {
     "refkey": "tam-etal-2024-remm",
     "title": "Realistic Evaluation of Model Merging for Compositional Generalization",
     "author": [
