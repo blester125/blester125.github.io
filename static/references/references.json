@@ -175,7 +175,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "2d3b6058370b804009fd7866098f4fca2d1894ca",
-    "citation_count": 10,
+    "citation_count": 11,
     "fallback_citation_count_date": "2025/06/10",
     "bibtex": "static/references/lester-etal-2022-recycling.bib"
   },
@@ -828,7 +828,7 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 3987,
+    "citation_count": 3988,
     "fallback_citation_count_date": "2025/06/10",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
