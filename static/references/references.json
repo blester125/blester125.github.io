@@ -359,7 +359,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 3728,
+    "citation_count": 3731,
     "fallback_citation_count_date": "2025/06/12",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
@@ -435,7 +435,7 @@
     "poster": "static/presentations/posters/spot-acl-2022-poster.pdf",
     "slides": null,
     "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
-    "citation_count": 285,
+    "citation_count": 286,
     "fallback_citation_count_date": "2025/06/12",
     "bibtex": "static/references/vu-etal-2022-spot.bib"
   },
