@@ -493,8 +493,11 @@
                       <b v-if="pub.bold_venue">{{ pub.year }}</b>
                       <span v-else>{{ pub.year }}</span></span
                     ><!--
-		    --><span v-if="pub.workshop" v-html="pub.workshop" class="paper-venue"
-                      ></span
+		    --><span
+                      v-if="pub.workshop"
+                      v-html="pub.workshop"
+                      class="paper-venue"
+                    ></span
                     ><!--
                       --><span class="paper-venue" v-if="pub.location"
                       >, {{ pub.location }}.</span
@@ -618,9 +621,39 @@
         <!--       Talk content -->
         <!--     </p> -->
         <!--          <a href="" class="btn btn-primary">Slides</a> -->
-        <!--          <a href="" class="btn btn-primary">ideo</a> -->
+        <!--          <a href="" class="btn btn-primary">Video</a> -->
         <!--   </div> -->
         <!-- </div> -->
+        <div class="row equal">
+          <div class="col-sm-2 talk-image hidden-sm hidden-md">
+            <img
+              src="static/img/project/common-pile.png"
+              class="img-thumbnail center-block"
+            />
+          </div>
+          <div class="col-lg-10">
+            <h3 class="talk-title">The Common Pile</h3>
+            <h4 class="talk-location">
+              <a href="https://bdva.eu/">Big Data Value Association</a>
+            </h4>
+            <p class="text-muted">June 2025</p>
+            <p class="text-muted">
+              An overview of my work on the Common Pile (<a
+                href="https://arxiv.org/abs/2506.05209"
+                >paper</a
+              >, <a href="https://huggingface.co/common-pile">data</a>,
+              <a href="https://github.com/r-three/common-pile">code</a>), an 8TB
+              dataset of openly licensed text, and the first the produces models
+              that are on par with compute and data matched proprietary models.
+            </p>
+            <a
+              href="static/presentations/slides/common-pile-bdva.pdf"
+              class="btn btn-primary"
+              >Slides</a
+            >
+            <!-- <a href="" class="btn btn-primary">Video</a> -->
+          </div>
+        </div>
         <div class="row equal">
           <div class="col-sm-2 talk-image hidden-sm hidden-md">
             <img
@@ -652,7 +685,7 @@
             <a
               href="static/presentations/slides/Prompt-Tuning-UNC-with-speaker-notes.pdf"
               class="btn btn-primary"
-              >slides</a
+              >Slides</a
             >
           </div>
         </div>
@@ -678,7 +711,7 @@
             <a
               href="static/presentations/slides/MLOSS-NeurIPS-Baseline.pdf"
               class="btn btn-primary"
-              >slides</a
+              >Slides</a
             >
           </div>
         </div>
