@@ -163,7 +163,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "e5e0863cbfa594dd7c42e0b2f461fa04f9000a3b",
-    "citation_count": 9,
+    "citation_count": 10,
     "fallback_citation_count_date": "2025/08/28",
     "bibtex": "static/references/tam-etal-2024-remm.bib"
   },
@@ -359,7 +359,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 3989,
+    "citation_count": 3992,
     "fallback_citation_count_date": "2025/08/28",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
