@@ -123,7 +123,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "577defbd8ee036bae10363750ebef8ce49089208",
-    "citation_count": 1,
+    "citation_count": 2,
     "fallback_citation_count_date": "2025/10/07",
     "bibtex": "static/references/kandpal-etal-2025-common-pile.bib"
   },
@@ -435,7 +435,7 @@
     "poster": "static/presentations/posters/spot-acl-2022-poster.pdf",
     "slides": null,
     "semantic_scholar_id": "c28b7dfe341f1e13a5a98efbce7946ef795cf9b8",
-    "citation_count": 301,
+    "citation_count": 302,
     "fallback_citation_count_date": "2025/10/07",
     "bibtex": "static/references/vu-etal-2022-spot.bib"
   },
