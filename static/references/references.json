@@ -123,7 +123,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "577defbd8ee036bae10363750ebef8ce49089208",
-    "citation_count": 3,
+    "citation_count": 4,
     "fallback_citation_count_date": "2025/10/27",
     "bibtex": "static/references/kandpal-etal-2025-common-pile.bib"
   },
@@ -359,7 +359,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 4259,
+    "citation_count": 4260,
     "fallback_citation_count_date": "2025/10/27",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
