@@ -441,9 +441,9 @@
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Publications</h2>
             <h3 class="section-subheading text-muted">
-              <span v-if="hIndex != 0">h-index: {{ hIndex}}</span> <br />
-              Publications: {{ publicationCount }} <br />
-              Total Citations: {{ totalCitations }}
+              <span v-if="hIndex != 0">h-index: {{ hIndex.toLocaleString() }}</span> <br />
+              Publications: {{ publicationCount.toLocaleString() }} <br />
+              Total Citations: {{ totalCitations.toLocaleString() }}
               <small v-if="!live_data"
                 ><br />Note: Citation Counts and derivied data may not be up to
                 date.<br
@@ -505,7 +505,7 @@
                       --><span class="paper-venue" v-else>.</span
                     ><!--
                       --><span class="paper-venue" v-if="pub.citation_count"
-                      ><b> {{ pub.citation_count }}</b>
+                      ><b> {{ pub.citation_count.toLocaleString() }}</b>
                       <span class="paper-venue" v-if="pub.citation_count == 1"
                         >citation</span
                       >
