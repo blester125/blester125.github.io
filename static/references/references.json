@@ -112,14 +112,14 @@
         "first": "Tyler"
       }
     ],
-    "conference": "Preprint",
+    "conference": "NeurIPS",
     "year": 2025,
     "month": 6,
-    "workshop": "arXiv:2506.05209",
-    "location": null,
+    "workshop": "Datasets & Benchmarks",
+    "location": "San Diego, CA",
     "url": "https://arxiv.org/abs/2506.05209",
     "code": "https://github.com/r-three/common-pile",
-    "video": null,
+    "video": "https://neurips.cc/virtual/2025/loc/san-diego/poster/121774",
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "577defbd8ee036bae10363750ebef8ce49089208",
