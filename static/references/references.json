@@ -816,7 +816,7 @@
     "poster": "static/presentations/posters/iobes-nlposs-2020.pdf",
     "slides": "static/presentations/slides/iobes-nlposs-2020.pdf",
     "semantic_scholar_id": "d701ef7637f499b8c3145cac07deec3f94195ec4",
-    "citation_count": 7,
+    "citation_count": 8,
     "fallback_citation_count_date": "2026/01/26",
     "bibtex": "static/references/lester-2020-iobes.bib"
   },
@@ -956,7 +956,7 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 4998,
+    "citation_count": 4999,
     "fallback_citation_count_date": "2026/01/26",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
