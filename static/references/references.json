@@ -1,5 +1,32 @@
 [
   {
+    "refkey": "altintas-etal-2025-toksuite",
+    "title": "TokSuite: Measuring the Impact of Tokenizer Choice on Language Model Behavior",
+    "author": [
+      { "last": "Altıntaş", "first": "Gül Sena" },
+      { "last": "Ehghaghi", "first": "Malikeh" },
+      { "last": "Lester", "first": "Brian" },
+      { "last": "Liu", "first": "Fengyuan" },
+      { "last": "Zhao", "first": "Wanru" },
+      { "last": "Ciccone", "first": "Marco" },
+      { "last": "Raffel", "first": "Colin" }
+    ],
+    "conference": "Preprint",
+    "year": 2025,
+    "month": 12,
+    "workshop": "arXiv:2512.20757",
+    "location": null,
+    "url": "https://arxiv.org/abs/2512.20757",
+    "code": null,
+    "video": null,
+    "poster": null,
+    "slides": null,
+    "semantic_scholar_id": "33ab1733c27c959e72a836241629f919cd45b22f",
+    "citation_count": null,
+    "fallback_citation_count_date": null,
+    "bibtex": "static/references/altintas-etal-2025-toksuite.bib"
+  },
+  {
     "refkey": "kandpal-etal-2025-common-pile",
     "title": "The Common Pile v0.1: An 8TB Dataset of Public Domain and Openly Licensed Text",
     "author": [
