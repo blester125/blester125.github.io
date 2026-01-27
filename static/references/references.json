@@ -3,13 +3,34 @@
     "refkey": "altintas-etal-2025-toksuite",
     "title": "TokSuite: Measuring the Impact of Tokenizer Choice on Language Model Behavior",
     "author": [
-      { "last": "Altıntaş", "first": "Gül Sena" },
-      { "last": "Ehghaghi", "first": "Malikeh" },
-      { "last": "Lester", "first": "Brian" },
-      { "last": "Liu", "first": "Fengyuan" },
-      { "last": "Zhao", "first": "Wanru" },
-      { "last": "Ciccone", "first": "Marco" },
-      { "last": "Raffel", "first": "Colin" }
+      {
+        "last": "Alt\u0131nta\u015f",
+        "first": "G\u00fcl Sena"
+      },
+      {
+        "last": "Ehghaghi",
+        "first": "Malikeh"
+      },
+      {
+        "last": "Lester",
+        "first": "Brian"
+      },
+      {
+        "last": "Liu",
+        "first": "Fengyuan"
+      },
+      {
+        "last": "Zhao",
+        "first": "Wanru"
+      },
+      {
+        "last": "Ciccone",
+        "first": "Marco"
+      },
+      {
+        "last": "Raffel",
+        "first": "Colin"
+      }
     ],
     "conference": "Preprint",
     "year": 2025,
@@ -22,8 +43,8 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "33ab1733c27c959e72a836241629f919cd45b22f",
-    "citation_count": null,
-    "fallback_citation_count_date": null,
+    "citation_count": 1,
+    "fallback_citation_count_date": "2026/01/27",
     "bibtex": "static/references/altintas-etal-2025-toksuite.bib"
   },
   {
@@ -386,7 +407,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 4644,
+    "citation_count": 4650,
     "fallback_citation_count_date": "2026/01/27",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
@@ -983,7 +1004,7 @@
     "poster": "static/presentations/posters/Prompt-Tuning-EMNLP-2021-Poster.pdf",
     "video": "presentations/prompt-tuning-emnlp-2021.html",
     "semantic_scholar_id": "ffdbd7f0b03b85747b001b4734d5ee31b5229aa4",
-    "citation_count": 5002,
+    "citation_count": 5012,
     "fallback_citation_count_date": "2026/01/27",
     "bibtex": "static/references/lester-etal-2021-prompt.bib",
     "position": 1
