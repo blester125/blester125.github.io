@@ -200,12 +200,12 @@
         "first": "Colin"
       }
     ],
-    "conference": "Preprint",
-    "year": 2024,
-    "month": 9,
-    "workshop": "arXiv:2409.18314",
-    "location": null,
-    "url": "https://arxiv.org/abs/2409.18314",
+    "conference": "TMLR",
+    "year": 2026,
+    "month": 6,
+    "workshop": "",
+    "location": "Online",
+    "url": "https://openreview.net/forum?id=j7ye0nXvEm",
     "code": null,
     "video": null,
     "poster": null,
