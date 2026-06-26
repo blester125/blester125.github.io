@@ -259,7 +259,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "e27c9c39ecb67e8e7708d8d53bec2f891cfa7a40",
-    "citation_count": 14,
+    "citation_count": 15,
     "fallback_citation_count_date": "2026/06/26",
     "bibtex": "static/references/lester-etal-2024-compression.bib"
   },
@@ -407,7 +407,7 @@
     "poster": null,
     "slides": null,
     "semantic_scholar_id": "1d8b751b826d03ffa52b1441ae6e5e67f513f12b",
-    "citation_count": 5130,
+    "citation_count": 5131,
     "fallback_citation_count_date": "2026/06/26",
     "bibtex": "static/references/wei-2022-finetuned.bib"
   },
